@@ -33,12 +33,43 @@ extract_df <- function(schema_txt, pattern_split = "\\s") {
   list(name = name_schema, schema_df = schema_txt)
 }
 
-extract_label <- function(schema_txt) {
+extract_df_label <- function(schema_txt, pattern_split = "\\s") {
+  name_schema <-
+    schema_txt[1] %>%
+    str_replace_all("% CODELIST-|% LABELLIST-", "") %>%
+    str_replace_all("-", "_to_")
+
+  variable_start <- schema_txt %>%
+    str_detect("variables") %>%
+    which()
+
+  variable_end <- which(!str_detect(schema_txt, "%"))[1] - 1
+  variables_txt <- paste(schema_txt[variable_start:variable_end], collapse = " ")
+
+  variables_txt <-
+    variables_txt %>%
+    str_replace_all("%|variables:|, .+$", "") %>%
+    str_trim() %>%
+    str_split(" ") %>%
+    .[[1]]
+
+  variables_txt <- variables_txt[variables_txt != ""]
+
+  schema_txt <- schema_txt[!str_detect(schema_txt, "^%")]
+  schema_txt <- str_split(schema_txt, pattern = pattern_split, simplify = TRUE, n = 2)
+  schema_txt <- as_tibble(schema_txt) %>% mutate_all(str_trim)
+  colnames(schema_txt) <- variables_txt
+
+  list(name = name_schema, schema_df = schema_txt)
+}
+
+extract_label <- function(schema_txt, pattern = "\\s") {
   label <-
-    schema_label %>%
-    str_replace_all(" & ", "@") %>%
-    str_replace_all("([A-Z]) ([A-Z])", "\\1#\\2") %>%
-    extract_df(pattern)
+    schema_txt %>%
+    ## str_replace_all(" & ", "@") %>%
+    ## str_replace_all("([A-Z]) ([A-Z])", "\\1#\\2") %>%
+    str_replace_all('\\"', "'") %>%
+    extract_df_label(pattern)
 
   label_df <- label$schema_df
   label_df[[2]] <-
@@ -72,4 +103,16 @@ for (i in seq_along(begin)) {
 
 ## Schema labels
 schema_label <- schema[labels_section:length(schema)]
-label_res <- extract_label(schema_label)
+
+begin <- which(str_detect(schema_label, "% LABELLIST"))
+end <- which(str_detect(schema_label, "% END"))
+
+all_labels <- list()
+
+for (i in seq_along(begin)) {
+  labels_ch <- schema_label[begin[i]:end[i]]
+  cleaned_labels <- extract_label(labels_ch)
+  all_labels[[cleaned_labels$name]] <- cleaned_labels$label_df
+}
+
+

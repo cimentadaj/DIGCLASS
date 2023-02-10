@@ -6978,7 +6978,7 @@
 6151 23
 6152 23
 6153 28
-6154  6
+6154 06
 6200 38
 6210 38
 7000 38
@@ -8701,7 +8701,7 @@
 % CODELIST-isco88-esec
 % source: Euroesec matrix.xls obtained on 10apr2020 from 
 %         https://www.iser.essex.ac.uk/archives/esec/matrices-and-syntax
-% variables: ISCO-88(3 digit) ESEC-employee ESEC-supervisor
+% variables: ISCO-88(3-digit) ESEC-employee ESEC-supervisor
 %            ESEC-selfemp(0) ESEC-selfemp(1-9) ESEC-selfemp(10+)
 %            ESEC-simplified
 010 1 1 1 1 1 1
@@ -11591,11 +11591,11 @@
 6222 27.24
 6223 27.24
 6224 27.24
-6300  5.00
-6310  5.00
-6320  5.00
-6330  5.00
-6340  5.00
+6300 05.00
+6310 05.00
+6320 05.00
+6330 05.00
+6340 05.00
 7000 37.00
 7100 33.06
 7110 34.10
@@ -11797,7 +11797,7 @@
 %       and 96 in the 2-digit list (also in esec_08_3_digit_public.xlsx), codes
 %       960/961/962 are added to the list below using the same classes as for
 %       950/951/952
-% variables: ISCO-08(3 digit) ESEC-employee ESEC-supervisor
+% variables: ISCO-08(3-digit) ESEC-employee ESEC-supervisor
 %            ESEC-selfemp(0) ESEC-selfemp(1-9) ESEC-selfemp(10+)
 011 1 1 1 1 1
 021 3 2 3 3 3
@@ -11975,9 +11975,9 @@
 950 9 6 4 4 1
 951 9 6 4 4 1
 952 9 6 4 4 1
-960 9 6 4 4 1  % see note above
-961 9 6 4 4 1  % see note above
-962 9 6 4 4 1  % see note above
+% 960 9 6 4 4 1  % see note above
+% 961 9 6 4 4 1  % see note above
+% 962 9 6 4 4 1  % see note above
 % END
 
 % CODELIST-isco08-oesch
@@ -13327,4 +13327,2789 @@
 10003 'SOLDIER'
 10009 'HIGH ARMY OFFICERS'
 % 12000 'UNCLASSIFIABLE OCCUPATION'
+% END
+
+% LABELLIST-isco88
+% source: https://www.ilo.org/public/english/bureau/stat/isco/isco88/major.htm
+% note: uppercase spelling of major, submajor, and minor groups changed to
+%       lowercase
+% variables: ICSO88 ICSO88-label-E
+1000 "Legislators, senior officials and managers"
+1100 "Legislators and senior officials"
+1110 "Legislators"
+1120 "Senior government officials"
+1130 "Traditional chiefs and heads of villages"
+1140 "Senior officials of special-interest organisations"
+1141 "Senior officials of political-party organisations"
+1142 "Senior officials of employers', workers' and other economic-interest organisations"
+1143 "Senior officials of humanitarian and other special-interest organisations"
+1200 "Corporate managers"
+1210 "Directors and chief executives"
+1220 "Production and operations department managers"
+1221 "Production and operations department managers in agriculture, hunting, forestry and fishing"
+1222 "Production and operations department managers in manufacturing"
+1223 "Production and operations department managers in construction"
+1224 "Production and operations department managers in wholesale and retail trade"
+1225 "Production and operations department managers in restaurants and hotels"
+1226 "Production and operations department managers in transport, storage and communications"
+1227 "Production and operations department managers in business services"
+1228 "Production and operations department managers in personal care, cleaning and related services"
+1229 "Production and operations department managers not elsewhere classified"
+1230 "Other department managers"
+1231 "Finance and administration department managers"
+1232 "Personnel and industrial relations department managers"
+1233 "Sales and marketing department managers"
+1234 "Advertising and public relations department managers"
+1235 "Supply and distribution department managers"
+1236 "Computing services department managers"
+1237 "Research and development department managers"
+1239 "Other department managers not elsewhere classified"
+1300 "General managers"
+1310 "General managers"
+1311 "General managers in agriculture, hunting, forestry/ and fishing"
+1312 "General managers in manufacturing"
+1313 "General managers in construction"
+1314 "General managers in wholesale and retail trade"
+1315 "General managers of restaurants and hotels"
+1316 "General managers in transport, storage and communications"
+1317 "General managers of business services"
+1318 "General managers in personal care, cleaning and related services"
+1319 "General managers not elsewhere classified"
+2000 "Professionals"
+2100 "Physical, mathematical and engineering science professionals"
+2110 "Physicists, chemists and related professionals"
+2111 "Physicists and astronomers"
+2112 "Meteorologists"
+2113 "Chemists"
+2114 "Geologists and geophysicists"
+2120 "Mathematicians, statisticians and related professionals"
+2121 "Mathematicians and related professionals"
+2122 "Statisticians"
+2130 "Computing professionals"
+2131 "Computer systems designers and analysts"
+2132 "Computer programmers"
+2139 "Computing professionals not elsewhere classified"
+2140 "Architects, engineers and related professionals"
+2141 "Architects, town and traffic planners"
+2142 "Civil engineers"
+2143 "Electrical engineers"
+2144 "Electronics and telecommunications engineers"
+2145 "Mechanical engineers"
+2146 "Chemical engineers"
+2147 "Mining engineers, metallurgists and related professionals"
+2148 "Cartographers and surveyors"
+2149 "Architects, engineers and related professionals not elsewhere classified"
+2200 "Life science and health professionals"
+2210 "Life science professionals"
+2211 "Biologists, botanists, zoologists and related professionals"
+2212 "Pharmacologists, pathologists and related professionals"
+2213 "Agronomists and related professionals"
+2220 "Health professionals (except nursing)"
+2221 "Medical doctors"
+2222 "Dentists"
+2223 "Veterinarians"
+2224 "Pharmacists"
+2229 "Health professionals (except nursing) not elsewhere classified"
+2230 "Nursing and midwifery professionals"
+2300 "Teaching professionals"
+2310 "College, university and higher education teaching professionals"
+2320 "Secondary education teaching professionals"
+2330 "Primary and pre-primary education teaching professionals"
+2331 "Primary education teaching professionals"
+2332 "Pre-primary education teaching professionals"
+2340 "Special education teaching professionals"
+2350 "Other teaching professionals"
+2351 "Education methods specialists"
+2352 "School inspectors"
+2359 "Other teaching professionals not elsewhere classified"
+2400 "Other professionals"
+2410 "Business professionals"
+2411 "Accountants"
+2412 "Personnel and careers professionals"
+2419 "Business professionals not elsewhere classified"
+2420 "Legal professionals"
+2421 "Lawyers"
+2422 "Judges"
+2429 "Legal professionals not elsewhere classified"
+2430 "Archivists, librarians and related information professionals"
+2431 "Archivists and curators"
+2432 "Librarians and related information professionals"
+2440 "Social science and related professionals"
+2441 "Economists"
+2442 "Sociologists, anthropologists and related professionals"
+2443 "Philosophers, historians and political scientists"
+2444 "Philologists, translators and interpreters"
+2445 "Psychologists"
+2446 "Social work professionals"
+2450 "Writers and creative or performing artists"
+2451 "Authors, journalists and other writers"
+2452 "Sculptors, painters and related artists"
+2453 "Composers, musicians and singers"
+2454 "Choreographers and dancers"
+2455 "Film, stage and related actors and directors"
+2460 "Religious professionals"
+3000 "Technicians and associate professionals"
+3100 "Physical and engineering science associate professionals"
+3110 "Physical and engineering science technicians"
+3111 "Chemical and physical science technicians"
+3112 "Civil engineering technicians"
+3113 "Electrical engineering technicians"
+3114 "Electronics and telecommunications engineering technicians"
+3115 "Mechanical engineering technicians"
+3116 "Chemical engineering technicians"
+3117 "Mining and metallurgical technicians"
+3118 "Draughtspersons"
+3119 "Physical and engineering science technicians not elsewhere classified"
+3120 "Computer associate professionals"
+3121 "Computer assistants"
+3122 "Computer equipment operators"
+3123 "Industrial robot controllers"
+3130 "Optical and electronic equipment operators"
+3131 "Photographers and image and sound recording equipment operators"
+3132 "Broadcasting and telecommunications equipment operators"
+3133 "Medical equipment operators"
+3139 "Optical and electronic equipment operators not elsewhere classified"
+3140 "Ship and aircraft controllers and technicians"
+3141 "Ships' engineers"
+3142 "Ships' deck officers and pilots"
+3143 "Aircraft pilots and related associate professionals"
+3144 "Air traffic controllers"
+3145 "Air traffic safety technicians"
+3150 "Safety and quality inspectors"
+3151 "Building and fire inspectors"
+3152 "Safety, health and quality inspectors"
+3200 "Life science and health associate professionals"
+3210 "Life science technicians and related associate professionals"
+3211 "Life science technicians"
+3212 "Agronomy and forestry technicians"
+3213 "Farming and forestry advisers"
+3220 "Modern health associate professionals (except nursing)"
+3221 "Medical assistants"
+3222 "Sanitarians"
+3223 "Dieticians and nutritionists"
+3224 "Optometrists and opticians"
+3225 "Dental assistants"
+3226 "Physiotherapists and related associate professionals"
+3227 "Veterinary assistants"
+3228 "Pharmaceutical assistants"
+3229 "Modern health associate professionals (except nursing) not elsewhere classified"
+3230 "Nursing and midwifery associate professionals"
+3231 "Nursing associate professionals"
+3232 "Midwifery associate professionals"
+3240 "Traditional medicine practitioners and faith healers"
+3241 "Traditional medicine practitioners"
+3242 "Faith healers"
+3300 "Teaching associate professionals"
+3310 "Primary education teaching associate professionals"
+3320 "Pre-primary education teaching associate professionals"
+3330 "Special education teaching associate professionals"
+3340 "Other teaching associate professionals"
+3400 "Other associate professionals"
+3410 "Finance and sales associate professionals"
+3411 "Securities and finance dealers and brokers"
+3412 "Insurance representatives"
+3413 "Estate agents"
+3414 "Travel consultants and organisers"
+3415 "Technical and commercial sales representatives"
+3416 "Buyers"
+3417 "Appraisers, valuers and auctioneers"
+3419 "Finance and sales associate professionals not elsewhere classified"
+3420 "Business services agents and trade brokers"
+3421 "Trade brokers"
+3422 "Clearing and forwarding agents"
+3423 "Employment agents and labour contractors"
+3429 "Business services agents and trade brokers not elsewhere classified"
+3430 "Administrative associate professionals"
+3431 "Administrative secretaries and related associate professionals"
+3432 "Legal and related business associate professionals"
+3433 "Bookkeepers"
+3434 "Statistical, mathematical and related associate professionals"
+3439 "Administrative associate professionals not elsewhere classified"
+3440 "Customs, tax and related government associate professionals"
+3441 "Customs and border inspectors"
+3442 "Government tax and excise officials"
+3443 "Government social benefits officials"
+3444 "Government licensing officials"
+3449 "Customs, tax and related government associate professionals not elsewhere classified"
+3450 "Police inspectors and detectives"
+3460 "Social work associate professionals"
+3470 "Artistic, entertainment and sports associate professionals"
+3471 "Decorators and commercial designers"
+3472 "Radio, television and other announcers"
+3473 "Street, night-club and related musicians, singers and dancers"
+3474 "Clowns, magicians, acrobats and related associate professionals"
+3475 "Athletes, sportspersons and related associate professionals"
+3480 "Religious associate professionals"
+4000 "Clerks"
+4100 "Office clerks"
+4110 "Secretaries and keyboard-operating clerks"
+4111 "Stenographers and typists"
+4112 "Word-processor and related operators"
+4113 "Data entry operators"
+4114 "Calculating-machine operators"
+4115 "Secretaries"
+4120 "Numerical clerks"
+4121 "Accounting and bookkeeping clerks"
+4122 "Statistical and finance clerks"
+4130 "Material-recording and transport clerks"
+4131 "Stock clerks"
+4132 "Production clerks"
+4133 "Transport clerks"
+4140 "Library, mail and related clerks"
+4141 "Library and filing clerks"
+4142 "Mail carriers and sorting clerks"
+4143 "Coding, proof-reading and related clerks"
+4144 "Scribes and related workers"
+4190 "Other office clerks"
+4200 "Customer services clerks"
+4210 "Cashiers, tellers and related clerks"
+4211 "Cashiers and ticket clerks"
+4212 "Tellers and other counter clerks"
+4213 "Bookmakers and croupiers"
+4214 "Pawnbrokers and money-lenders"
+4215 "Debt-collectors and related workers"
+4220 "Client information clerks"
+4221 "Travel agency and related clerks"
+4222 "Receptionists and information clerks"
+4223 "Telephone switchboard operators"
+5000 "Service workers and shop and market sales workers"
+5100 "Personal and protective services workers"
+5110 "Travel attendants and related workers"
+5111 "Travel attendants and travel stewards"
+5112 "Transport conductors"
+5113 "Travel guides"
+5120 "Housekeeping and restaurant services workers"
+5121 "Housekeepers and related workers"
+5122 "Cooks"
+5123 "Waiters, waitresses and bartenders"
+5130 "Personal care and related workers"
+5131 "Child-care workers"
+5132 "Institution-based personal care workers"
+5133 "Home-based personal care workers"
+5139 "Personal care and related workers not elsewhere classified"
+5140 "Other personal services workers"
+5141 "Hairdressers, barbers, beauticians and related workers"
+5142 "Companions and valets"
+5143 "Undertakers and embalmers"
+5149 "Other personal services workers not elsewhere classified"
+5150 "Astrologers, fortune-tellers and related workers"
+5151 "Astrologers and related workers"
+5152 "Fortune-tellers, palmists and related workers"
+5160 "Protective services workers"
+5161 "Fire-fighters"
+5162 "Police officers"
+5163 "Prison guards"
+5169 "Protective services workers not elsewhere classified"
+5200 "Models, salespersons and demonstrators"
+5210 "Fashion and other models"
+5220 "Shop salespersons and demonstrators"
+5230 "Stall and market salespersons"
+6000 "Skilled agricultural and fishery workers"
+6100 "Market-oriented skilled agricultural and fishery workers"
+6110 "Market gardeners and crop growers"
+6111 "Field crop and vegetable growers"
+6112 "Tree and shrub crop growers"
+6113 "Gardeners, horticultural and nursery growers"
+6114 "Mixed-crop growers"
+6120 "Market-oriented animal producers and related workers"
+6121 "Dairy and livestock producers"
+6122 "Poultry producers"
+6123 "Apiarists and sericulturists"
+6124 "Mixed-animal producers"
+6129 "Market-oriented animal producers and related workers not elsewhere classified"
+6130 "Market-oriented crop and animal producers"
+6140 "Forestry and related workers"
+6141 "Forestry workers and loggers"
+6142 "Charcoal burners and related workers"
+6150 "Fishery workers, hunters and trappers"
+6151 "Aquatic-life cultivation workers"
+6152 "Inland and coastal waters fishery workers"
+6153 "Deep-sea fishery workers"
+6154 "Hunters and trappers"
+6200 "Subsistence agricultural and fishery workers"
+6210 "Subsistence agricultural and fishery workers"
+7000 "Craft and related trades workers"
+7100 "Extraction and building trades workers"
+7110 "Miners, shotfirers, stone cutters and carvers"
+7111 "Miners and quarry workers"
+7112 "Shotfirers and blasters"
+7113 "Stone splitters, cutters and carvers"
+7120 "Building frame and related trades workers"
+7121 "Builders, traditional materials"
+7122 "Bricklayers and stonemasons"
+7123 "Concrete placers, concrete finishers and related workers"
+7124 "Carpenters and joiners"
+7129 "Building frame and related trades workers not elsewhere classified"
+7130 "Building finishers and related trades workers"
+7131 "Roofers"
+7132 "Floor layers and tile setters"
+7133 "Plasterers"
+7134 "Insulation workers"
+7135 "Glaziers"
+7136 "Plumbers and pipe fitters"
+7137 "Building and related electricians"
+7140 "Painters, building structure cleaners and related trades workers"
+7141 "Painters and related workers"
+7142 "Varnishers and related painters"
+7143 "Building structure cleaners"
+7200 "Metal, machinery and related trades workers"
+7210 "Metal moulders, welders, sheet-metal workers, structural- metal preparers, and related trades workers"
+7211 "Metal moulders and coremakers"
+7212 "Welders and flamecutters"
+7213 "Sheet metal workers"
+7214 "Structural-metal preparers and erectors"
+7215 "Riggers and cable splicers"
+7216 "Underwater workers"
+7220 "Blacksmiths, tool-makers and related trades workers"
+7221 "Blacksmiths, hammer-smiths and forging-press workers"
+7222 "Tool-makers and related workers"
+7223 "Machine-tool setters and setter-operators"
+7224 "Metal wheel-grinders, polishers and tool sharpeners"
+7230 "Machinery mechanics and fitters"
+7231 "Motor vehicle mechanics and fitters"
+7232 "Aircraft engine mechanics and fitters"
+7233 "Agricultural- or industrial-machinery mechanics and fitters"
+7240 "Electrical and electronic equipment mechanics and fitters"
+7241 "Electrical mechanics and fitters"
+7242 "Electronics fitters"
+7243 "Electronics mechanics and servicers"
+7244 "Telegraph and telephone installers and servicers"
+7245 "Electrical line installers, repairers and cable jointers"
+7300 "Precision, handicraft, printing and related trades workers"
+7310 "Precision workers in metal and related materials"
+7311 "Precision-instrument makers and repairers"
+7312 "Musical instrument makers and tuners"
+7313 "Jewellery and precious-metal workers"
+7320 "Potters, glass-makers and related trades workers"
+7321 "Abrasive wheel formers, potters and related workers"
+7322 "Glass makers, cutters, grinders and finishers"
+7323 "Glass engravers and etchers"
+7324 "Glass, ceramics and related decorative painters"
+7330 "Handicraft workers in wood,textile, leather and related materials"
+7331 "Handicraft workers in wood and related materials"
+7332 "Handicraft workers in textile, leather and related materials"
+7340 "Printing and related trades workers"
+7341 "Compositors, typesetters and related workers"
+7342 "Stereotypers and electrotypers"
+7343 "Printing engravers and etchers"
+7344 "Photographic and related workers"
+7345 "Bookbinders and related workers"
+7346 "Silk-screen, block and textile printers"
+7400 "Other craft and related trades workers"
+7410 "Food processing and related trades workers"
+7411 "Butchers, fishmongers and related food preparers"
+7412 "Bakers, pastry-cooks and confectionery makers"
+7413 "Dairy-products makers"
+7414 "Fruit, vegetable and related preservers"
+7415 "Food and beverage tasters and graders"
+7416 "Tobacco preparers and tobacco products makers"
+7420 "Wood treaters, cabinet-makers and related trades workers"
+7421 "Wood treaters"
+7422 "Cabinet makers and related workers"
+7423 "Woodworking machine setters and setter-operators"
+7424 "Basketry weavers, brush makers and related workers"
+7430 "Textile, garment and related trades workers"
+7431 "Fibre preparers"
+7432 "Weavers, knitters and related workers"
+7433 "Tailors, dressmakers and hatters"
+7434 "Furriers and related workers"
+7435 "Textile, leather and related pattern-makers and cutters"
+7436 "Sewers, embroiderers and related workers"
+7437 "Upholsterers and related workers"
+7440 "Pelt, leather and shoemaking trades workers"
+7441 "Pelt dressers, tanners and fellmongers"
+7442 "Shoe-makers and related workers"
+8000 "Plant and machine operators and assemblers"
+8100 "Stationary-plant and related operators"
+8110 "Mining- and mineral-processing-plant operators"
+8111 "Mining-plant operators"
+8112 "Mineral-ore- and stone-processing-plant operators"
+8113 "Well drillers and borers and related workers"
+8120 "Metal-processing-plant operators"
+8121 "Ore and metal furnace operators"
+8122 "Metal melters, casters and rolling-mill operators"
+8123 "Metal-heat-treating-plant operators"
+8124 "Metal drawers and extruders"
+8130 "Glass, ceramics and related plant operators"
+8131 "Glass and ceramics kiln and related machine operators"
+8139 "Glass, ceramics and related plant operators not elsewhere classified"
+8140 "Wood-processing- and papermaking-plant operators"
+8141 "Wood-processing-plant operators"
+8142 "Paper-pulp plant operators"
+8143 "Papermaking-plant operators"
+8150 "Chemical-processing-plant operators"
+8151 "Crushing-, grinding- and chemical-mixing-machinery operators"
+8152 "Chemical-heat-treating-plant operators"
+8153 "Chemical-filtering- and separating-equipment operators"
+8154 "Chemical-still and reactor operators (except petroleum and natural gas)"
+8155 "Petroleum- and natural-gas-refining-plant operators"
+8159 "Chemical-processing-plant operators not elsewhere classified"
+8160 "Power-production and related plant operators"
+8161 "Power-production plant operators"
+8162 "Steam-engine and boiler operators"
+8163 "Incinerator, water-treatment and related plant operators"
+8170 "Automated-assembly-line and industrial-robot operators"
+8171 "Automated-assembly-line operators"
+8172 "Industrial-robot operators"
+8200 "Machine operators and assemblers"
+8210 "Metal- and mineral-products machine operators"
+8211 "Machine-tool operators"
+8212 "Cement and other mineral products machine operators"
+8220 "Chemical-products machine operators"
+8221 "Pharmaceutical- and toiletry-products machine operators"
+8222 "Ammunition- and explosive-products machine operators"
+8223 "Metal finishing-, plating- and coating-machine operators"
+8224 "Photographic-products machine operators"
+8229 "Chemical-products machine operators not elsewhere classified"
+8230 "Rubber- and plastic-products machine operators"
+8231 "Rubber-products machine operators"
+8232 "Plastic-products machine operators"
+8240 "Wood-products machine operators"
+8250 "Printing-, binding- and paper-products machine operators"
+8251 "Printing-machine operators"
+8252 "Bookbinding-machine operators"
+8253 "Paper-products machine operators"
+8260 "Textile-, fur- and leather-products machine operators"
+8261 "Fibre-preparing-, spinning- and winding-machine operators"
+8262 "Weaving- and knitting-machine operators"
+8263 "Sewing-machine operators"
+8264 "Bleaching-, dyeing- and cleaning-machine operators"
+8265 "Fur and leather-preparing-machine operators"
+8266 "Shoemaking- and related machine operators"
+8269 "Textile-, fur- and leather-products machine operators not elsewhere classified"
+8270 "Food and related products machine operators"
+8271 "Meat- and fish-processing-machine operators"
+8272 "Dairy-products machine operators"
+8273 "Grain- and spice-milling-machine operators"
+8274 "Baked-goods, cereal and chocolate-products machine operators"
+8275 "Fruit-, vegetable- and nut-processing-machine operators"
+8276 "Sugar production machine operators"
+8277 "Tea-, coffee-, and cocoa-processing-machine operators"
+8278 "Brewers, wine and other beverage machine operators"
+8279 "Tobacco production machine operators"
+8280 "Assemblers"
+8281 "Mechanical-machinery assemblers"
+8282 "Electrical-equipment assemblers"
+8283 "Electronic-equipment assemblers"
+8284 "Metal-, rubber- and plastic-products assemblers"
+8285 "Wood and related products assemblers"
+8286 "Paperboard, textile and related products assemblers"
+8290 "Other machine operators and assemblers"
+8300 "Drivers and mobile-plant operators"
+8310 "Locomotive-engine drivers and related workers"
+8311 "Locomotive-engine drivers"
+8312 "Railway brakers, signallers and shunters"
+8320 "Motor-vehicle drivers"
+8321 "Motor-cycle drivers"
+8322 "Car, taxi and van drivers"
+8323 "Bus and tram drivers"
+8324 "Heavy-truck and lorry drivers"
+8330 "Agricultural and other mobile-plant operators"
+8331 "Motorised farm and forestry plant operators"
+8332 "Earth-moving- and related plant operators"
+8333 "Crane, hoist and related plant operators"
+8334 "Lifting-truck operators"
+8340 "Ships' deck crews and related workers"
+9000 "Elementary occupations"
+9100 "Sales and services elementary occupations"
+9110 "Street vendors and related workers"
+9111 "Street food vendors"
+9112 "Street vendors, non-food products"
+9113 "Door-to-door and telephone salespersons"
+9120 "Shoe cleaning and other street services elementary occupations"
+9130 "Domestic and related helpers, cleaners and launderers"
+9131 "Domestic helpers and cleaners"
+9132 "Helpers and cleaners in offices, hotels and other establishments"
+9133 "Hand-launderers and pressers"
+9140 "Building caretakers, window and related cleaners"
+9141 "Building caretakers"
+9142 "Vehicle, window and related cleaners"
+9150 "Messengers, porters, doorkeepers and related workers"
+9151 "Messengers, package and luggage porters and deliverers"
+9152 "Doorkeepers, watchpersons and related workers"
+9153 "Vending-machine money collectors, meter readers and related workers"
+9160 "Garbage collectors and related labourers"
+9161 "Garbage collectors"
+9162 "Sweepers and related labourers"
+9200 "Agricultural, fishery and related labourers"
+9210 "Agricultural, fishery and related labourers"
+9211 "Farm-hands and labourers"
+9212 "Forestry labourers"
+9213 "Fishery, hunting and trapping labourers"
+9300 "Labourers in mining, construction, manufacturing and transport"
+9310 "Mining and construction labourers"
+9311 "Mining and quarrying labourers"
+9312 "Construction and maintenance labourers: roads, dams and similar constructions"
+9313 "Building construction labourers"
+9320 "Manufacturing labourers"
+9321 "Assembling labourers"
+9322 "Hand packers and other manufacturing labourers"
+9330 "Transport labourers and freight handlers"
+9331 "Hand or pedal vehicle drivers"
+9332 "Drivers of animal-drawn vehicles and machinery"
+9333 "Freight handlers"
+0000 "Armed forces"
+0100 "Armed forces"
+0110 "Armed forces"
+% END
+
+% LABELLIST-isco88com
+% source: ISCO88.xls from https://warwick.ac.uk/fac/soc/ier/research/classification/isco88
+% variables: ICSO88COM ICSO88COM-label-E
+1000 "Legislators, senior officials and managers"
+1100 "Legislators and senior officials"
+1110 "Legislators and senior government officials"
+1140 "Senior officials of special-interest organisations"
+1141 "Senior officials of political party organisations"
+1142 "Senior officials of employers', workers' and other economic-interest organisations"
+1143 "Senior officials of humanitarian and other special-interest organisations"
+1200 "Corporate managers"
+1210 "Directors and chief executives"
+1220 "Production and operations managers"
+1221 "Production and operations managers in agriculture, hunting, forestry and fishing"
+1222 "Production and operations managers in manufacturing"
+1223 "Production and operations managers in construction"
+1224 "Production and operations managers in wholesale and retail trade"
+1225 "Production and operations managers in restaurants and hotels"
+1226 "Production and operations managers in transport, storage and communications"
+1227 "Production and operations managers in business services enterprises"
+1228 "Production and operations managers in personal care, cleaning and related services"
+1229 "Production and operations managers not elsewhere classified"
+1230 "Other specialist managers"
+1231 "Finance and administration managers"
+1232 "Personnel and industrial relations managers"
+1233 "Sales and marketing managers"
+1234 "Advertising and public relations managers"
+1235 "Supply and distribution managers"
+1236 "Computing services managers"
+1237 "Research and development managers"
+1239 "Other specialist managers not elsewhere classified"
+1300 "Managers of small enterprises"
+1310 "Managers of small enterprises"
+1311 "Managers of small enterprises in agriculture, hunting,  forestry and fishing"
+1312 "Managers of small enterprises in manufacturing"
+1313 "Managers of small enterprises in construction"
+1314 "Managers of small enterprises in wholesale and retail trade"
+1315 "Managers of small enterprises of restaurants and hotels"
+1316 "Managers of small enterprises in transport, storage and communications"
+1317 "Managers of small enterprises in business services enterprises"
+1318 "Managers of small enterprises in personal care, cleaning and related services"
+1319 "Managers of small enterprises not elsewhere classifie"
+2000 "Professionals"
+2100 "Physical, mathematical and engineering science professionals"
+2110 "Physicists, chemists and related professionals"
+2111 "Physicists and astronomers"
+2112 "Meteorologists"
+2113 "Chemists"
+2114 "Geologists and geophysicists"
+2120 "Mathematicians, statisticians and related professionals"
+2121 "Mathematicians and related professionals"
+2122 "Statisticians"
+2130 "Computing professionals"
+2131 "Computer systems designers, analysts and programmers"
+2139 "Computing professionals not elsewhere classified"
+2140 "Architects, engineers and related professionals"
+2141 "Architects, town and traffic planners"
+2142 "Civil engineers"
+2143 "Electrical engineers"
+2144 "Electronics and telecommunications engineers"
+2145 "Mechanical engineers"
+2146 "Chemical engineers"
+2147 "Mining engineers, metallurgists and related professionals"
+2148 "Cartographers and surveyors"
+2149 "Architects, engineers and related professionals not elsewhere classified"
+2200 "Life science and health professionals"
+2210 "Life science professionals"
+2211 "Biologists, botanists, zoologists and related professionals"
+2212 "Pharmacologists, pathologists and related professionals"
+2213 "Agronomists and related professionals"
+2220 "Health professionals (except nursing)"
+2221 "Medical doctors"
+2222 "Dentists"
+2223 "Veterinarians"
+2224 "Pharmacists"
+2229 "Health professionals (except nursing) not elsewhere classified"
+2230 "Nursing and midwifery professionals"
+2300 "Teaching professionals"
+2310 "College, university and higher education teaching professionals"
+2320 "Secondary education teaching professionals"
+2330 "Primary and pre-primary education teaching professionals"
+2331 "Primary education teaching professionals"
+2332 "Pre-primary education teaching professionals"
+2340 "Special education teaching professionals"
+2350 "Other teaching professionals"
+2351 "Education methods specialists"
+2352 "School inspectors"
+2359 "Other teaching professionals not elsewhere classified"
+2400 "Other professionals"
+2410 "Business professionals"
+2411 "Accountants"
+2412 "Personnel and careers professionals"
+2419 "Business professionals not elsewhere classified"
+2420 "Legal professionals"
+2421 "Lawyers"
+2422 "Judges"
+2429 "Legal professionals not elswhere classified"
+2430 "Archivists, librarians and related information professionals"
+2431 "Archivists and curators"
+2432 "Librarians and related information professionals"
+2440 "Social science and related professionals"
+2441 "Economists"
+2442 "Sociologists, anthropologists and related professionals"
+2443 "Philosophers, historians and political scientists"
+2444 "Philologists, translators and interpreters"
+2445 "Psychologists"
+2446 "Social work professionals"
+2450 "Writers and creative or performing artists"
+2451 "Authors, journalists and other writers"
+2452 "Sculptors, painters and related artists"
+2453 "Composers, musicians and singers"
+2454 "Choreographers and dancers"
+2455 "Film, stage and related actors and directors"
+2460 "Religious professionals"
+2470 "Public service administrative professionals"
+3000 "Technicians and associate professionals"
+3100 "Physical and engineering science associate professionals"
+3110 "Physical and engineering science technicians"
+3111 "Chemical and physical science technicians"
+3112 "Civil engineering technicians"
+3113 "Electrical engineering technicians"
+3114 "Electronics and telecommunications engineering technicians"
+3115 "Mechanical engineering technicians"
+3116 "Chemical engineering technicians"
+3117 "Mining and metallurgical technicians"
+3118 "Draughtspersons"
+3119 "Physical and engineering science technicians not elsewhere classified"
+3120 "Computer associate professionals"
+3121 "Computer assistants"
+3122 "Computer equipment operators"
+3123 "Industrial robot controllers"
+3130 "Optical and electronic equipment operators"
+3131 "Photographers and image and sound recording equipment operators"
+3132 "Broadcasting and telecommunications equipment operators"
+3133 "Medical equipment operators"
+3139 "Optical and electronic equipment operators not elsewhere classified"
+3140 "Ship and aircraft controllers and technicians"
+3141 "Ships' engineers"
+3142 "Ships' deck officers and pilots"
+3143 "Aircraft pilots and related associate professionals"
+3144 "Air traffic controllers"
+3145 "Air traffic safety technicians"
+3150 "Safety and quality inspectors"
+3151 "Building and fire inspectors"
+3152 "Safety, health and quality inspectors"
+3200 "Life science and health associate professionals"
+3210 "Life science technicians and related associate professional"
+3211 "Life science technicians"
+3212 "Agronomy and forestry technicians"
+3213 "Farming and forestry advisers"
+3220 "Health associate professionals (except nursing)"
+3221 "Medical assistants"
+3222 "Hygienists, health and environmental officers"
+3223 "Dieticians and nutritionists"
+3224 "Optometrists and opticians"
+3225 "Dental assistants"
+3226 "Physiotherapists and related associate professionals"
+3227 "Veterinary assistants"
+3228 "Pharmaceutical assistants"
+3229 "Health associate professionals (except nursing) not elsewhere classified"
+3230 "Nursing and midwifery associate professionals"
+3231 "Nursing associate professionals"
+3232 "Midwifery associate professionals"
+3300 "Teaching associate professionals"
+3310 "Primary education teaching associate professionals"
+3320 "Pre-primary education teaching associate professionals"
+3330 "Special education teaching associate professionals"
+3340 "Other teaching associate professionals"
+3400 "Other associate professionals"
+3410 "Finance and sales associate professionals"
+3411 "Securities and finance dealers and brokers"
+3412 "Insurance representatives"
+3413 "Estate agents"
+3414 "Travel consultants and organisers"
+3415 "Technical and commercial sales representatives"
+3416 "Buyers"
+3417 "Appraisers, valuers and auctioneers"
+3419 "Finance and sales associate professionals not elsewhere classified"
+3420 "Business services agents and trade brokers"
+3421 "Trade brokers"
+3422 "Clearing and forwarding agents"
+3423 "Employment agents and labour contractors"
+3429 "Business services agents and trade brokers not elsewhere classified"
+3430 "Administrative associate professionals"
+3431 "Administrative secretaries and related associate professionals"
+3432 "Legal and related business associate professionals"
+3433 "Bookkeepers"
+3434 "Statistical, mathematical and related associate professionals"
+3440 "Customs, tax and related government associate professionals"
+3441 "Customs and border inspectors"
+3442 "Government tax and excise officials"
+3443 "Government social benefits officials"
+3444 "Government licensing officials"
+3449 "Customs, tax and related government associate professionals not elsewhere classified"
+3450 "Police inspectors and detectives"
+3460 "Social work associate professionals"
+3470 "Artistic, entertainment and sports associate professionals"
+3471 "Decorators and commercial designers"
+3472 "Radio, television and other announcers"
+3473 "Street, night-club and related musicians, singers and dancers"
+3474 "Clowns, magicians, acrobats and related associate professionals"
+3475 "Athletes, sports persons and related associate professionals"
+3480 "Religious associate professionals"
+4000 "Clerks"
+4100 "Office clerks"
+4110 "Secretaries and keyboard-operating clerks"
+4111 "Stenographers and typists"
+4112 "Word-processor and related operators"
+4113 "Data entry operators"
+4114 "Calculating-machine operators"
+4115 "Secretaries"
+4120 "Numerical clerks"
+4121 "Accounting and book-keeping clerks"
+4122 "Statistical and finance clerks"
+4130 "Material-recording and transport clerks"
+4131 "Stock clerks"
+4132 "Production clerks"
+4133 "Transport clerks"
+4140 "Library, mail and related clerks"
+4141 "Library and filing clerks"
+4142 "Mail carriers and sorting clerks"
+4143 "Coding, proof-reading and related clerks"
+4144 "Scribes and related workers"
+4190 "Other office clerks"
+4200 "Customer services clerks"
+4210 "Cashiers, tellers and related clerks"
+4211 "Cashiers and ticket clerks"
+4212 "Tellers and other counter clerks"
+4213 "Bookmakers and croupiers"
+4214 "Pawnbrokers and money-lenders"
+4215 "Debt-collectors and related workers"
+4220 "Client information clerks"
+4221 "Travel agency and related clerks"
+4222 "Receptionists and information clerks"
+4223 "Telephone switchboard operators"
+5000 "Service workers and shop and market sales workers"
+5100 "Personal and protective services workers"
+5110 "Travel attendants and related workers"
+5111 "Travel attendants and travel stewards"
+5112 "Transport conductors"
+5113 "Travel guides"
+5120 "Housekeeping and restaurant services workers"
+5121 "Housekeepers and related workers"
+5122 "Cooks"
+5123 "Waiters, waitresses and bartenders"
+5130 "Personal care and related workers"
+5131 "Child-care workers"
+5132 "Institution-based personal care workers"
+5133 "Home-based personal care workers"
+5139 "Personal care and related workers not elsewhere classified"
+5140 "Other personal services workers"
+5141 "Hairdressers, barbers, beauticians and related workers"
+5142 "Companions and valets"
+5143 "Undertakers and embalmers"
+5149 "Other personal services workers not elsewhere classified"
+5160 "Protective services workers"
+5161 "Fire-fighters"
+5162 "Police officers"
+5163 "Prison guards"
+5169 "Protective services workers not elsewhere classified"
+5200 "Models, salespersons and demonstrators"
+5210 "Fashion and other models"
+5220 "Shop, stall and market salespersons and demonstrators"
+6000 "Skilled agricultural and fishery workers"
+6100 "Skilled agricultural and fishery workers"
+6110 "Market gardeners and crop growers"
+6111 "Field crop and vegetable growers"
+6112 "Gardeners, horticultural and nursery growers"
+6120 "Animal producers and related workers"
+6121 "Dairy and livestock producers"
+6122 "Poultry producers"
+6129 "Animal producers and related workers not elsewhere classified"
+6130 "Crop and animal producers"
+6140 "Forestry and related workers"
+6141 "Forestry workers and loggers"
+6142 "Charcoal burners and related workers"
+6150 "Fishery workers, hunters and trappers"
+6151 "Aquatic life cultivation workers"
+6152 "Inland and coastal waters fishery workers"
+6153 "Deep-sea fishery workers"
+6154 "Hunters and trappers"
+7000 "Craft and related trades workers"
+7100 "Extraction and building trades workers"
+7110 "Miners, shotfirers, stone cutters and carvers"
+7111 "Miners and quarry workers"
+7112 "Shotfirers and blasters"
+7113 "Stone splitters, cutters and carvers"
+7120 "Building frame and related trades workers"
+7121 "Builders"
+7122 "Bricklayers and stonemasons"
+7123 "Concrete placers, concrete finishers and related workers"
+7124 "Carpenters and joiners"
+7129 "Building frame and related trades workers not elsewhere classified"
+7130 "Building finishers and related trades workers"
+7131 "Roofers"
+7132 "Floor layers and tile setters"
+7133 "Plasterers"
+7134 "Insulation workers"
+7135 "Glaziers"
+7136 "Plumbers and pipe fitters"
+7137 "Building and related electricians"
+7139 "Building finishers and related trade workers not elsewhere classified"
+7140 "Painters, building structure cleaners and related trades workers"
+7141 "Painters and related workers"
+7143 "Building structure cleaners"
+7200 "Metal, machinery and related trades workers"
+7210 "Metal moulders, welders, sheet-metal workers, structural-metal preparers, and related trades workers"
+7211 "Metal moulders and coremakers"
+7212 "Welders and flame cutters"
+7213 "Sheet-metal workers"
+7214 "Structural-metal preparers and erectors"
+7215 "Riggers and cable splicers"
+7216 "Underwater workers"
+7220 "Blacksmiths, tool-makers and related trades workers"
+7221 "Blacksmiths, hammer-smiths and forging-press workers"
+7222 "Tool-makers and related workers"
+7223 "Machine-tool setters and setter-operators"
+7224 "Metal wheel-grinders, polishers and tool sharpeners"
+7230 "Machinery mechanics and fitters"
+7231 "Motor vehicle mechanics and fitters"
+7232 "Aircraft engine mechanics and fitters"
+7233 "Agricultural- or industrial-machinery mechanics and fitters"
+7240 "Electrical and electronic equipment mechanics and fitters"
+7241 "Electrical mechanics fitters and services"
+7242 "Electronics mechanics, fitters and servicers"
+7244 "Telegraph and telephone installers and servicers"
+7245 "Electrical line installers, repairers and cable jointers"
+7300 "Precision, handicraft, craft printing and related trades workers"
+7310 "Precision workers in metal and related materials"
+7311 "Precision-instrument makers and repairers"
+7312 "Musical-instrument makers and tuners"
+7313 "Jewellery and precious-metal workers"
+7320 "Potters, glass-makers and related trades workers"
+7321 "Abrasive wheel formers, potters and related workers"
+7322 "Glass-makers, cutters, grinders and finishers"
+7323 "Glass engravers and etchers"
+7324 "Glass, ceramics and related decorative painters"
+7330 "Handicraft workers in wood, textile, leather and related materials"
+7331 "Handicraft workers in wood and related materials"
+7332 "Handicraft workers in textile, leather and related materials"
+7340 "Craft printing and related trades workers"
+7341 "Compositors, typesetters and related workers"
+7342 "Stereotypers and electrotypers"
+7343 "Printing engravers and etchers"
+7344 "Photographic and related workers"
+7345 "Bookbinders and related workers"
+7346 "Silk-screen, block and craft textile printers"
+7400 "Other craft and related trades workers"
+7410 "Food processing and related trades workers"
+7411 "Butchers, fishmongers and related food preparers"
+7412 "Bakers, pastry-cooks and confectionery makers"
+7413 "Dairy-products workers"
+7414 "Fruit, vegetable and related preservers"
+7415 "Food and beverage tasters and graders"
+7416 "Tobacco preparers and tobacco products makers"
+7420 "Wood treaters, cabinet-makers and related trades workers"
+7421 "Wood treaters"
+7422 "Cabinetmakers and related workers"
+7423 "Woodworking machine setters and setter-operators"
+7424 "Basketry weavers, brush makers and related workers"
+7430 "Textile, garment and related trades workers"
+7431 "Fibre preparers"
+7432 "Weavers, knitters and related workers"
+7433 "Tailors, dressmakers and hatters"
+7434 "Furriers and related workers"
+7435 "Textile, leather and related pattern-makers and cutters"
+7436 "Sewers, embroiderers and related workers"
+7437 "Upholsterers and related workers"
+7440 "Pelt, leather and shoemaking trades workers"
+7441 "Pelt dressers, tanners and fellmongers"
+7442 "Shoe-makers and related workers"
+8000 "Plant and machine operators and assemblers"
+8100 "Stationary plant and related operators"
+8110 "Mining and mineral-processing-plant operators"
+8111 "Mining plant operators"
+8112 "Mineral-ore and stone-processing-plant operators"
+8113 "Well drillers and borers and related workers"
+8120 "Metal-processing plant operators"
+8121 "Ore and metal furnace operators"
+8122 "Metal melters, casters and rolling-mill operators"
+8123 "Metal heat-treating-plant operators"
+8124 "Metal drawers and extruders"
+8130 "Glass, ceramics and related plant operators"
+8131 "Glass and ceramics kiln and related machine operators"
+8139 "Glass, ceramics and related plant operators not elsewhere classified"
+8140 "Wood-processing- and papermaking-plant operators"
+8141 "Wood-processing-plant operators"
+8142 "Paper-pulp plant operators"
+8143 "Papermaking-plant operators"
+8150 "Chemical-processing-plant operators"
+8151 "Crushing-, grinding- and chemical-mixing-machinery operators"
+8152 "Chemical-heat-treating-plant operators"
+8153 "Chemical-filtering- and separating-equipment operators"
+8154 "Chemical-still and reactor operators (except petroleum and natural gas)"
+8155 "Petroleum- and natural-gas-refining-plant operators"
+8159 "Chemical-processing-plant operators not elsewhere classified"
+8160 "Power-production and related plant operators"
+8161 "Power-production plant operators"
+8162 "Steam-engine and boiler operators"
+8163 "Incinerator, water-treatment and related plant operators"
+8170 "Industrial robot operators"
+8200 "Machine operators and assemblers"
+8210 "Metal- and mineral-products machine operators"
+8211 "Machine-tool operators"
+8212 "Cement and other mineral products machine operators"
+8220 "Chemical-products machine operators"
+8221 "Pharmaceutical-and toiletry-products machine operators"
+8222 "Ammunition- and explosive-products machine operators"
+8223 "Metal finishing-, plating- and coating-machine operators"
+8224 "Photographic-products machine operators"
+8229 "Chemical-products machine operators not elsewhere classified"
+8230 "Rubber- and plastic-products machine operators"
+8231 "Rubber-products machine operators"
+8232 "Plastic-products machine operators"
+8240 "Wood-products machine operators"
+8250 "Printing-, binding- and paper-products machine operators"
+8251 "Printing-machine operators"
+8252 "Book-binding-machine operators"
+8253 "Paper-products machine operators"
+8260 "Textile-, fur- and leather-products machine operators"
+8261 "Fibre-preparing-, spinning- and winding-machine operators"
+8262 "Weaving- and knitting-machine operators"
+8263 "Sewing-machine operators"
+8264 "Bleaching-, dyeing- and cleaning-machine operators"
+8265 "Fur- and leather-preparing-machine operators"
+8266 "Shoemaking- and related machine operators"
+8269 "Textile-, fur- and leather-products machine operators not elsewhere classified"
+8270 "Food and related products machine operators"
+8271 "Meat- and fish-processing-machine operators"
+8272 "Dairy-products machine operators"
+8273 "Grain- and spice-milling-machine operators"
+8274 "Baked-goods, cereal- and chocolate-products machine operators"
+8275 "Fruit-, vegetable- and nut-processing-machine operators"
+8276 "Sugar production machine operators"
+8277 "Tea-, coffee- and cocoa-processing-machine operators"
+8278 "Brewers, wine and other beverage machine operators"
+8279 "Tobacco production machine operators"
+8280 "Assemblers"
+8281 "Mechanical-machinery assemblers"
+8282 "Electrical-equipment assemblers"
+8283 "Electronic-equipment assemblers"
+8284 "Metal-, rubber- and plastic-products assemblers"
+8285 "Wood and related products assemblers"
+8286 "Paperboard, textile and related products assemblers"
+8287 "Composite products assemblers"
+8290 "Other machine operators not elsewhere classified"
+8300 "Drivers and mobile plant operators"
+8310 "Locomotive engine drivers and related workers"
+8311 "Locomotive engine drivers"
+8312 "Railway brakers, signallers and shunters"
+8320 "Motor vehicle drivers"
+8321 "Motorcycle drivers"
+8322 "Car, taxi and van drivers"
+8323 "Bus and tram drivers"
+8324 "Heavy truck and lorry drivers"
+8330 "Agricultural and other mobile plant operators"
+8331 "Motorised farm and forestry plant operators"
+8332 "Earth-moving and related plant operators"
+8333 "Crane, hoist and related plant operators"
+8334 "Lifting-truck operators"
+8340 "Ships' deck crews and related workers"
+9000 "Elementary occupations"
+9100 "Sales and services elementary occupations"
+9110 "Street vendors and related workers"
+9111 "Street vendors"
+9113 "Door-to-door and telephone salespersons"
+9120 "Shoe cleaning and other street services elementary occupations"
+9130 "Domestic and related helpers, cleaners and launderers"
+9131 "Domestic helpers and cleaners"
+9132 "Helpers and cleaners in offices, hotels and other establishments"
+9133 "Hand-launderers and pressers"
+9140 "Building caretakers, window and related cleaners"
+9141 "Building caretakers"
+9142 "Vehicle, window and related cleaners"
+9150 "Messengers, porters, doorkeepers and related workers"
+9151 "Messengers, package and luggage porters and deliverers"
+9152 "Doorkeepers, watchpersons and related workers"
+9153 "Vending-machine money collectors, meter readers and related workers"
+9160 "Garbage collectors and related labourers"
+9161 "Garbage collectors"
+9162 "Sweepers and related labourers"
+9200 "Agricultural, fishery and related labourers"
+9210 "Agricultural, fishery and related labourers"
+9211 "Farm-hands and labourers"
+9212 "Forestry labourers"
+9213 "Fishery, hunting and trapping labourers"
+9300 "Labourers in mining, construction, manufacturing and transport"
+9310 "Mining and construction labourers"
+9311 "Mining and quarrying labourers"
+9312 "Construction and maintenance labourers: roads, dams and similar constructions"
+9313 "Building construction labourers"
+9320 "Manufacturing labourers"
+9330 "Transport labourers and freight handlers"
+0000 "Armed forces"
+0100 "Armed forces"
+% END
+
+% LABELLIST-isco88a
+% source: iskolab.sps from http://www.harryganzeboom.nl/isco88/
+% variables: ISCO88 ISCO88-label-E
+0110 '[armed forces]'
+6131 '[mixed farmer]'
+6132 '[farm foreman]'
+6133 '[farmer nfs]'
+6134 '[skilled farm worker nfs]'
+7510 '[non farm foremen nfs]'
+7520 '[skilled manual nfs]'
+3451 '[police inspectors-detectives]'
+3452 '[armed forces non-commissioned officers + army nfs]'
+2322 '[second voc teacher]'
+2321 '[second academ teacher]'
+2323 '[middle school teacher]'
+8400 '[semiskld worker nfs]'
+7530 '[apprentice skilled work nfs]'
+7234 '[unskl garage worker, oiler]'
+1000 'legislators, senior officials & managers'
+1100 'legislators & senior officials'
+1110 'legislators'
+1120 'senior government officials'
+1130 'traditional chiefs & heads of villages'
+1140 'senior officials special-interest organisations'
+1141 'senior officials political-party organisations'
+1142 'senior officials economic-interest organisations'
+1143 'senior officials special-interest organisations'
+1200 'corporate managers [large enterprise]'
+1210 'directors & chief executives [large enterprise]'
+1220 'department managers [large enterprise][production-operation]'
+1221 'department managers agriculture, hunting, forestry & fishlng'
+1222 'department managers manufacturing'
+1223 'department managers construction'
+1224 'department managers wholesale & retail trade'
+1225 'department managers restaurants & hotels'
+1226 'department managers transport, storage & communications'
+1227 'department managers business services'
+1228 'department managers personal care, cleaning etc'
+1229 'operations department managers nec'
+1230 'other department managers [large enterprise]'
+1231 'finance & administration department managers'
+1232 'personnel & industrial relations department managers'
+1233 'sales & marketing department managers'
+1234 'advertising & public relations department managers'
+1235 'supply & distribution department managers'
+1236 'computing services department managers'
+1237 'research & development department managers'
+1239 'other department managers nec'
+1240 '[office manager]'
+1250 '[military officers]'
+1251 '[high military officers]'
+1252 '[lower military officers]'
+1300 'general managers [small enterprise]'
+1310 'general managers [small enterprise]'
+1311 'general managers agriculture, hunting forestry & fishing'
+1312 'general managers manufacturing'
+1313 'general managers construction'
+1314 'general managers wholesale & retail trade'
+1315 'general managers restaurants & hotels'
+1316 'general managers transport, storage & communications'
+1317 'general managers business services'
+1318 'general managers personal care, cleaning etc services'
+1319 'general managers nec'
+2000 'professionals'
+2100 'physical, mathematical & engineering science professionals'
+2110 'physicists, chemists & related professionals'
+2111 'physicists & astronomers'
+2112 'meteorologists'
+2113 'chemists'
+2114 'geologists & geophysicists'
+2120 'mathematicians, statisticians etc professionals'
+2121 'mathematicians etc professionals'
+2122 'statisticians'
+2130 'computing professionals'
+2131 'computer systems designers & analysts'
+2132 'computer programmers'
+2139 'computing professionals nec'
+2140 'architects, engineers etc professionals'
+2141 'architects town & traffic planners'
+2142 'civil engineers'
+2143 'electrical engineers'
+2144 'electronics & telecommunications engineers'
+2145 'mechanical engineers'
+2146 'chemical engineers'
+2147 'mining engineers metallurgists etc professionals'
+2148 'cartographers & surveyors'
+2149 'architects engineers etc professionals nec'
+2200 'life science & health professionals'
+2210 'life science professionals'
+2211 'biologists, botanists zoologists etc professionals'
+2212 'pharmacologists, pathologists etc professlonals'
+2213 'agronomists etc professionals'
+2220 'health professionals (except nursing)'
+2221 'medical doctors'
+2222 'dentists'
+2223 'veterinarians'
+2224 'pharmacists'
+2229 'health professionals except nursing nec'
+2230 'nursing & midwifery professionals'
+2300 'teaching professionals'
+2310 'higher education teaching professionals'
+2320 'secondary education teaching professionals'
+2330 'primary & pre-primary education teaching professionals'
+2331 'primary education teaching professionals'
+2332 'pre-primary education teaching professionals'
+2340 'special education teaching professionals'
+2350 'other teaching professionals'
+2351 'education methods specialists'
+2352 'school inspectors'
+2359 'other teaching professionals nec'
+2400 'other professionals'
+2410 'business professionals'
+2411 'accountants'
+2412 'personnel & careers professionals'
+2419 'business professionals nec'
+2420 'legal professionals'
+2421 'lawyers'
+2422 'judges'
+2429 'legal professionals nec'
+2430 'archivists, librarians etc information professionals'
+2431 'archivists & curators'
+2432 'librarians etc information professionals'
+2440 'social science etc professionals'
+2441 'economists'
+2442 'sociologists anthropologists etc professionals'
+2443 'philosophers, historians & political scientists'
+2444 'philologists translators & interpreters'
+2445 'psychologists'
+2446 'social work professionals'
+2450 'writers & creative or performing artists'
+2451 'authors journalists & other writers'
+2452 'sculptors, painters etc artists'
+2453 'composers musicians & singers'
+2454 'choreographers & dancers'
+2455 'film, stage etc actors & directors'
+2460 'religious professionals'
+3000 'technicians and associated professionals'
+3100 'physical & engineering science associate professionals'
+3110 'physical & engineering science technicians'
+3111 'chemical & physical science technicians'
+3112 'civil engineering technicians'
+3113 'electrical engineering technicians'
+3114 'electronics & telecommunications engineering technicians'
+3115 'mechanical engineering technicians'
+3116 'chemical engineering technicians'
+3117 'mining & metallurgical technicians'
+3118 'draughtspersons'
+3119 'physical & engineering science technicians nec'
+3120 'computer associate professionals'
+3121 'computer assistants'
+3122 'computer equipment operators'
+3123 'industrial robot controllers'
+3130 'optical & electronic equipment operators'
+3131 'photographers & elctr equipment operators'
+3132 'broadcasting & telecommunications equipment operators'
+3133 'medical equipment operators'
+3139 'optical & electronic equipment operators nec'
+3140 'ship & aircraft controllers & technicians'
+3141 'ships engineers'
+3142 'ships deck officers & pilots'
+3143 'aircraft pilots etc associate professionals'
+3144 'air traffic controllers'
+3145 'air traffic safety technicians'
+3150 'safety & ouality inspectors'
+3151 'building & fire inspectors'
+3152 'safety, health & quality inspectors'
+3200 'life science & health associate professionals'
+3210 'life science technicians etc associate professionals'
+3211 'life science technicians'
+3212 'agronomy & forestry technicians'
+3213 'farming & forestry advisers'
+3220 'modern health associate professionals except nursing'
+3221 'medical assistants'
+3222 'sanitarians'
+3223 'dieticians & nutritionists'
+3224 'optometrists & opticians'
+3225 'dental assistants'
+3226 'physiotherapists etc associate professionals'
+3227 'veterinary assistants'
+3228 'pharmaceutical assistants'
+3229 'modern health associate professionals except nursing nec'
+3230 'nursing & midwifery associate professionals'
+3231 'nursing associate professionals'
+3232 'midwifery associate professionals'
+3240 'traditional medicine practitioners & faith healers'
+3241 'traditional medicine practitioners'
+3242 'faith healers'
+3300 'teaching associate professionals'
+3310 'primary education teaching associate professionals'
+3320 'pre-primary education teaching associate professionals'
+3330 'special education teaching associate professionals'
+3340 'other teaching associate professionals'
+3400 'other associate professionals'
+3410 'finance & sales associate professionals'
+3411 'securities & finance dealers & brokers'
+3412 'insurance representatives'
+3413 'estate agents'
+3414 'travel consultants & organisers'
+3415 'technical & commercial sales representatives'
+3416 'buyers'
+3417 'appraisers, valuers & auctioneers'
+3419 'finance & sales associate professionals nec'
+3420 'business services agents and trade brokers'
+3421 'trade brokers'
+3422 'clearing & forwarding agents'
+3423 'employment agents & labour contractors'
+3429 'business services agents & trade brokers nec'
+3430 'administrative associate professionals'
+3431 'administrative secretaries etc associate professionals'
+3432 'legal etc business associate professionals'
+3433 'bookkeepers'
+3434 'statistical, mathematical etc associate professionals'
+3439 'administrative associate professionals nec'
+3440 'customs, tax etc government associate professionals'
+3441 'customs & border inspectors'
+3442 'government tax & excise officials'
+3443 'government social benefits officials'
+3444 'government licensing officials'
+3449 'customs tax etc government associate professionals nec'
+3450 '[police and army officers]'
+3460 'social work associate professionals'
+3470 'artistic, entertainment & sports associate professionals'
+3471 'decorators & commercial designers'
+3472 'radio, television & other announcers'
+3473 'street night-club etc musicians singers & dancers'
+3474 'clowns magicians acrobats etc associate professionals'
+3475 'athletes sportspersons etc associate professionals'
+3480 'religious associate professionals'
+4000 'clerks'
+4100 'office clerks'
+4110 'secretaries & keyboard-operating clerks'
+4111 'stenographers & typists'
+4112 'word-processor etc operators'
+4113 'data entry operators'
+4114 'calculating-machine operators'
+4115 'secretaries'
+4120 'numerical clerks'
+4121 'accounting & bookkeeping clerks'
+4122 'statistical & finance clerks'
+4130 'material-recording & transport clerks'
+4131 'stock clerks'
+4132 'production clerks'
+4133 'transport clerks'
+4140 'library, mail etc clerks'
+4141 'library & filing clerks'
+4142 'mail carriers & sorting clerks'
+4143 'coding proof-reading etc clerks'
+4144 'scribes etc workers'
+4190 'other office clerks'
+4200 'customer services clerks'
+4210 'cashiers, tellers etc clerks'
+4211 'cashiers & ticket clerks'
+4212 'tellers & other counter clerks'
+4213 'bookmakers & croupiers'
+4214 'pawnbrokers & money-lenders'
+4215 'debt-collectors etc workers'
+4220 'client information clerks'
+4221 'travel agency etc clerks'
+4222 'receptionists & information clerks'
+4223 'telephone switchboard operators'
+5000 'service workers & shop & market sales workers'
+5100 'personal & protective services workers'
+5110 'travel attendants etc'
+5111 'travel attendants & travel stewards'
+5112 'transport conductors'
+5113 'travel, museum guides'
+5120 'housekeeping & restaurant services workers'
+5121 'housekeepers etc workers'
+5122 'cooks'
+5123 'waiters waitresses & bartenders'
+5130 'personal care etc work'
+5131 'child-care workers'
+5132 'institution-based personal care workers'
+5133 'home based personal care workers'
+5139 'personal care etc workers nec'
+5140 'other personal services workers'
+5141 'hairdressers barbers beauticians etc workers'
+5142 'companions & valets '
+5143 'undertakers & embalmers'
+5149 'other personal services workers nec'
+5150 'astrologers, fortune-tellers etc workers'
+5151 'astrologers etc workers'
+5152 'fortune-tellers, palmists etc workers'
+5160 'protective services workers'
+5161 'fire-fighters'
+5162 'police officers'
+5163 'prison guards'
+5164 '[army: enlisted men - soldiers]'
+5169 'protective services workers nec'
+5200 'models, salespersons & demonstrators'
+5210 'fashion & other models'
+5220 'shop salespersons & demonstrators'
+5230 'stall & market salespersons'
+6000 'skilled agricultural & fishery workers'
+6100 'market-oriented skilled agricultural & fishery workers'
+6110 'market gardeners & cropgrowers'
+6111 'field crop & vegetable growers'
+6112 'tree & shrub crop growers'
+6113 'gardeners, horticultural & nursery growers'
+6114 'mixed-crop growers'
+6120 'market-oriented animal producers etc workers'
+6121 'dairy & livestock producers'
+6122 'poultry producers'
+6123 'apiarists & sericulturists'
+6124 'mixed -animal producers'
+6129 'market-oriented animal producers etc workers nec'
+6130 'market-oriented crop & animal producers'
+6140 'forestry etc workers'
+6141 'forestry workers & loggers'
+6142 'charcoal burners etc workers'
+6150 'fishery workers, hunters & trappers'
+6151 'aquatic-life cultivation workers'
+6152 'inland & coastal waters fishery workers'
+6153 'deep-sea fishery workers'
+6154 'hunters & trappers'
+6200 'subsistence agricultural & fishery workers'
+6210 'subsistence agricultural & fishery workers'
+7000 'craft etc trades workers'
+7100 'extraction & building trades workers'
+7110 'miners, shotfirers, stone cutters & carvers'
+7111 'miners & quarry workers'
+7112 'shotfirers & blasters'
+7113 'stone splitters cutters & carvers'
+7120 '[builders] & ar trades workers'
+7121 'builders traditional materials'
+7122 'bricklayers & stonemasons'
+7123 'concrete placers concrete finishers etc workers'
+7124 'carpenters & joiners'
+7129 '[builders] ar trades workers nec'
+7130 'building finishers etc trades workers'
+7131 'roofers'
+7132 'floor layers & tile setters'
+7133 'plasterers'
+7134 'insulation workers'
+7135 'glaziers'
+7136 'plumbers & pipe fitters'
+7137 'building etc electricians'
+7140 'painters, building structure cleaners etc trades workers'
+7141 'painters etc workers'
+7142 'varnishers etc painters'
+7143 'building structure cleaners'
+7200 'metal, machinery etc trades workers'
+7210 'metal moulders, welders, sheetmetal workers structural metal'
+7211 'metal moulders & coremakers'
+7212 'welders & flamecutters'
+7213 'sheet-metal workers'
+7214 'structural-metal preparers & erectors'
+7215 'riggers & cable splicers'
+7216 'underwater workers'
+7220 'blacksmiths, tool-makers etc trades workers'
+7221 'blacksmiths hammer-smiths & forgingpress workers'
+7222 'tool-makers etc workers'
+7223 'machine-tool setters & setter-operators'
+7224 'metal wheel-grinders polishers & tool sharpeners'
+7230 'machinery mechanics & fitters'
+7231 'motor vehicle mechanics & fitters'
+7232 'aircraft engine mechanics & fitters'
+7233 'agricultural- or industrial-machinery mechanics & fitters'
+7240 'electrical & electronic equipment mechanics & fitters'
+7241 'electrical mechanics & fitters'
+7242 'electronics fitters'
+7243 'electronics mechanics & servicers'
+7244 'telegraph & telephone installers & servlcers'
+7245 'electrical line installers repairers & cable jointers'
+7300 'precision, handicraft, printing etc trades workers'
+7310 'precision workers in metal etc materials'
+7311 'precision-instrument makers & repairers'
+7312 'musical-instrument makers & tuners'
+7313 'jewellery & precious-metal workers'
+7320 'potters, glass-makers etc trades workers'
+7321 'abrasive wheel formers potters etc workers'
+7322 'glass-makers cutters grinders & finishers'
+7323 'glass engravers & etchers'
+7324 'glass ceramics etc decorative painters'
+7330 'handicraft workers in wood,textile, leather etc'
+7331 'handicraft workers in wood etc materials'
+7332 'handicraft workers in textile leather etc materials'
+7340 'printing etc trades workers'
+7341 'compositors typesetters etc workers'
+7342 'stereotypers & electrotypers'
+7343 'printing engravers & etchers'
+7344 'photographic etc workers'
+7345 'bookbinders etc workers'
+7346 'silk-screen, block & textile printers'
+7400 'other craft etc trades workers'
+7410 'food processing etc trades workers'
+7411 'butchers fishmongers etc food preparers'
+7412 'bakers-pastry cooks & confectionery makers'
+7413 'dairy-products makers'
+7414 'fruit, vegetable etc preservers'
+7415 'food & beverage tasters & graders'
+7416 'tobacco preparers & tobacco products makers'
+7420 'wood treaters, cabinet-makers etc trades workers'
+7421 'wood treaters'
+7422 'cabinet-makers etc workers'
+7423 'woodworking-machine setters & setteroperators'
+7424 'basketry weavers brush makers etc workers'
+7430 'textile, garment etc trades workers'
+7431 'fibre preparers'
+7432 'weavers knitters etc workers'
+7433 'tailors dressmakers & hatters'
+7434 'furriers etc workers'
+7435 'textile leather etc pattern-makers & cutters'
+7436 'sewers embroiderers etc workers'
+7437 'upholsterers etc workers'
+7440 'pelt, leather & shoemaking trades workers'
+7441 'pelt dressers tanners & fellmongers'
+7442 'shoe-makers etc workers'
+7500 '[skilled manual worker nfs]'
+8000 'plant & machine operators & assemblers'
+8100 'stationary-plant etc operators'
+8110 'mining- & mineral-processing plant operators'
+8111 'mining-plant operators'
+8112 'mineral-ore- & stone-processing-plant operators'
+8113 'well drillers & borers etc workers'
+8120 'metal-processing-plant operators'
+8121 'ore & metal furnace operators'
+8122 'metal melters casters & rolling-mill operators'
+8123 'metal-heat-treating-plant operators'
+8124 'metal drawers & extruders'
+8130 'glass, ceramics etc plant operators'
+8131 'glass & ceramics kiln etc machine operators'
+8139 'glass, ceramics etc plant operators nec'
+8140 'wood-processing- & papermaking-plant operators'
+8141 'wood-processing-plant operators'
+8142 'paper-pulp plant operators'
+8143 'papermaking-plant operators'
+8150 'chemical-processing-plant operators'
+8151 'crushing- grinding- & chemical-mixing machinery operators'
+8152 'chemical-heat-treating-plant operators'
+8153 'chemical-filtering- & separating-equipment operators'
+8154 'chemical-still & reactor operators '
+8155 'petroleum- & natural-gas-refining-plant operators'
+8159 'chemical-processing-plant operators nec'
+8160 'power-production etc plant operators'
+8161 'power-production plant operators'
+8162 'steam-engine & boiler operators'
+8163 'incinerator water-treatment etc plant operators'
+8170 'automated-assembly-line & industrial-robot operators'
+8171 'automated-assembly- line operators'
+8172 'industrial-robot operators'
+8200 'machine operators & assemblers'
+8210 'metal- & mineral-products machine operators'
+8211 'machine-tool operators'
+8212 'cement & other mineral products machine operators'
+8220 'chemical-products machine operators'
+8221 'pharmaceutical- & toiletry-products machine operators'
+8222 'ammunition- & explosive-products machine operators'
+8223 'metal finishing- plating- & coating-machlne operators'
+8224 'photographic-products machine operators'
+8229 'chemical-products machine operators nec'
+8230 'rubber- & plastic-products machine operators'
+8231 'rubber-products machine operators'
+8232 'plastic-products machine operators'
+8240 'wood-products machine operators'
+8250 'printing- binding- & paper-products machine operators'
+8251 'printing-machine operators'
+8252 'bookbinding-machine operators'
+8253 'paper-products machine operators'
+8260 'textile- fur- & leather-products machine operators'
+8261 'fibre-preparing-, spinning- & windingmachine operators'
+8262 'weaving- & knitting-machine operators'
+8263 'sewing-machine operators'
+8264 'bleaching- dyeing- & cleaning-machine operators'
+8265 'fur- & leather-preparing-machine operators'
+8266 'shoemaking- etc machine operators'
+8269 'textile- fur- & leather-products machine operators nec'
+8270 'food etc products machine operators'
+8271 'meat- & fish-processing-machine operators'
+8272 'dairy-products machine operators'
+8273 'grain- & spice-milling-machine operators'
+8274 'baked-goods cereal & chocolate-products machine operators'
+8275 'fruit- vegetable- & nut-processing-machine operators'
+8276 'sugar production machine operators'
+8277 'tea- coffee- & cocoa-processing-machine operators'
+8278 'brewers- wine & other beverage machine operators'
+8279 'tobacco production machine operators'
+8280 'assemblers'
+8281 'mechanical-machinery assemblers'
+8282 'electrical-equipment assemblers'
+8283 'electronic-equipment assemblers'
+8284 'metal- rubber- & plastic-products assemblers'
+8285 'wood etc products assemblers'
+8286 'paperboard textile etc products assemblers'
+8290 'other machine operators & assemblers'
+8300 'drivers & mobile-plant operators'
+8310 'locomotive-engine drivers etc workers'
+8311 'locomotive-engine drivers'
+8312 'railway brakers signallers & shunters'
+8320 'motor-vehicle drivers'
+8321 'motor-cycle drivers'
+8322 'car taxi & van drivers'
+8323 'bus & tram drivers'
+8324 'heavy truck & lorry drivers'
+8330 'agricultural & other mobile-plant operators'
+8331 'motorised farm & forestry plant operators'
+8332 'earth-moving- etc plant operators'
+8333 'crane hoist etc plant operators'
+8334 'lifting-truck operators'
+8340 'ships deck crews etc workers'
+9000 'elementary occupations'
+9100 'sales & services elementary occupations'
+9110 'street vendors etc workers'
+9111 'street food vendors'
+9112 'street vendors non-food products'
+9113 'door-to-door & telephone salespersons'
+9120 'street services elementary occupations'
+9130 'domestic etc helpers cleaners & launderers'
+9131 'domestic helpers & cleaners'
+9132 'helpers & cleaners in establishments'
+9133 'hand-launderers & pressers'
+9140 'building caretakers, window etc cleaners'
+9141 'building caretakers'
+9142 'vehicle, window etc cleaners'
+9150 'messengers, porters, doorkeepers etc workers'
+9151 'messengers package & luggage porters & deliverers'
+9152 'doorkeepers watchpersons etc workers'
+9153 'vending-machine money collectors meter readers etc workers'
+9160 'garbage collectors etc labourers'
+9161 'garbage collectors'
+9162 'sweepers etc labourers'
+9200 'agricultural, fishery etc labourers'
+9210 'agricultural, fishery etc labourers'
+9211 'farm-hands & labourers'
+9212 'forestry labourers'
+9213 'fishery hunting & trapping labourers'
+9300 'labourers in mining, construction, manufacturing & transport'
+9310 'mining & construction labourers'
+9311 'mining & quarrying labourers'
+9312 'construction & maintenance labourers: roads dams etc'
+9313 'building construction labourers'
+9320 'manufacturing labourers'
+9321 'assembling labourers'
+9322 'hand packers & other manufacturing labourers'
+9330 'transport labourers & freight handlers'
+9331 'hand or pedal vehicle drivers'
+9332 'drivers of animal-drawn vehicles & machinery'
+9333 'freight handlers'
+% END
+
+% LABELLIST-isco88b
+% source: http://www.harryganzeboom.nl/ismf/scaleapp.htm
+% variables: ISCO88 ISCO88-label-E
+1000 "LEGISLATORS, SENIOR OFFICIALS & MANAGERS"
+1100 "LEGISLATORS & SENIOR OFFICIALS"
+1110 "LEGISLATORS"
+1120 "SENIOR [NATIONAL] GOVERNMENT OFFICIALS"
+1130 "[SENIOR LOCAL GOVERNMENT OFFICIALS]"
+1140 "SENIOR OFFICIALS SPECIAL-INTEREST ORGANISATIONS"
+1141 "Senior officials political-party organisations"
+1142 "Senior officials economic-interest organisations"
+1143 "Senior officials special-interest organisations"
+1200 "CORPORATE MANAGERS [LARGE ENTERPRISES]"
+1210 "[LARGE ENTERPRISES] DIRECTORS & CHIEF EXECUTIVES"
+1220 "[LARGE ENTERPRISE OPERATION] DEPARTMENT MANAGERS"
+1221 "Production department managers agriculture & fishing"
+1222 "Production department managers manufacturing"
+1223 "Production department managers construction"
+1224 "Production department managers wholesale & retail trade"
+1225 "Production department managers restaurants & hotels"
+1226 "Production department managers transp., storage & communic."
+1227 "Production department managers business services"
+1228 "Production department managers personal care, cleaning etc"
+1229 "Production department managers nec"
+1230 "[LARGE ENTERPRISES] OTHER DEPARTMENT MANAGERS"
+1231 "Finance & administration department managers"
+1232 "Personnel & industrial relations department managers"
+1233 "Sales & marketing department managers"
+1234 "Advertising & public relations department managers"
+1235 "Supply & distribution department managers"
+1236 "Computing services department managers"
+1237 "Research & development department managers"
+1239 "Other department managers nec"
+1240 "OFFICE MANAGERS"
+1250 "MILITARY OFFICERS"
+1251 "Higher military officers"
+1252 "Lower grade commissioned officers"
+1300 "[SMALL ENTERPRISE] GENERAL MANAGERS"
+1310 "[SMALL ENTERPRISE] GENERAL MANAGERS"
+1311 "[Small enterprise] General managers agriculture, forestry & fishing"
+1312 "[Small enterprise] General managers manufacturing"
+1313 "[Small enterprise] General managers construction"
+1314 "[Small enterprise] General managers wholesale & retail trade"
+1315 "[Small enterprise] General managers restaurants & hotels"
+1316 "[Small enterprise] General managers transp., storage & communications"
+1317 "[Small enterprise] General managers business services"
+1318 "[Small enterprise] General managers personal care, cleaning etc. services"
+1319 "[Small enterprise] General managers nec"
+2000 "PROFESSIONALS"
+2100 "PHYSICAL, MATHEMATICAL & ENGINEERING SCIENCE PROFESSIONALS"
+2110 "PHYSICISTS, CHEMISTS & RELATED PROFESSIONALS"
+2111 "Physicists & astronomers"
+2112 "Meteorologists"
+2113 "Chemists"
+2114 "Geologists & geophysicists"
+2120 "MATHEMATICIANS, STATISTICIANS ETC PROFESSIONALS"
+2121 "Mathematicians etc professionals"
+2122 "Statisticians"
+2130 "COMPUTING PROFESSIONALS"
+2131 "Computer systems designers & analysts"
+2132 "Computer programmers"
+2139 "Computing professionals nec"
+2140 "ARCHITECTS, ENGINEERS ETC PROFESSIONALS"
+2141 "Architects town & traffic planners"
+2142 "Civil engineers"
+2143 "Electrical engineers"
+2144 "Electronics & telecommunications engineers"
+2145 "Mechanical engineers"
+2146 "Chemical engineers"
+2147 "Mining engineers, metallurgists etc professionals"
+2148 "Cartographers & surveyors"
+2149 "Architects engineers etc professionals nec"
+2200 "LIFE SCIENCE & HEALTH PROFESSIONALS"
+2210 "LIFE SCIENCE PROFESSIONALS"
+2211 "Biologists, botanists zoologists etc professionals"
+2212 "Pharmacologists, pathologists etc professlonals"
+2213 "Agronomists etc professionals"
+2220 "HEALTH PROFESSIONALS (EXCEPT NURSING)"
+2221 "Medical doctors"
+2222 "Dentists"
+2223 "Veterinarians"
+2224 "Pharmacists"
+2229 "Health professionals except nursing nec"
+2230 "NURSING & MIDWIFERY PROFESSIONALS"
+2300 "TEACHING PROFESSIONALS"
+2310 "HIGHER EDUCATION TEACHING PROFESSIONALS"
+2320 "SECONDARY EDUCATION TEACHING PROFESSIONALS"
+2321 "[Secondary teachers, academic track]"
+2322 "[Secondary teachers, vocational track]"
+2330 "PRIMARY & PRE-PRIMARY EDUCATION TEACHING PROFESSIONALS"
+2331 "Primary education teaching professionals"
+2332 "Pre-primary education teaching professionals"
+2340 "SPECIAL EDUCATION TEACHING PROFESSIONALS"
+2350 "OTHER TEACHING PROFESSIONALS"
+2351 "Education methods specialists"
+2352 "School inspectors"
+2359 "Other teaching professionals nec"
+2400 "OTHER PROFESSIONALS"
+2410 "BUSINESS PROFESSIONALS"
+2411 "Accountants"
+2412 "Personnel & careers professionals"
+2419 "Business professionals nec"
+2420 "LEGAL PROFESSIONALS"
+2421 "Lawyers"
+2422 "Judges"
+2429 "Legal professionals nec"
+2430 "ARCHIVISTS, LIBRARIANS ETC INFORMATION PROFESSIONALS"
+2431 "Archivists & curators"
+2432 "Librarians etc information professionals"
+2440 "SOCIAL SCIENCE ETC PROFESSIONALS"
+2441 "Economists"
+2442 "Sociologists, anthropologists etc professionals"
+2443 "Philosophers, historians & political scientists"
+2444 "Philologists, translators & interpreters"
+2445 "Psychologists"
+2446 "Social work professionals"
+2450 "WRITERS & CREATIVE OR PERFORMING ARTISTS"
+2451 "Authors journalists & other writers"
+2452 "Sculptors, painters etc artists"
+2453 "Composers, musicians & singers"
+2454 "Choreographers & dancers"
+2455 "Film, stage etc actors & directors"
+2460 "RELIGIOUS PROFESSIONALS"
+3000 "TECHNICIANS AND ASSOCIATE PROFESSIONALS"
+3100 "PHYSICAL & ENGINEERING SCIENCE ASSOCIATE PROFESSIONALS"
+3110 "PHYSICAL & ENGINEERING SCIENCE TECHNICIANS"
+3111 "Chemical & physical science technicians"
+3112 "Civil engineering technicians"
+3113 "Electrical engineering technicians"
+3114 "Electronics & telecommunications engineering technicians"
+3115 "Mechanical engineering technicians"
+3116 "Chemical engineering technicians"
+3117 "Mining & metallurgical technicians"
+3118 "Draughtspersons"
+3119 "Physical & engineering science technicians nec"
+3120 "COMPUTER ASSOCIATE PROFESSIONALS"
+3121 "Computer assistants"
+3122 "Computer equipment operators"
+3123 "Industrial robot controllers"
+3130 "OPTICAL & ELECTRONIC EQUIPMENT OPERATORS"
+3131 "Photographers & electronic equipment operators"
+3132 "Broadcasting & telecommunications equipment operators"
+3133 "Medical equipment operators"
+3139 "Optical & electronic equipment operators nec"
+3140 "SHIP & AIRCRAFT CONTROLLERS & TECHNICIANS"
+3141 "Ships engineers"
+3142 "Ships deck officers & pilots"
+3143 "Aircraft pilots etc associate professionals"
+3144 "Air traffic controllers"
+3145 "Air traffic safety technicians"
+3150 "SAFETY & QUALITY INSPECTORS"
+3151 "Building & fire inspectors"
+3152 "Safety, health & quality inspectors"
+3200 "LIFE SCIENCE & HEALTH ASSOCIATE PROFESSIONALS"
+3210 "LIFE SCIENCE TECHNICIANS ETC ASSOCIATE PROFESSIONALS"
+3211 "Life science technicians"
+3212 "Agronomy & forestry technicians"
+3213 "Farming & forestry advisers"
+3220 "MODERN HEALTH ASSOCIATE PROFESSIONALS EXCEPT NURSING"
+3221 "Medical assistants"
+3222 "Sanitarians"
+3223 "Dieticians & nutritionists"
+3224 "Optometrists & opticians"
+3225 "Dental assistants"
+3226 "Physiotherapists etc associate professionals"
+3227 "Veterinary assistants"
+3228 "Pharmaceutical assistants"
+3229 "Modern health associate professionals except nursing nec"
+3230 "NURSING & MIDWIFERY ASSOCIATE PROFESSIONALS"
+3231 "Nursing associate professionals"
+3232 "Midwifery associate professionals"
+3240 "TRADITIONAL MEDICINE PRACTITIONERS & FAITH HEALERS"
+3241 "Traditional medicine practitioners"
+3242 "Faith healers"
+3300 "TEACHING ASSOCIATE PROFESSIONALS"
+3310 "PRIMARY EDUCATION TEACHING ASSOCIATE PROFESSIONALS"
+3320 "PRE-PRIMARY EDUCATION TEACHING ASSOCIATE PROFESSIONALS"
+3330 "SPECIAL EDUCATION TEACHING ASSOCIATE PROFESSIONALS"
+3340 "OTHER TEACHING ASSOCIATE PROFESSIONALS"
+3400 "OTHER ASSOCIATE PROFESSIONALS"
+3410 "FINANCE & SALES ASSOCIATE PROFESSIONALS"
+3411 "Securities & finance dealers & brokers"
+3412 "Insurance representatives"
+3413 "[Real] estate agents"
+3414 "Travel consultants & organisers"
+3415 "Technical & commercial sales representatives"
+3416 "Buyers"
+3417 "Appraisers, valuers & auctioneers"
+3419 "Finance & sales associate professionals nec"
+3420 "BUSINESS SERVICES AGENTS AND TRADE BROKERS"
+3421 "Trade brokers"
+3422 "Clearing & forwarding agents"
+3423 "Employment agents & labour contractors"
+3429 "Business services agents & trade brokers nec"
+3430 "ADMINISTRATIVE ASSOCIATE PROFESSIONALS"
+3431 "Administrative secretaries etc associate professionals"
+3432 "Legal etc business associate professlonals"
+3433 "Bookkeepers"
+3434 "Statistical, mathematical etc associate professionals"
+3439 "Administrative associate professionals nec"
+3440 "CUSTOMS, TAX ETC GOVERNMENT ASSOCIATE PROFESSIONALS"
+3441 "Customs & border inspectors"
+3442 "Government tax & excise officials"
+3443 "Government social benefits officials"
+3444 "Government licensing officials"
+3449 "Customs tax etc government associate professionals nec"
+3450 "POLICE INSPECTORS & DETECTIVES / [ARMY]"
+3451 "Police inspectors & detectives"
+3452 "[Armed forces non-commissioned officers]"
+3460 "SOCIAL WORK ASSOCIATE PROFESSIONALS"
+3470 "ARTISTIC, ENTERTAINMENT & SPORTS ASSOCIATE PROFESSIONALS"
+3471 "Decorators & commercial designers"
+3472 "Radio, television & other announcers"
+3473 "Street night-club etc musicians, singers & dancers"
+3474 "Clowns, magicians, acrobats etc associate professionals"
+3475 "Athletes, sportspersons etc associate professionals"
+3480 "RELIGIOUS ASSOCIATE PROFESSIONALS"
+4000 "CLERKS"
+4100 "OFFICE CLERKS"
+4110 "SECRETARIES & KEYBOARD-OPERATING CLERKS"
+4111 "Stenographers & typists"
+4112 "Word-processor etc operators"
+4113 "Data entry operators"
+4114 "Calculating-machine operators"
+4115 "Secretaries"
+4120 "NUMERICAL CLERKS"
+4121 "Accounting & bookkeeping clerks"
+4122 "Statistical & finance clerks"
+4130 "MATERIAL-RECORDING & TRANSPORT CLERKS"
+4131 "Stock clerks"
+4132 "Production clerks"
+4133 "Transport clerks"
+4140 "LIBRARY, MAIL ETC CLERKS"
+4141 "Library & filing clerks"
+4142 "Mail carriers & sorting clerks"
+4143 "Coding proof-reading etc clerks"
+4144 "Scribes etc workers"
+4190 "OTHER OFFICE CLERKS"
+4200 "CUSTOMER SERVICES CLERKS"
+4210 "CASHIERS, TELLERS ETC CLERKS"
+4211 "Cashiers & ticket clerks"
+4212 "Tellers & other counter clerks"
+4213 "Bookmakers & croupiers"
+4214 "Pawnbrokers & money-lenders"
+4215 "Debt-collectors etc workers"
+4220 "CLIENT INFORMATION CLERKS"
+4221 "Travel agency etc clerks"
+4222 "Receptionists & information clerks"
+4223 "Telephone switchboard operators"
+5000 "SERVICE WORKERS & SHOP & MARKET SALES WORKERS"
+5100 "PERSONAL & PROTECTIVE SERVICES WORKERS"
+5110 "TRAVEL ATTENDANTS ETC"
+5111 "Travel attendants & travel stewards"
+5112 "Transport conductors"
+5113 "Travel, museum guides"
+5120 "HOUSEKEEPING & RESTAURANT SERVICES WORKERS"
+5121 "Housekeepers etc workers"
+5122 "Cooks"
+5123 "Waiters, waitresses & bartenders"
+5130 "PERSONAL CARE ETC WORK"
+5131 "Child-care workers"
+5132 "Institution-based personal care workers"
+5133 "Home based personal care workers"
+5139 "[Other] care etc workers nec"
+5140 "OTHER PERSONAL SERVICES WORKERS"
+5141 "Hairdressers, barbers, beauticians etc workers"
+5142 "Companions & valets"
+5143 "Undertakers & embalmers"
+5149 "Other personal services workers nec"
+5150 "ASTROLOGERS, FORTUNE-TELLERS ETC WORKERS"
+5151 "Astrologers etc workers"
+5152 "Fortune-tellers, palmists etc workers"
+5160 "PROTECTIVE SERVICES WORKERS"
+5161 "Fire-fighters"
+5162 "Police officers"
+5163 "Prison guards"
+5164 "[Armed forces, soldiers]"
+5169 "Protective services workers nec"
+5200 "[SALESPERSONS, MODELS & DEMONSTRATORS]"
+5210 "FASHION & OTHER MODELS"
+5220 "SHOP SALESPERSONS & DEMONSTRATORS"
+5230 "STALL & MARKET SALESPERSONS"
+6000 "SKILLED AGRICULTURAL & FISHERY WORKERS"
+6100 "MARKET-ORIENTED SKILLED AGRICULTURAL & FISHERY WORKERS"
+6110 "MARKET GARDENERS & CROPGROWERS"
+6111 "Field crop & vegetable growers"
+6112 "Tree & shrub crop growers"
+6113 "Gardeners, horticultural & nursery growers"
+6114 "Mixed-crop growers"
+6120 "MARKET-ORIENTED ANIMAL PRODUCERS ETC WORKERS"
+6121 "Dairy & livestock producers"
+6122 "Poultry producers"
+6123 "Apiarists & sericulturists"
+6124 "Mixed-animal producers"
+6129 "Market-oriented animal producers etc workers nec"
+6130 "MARKET-ORIENTED CROP & ANIMAL PRODUCERS"
+6131 "[Mixed farmers]"
+6132 "[Farm foremen/supervisor]"
+6133 "[Farmers nfs]"
+6134 "[Skilled farm workers nfs]"
+6140 "FORESTRY ETC WORKERS"
+6141 "Forestry workers & loggers"
+6142 "Charcoal burners etc workers"
+6150 "FISHERY WORKERS, HUNTERS & TRAPPERS"
+6151 "Aquatic-life cultivation workers"
+6152 "Inland & coastal waters fishery workers"
+6153 "Deep-sea fishery workers"
+6154 "Hunters & trappers"
+6200 "SUBSISTENCE AGRICULTURAL & FISHERY WORKERS"
+6210 "SUBSISTENCE AGRICULTURAL & FISHERY WORKERS"
+7000 "CRAFT ETC TRADES WORKERS"
+7100 "EXTRACTION & BUILDING TRADES WORKERS"
+7110 "MINERS, SHOTFIRERS, STONE CUTTERS & CARVERS"
+7111 "Miners & quarry workers"
+7112 "Shotfirers & blasters"
+7113 "Stone splitters, cutters & carvers"
+7120 "BUILDING FRAME ETC TRADES WORKERS"
+7121 "Builders traditional materials"
+7122 "Bricklayers & stonemasons"
+7123 "Concrete placers, concrete finishers etc workers"
+7124 "Carpenters & joiners"
+7129 "Building frame etc trades workers nec"
+7130 "BUILDING FINISHERS ETC TRADES WORKERS"
+7131 "Roofers"
+7132 "Floor layers & tile setters"
+7133 "Plasterers"
+7134 "Insulation workers"
+7135 "Glaziers"
+7136 "Plumbers & pipe fitters"
+7137 "Building etc electricians"
+7140 "PAINTERS, BUILDING STRUCTURE CLEANERS ETC TRADES WORKERS"
+7141 "Painters etc workers"
+7142 "Varnishers etc painters"
+7143 "Building structure cleaners"
+7200 "METAL, MACHINERY ETC TRADES WORKERS"
+7210 "METAL MOULDERS, WELDERS, SHEETMETAL WORKERS STRUCTURAL METAL"
+7211 "Metal moulders & coremakers"
+7212 "Welders & flamecutters"
+7213 "Sheet-metal workers"
+7214 "Structural-metal preparers & erectors"
+7215 "Riggers & cable splicers"
+7216 "Underwater workers"
+7220 "BLACKSMITHS, TOOL-MAKERS ETC TRADES WORKERS"
+7221 "Blacksmiths, hammer-smiths & forging press workers"
+7222 "Tool-makers etc workers"
+7223 "Machine-tool setters & setter-operators"
+7224 "Metal wheel-grinders, polishers & tool sharpeners"
+7230 "MACHINERY MECHANICS & FITTERS"
+7231 "Motor vehicle mechanics & fitters"
+7232 "Aircraft engine mechanics & fitters"
+7233 "[Industrial & agricultural] machinery mechanics & fitters"
+7234 "[Unskilled garage worker]"
+7240 "ELECTRICAL & ELECTRONIC EQUIPMENT MECHANICS & FITTERS"
+7241 "Electrical mechanics & fitters"
+7242 "Electronics fitters"
+7243 "Electronics mechanics & servicers"
+7244 "Telegraph & telephone installers & servicers"
+7245 "Electrical line installers, repairers & cable jointers"
+7300 "PRECISION, HANDICRAFT, PRINTING ETC TRADES WORKERS"
+7310 "PRECISION WORKERS IN METAL ETC MATERIALS"
+7311 "Precision-instrument makers & repairers"
+7312 "Musical-instrument makers & tuners"
+7313 "Jewellery & precious-metal workers"
+7320 "POTTERS, GLASS-MAKERS ETC TRADES WORKERS"
+7321 "Abrasive wheel formers, potters etc workers"
+7322 "Glass-makers, cutters, grinders & finishers"
+7323 "Glass engravers & etchers"
+7324 "Glass ceramics etc decorative painters"
+7330 "HANDICRAFT WORKERS IN WOOD,TEXTILE, LEATHER ETC"
+7331 "Handicraft workers in wood etc materials"
+7332 "Handicraft workers in textile leather etc materials"
+7340 "PRINTING ETC TRADES WORKERS"
+7341 "Compositors typesetters etc workers"
+7342 "Stereotypers & electrotypers"
+7343 "Printing engravers & etchers"
+7344 "Photographic etc workers"
+7345 "Bookbinders etc workers"
+7346 "Silk-screen, block & textile printers"
+7400 "OTHER CRAFT ETC TRADES WORKERS"
+7410 "FOOD PROCESSING ETC TRADES WORKERS"
+7411 "Butchers, fishmongers etc food preparers"
+7412 "Bakers, pastry-cooks & confectionery makers"
+7413 "Dairy-products makers"
+7414 "Fruit, vegetable etc preservers"
+7415 "Food & beverage tasters & graders"
+7416 "Tobacco preparers & tobacco products makers"
+7420 "WOOD TREATERS, CABINET-MAKERS ETC TRADES WORKERS"
+7421 "Wood treaters"
+7422 "Cabinet-makers etc workers"
+7423 "Woodworking-machine setters & setter-operators"
+7424 "Basketry weavers, brush makers etc workers"
+7430 "TEXTILE, GARMENT ETC TRADES WORKERS"
+7431 "Fibre preparers"
+7432 "Weavers, knitters etc workers"
+7433 "Tailors, dressmakers & hatters"
+7434 "Furriers etc workers"
+7435 "Textile, leather etc pattern-makers & cutters"
+7436 "Sewers, embroiderers etc workers"
+7437 "Upholsterers etc workers"
+7440 "PELT, LEATHER & SHOEMAKING TRADES WORKERS"
+7441 "Pelt dressers, tanners & fellmongers"
+7442 "Shoe-makers etc workers"
+7500 "[SKILLED WORKERS NFS]"
+7510 "[MANUAL FOREMEN NFS --NON-FARM--]"
+7520 "[SKILLED WORKERS NFS]"
+7530 "[APPRENTICE SKILLED WORK NFS]"
+8000 "PLANT & MACHINE OPERATORS & ASSEMBLERS"
+8100 "STATIONARY-PLANT ETC OPERATORS"
+8110 "MINING- & MINERAL-PROCESSING PLANT OPERATORS"
+8111 "Mining-plant operators"
+8112 "Mineral-ore- & stone-processing-plant operators"
+8113 "Well drillers & borers etc workers"
+8120 "METAL-PROCESSING-PLANT OPERATORS"
+8121 "Ore & metal furnace operators"
+8122 "Metal melters, casters & rolling-mill operators"
+8123 "Metal-heat-treating-plant operators"
+8124 "Metal drawers & extruders"
+8130 "GLASS, CERAMICS ETC PLANT OPERATORS"
+8131 "Glass & ceramics kiln etc machine operators"
+8139 "Glass, ceramics etc plant operators nec"
+8140 "WOOD-PROCESSING- & PAPERMAKING-PLANT OPERATORS"
+8141 "Wood-processing-plant operators"
+8142 "Paper-pulp plant operators"
+8143 "Papermaking-plant operators"
+8150 "CHEMICAL-PROCESSING-PLANT OPERATORS"
+8151 "Crushing- grinding- & chemical-mixing machinery operators"
+8152 "Chemical-heat-treating-plant operators"
+8153 "Chemical-filtering- & separating-equipment operators"
+8154 "Chemical-still & reactor operators"
+8155 "Petroleum- & natural-gas-refining-plant operators"
+8159 "Chemical-processing-plant operators nec"
+8160 "POWER-PRODUCTION ETC PLANT OPERATORS"
+8161 "Power-production plant operators"
+8162 "Steam-engine & boiler operators"
+8163 "Incinerator water-treatment etc plant operators"
+8170 "AUTOMATED-ASSEMBLY-LINE & INDUSTRIAL-ROBOT OPERATORS"
+8171 "Automated-assembly-line operators"
+8172 "Industrial-robot operators"
+8200 "MACHINE OPERATORS & ASSEMBLERS"
+8210 "METAL- & MINERAL-PRODUCTS MACHINE OPERATORS"
+8211 "Machine-tool operators"
+8212 "Cement & other mineral products machine operators"
+8220 "CHEMICAL-PRODUCTS MACHINE OPERATORS"
+8221 "Pharmaceutical- & toiletry-products machine operators"
+8222 "Ammunition- & explosive-products machine operators"
+8223 "Metal finishing- plating- & coating-machine operators"
+8224 "Photographic-products machine operators"
+8229 "Chemical-products machine operators nec"
+8230 "RUBBER- & PLASTIC-PRODUCTS MACHINE OPERATORS"
+8231 "Rubber-products machine operators"
+8232 "Plastic-products machine operators"
+8240 "WOOD-PRODUCTS MACHINE OPERATORS"
+8250 "PRINTING-, BINDING- & PAPER-PRODUCTS MACHINE OPERATORS"
+8251 "Printing-machine operators"
+8252 "Bookbinding-machine operators"
+8253 "Paper-products machine operators"
+8260 "TEXTILE-, FUR- & LEATHER-PRODUCTS MACHINE OPERATORS"
+8261 "Fibre-preparing-, spinning- & winding machine operators"
+8262 "Weaving- & knitting-machine operators"
+8263 "Sewing-machine operators"
+8264 "Bleaching-, dyeing- & cleaning-machine operators"
+8265 "Fur- & leather-preparing-machine operators"
+8266 "Shoemaking- etc machine operators"
+8269 "Textile-, fur- & leather-products machine operators nec"
+8270 "FOOD ETC PRODUCTS MACHINE OPERATORS"
+8271 "Meat- & fish-processing-machine operators"
+8272 "Dairy-products machine operators"
+8273 "Grain- & spice-milling-machine operators"
+8274 "Baked-goods cereal & chocolate-products machine operators"
+8275 "Fruit-, vegetable- & nut-processing-machine operators"
+8276 "Sugar production machine operators"
+8277 "Tea-, coffee- & cocoa-processing-machine operators"
+8278 "Brewers- wine & other beverage machine operators"
+8279 "Tobacco production machine operators"
+8280 "ASSEMBLERS"
+8281 "Mechanical-machinery assemblers"
+8282 "Electrical-equipment assemblers"
+8283 "Electronic-equipment assemblers"
+8284 "Metal-, rubber- & plastic-products assemblers"
+8285 "Wood etc products assemblers"
+8286 "Paperboard, textile etc products assemblers"
+8290 "OTHER MACHINE OPERATORS & ASSEMBLERS"
+8300 "DRIVERS & MOBILE-PLANT OPERATORS"
+8310 "LOCOMOTIVE-ENGINE DRIVERS ETC WORKERS"
+8311 "Locomotive-engine drivers"
+8312 "Railway brakers signallers & shunters"
+8320 "MOTOR-VEHICLE DRIVERS"
+8321 "Motor-cycle drivers"
+8322 "Car, taxi & van drivers"
+8323 "Bus & tram drivers"
+8324 "Heavy truck & lorry drivers"
+8330 "AGRICULTURAL & OTHER MOBILE PLANT OPERATORS"
+8331 "Motorised farm & forestry plant operators"
+8332 "Earth-moving- etc plant operators"
+8333 "Crane, hoist etc plant operators"
+8334 "Lifting-truck operators"
+8340 "SHIPS DECK CREWS ETC WORKERS"
+8400 "SEMI-SKILLED WORKERS NFS"
+9000 "ELEMENTARY OCCUPATIONS"
+9100 "SALES & SERVICES ELEMENTARY OCCUPATIONS"
+9110 "STREET VENDORS ETC WORKERS"
+9111 "Street food vendors"
+9112 "Street vendors non-food products"
+9113 "Door-to-door & telephone salespersons"
+9120 "STREET SERVICES ELEMENTARY OCCUPATIONS"
+9130 "DOMESTIC ETC HELPERS CLEANERS & LAUNDERERS"
+9131 "Domestic helpers & cleaners"
+9132 "Helpers & cleaners in establishments"
+9133 "Hand-launderers & pressers"
+9140 "BUILDING CARETAKERS, WINDOW ETC CLEANERS"
+9141 "Building caretakers"
+9142 "Vehicle, window etc cleaners"
+9150 "MESSENGERS, PORTERS, DOORKEEPERS ETC WORKERS"
+9151 "Messengers, package & luggage porters & deliverers"
+9152 "Doorkeepers, watchpersons etc workers"
+9153 "Vending-machine money collectors, meter readers etc workers"
+9160 "GARBAGE COLLECTORS ETC LABOURERS"
+9161 "Garbage collectors"
+9162 "Sweepers etc labourers"
+9200 "AGRICULTURAL, FISHERY ETC LABOURERS"
+9210 "AGRICULTURAL, FISHERY ETC LABOURERS"
+9211 "Farm-hands & labourers"
+9212 "Forestry labourers"
+9213 "Fishery, hunting & trapping labourers"
+9300 "LABOURERS IN MINING, CONSTRUCTION, MANUFACTURING & TRANSPORT"
+9310 "MINING & CONSTRUCTION LABOURERS"
+9311 "Mining & quarrying labourers"
+9312 "Construction & maintenance labourers: roads dams etc"
+9313 "Building construction labourers"
+9320 "MANUFACTURING LABOURERS"
+9321 "Assembling labourers"
+9322 "Handpackers & other manufacturing labourers"
+9330 "TRANSPORT LABOURERS & FREIGHT HANDLERS"
+9331 "Hand or pedal vehicle drivers"
+9332 "Drivers of animal-drawn vehicles & machinery"
+9333 "Freight handlers"
+% END
+
+% LABELLIST-isco08
+% source: structure08.docx from https://www.ilo.org/public/english/bureau/stat/isco/isco08/index.htm
+% note: source uses titlecase spelling; this has been transformed to lowercase spelling
+% variables: ISCO08 ISCO08-label-E
+1000 "Managers"
+1100 "Chief executives, senior officials and legislators"
+1110 "Legislators and senior officials"
+1111 "Legislators"
+1112 "Senior government officials"
+1113 "Traditional chiefs and heads of villages"
+1114 "Senior officials of special-interest organizations"
+1120 "Managing directors and chief executives"
+1200 "Administrative and commercial managers"
+1210 "Business services and administration managers"
+1211 "Finance managers"
+1212 "Human resource managers"
+1213 "Policy and planning managers"
+1219 "Business services and administration managers not elsewhere classified"
+1220 "Sales, marketing and development managers"
+1221 "Sales and marketing managers"
+1222 "Advertising and public relations managers"
+1223 "Research and development managers"
+1300 "Production and specialized services managers"
+1310 "Production managers in agriculture, forestry and fisheries"
+1311 "Agricultural and forestry production managers"
+1312 "Aquaculture and fisheries production managers"
+1320 "Manufacturing, mining, construction and distribution managers"
+1321 "Manufacturing managers"
+1322 "Mining managers"
+1323 "Construction managers"
+1324 "Supply, distribution and related managers"
+1330 "Information and communications technology services managers"
+1340 "Professional services managers"
+1341 "Child care services managers"
+1342 "Health services managers"
+1343 "Aged care services managers"
+1344 "Social welfare managers"
+1345 "Education managers"
+1346 "Financial and insurance services branch managers"
+1349 "Professional services managers not elsewhere classified"
+1400 "Hospitality, retail and other services managers"
+1410 "Hotel and restaurant managers"
+1411 "Hotel managers"
+1412 "Restaurant managers"
+1420 "Retail and wholesale trade managers"
+1430 "Other services managers"
+1431 "Sports, recreation and cultural centre managers"
+1439 "Services managers not elsewhere classified"
+2000 "Professionals"
+2100 "Science and engineering professionals"
+2110 "Physical and earth science professionals"
+2111 "Physicists and astronomers"
+2112 "Meteorologists"
+2113 "Chemists"
+2114 "Geologists and geophysicists"
+2120 "Mathematicians, actuaries and statisticians"
+2130 "Life science professionals"
+2131 "Biologists, botanists, zoologists and related professionals"
+2132 "Farming, forestry and fisheries advisers"
+2133 "Environmental protection professionals"
+2140 "Engineering professionals (excluding electrotechnology)"
+2141 "Industrial and production engineers"
+2142 "Civil engineers"
+2143 "Environmental engineers"
+2144 "Mechanical engineers"
+2145 "Chemical engineers"
+2146 "Mining engineers, metallurgists and related professionals"
+2149 "Engineering professionals not elsewhere classified"
+2150 "Electrotechnology engineers"
+2151 "Electrical engineers"
+2152 "Electronics engineers"
+2153 "Telecommunications engineers"
+2160 "Architects, planners, surveyors and designers"
+2161 "Building architects"
+2162 "Landscape architects"
+2163 "Product and garment designers"
+2164 "Town and traffic planners"
+2165 "Cartographers and surveyors"
+2166 "Graphic and multimedia designers"
+2200 "Health professionals"
+2210 "Medical doctors"
+2211 "Generalist medical practitioners"
+2212 "Specialist medical practitioners"
+2220 "Nursing and midwifery professionals"
+2221 "Nursing professionals"
+2222 "Midwifery professionals"
+2230 "Traditional and complementary medicine professionals"
+2240 "Paramedical practitioners"
+2250 "Veterinarians"
+2260 "Other health professionals"
+2261 "Dentists"
+2262 "Pharmacists"
+2263 "Environmental and occupational health and hygiene professionals"
+2264 "Physiotherapists"
+2265 "Dieticians and nutritionists"
+2266 "Audiologists and speech therapists"
+2267 "Optometrists and ophthalmic opticians"
+2269 "Health professionals not elsewhere classified"
+2300 "Teaching professionals"
+2310 "University and higher education teachers"
+2320 "Vocational education teachers"
+2330 "Secondary education teachers"
+2340 "Primary school and early childhood teachers"
+2341 "Primary school teachers"
+2342 "Early childhood educators"
+2350 "Other teaching professionals"
+2351 "Education methods specialists"
+2352 "Special needs teachers"
+2353 "Other language teachers"
+2354 "Other music teachers"
+2355 "Other arts teachers"
+2356 "Information technology trainers"
+2359 "Teaching professionals not elsewhere classified"
+2400 "Business and administration professionals"
+2410 "Finance professionals"
+2411 "Accountants"
+2412 "Financial and investment advisers"
+2413 "Financial analysts"
+2420 "Administration professionals"
+2421 "Management and organization analysts"
+2422 "Policy administration professionals"
+2423 "Personnel and careers professionals"
+2424 "Training and staff development professionals"
+2430 "Sales, marketing and public relations professionals"
+2431 "Advertising and marketing professionals"
+2432 "Public relations professionals"
+2433 "Technical and medical sales professionals (excluding ict)"
+2434 "Information and communications technology sales professionals"
+2500 "Information and communications technology professionals"
+2510 "Software and applications developers and analysts"
+2511 "Systems analysts"
+2512 "Software developers"
+2513 "Web and multimedia developers"
+2514 "Applications programmers"
+2519 "Software and applications developers and analysts not elsewhere classified"
+2520 "Database and network professionals"
+2521 "Database designers and administrators"
+2522 "Systems administrators"
+2523 "Computer network professionals"
+2529 "Database and network professionals not elsewhere classified"
+2600 "Legal, social and cultural professionals"
+2610 "Legal professionals"
+2611 "Lawyers"
+2612 "Judges"
+2619 "Legal professionals not elsewhere classified"
+2620 "Librarians, archivists and curators"
+2621 "Archivists and curators"
+2622 "Librarians and related information professionals"
+2630 "Social and religious professionals"
+2631 "Economists"
+2632 "Sociologists, anthropologists and related professionals"
+2633 "Philosophers, historians and political scientists"
+2634 "Psychologists"
+2635 "Social work and counselling professionals"
+2636 "Religious professionals"
+2640 "Authors, journalists and linguists"
+2641 "Authors and related writers"
+2642 "Journalists"
+2643 "Translators, interpreters and other linguists"
+2650 "Creative and performing artists"
+2651 "Visual artists"
+2652 "Musicians, singers and composers"
+2653 "Dancers and choreographers"
+2654 "Film, stage and related directors and producers"
+2655 "Actors"
+2656 "Announcers on radio, television and other media"
+2659 "Creative and performing artists not elsewhere classified"
+3000 "Technicians and associate professionals"
+3100 "Science and engineering associate professionals"
+3110 "Physical and engineering science technicians"
+3111 "Chemical and physical science technicians"
+3112 "Civil engineering technicians"
+3113 "Electrical engineering technicians"
+3114 "Electronics engineering technicians"
+3115 "Mechanical engineering technicians"
+3116 "Chemical engineering technicians"
+3117 "Mining and metallurgical technicians"
+3118 "Draughtspersons"
+3119 "Physical and engineering science technicians not elsewhere classified"
+3120 "Mining, manufacturing and construction supervisors"
+3121 "Mining supervisors"
+3122 "Manufacturing supervisors"
+3123 "Construction supervisors"
+3130 "Process control technicians"
+3131 "Power production plant operators"
+3132 "Incinerator and water treatment plant operators"
+3133 "Chemical processing plant controllers"
+3134 "Petroleum and natural gas refining plant operators"
+3135 "Metal production process controllers"
+3139 "Process control technicians not elsewhere classified"
+3140 "Life science technicians and related associate professionals"
+3141 "Life science technicians (excluding medical)"
+3142 "Agricultural technicians"
+3143 "Forestry technicians"
+3150 "Ship and aircraft controllers and technicians"
+3151 "Ships’ engineers"
+3152 "Ships’ deck officers and pilots"
+3153 "Aircraft pilots and related associate professionals"
+3154 "Air traffic controllers"
+3155 "Air traffic safety electronics technicians"
+3200 "Health associate professionals"
+3210 "Medical and pharmaceutical technicians"
+3211 "Medical imaging and therapeutic equipment technicians"
+3212 "Medical and pathology laboratory technicians"
+3213 "Pharmaceutical technicians and assistants"
+3214 "Medical and dental prosthetic technicians"
+3220 "Nursing and midwifery associate professionals"
+3221 "Nursing associate professionals"
+3222 "Midwifery associate professionals"
+3230 "Traditional and complementary medicine associate professionals"
+3240 "Veterinary technicians and assistants"
+3250 "Other health associate professionals"
+3251 "Dental assistants and therapists"
+3252 "Medical records and health information technicians"
+3253 "Community health workers"
+3254 "Dispensing opticians"
+3255 "Physiotherapy technicians and assistants"
+3256 "Medical assistants"
+3257 "Environmental and occupational health inspectors and associates"
+3258 "Ambulance workers"
+3259 "Health associate professionals not elsewhere classified"
+3300 "Business and administration associate professionals"
+3310 "Financial and mathematical associate professionals"
+3311 "Securities and finance dealers and brokers"
+3312 "Credit and loans officers"
+3313 "Accounting associate professionals"
+3314 "Statistical, mathematical and related associate professionals"
+3315 "Valuers and loss assessors"
+3320 "Sales and purchasing agents and brokers"
+3321 "Insurance representatives"
+3322 "Commercial sales representatives"
+3323 "Buyers"
+3324 "Trade brokers"
+3330 "Business services agents"
+3331 "Clearing and forwarding agents"
+3332 "Conference and event planners"
+3333 "Employment agents and contractors"
+3334 "Real estate agents and property managers"
+3339 "Business services agents not elsewhere classified"
+3340 "Administrative and specialized secretaries"
+3341 "Office supervisors"
+3342 "Legal secretaries"
+3343 "Administrative and executive secretaries"
+3344 "Medical secretaries"
+3350 "Government regulatory associate professionals"
+3351 "Customs and border inspectors"
+3352 "Government tax and excise officials"
+3353 "Government social benefits officials"
+3354 "Government licensing officials"
+3355 "Police inspectors and detectives"
+3359 "Government regulatory associate professionals not elsewhere classified"
+3400 "Legal, social, cultural and related associate professionals"
+3410 "Legal, social and religious associate professionals"
+3411 "Legal and related associate professionals"
+3412 "Social work associate professionals"
+3413 "Religious associate professionals"
+3420 "Sports and fitness workers"
+3421 "Athletes and sports players"
+3422 "Sports coaches, instructors and officials"
+3423 "Fitness and recreation instructors and programme leaders"
+3430 "Artistic, cultural and culinary associate professionals"
+3431 "Photographers"
+3432 "Interior designers and decorators"
+3433 "Gallery, museum and library technicians"
+3434 "Chefs"
+3435 "Other artistic and cultural associate professionals"
+3500 "Information and communications technicians"
+3510 "Information and communications technology operations and user support technicians"
+3511 "Information and communications technology operations technicians"
+3512 "Information and communications technology user support technicians"
+3513 "Computer network and systems technicians"
+3514 "Web technicians"
+3520 "Telecommunications and broadcasting technicians"
+3521 "Broadcasting and audiovisual technicians"
+3522 "Telecommunications engineering technicians"
+4000 "Clerical support workers"
+4100 "General and keyboard clerks"
+4110 "General office clerks"
+4120 "Secretaries (general)"
+4130 "Keyboard operators"
+4131 "Typists and word processing operators"
+4132 "Data entry clerks"
+4200 "Customer services clerks"
+4210 "Tellers, money collectors and related clerks"
+4211 "Bank tellers and related clerks"
+4212 "Bookmakers, croupiers and related gaming workers"
+4213 "Pawnbrokers and money-lenders"
+4214 "Debt collectors and related workers"
+4220 "Client information workers"
+4221 "Travel consultants and clerks"
+4222 "Contact centre information clerks"
+4223 "Telephone switchboard operators"
+4224 "Hotel receptionists"
+4225 "Inquiry clerks"
+4226 "Receptionists (general)"
+4227 "Survey and market research interviewers"
+4229 "Client information workers not elsewhere classified"
+4300 "Numerical and material recording clerks"
+4310 "Numerical clerks"
+4311 "Accounting and bookkeeping clerks"
+4312 "Statistical, finance and insurance clerks"
+4313 "Payroll clerks"
+4320 "Material recording and transport clerks"
+4321 "Stock clerks"
+4322 "Production clerks"
+4323 "Transport clerks"
+4400 "Other clerical support workers"
+4410 "Other clerical support workers"
+4411 "Library clerks"
+4412 "Mail carriers and sorting clerks"
+4413 "Coding, proofreading and related clerks"
+4414 "Scribes and related workers"
+4415 "Filing and copying clerks"
+4416 "Personnel clerks"
+4419 "Clerical support workers not elsewhere classified"
+5000 "Services and sales workers"
+5100 "Personal services workers"
+5110 "Travel attendants, conductors and guides"
+5111 "Travel attendants and travel stewards"
+5112 "Transport conductors"
+5113 "Travel guides"
+5120 "Cooks"
+5130 "Waiters and bartenders"
+5131 "Waiters"
+5132 "Bartenders"
+5140 "Hairdressers, beauticians and related workers"
+5141 "Hairdressers"
+5142 "Beauticians and related workers"
+5150 "Building and housekeeping supervisors"
+5151 "Cleaning and housekeeping supervisors in offices, hotels and other establishments"
+5152 "Domestic housekeepers"
+5153 "Building caretakers"
+5160 "Other personal services workers"
+5161 "Astrologers, fortune-tellers and related workers"
+5162 "Companions and valets"
+5163 "Undertakers and embalmers"
+5164 "Pet groomers and animal care workers"
+5165 "Driving instructors"
+5169 "Personal services workers not elsewhere classified"
+5200 "Sales workers"
+5210 "Street and market salespersons"
+5211 "Stall and market salespersons"
+5212 "Street food salespersons"
+5220 "Shop salespersons"
+5221 "Shopkeepers"
+5222 "Shop supervisors"
+5223 "Shop sales assistants"
+5230 "Cashiers and ticket clerks"
+5240 "Other sales workers"
+5241 "Fashion and other models"
+5242 "Sales demonstrators"
+5243 "Door-to-door salespersons"
+5244 "Contact centre salespersons"
+5245 "Service station attendants"
+5246 "Food service counter attendants"
+5249 "Sales workers not elsewhere classified"
+5300 "Personal care workers"
+5310 "Child care workers and teachers’ aides"
+5311 "Child care workers"
+5312 "Teachers’ aides"
+5320 "Personal care workers in health services"
+5321 "Health care assistants"
+5322 "Home-based personal care workers"
+5329 "Personal care workers in health services not elsewhere classified"
+5400 "Protective services workers"
+5410 "Protective services workers"
+5411 "Firefighters"
+5412 "Police officers"
+5413 "Prison guards"
+5414 "Security guards"
+5419 "Protective services workers not elsewhere classified"
+6000 "Skilled agricultural, forestry and fishery workers"
+6100 "Market-oriented skilled agricultural workers"
+6110 "Market gardeners and crop growers"
+6111 "Field crop and vegetable growers"
+6112 "Tree and shrub crop growers"
+6113 "Gardeners; horticultural and nursery growers"
+6114 "Mixed crop growers"
+6120 "Animal producers"
+6121 "Livestock and dairy producers"
+6122 "Poultry producers"
+6123 "Apiarists and sericulturists"
+6129 "Animal producers not elsewhere classified"
+6130 "Mixed crop and animal producers"
+6200 "Market-oriented skilled forestry, fishery and hunting workers"
+6210 "Forestry and related workers"
+6220 "Fishery workers, hunters and trappers"
+6221 "Aquaculture workers"
+6222 "Inland and coastal waters fishery workers"
+6223 "Deep-sea fishery workers"
+6224 "Hunters and trappers"
+6300 "Subsistence farmers, fishers, hunters and gatherers"
+6310 "Subsistence crop farmers"
+6320 "Subsistence livestock farmers"
+6330 "Subsistence mixed crop and livestock farmers"
+6340 "Subsistence fishers, hunters, trappers and gatherers"
+7000 "Craft and related trades workers"
+7100 "Building and related trades workers (excluding electricians)"
+7110 "Building frame and related trades workers"
+7111 "House builders"
+7112 "Bricklayers and related workers"
+7113 "Stonemasons, stone cutters, splitters and carvers"
+7114 "Concrete placers, concrete finishers and related workers"
+7115 "Carpenters and joiners"
+7119 "Building frame and related trades workers not elsewhere classified"
+7120 "Building finishers and related trades workers"
+7121 "Roofers"
+7122 "Floor layers and tile setters"
+7123 "Plasterers"
+7124 "Insulation workers"
+7125 "Glaziers"
+7126 "Plumbers and pipe fitters"
+7127 "Air conditioning and refrigeration mechanics"
+7130 "Painters, building structure cleaners and related trades workers"
+7131 "Painters and related workers"
+7132 "Spray painters and varnishers"
+7133 "Building structure cleaners"
+7200 "Metal, machinery and related trades workers"
+7210 "Sheet and structural metal workers, moulders and welders, and related workers"
+7211 "Metal moulders and coremakers"
+7212 "Welders and flame cutters"
+7213 "Sheet metal workers"
+7214 "Structural metal preparers and erectors"
+7215 "Riggers and cable splicers"
+7220 "Blacksmiths, toolmakers and related trades workers"
+7221 "Blacksmiths, hammersmiths and forging press workers"
+7222 "Toolmakers and related workers"
+7223 "Metal working machine tool setters and operators"
+7224 "Metal polishers, wheel grinders and tool sharpeners"
+7230 "Machinery mechanics and repairers"
+7231 "Motor vehicle mechanics and repairers"
+7232 "Aircraft engine mechanics and repairers"
+7233 "Agricultural and industrial machinery mechanics and repairers"
+7234 "Bicycle and related repairers"
+7300 "Handicraft and printing workers"
+7310 "Handicraft workers"
+7311 "Precision-instrument makers and repairers"
+7312 "Musical instrument makers and tuners"
+7313 "Jewellery and precious metal workers"
+7314 "Potters and related workers"
+7315 "Glass makers, cutters, grinders and finishers"
+7316 "Signwriters, decorative painters, engravers and etchers"
+7317 "Handicraft workers in wood, basketry and related materials"
+7318 "Handicraft workers in textile, leather and related materials"
+7319 "Handicraft workers not elsewhere classified"
+7320 "Printing trades workers"
+7321 "Pre-press technicians"
+7322 "Printers"
+7323 "Print finishing and binding workers"
+7400 "Electrical and electronics trades workers"
+7410 "Electrical equipment installers and repairers"
+7411 "Building and related electricians"
+7412 "Electrical mechanics and fitters"
+7413 "Electrical line installers and repairers"
+7420 "Electronics and telecommunications installers and repairers"
+7421 "Electronics mechanics and servicers"
+7422 "Information and communications technology installers and servicers"
+7500 "Food processing, woodworking, garment and other craft and related trades workers"
+7510 "Food processing and related trades workers"
+7511 "Butchers, fishmongers and related food preparers"
+7512 "Bakers, pastry-cooks and confectionery makers"
+7513 "Dairy products makers"
+7514 "Fruit, vegetable and related preservers"
+7515 "Food and beverage tasters and graders"
+7516 "Tobacco preparers and tobacco products makers"
+7520 "Wood treaters, cabinet-makers and related trades workers"
+7521 "Wood treaters"
+7522 "Cabinet-makers and related workers"
+7523 "Woodworking machine tool setters and operators"
+7530 "Garment and related trades workers"
+7531 "Tailors, dressmakers, furriers and hatters"
+7532 "Garment and related patternmakers and cutters"
+7533 "Sewing, embroidery and related workers"
+7534 "Upholsterers and related workers"
+7535 "Pelt dressers, tanners and fellmongers"
+7536 "Shoemakers and related workers"
+7540 "Other craft and related workers"
+7541 "Underwater divers"
+7542 "Shotfirers and blasters"
+7543 "Product graders and testers (excluding foods and beverages)"
+7544 "Fumigators and other pest and weed controllers"
+7549 "Craft and related workers not elsewhere classified"
+8000 "Plant and machine operators and assemblers"
+8100 "Stationary plant and machine operators"
+8110 "Mining and mineral processing plant operators"
+8111 "Miners and quarriers"
+8112 "Mineral and stone processing plant operators"
+8113 "Well drillers and borers and related workers"
+8114 "Cement, stone and other mineral products machine operators"
+8120 "Metal processing and finishing plant operators"
+8121 "Metal processing plant operators"
+8122 "Metal finishing, plating and coating machine operators"
+8130 "Chemical and photographic products plant and machine operators"
+8131 "Chemical products plant and machine operators"
+8132 "Photographic products machine operators"
+8140 "Rubber, plastic and paper products machine operators"
+8141 "Rubber products machine operators"
+8142 "Plastic products machine operators"
+8143 "Paper products machine operators"
+8150 "Textile, fur and leather products machine operators"
+8151 "Fibre preparing, spinning and winding machine operators"
+8152 "Weaving and knitting machine operators"
+8153 "Sewing machine operators"
+8154 "Bleaching, dyeing and fabric cleaning machine operators"
+8155 "Fur and leather preparing machine operators"
+8156 "Shoemaking and related machine operators"
+8157 "Laundry machine operators"
+8159 "Textile, fur and leather products machine operators not elsewhere classified"
+8160 "Food and related products machine operators"
+8170 "Wood processing and papermaking plant operators"
+8171 "Pulp and papermaking plant operators"
+8172 "Wood processing plant operators"
+8180 "Other stationary plant and machine operators"
+8181 "Glass and ceramics plant operators"
+8182 "Steam engine and boiler operators"
+8183 "Packing, bottling and labelling machine operators"
+8189 "Stationary plant and machine operators not elsewhere classified"
+8200 "Assemblers"
+8210 "Assemblers"
+8211 "Mechanical machinery assemblers"
+8212 "Electrical and electronic equipment assemblers"
+8219 "Assemblers not elsewhere classified"
+8300 "Drivers and mobile plant operators"
+8310 "Locomotive engine drivers and related workers"
+8311 "Locomotive engine drivers"
+8312 "Railway brake, signal and switch operators"
+8320 "Car, van and motorcycle drivers"
+8321 "Motorcycle drivers"
+8322 "Car, taxi and van drivers"
+8330 "Heavy truck and bus drivers"
+8331 "Bus and tram drivers"
+8332 "Heavy truck and lorry drivers"
+8340 "Mobile plant operators"
+8341 "Mobile farm and forestry plant operators"
+8342 "Earthmoving and related plant operators"
+8343 "Crane, hoist and related plant operators"
+8344 "Lifting truck operators"
+8350 "Ships’ deck crews and related workers"
+9000 "Elementary occupations"
+9100 "Cleaners and helpers"
+9110 "Domestic, hotel and office cleaners and helpers"
+9111 "Domestic cleaners and helpers"
+9112 "Cleaners and helpers in offices, hotels and other establishments"
+9120 "Vehicle, window, laundry and other hand cleaning workers"
+9121 "Hand launderers and pressers"
+9122 "Vehicle cleaners"
+9123 "Window cleaners"
+9129 "Other cleaning workers"
+9200 "Agricultural, forestry and fishery labourers"
+9210 "Agricultural, forestry and fishery labourers"
+9211 "Crop farm labourers"
+9212 "Livestock farm labourers"
+9213 "Mixed crop and livestock farm labourers"
+9214 "Garden and horticultural labourers"
+9215 "Forestry labourers"
+9216 "Fishery and aquaculture labourers"
+9300 "Labourers in mining, construction, manufacturing and transport"
+9310 "Mining and construction labourers"
+9311 "Mining and quarrying labourers"
+9312 "Civil engineering labourers"
+9313 "Building construction labourers"
+9320 "Manufacturing labourers"
+9321 "Hand packers"
+9329 "Manufacturing labourers not elsewhere classified"
+9330 "Transport and storage labourers"
+9331 "Hand and pedal vehicle drivers"
+9332 "Drivers of animal-drawn vehicles and machinery"
+9333 "Freight handlers"
+9334 "Shelf fillers"
+9400 "Food preparation assistants"
+9410 "Food preparation assistants"
+9411 "Fast food preparers"
+9412 "Kitchen helpers"
+9500 "Street and related sales and services workers"
+9510 "Street and related services workers"
+9520 "Street vendors (excluding food)"
+9600 "Refuse workers and other elementary workers"
+9610 "Refuse workers"
+9611 "Garbage and recycling collectors"
+9612 "Refuse sorters"
+9613 "Sweepers and related labourers"
+9620 "Other elementary workers"
+9621 "Messengers, package deliverers and luggage porters"
+9622 "Odd-job persons"
+9623 "Meter readers and vending-machine collectors"
+9624 "Water and firewood collectors"
+9629 "Elementary workers not elsewhere classified"
+0000 "Armed forces occupations"
+0100 "Commissioned armed forces officers"
+0110 "Commissioned armed forces officers"
+0200 "Non-commissioned armed forces officers"
+0210 "Non-commissioned armed forces officers"
+0300 "Armed forces occupations, other ranks"
+0310 "Armed forces occupations, other ranks"
+% END
+
+% LABELLIST-egp
+% source: iskoegp.ado (version 1.2 14Oct2004 John_Hendrickx@yahoo.com)
+% variables: EGP EGP-label-E
+1  "higher controllers"
+2  "lo controllers"
+3  "routine nonmanual"
+4  "sempl with emp"
+5  "sempl without empl"
+7  "manual supervisor"
+8  "skilled manual"
+9  "semi-unskilld manual"
+10 "farm labor"
+11 "selfempl farm"
+% END
+
+% LABELLIST-egp11
+% source: iskoegp.sps from http://www.harryganzeboom.nl/isco88/
+% note: slighly edited (spaces)
+% variables: EGP EGP-label-E
+1  "I: Higher Controllers"
+2  "II: Lower Controllers"
+3  "IIIa: Routine Nonmanual"
+4  "IIIb: Lower Sales-Service"
+5  "IVa: Selfempl with empl"
+6  "IVb: Selfempl no empl"
+7  "V: Manual Supervisors"
+8  "VI: Skilled Worker"
+9  "VIIa: Unskilled Worker"
+10 "VIIb: Farm Labor"
+11 "IVc: Selfempl Farmer"
+% END
+
+% LABELLIST-esec
+% source: esec083digit.sps from https://ekharrison.weebly.com/european-socio-economic-classification-esec.html
+% variables: ESEC ESEC-label-E
+1 'Large employers, higher mgrs/professionals'
+2 'Lower mgrs/professionals, higher supervisory/technicians'
+3 'Intermediate occupations'
+4 'Small employers and self-employed (non-agriculture)'
+5 'Small employers and self-employed (agriculture)'
+6 'Lower supervisors and technicians'
+7 'Lower sales and service'
+8 'Lower technical'
+9 'Routine'
+% END
+
+% LABELLIST-oesch
+% source: iskooesch.ado (May 2018) by Simon Kaiser
+% variables: OESCH OESCH-label-E
+1  "Large employers"
+2  "Self-employed professionals"
+3  "Small business owners with employees"
+4  "Small business owners without employees"
+5  "Technical experts"
+6  "Technicians"
+7  "Skilled manual"
+8  "Low-skilled manual"
+9  "Higher-grade managers and administrators"
+10 "Lower-grade managers and administrators"
+11 "Skilled clerks"
+12 "Unskilled clerks"
+13 "Socio-cultural professionals"
+14 "Socio-cultural semi-professionals"
+15 "Skilled service"
+16 "Low-skilled service"
+% END
+
+% LABELLIST-oesch8
+% source: iskooesch.ado (May 2018) by Simon Kaiser
+% variables: OESCH8 OESCH8-label-E
+1 "Self-employed professionals and large employers"
+2 "Small business owners"
+3 "Technical (semi-)professionals"
+4 "Production workers"
+5 "(Associate) managers"
+6 "Clerks"
+7 "Socio-cultural (semi-)professionals"
+8 "Service workers"
+% END
+
+% LABELLIST-oesch5
+% source: iskooesch.ado (May 2018) by Simon Kaiser
+% variables: OESCH8 OESCH8-label-E
+1 "Higher-grade service class"
+2 "Lower-grade service class"
+3 "Small business owners"
+4 "Skilled workers"
+5 "Unskilled workers"
 % END
