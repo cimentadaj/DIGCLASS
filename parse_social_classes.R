@@ -115,4 +115,232 @@ for (i in seq_along(begin)) {
   all_labels[[cleaned_labels$name]] <- cleaned_labels$label_df
 }
 
+library(tidyverse)
+ess <- read_csv("~/Downloads/ESS4e04_5.csv")
+
+common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label) {
+  res <-
+    tibble(x = as.character(x)) %>%
+    left_join(translate_df, by = c("x" = input_var))
+
+
+  if (label) {
+    no_labs <- c("isei", "siops", "mps88", "iseisps")
+    if (tolower(output_var) %in% no_labs) {
+      stop(
+        "Labels not available for these schemas: ",
+        paste(no_labs, collapse = ", "), ". Set `label` to `FALSE` to translate this schema without labels."
+      )
+    }
+
+    res <-
+      tibble(x_label = res[[output_var]]) %>%
+      left_join(translate_label_df, by = c("x_label" = output_var))
+
+    transformed <- res[[2]]
+  } else {
+    transformed <- as.numeric(res[[output_var]])
+  }
+
+  transformed
+}
+
+isco68_to_isco88 <- function(x, label = FALSE) {
+  common_translator(
+    x,
+    input_var = "ISCO68",
+    output_var = "ISCO88",
+    translate_df = all_schemas$isco68_to_isco88,
+    translate_label_df = all_labels$isco88,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco68_to_isco88(iscoco, label = FALSE))
+
+isco88_to_isco68 <- function(x, label = FALSE) {
+  common_translator(
+    x,
+    input_var = "ISCO88",
+    output_var = "ISCO68",
+    translate_df = all_schemas$isco88_to_isco68,
+    translate_label_df = all_labels$isco68,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco88_to_isco68(iscoco, label = FALSE))
+
+
+isco68_to_isco08 <- function(x, label = FALSE) {
+  common_translator(
+    x,
+    input_var = "ISCO68",
+    output_var = "ISCO08",
+    translate_df = all_schemas$isco68_to_isco08,
+    translate_label_df = all_labels$isco08,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco68_to_isco08(iscoco))
+
+isco88_to_isco08 <- function(x, label = FALSE) {
+  common_translator(
+    x,
+    input_var = "ISCO88",
+    output_var = "ISCO08",
+    translate_df = all_schemas$isco88_to_isco08,
+    translate_label_df = all_labels$isco08,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco88_to_isco08(iscoco, label = TRUE))
+
+
+isco08_to_isco88 <- function(x, label = FALSE) {
+  common_translator(
+    x,
+    input_var = "ISCO08",
+    output_var = "ISCO88",
+    translate_df = all_schemas$isco08_to_isco88,
+    translate_label_df = all_labels$isco88,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco08_to_isco88(iscoco, label = TRUE))
+
+isco88_to_isco88com <- function(x, label = FALSE) {
+  common_translator(
+    x,
+    input_var = "ISCO88",
+    output_var = "ISCO88COM",
+    translate_df = all_schemas$isco88_to_isco88com,
+    translate_label_df = all_labels$isco88com,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco88_to_isco88com(iscoco, label = TRUE))
+
+isco68_to_isei <- function(x) {
+  common_translator(
+    x,
+    input_var = "ISCO68",
+    output_var = "ISEI",
+    translate_df = all_schemas$isco68_to_isei,
+    translate_label_df = NULL,
+    label = FALSE
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco68_to_isei(iscoco))
+
+
+isco68_to_siops <- function(x) {
+  common_translator(
+    x,
+    input_var = "ISCO68",
+    output_var = "SIOPS",
+    translate_df = all_schemas$isco68_to_siops,
+    translate_label_df = NULL,
+    label = FALSE
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco68_to_siops(iscoco))
+
+isco88_to_isei <- function(x) {
+  common_translator(
+    x,
+    input_var = "ISCO88",
+    output_var = "ISEI",
+    translate_df = all_schemas$isco88_to_isei,
+    translate_label_df = NULL,
+    label = FALSE
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco88_to_isei(iscoco))
+
+isco88_to_siops <- function(x) {
+  common_translator(
+    x,
+    input_var = "ISCO88",
+    output_var = "SIOPS",
+    translate_df = all_schemas$isco88_to_siops,
+    translate_label_df = NULL,
+    label = FALSE
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco88_to_siops(iscoco))
+
+isco88_to_mps <- function(x) {
+  common_translator(
+    x,
+    input_var = "ISCO88",
+    output_var = "MPS88",
+    translate_df = all_schemas$isco88_to_mps,
+    translate_label_df = NULL,
+    label = FALSE
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco88_to_mps(iscoco))
+
+
+isco08_to_isei <- function(x) {
+  common_translator(
+    x,
+    input_var = "ISCO08",
+    output_var = "ISEI-08",
+    translate_df = all_schemas$isco08_to_isei,
+    translate_label_df = NULL,
+    label = FALSE
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco08_to_isei(iscoco))
+
+isco08_to_siops <- function(x) {
+  common_translator(
+    x,
+    input_var = "ISCO08",
+    output_var = "SIOPS-08",
+    translate_df = all_schemas$isco08_to_siops,
+    translate_label_df = NULL,
+    label = FALSE
+  )
+}
+
+ess %>%
+  select(iscoco) %>%
+  mutate(isco08 = isco08_to_siops(iscoco))
 

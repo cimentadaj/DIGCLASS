@@ -6,7 +6,7 @@
 % note: using last mapping in case of duplicates (repeated mappings); this leads
 %       to differences to the source because in SPSS later mappings are ignored;
 %       using the last mapping is consistent with isco6888.ado for Stata
-% variables: ISCO-68 ISCO-88
+% variables: ISCO68 ISCO88
 0100 2110
 0110 2113
 0120 2111
@@ -769,7 +769,7 @@
 % source: isco6808.sps from http://www.harryganzeboom.nl/isco08/
 % note: using first mapping in case of duplicates (repeated mappings); this is
 %       consistent with the source because in SPSS later mappings are ignored
-% variables: ISCO-68 ISCO-08
+% variables: ISCO68 ISCO08
 0100 2110
 0110 2113
 0120 2111
@@ -1523,14 +1523,14 @@
 
 % CODELIST-isco68-isei
 % source: iscoisei.sps from http://www.harryganzeboom.nl/isco68/
-% note: leading zeros added to ISCO-68 codes with less than 4 digits
+% note: leading zeros added to ISCO68 codes with less than 4 digits
 % note: source contains range mappings that have been expanded to one-to-one
-%       mappings based on the set of ISCO-68 codes found in iscolab.sps (plus
+%       mappings based on the set of ISCO68 codes found in iscolab.sps (plus
 %       code 3991 found in isco6888.sps)
 % note: using mappings consistent with Ganzeboom et al. (1992: Appendix B) in
 %       case of duplicates (repeated mappings); this leads to inconsistencies
 %       with SPSS, but is consistent with iscoisei.ado for Stata
-% variables: ISCO-68 ISEI
+% variables: ISCO68 ISEI
 0100 62
 0110 73
 0120 79
@@ -2278,9 +2278,9 @@
 
 % CODELIST-isco68-siops
 % source: iscotrei.sps from http://www.harryganzeboom.nl/isco68/
-% note: leading zeros added to ISCO-68 codes with less than 4 digits
+% note: leading zeros added to ISCO68 codes with less than 4 digits
 % note: source contains uninformative duplicates; these have been commented out
-% variables: ISCO-68 SIOPS
+% variables: ISCO68 SIOPS
 0400 59
 2193 63
 % 4319 51 (dublicate)
@@ -3031,7 +3031,7 @@
 %       based on iscoegp.sps from http://www.harryganzeboom.nl/isco68/
 % note: the codelist has been generated automatically by applying iscoegp.ado
 %       to all relevant combinations of isco codes, selfemployment, supervision
-% variables: ISCO-68 EGP(0,0) EGB(0,1-9) EGP(0,10+) EGP(1,0) EGB(1,1-9) 
+% variables: ISCO68 EGP(0,0) EGB(0,1-9) EGP(0,10+) EGP(1,0) EGB(1,1-9) 
 %       EGP(1,10+), where the first argument is selfemployment status
 %       and the second argument is the number if subordinates/employees
 0100 1 1 1 1 1 1
@@ -3787,7 +3787,7 @@
 % source: iscoegp.sps from http://www.harryganzeboom.nl/isco68/
 % note: the codelist has been generated automatically by applying iscoegp.sps
 %       to all relevant combinations of isco codes, selfemployment, supervision
-% variables: ISCO-68 EGP(0,0) EGB(0,1-9) EGP(0,10+) EGP(1,0) EGB(1,1-9) 
+% variables: ISCO68 EGP(0,0) EGB(0,1-9) EGP(0,10+) EGP(1,0) EGB(1,1-9) 
 %       EGP(1,10+), where the first argument is selfemployment status
 %       and the second argument is the number if subordinates/employees
 0100 1 1 1 1 1 1
@@ -4541,7 +4541,7 @@
 
 % CODELIST-isco88-isco68
 % source: isco8868.sps from http://www.harryganzeboom.nl/isco68/
-% variables: ISCO-88 ISCO-68
+% variables: ISCO88 ISCO68
 8400 9970
 7234 8494
 7520 9950
@@ -5077,7 +5077,7 @@
 % CODELIST-isco88-isco88com
 % source: Translation based on suggestions in Appendix 7.12 in Geis (2011)
 %         http://www.gesis.org/fileadmin/upload/dienstleistung/tools_standards/handbuch_der_berufscodierung_110304.pdf
-% variables: ICSO88 ISCO88(COM)
+% variables: ISCO88 ISCO88COM
 1000 1000
 1100 1100
 1110 1110
@@ -5599,8 +5599,8 @@
 
 % CODELIST-isco88-isco08
 % source: isco8808.sps from http://www.harryganzeboom.nl/isco08/
-% note: leading zeros added to ICSO88 codes with less than 4 digits
-% variables: ICSO88 ISCO08
+% note: leading zeros added to ISCO88 codes with less than 4 digits
+% variables: ISCO88 ISCO08
 0100 0300
 0110 0300
 1250 0100
@@ -6135,7 +6135,7 @@
 
 % CODELIST-isco88-isei
 % source: http://www.harryganzeboom.nl/ismf/scaleapp.htm
-% variables: ISCO-88 ISEI
+% variables: ISCO88 ISEI
 1000 55
 1100 70
 1110 77
@@ -6673,7 +6673,7 @@
 
 % CODELIST-isco88-siops
 % source: http://www.harryganzeboom.nl/ismf/scaleapp.htm
-% variables: ISCO-88 SIOPS
+% variables: ISCO88 SIOPS
 1000 51
 1100 67
 1110 64
@@ -7213,7 +7213,7 @@
 % source: bernhard2005.xlsx from https://github.com/dirtyhawk/stata-derivescores/
 %         (should be equivalent to the appendix table in https://nbn-resolving.org/urn:nbn:de:0168-ssoar-207543)
 % note: sorted by ISCO code; leading zero added to ISCO code "110"
-% variables: ISCO-88 MPS88
+% variables: ISCO88 MPS88
 0110 85.3
 1110 160.3
 1120 160.3
@@ -7615,7 +7615,7 @@
 %       http://www.harryganzeboom.nl/isco88/
 % note: the codelist has been generated automatically by applying iskoegp.ado
 %       to all relevant combinations of isco codes, selfemployment, supervision
-% variables: ISCO-88 EGP(0,0) EGB(0,1) EGP(0,2-9) EGP(0,10+) EGP(1,0) EGB(1,1) 
+% variables: ISCO88 EGP(0,0) EGB(0,1) EGP(0,2-9) EGP(0,10+) EGP(1,0) EGB(1,1) 
 %       EGP(1,2-9) EGP(1,10+), where the first argument is selfemployment status
 %       and the second argument is the number if subordinates/employees
 1000 1 1 1 1 1 1 1 1
@@ -8159,7 +8159,7 @@
 %       http://www.harryganzeboom.nl/isco88/
 % note: the codelist has been generated automatically by applying iskoegp.sps
 %       to all relevant combinations of isco codes, selfemployment, supervision
-% variables: ISCO-88 EGP(0,0) EGB(0,1) EGP(0,2-9) EGP(0,10+) EGP(1,0) EGB(1,1) 
+% variables: ISCO88 EGP(0,0) EGB(0,1) EGP(0,2-9) EGP(0,10+) EGP(1,0) EGB(1,1) 
 %       EGP(1,2-9) EGP(1,10+), where the first argument is selfemployment status
 %       and the second argument is the number if subordinates/employees
 1000 1 1 1 1 1 1 1 1
@@ -8701,7 +8701,7 @@
 % CODELIST-isco88-esec
 % source: Euroesec matrix.xls obtained on 10apr2020 from 
 %         https://www.iser.essex.ac.uk/archives/esec/matrices-and-syntax
-% variables: ISCO-88(3-digit) ESEC-employee ESEC-supervisor
+% variables: ISCO88(3-digit) ESEC-employee ESEC-supervisor
 %            ESEC-selfemp(0) ESEC-selfemp(1-9) ESEC-selfemp(10+)
 %            ESEC-simplified
 010 1 1 1 1 1 1
@@ -8858,7 +8858,7 @@
 % source: iskooesch.ado (May 2018) by Simon Kaiser
 % note: the codelist has been generated automatically by applying iskooesch.ado
 %       to all relevant combinations of isco codes, selfemployment, supervision
-% variables: ISCO-88 OESCH-employee OESCH-selfemp(0) OESCH-selfemp(1-9)
+% variables: ISCO88 OESCH-employee OESCH-selfemp(0) OESCH-selfemp(1-9)
 %            OESCH-selfemp(10+)
 1000 9 4 3 1
 1100 9 4 3 1
@@ -9403,7 +9403,7 @@
 % source: isco0888.sps from http://www.harryganzeboom.nl/isco08/
 % note: using first mapping in case of duplicates (repeated mappings); this is
 %       consistent with the source because in SPSS later mappings are ignored
-% variables: ICSO08 ISCO88
+% variables: ISCO08 ISCO88
 0110 0110
 0210 0110
 0310 0110
@@ -10004,7 +10004,7 @@
 
 % CODELIST-isco08-isei
 % source: isco08_with_isei.pdf from http://www.harryganzeboom.nl/isco08/
-% variables: ISCO-08 ISEI-08
+% variables: ISCO08 ISEI-08
 0000 53
 0100 65
 0110 65
@@ -10599,8 +10599,8 @@
 
 % CODELIST-isco08-iseisps
 % source: isqoisei68.sps from http://www.harryganzeboom.nl/isco08/
-% note: leading zeros added to ISCO-08 codes with less than 4 digits
-% variables: ISCO-08 ISEI-08
+% note: leading zeros added to ISCO08 codes with less than 4 digits
+% variables: ISCO08 ISEI-08
 0000 51.25
 0100 60.92
 0110 60.92
@@ -11195,8 +11195,8 @@
 
 % CODELIST-isco08-siops
 % source: isqotrei08.sps from http://www.harryganzeboom.nl/isco08/
-% note: leading zeros added to ISCO-08 codes with less than 4 digits
-% variables: ISCO-08 SIOPS-08
+% note: leading zeros added to ISCO08 codes with less than 4 digits
+% variables: ISCO08 SIOPS-08
 0000 42.88
 0100 48.68
 0110 48.68
@@ -11797,7 +11797,7 @@
 %       and 96 in the 2-digit list (also in esec_08_3_digit_public.xlsx), codes
 %       960/961/962 are added to the list below using the same classes as for
 %       950/951/952
-% variables: ISCO-08(3-digit) ESEC-employee ESEC-supervisor
+% variables: ISCO08(3-digit) ESEC-employee ESEC-supervisor
 %            ESEC-selfemp(0) ESEC-selfemp(1-9) ESEC-selfemp(10+)
 011 1 1 1 1 1
 021 3 2 3 3 3
@@ -11984,7 +11984,7 @@
 % source: iscooesch.ado (May 2018) by Simon Kaiser
 % note: the codelist has been generated automatically by applying iskooesch.ado
 %       to all relevant combinations of isco codes, selfemployment, supervision
-% variables: ISCO-88 OESCH-employee OESCH-selfemp(0) OESCH-selfemp(1-9)
+% variables: ISCO88 OESCH-employee OESCH-selfemp(0) OESCH-selfemp(1-9)
 %            OESCH-selfemp(10+)
 0100 9 . . 1
 0110 9 . . 1
@@ -12578,7 +12578,7 @@
 
 % LABELLIST-isco68
 % source: iscolab.sps from http://www.harryganzeboom.nl/isco68/
-% variables: ICSO68 ISCO68-label-E
+% variables: ISCO68 ISCO68-label-E
 0100 'PHYSIC SCIENTIST'
 0110 'CHEMIST'
 0120 'PHYSICIST'
@@ -13333,7 +13333,7 @@
 % source: https://www.ilo.org/public/english/bureau/stat/isco/isco88/major.htm
 % note: uppercase spelling of major, submajor, and minor groups changed to
 %       lowercase
-% variables: ICSO88 ICSO88-label-E
+% variables: ISCO88 ISCO88-label-E
 1000 "Legislators, senior officials and managers"
 1100 "Legislators and senior officials"
 1110 "Legislators"
@@ -13855,7 +13855,7 @@
 
 % LABELLIST-isco88com
 % source: ISCO88.xls from https://warwick.ac.uk/fac/soc/ier/research/classification/isco88
-% variables: ICSO88COM ICSO88COM-label-E
+% variables: ISCO88COM ISCO88COM-label-E
 1000 "Legislators, senior officials and managers"
 1100 "Legislators and senior officials"
 1110 "Legislators and senior government officials"
