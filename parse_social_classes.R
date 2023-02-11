@@ -150,11 +150,8 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
 multiple_cols_translator <- function(x, col_position, output_var, translate_df, translate_label_df, label) {
 
   class_match <- match(x, translate_df[[1]])
-
-  transformed <- vapply(seq_along(class_match), function(i) {
-    translate_df[class_match[[i]], col_position[[i]], drop = TRUE]
-  }, FUN.VALUE = character(1))
-
+  matrix_translate_df <- as.matrix(translate_df)
+  transformed <- matrix_translate_df[cbind(class_match, col_position)]
 
   if (label) {
     res <-
@@ -480,6 +477,56 @@ ess %>%
   select(iscoco, emplno, self_employed) %>%
   mutate(
     emplno = if_else(emplno > 10000, 0, emplno),
-    egp = isco88_to_egp11(iscoco, self_employed, emplno, label = TRUE)
+    egp = isco88_to_egp11(iscoco, self_employed, emplno, label = FALSE)
+  )
+
+isco88_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
+  col_position <- case_when(
+    self_employed == 0  ~ 2,
+    self_employed == 1 & n_employees == 0 ~ 3,
+    self_employed == 1 & between(n_employees, 1, 9) ~ 4,
+    self_employed == 1 & n_employees >= 10 ~ 5,
+  )
+
+  multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "OESCH",
+    translate_df = all_schemas$isco88_to_oesch,
+    translate_label_df = all_labels$oesch,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco, emplno, self_employed) %>%
+  mutate(
+    emplno = if_else(emplno > 10000, 0, emplno),
+    oesch = isco88_to_oesch(iscoco, self_employed, emplno, label = FALSE)
+  )
+
+isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
+  col_position <- case_when(
+    self_employed == 0 ~ 2,
+    self_employed == 1 & n_employees == 0 ~ 3,
+    self_employed == 1 & between(n_employees, 1, 9) ~ 4,
+    self_employed == 1 & n_employees >= 10 ~ 5,
+  )
+
+  multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "OESCH",
+    translate_df = all_schemas$isco08_to_oesch,
+    translate_label_df = all_labels$oesch,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco, emplno, self_employed) %>%
+  mutate(
+    emplno = if_else(emplno > 10000, 0, emplno),
+    oesch = isco08_to_oesch(iscoco, self_employed, emplno, label = FALSE)
   )
 
