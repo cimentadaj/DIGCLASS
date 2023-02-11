@@ -15,15 +15,18 @@ Implementations:
 
 - [X] ISCO88 to ISCO88COM
 
-
 - [X] ISCO68 to ISEI
 - [X] ISCO68 to SIOPS
 
+- [X] ISCO68 to EGP
+- [X] ISCO68 to EGP11
 
 - [X] ISCO88 to ISEI
 - [X] ISCO88 to SIOPS
 - [X] ISCO88 to MPS88
 
+- [X] ISCO88 to EGP
+- [X] ISCO88 to EGP11
 
 - [X] ISCO08 to ISEI
 - [X] ISCO08 to SIOPS

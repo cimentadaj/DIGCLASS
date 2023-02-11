@@ -116,7 +116,9 @@ for (i in seq_along(begin)) {
 }
 
 library(tidyverse)
-ess <- read_csv("~/Downloads/ESS4e04_5.csv")
+ess <-
+  read_csv("~/Downloads/ESS4e04_5.csv") %>%
+  mutate(self_employed = ifelse(emplrel == 2, 1, 0))
 
 common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label) {
   res <-
@@ -144,6 +146,29 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
 
   transformed
 }
+
+multiple_cols_translator <- function(x, col_position, output_var, translate_df, translate_label_df, label) {
+
+  class_match <- match(x, translate_df[[1]])
+
+  transformed <- vapply(seq_along(class_match), function(i) {
+    translate_df[class_match[[i]], col_position[[i]], drop = TRUE]
+  }, FUN.VALUE = character(1))
+
+
+  if (label) {
+    res <-
+      tibble(x_label = transformed) %>%
+      left_join(translate_label_df, by = c("x_label" = output_var))
+
+    transformed <- res[[2]]
+  } else {
+    transformed <- as.numeric(transformed)
+  }
+
+  transformed
+}
+
 
 isco68_to_isco88 <- function(x, label = FALSE) {
   common_translator(
@@ -343,4 +368,118 @@ isco08_to_siops <- function(x) {
 ess %>%
   select(iscoco) %>%
   mutate(isco08 = isco08_to_siops(iscoco))
+
+isco68_to_egp <- function(x, self_employed, n_employees, label = FALSE) {
+
+  col_position <- case_when(
+    self_employed == 0 & n_employees == 0 ~ 2,
+    self_employed == 0 & between(n_employees, 1, 9) ~ 3,
+    self_employed == 0 & n_employees >= 10 ~ 4,
+    self_employed == 1 & n_employees == 0 ~ 5,
+    self_employed == 1 & between(n_employees, 1, 9) ~ 6,
+    self_employed == 1 & n_employees >= 10 ~ 7,
+  )
+
+  multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "EGP",
+    translate_df = all_schemas$isco68_to_egp,
+    translate_label_df = all_labels$egp,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco, emplno, self_employed) %>%
+  mutate(
+    emplno = if_else(emplno > 10000, 0, emplno),
+    egp = isco68_to_egp(iscoco, self_employed, emplno, label = TRUE)
+  )
+
+
+isco68_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
+  col_position <- case_when(
+    self_employed == 0 & n_employees == 0 ~ 2,
+    self_employed == 0 & between(n_employees, 1, 9) ~ 3,
+    self_employed == 0 & n_employees >= 10 ~ 4,
+    self_employed == 1 & n_employees == 0 ~ 5,
+    self_employed == 1 & between(n_employees, 1, 9) ~ 6,
+    self_employed == 1 & n_employees >= 10 ~ 7,
+  )
+
+  multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "EGP",
+    translate_df = all_schemas$isco68_to_egp11,
+    translate_label_df = all_labels$egp11,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco, emplno, self_employed) %>%
+  mutate(
+    emplno = if_else(emplno > 10000, 0, emplno),
+    egp = isco68_to_egp11(iscoco, self_employed, emplno, label = FALSE)
+  )
+
+isco88_to_egp <- function(x, self_employed, n_employees, label = FALSE) {
+
+  col_position <- case_when(
+    self_employed == 0 & n_employees == 0 ~ 2,
+    self_employed == 0 & between(n_employees, 1, 9) ~ 3,
+    self_employed == 0 & n_employees >= 10 ~ 4,
+    self_employed == 1 & n_employees == 0 ~ 5,
+    self_employed == 1 & between(n_employees, 1, 9) ~ 6,
+    self_employed == 1 & n_employees >= 10 ~ 7,
+  )
+
+  multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "EGP",
+    translate_df = all_schemas$isco88_to_egp,
+    translate_label_df = all_labels$egp,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco, emplno, self_employed) %>%
+  mutate(
+    emplno = if_else(emplno > 10000, 0, emplno),
+    egp = isco88_to_egp(iscoco, self_employed, emplno, label = FALSE)
+  )
+
+
+isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
+  col_position <- case_when(
+    self_employed == 0 & n_employees == 0 ~ 2,
+    self_employed == 0 & n_employees == 1 ~ 3,
+    self_employed == 0 & between(n_employees, 2, 9) ~ 4,
+    self_employed == 0 & n_employees >= 10 ~ 5,
+    self_employed == 1 & n_employees == 0 ~ 6,
+    self_employed == 1 & n_employees == 1 ~ 7,
+    self_employed == 1 & between(n_employees, 2, 9) ~ 8,
+    self_employed == 1 & n_employees >= 10 ~ 9,
+  )
+
+  multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "EGP",
+    translate_df = all_schemas$isco88_to_egp11,
+    translate_label_df = all_labels$egp11,
+    label = label
+  )
+}
+
+ess %>%
+  select(iscoco, emplno, self_employed) %>%
+  mutate(
+    emplno = if_else(emplno > 10000, 0, emplno),
+    egp = isco88_to_egp11(iscoco, self_employed, emplno, label = TRUE)
+  )
 
