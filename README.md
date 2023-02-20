@@ -5,7 +5,7 @@ Implementations:
 * All ISCO equivalents
 
 - [X] ISCO68 to ISCO88
-- [X] ISCO68 to ISCO08
+- [X] ISCO68 to ISCO08 # If this one is done then ISCO08 -> ISCO68 should be done
 - [X] ISCO68 to ISEI
 - [X] ISCO68 to SIOPS
 - [X] ISCO68 to EGP
