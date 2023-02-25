@@ -39,3 +39,14 @@ TODO:
 - Move all functions to package and document each one
 - Create vignette examples with already existing codifications
 - Plan meeting with them to show current work
+- Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
+
+## Steps to add a new translation
+
+1. Add two csv files respectively in `data-raw/social_classes/labels/` and `data-raw/social_classes/translation/` containing the labels and translation for the two schemas.
+
+2. Run the script `data-raw/social_classes.R` (with the root directory in `data-raw/`)
+
+3. Add a new function inside `R/` with the convention `{origin}_to_{destination}()` where origin and destination are the class schemas we're translating. Please have a look at other translation to recycle common functions to do translations.
+
+4. Add proper documentation to the function

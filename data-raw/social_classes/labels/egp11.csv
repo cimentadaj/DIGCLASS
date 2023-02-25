@@ -1,0 +1,12 @@
+EGP,EGP-label-E
+1,'I: Higher Controllers'
+2,'II: Lower Controllers'
+3,'IIIa: Routine Nonmanual'
+4,'IIIb: Lower Sales-Service'
+5,'IVa: Selfempl with empl'
+6,'IVb: Selfempl no empl'
+7,'V: Manual Supervisors'
+8,'VI: Skilled Worker'
+9,'VIIa: Unskilled Worker'
+10,'VIIb: Farm Labor'
+11,'IVc: Selfempl Farmer'
