@@ -81,6 +81,14 @@ ess %>%
 #> # … with 56,742 more rows
 ```
 
+The nomenclature of the function is `{origin}_to_{destination}` where
+`origin` is the origin class schema and `destination` is the destination
+class schema. The usual workflow is for you to type, for example `isco`
+and then hit `TAB` to get auto-completion on all possible translations.
+
+For those class schemas that have labels, the `label` argument returns
+the labels instead of the class codes.
+
 ## Steps to add a new translation
 
 1.  Add two csv files respectively in `data-raw/social_classes/labels/`
