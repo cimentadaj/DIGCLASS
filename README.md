@@ -15,51 +15,29 @@ This package is a work in progress and has implemented currently these
 translations:
 
 - **ISCO68**
-
-- [x] ISCO68 to ISCO88
-
-- [x] ISCO68 to ISCO08 \# If this one is done then ISCO08 -\> ISCO68
-  should be done
-
-- [x] ISCO68 to ISEI
-
-- [x] ISCO68 to SIOPS
-
-- [x] ISCO68 to EGP
-
-- [x] ISCO68 to EGP11
-
+  - [x] ISCO68 to ISCO88
+  - [x] ISCO68 to ISCO08 \# If this one is done then ISCO08 -\> ISCO68
+    should be done
+  - [x] ISCO68 to ISEI
+  - [x] ISCO68 to SIOPS
+  - [x] ISCO68 to EGP
+  - [x] ISCO68 to EGP11
 - **ISCO88**
-
-- [x] ISCO88 to ISEI
-
-- [x] ISCO88 to SIOPS
-
-- [x] ISCO88 to MPS88
-
-- [x] ISCO88 to EGP
-
-- [x] ISCO88 to EGP11
-
-- [x] ISCO88 to OESCH16
-
-- [x] ISCO88 to ISCO88COM
-
-- [x] ISCO88 to ISCO08
-
-- [x] ISCO88 to ISCO68
-
+  - [x] ISCO88 to ISEI
+  - [x] ISCO88 to SIOPS
+  - [x] ISCO88 to MPS88
+  - [x] ISCO88 to EGP
+  - [x] ISCO88 to EGP11
+  - [x] ISCO88 to OESCH16
+  - [x] ISCO88 to ISCO88COM
+  - [x] ISCO88 to ISCO08
+  - [x] ISCO88 to ISCO68
 - **ISCO08**
-
-- [x] ISCO08 to ISEI
-
-- [x] ISCO08 to SIOPS
-
-- [x] ISCO08 to OESCH16
-
-- [ ] ISCO08 to ISCO68 (not available)
-
-- [x] ISCO08 to ISCO88
+  - [x] ISCO08 to ISEI
+  - [x] ISCO08 to SIOPS
+  - [x] ISCO08 to OESCH16
+  - [ ] ISCO08 to ISCO68 (not available)
+  - [x] ISCO08 to ISCO88
 
 ## Installation
 
@@ -78,14 +56,6 @@ Here’s an example of translating ISCO68 to ISEI and EGP class schemas:
 ``` r
 library(DIGCLASS)
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 
 # Internal data for the European Social Survey round 5
 # containing different ISCO variables
@@ -134,10 +104,10 @@ already pave the way for translation between social class schemas. In
 particular, we’ve learned a lot and borrowed code from all of these
 packages:
 
-• [ISCOGEN](https://github.com/benjann/iscogen): Stata package •
-[SocialPosition](https://cran.r-project.org/web/packages/SocialPosition/index.html):
-R package • [occupar](https://github.com/DiogoFerrari/occupar/): R
-package
+- [ISCOGEN](https://github.com/benjann/iscogen): Stata package
+- [SocialPosition](https://cran.r-project.org/web/packages/SocialPosition/index.html):
+  R package
+- [occupar](https://github.com/DiogoFerrari/occupar/): R package
 
 ## TODO:
 

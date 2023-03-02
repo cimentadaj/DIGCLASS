@@ -24,31 +24,30 @@ The `DIGCLASS` R package aims to make translation between occupational social cl
 This package is a work in progress and has implemented currently these translations:
 
 * **ISCO68**
-
-- [X] ISCO68 to ISCO88
-- [X] ISCO68 to ISCO08 # If this one is done then ISCO08 -> ISCO68 should be done
-- [X] ISCO68 to ISEI
-- [X] ISCO68 to SIOPS
-- [X] ISCO68 to EGP
-- [X] ISCO68 to EGP11
+  - [X] ISCO68 to ISCO88
+  - [X] ISCO68 to ISCO08 # If this one is done then ISCO08 -> ISCO68 should be done
+  - [X] ISCO68 to ISEI
+  - [X] ISCO68 to SIOPS
+  - [X] ISCO68 to EGP
+  - [X] ISCO68 to EGP11
 
 * **ISCO88**
-- [X] ISCO88 to ISEI
-- [X] ISCO88 to SIOPS
-- [X] ISCO88 to MPS88
-- [X] ISCO88 to EGP
-- [X] ISCO88 to EGP11
-- [X] ISCO88 to OESCH16
-- [X] ISCO88 to ISCO88COM
-- [X] ISCO88 to ISCO08
-- [X] ISCO88 to ISCO68
+  - [X] ISCO88 to ISEI
+  - [X] ISCO88 to SIOPS
+  - [X] ISCO88 to MPS88
+  - [X] ISCO88 to EGP
+  - [X] ISCO88 to EGP11
+  - [X] ISCO88 to OESCH16
+  - [X] ISCO88 to ISCO88COM
+  - [X] ISCO88 to ISCO08
+  - [X] ISCO88 to ISCO68
 
 * **ISCO08**
-- [X] ISCO08 to ISEI
-- [X] ISCO08 to SIOPS
-- [X] ISCO08 to OESCH16
-- [ ] ISCO08 to ISCO68 (not available)
-- [X] ISCO08 to ISCO88
+  - [X] ISCO08 to ISEI
+  - [X] ISCO08 to SIOPS
+  - [X] ISCO08 to OESCH16
+  - [ ] ISCO08 to ISCO68 (not available)
+  - [X] ISCO08 to ISCO88
 
 
 
@@ -65,7 +64,7 @@ devtools::install_github("cimentadaj/socialclasses")
 
 Here's an example of translating ISCO68 to ISEI and EGP class schemas:
 
-```{r}
+```{r,message=FALSE, warning=FALSE }
 library(DIGCLASS)
 library(dplyr)
 
@@ -95,9 +94,9 @@ ess %>%
 
 This package has benefitted greatly from other open source packages that already pave the way for translation between social class schemas. In particular, we've learned a lot and borrowed code from all of these packages:
 
-• [ISCOGEN](https://github.com/benjann/iscogen): Stata package
-• [SocialPosition](https://cran.r-project.org/web/packages/SocialPosition/index.html): R package
-• [occupar](https://github.com/DiogoFerrari/occupar/): R package
+- [ISCOGEN](https://github.com/benjann/iscogen): Stata package
+- [SocialPosition](https://cran.r-project.org/web/packages/SocialPosition/index.html): R package
+- [occupar](https://github.com/DiogoFerrari/occupar/): R package
 
 ## TODO:
 - Oesch schemas have `.` inside the classes, what to do with those? We get NAs introduced when converting to numeric.
