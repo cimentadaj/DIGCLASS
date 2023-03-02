@@ -1,22 +1,25 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+
 # DIGCLASS
 
+<!-- badges: start -->
+<!-- badges: end -->
+
 The `DIGCLASS` R package aims to make translation between occupational social classes easy and comprehensive. It facilitates the translation of the International Standard Classification of Occupations (ISCO) from 1968, 1988 and 2008 to a wide range of social class schemes.
-
-Here's an example of ttranslation ISCO68 to EGP:
-
-```{r}
-library(DIGCLASS)
-library(dplyr)
-
-# Internal data for the European Social Survey round 5
-# containing different ISCO variables
-ess %>%
-  mutate(
-    EGP = isco68_to_egp(isco68),
-    EGP = isco68_to_egp(isco68, label = TRUE)
-  )
-
-```
 
 This package is a work in progress and has implemented currently these translations:
 
@@ -48,6 +51,35 @@ This package is a work in progress and has implemented currently these translati
 - [X] ISCO08 to ISCO88
 
 
+
+## Installation
+
+You can install the development version of DIGCLASS from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("cimentadaj/socialclasses")
+```
+
+## Example
+
+Here's an example of translating ISCO68 to ISEI and EGP class schemas:
+
+```{r}
+library(DIGCLASS)
+library(dplyr)
+
+# Internal data for the European Social Survey round 5
+# containing different ISCO variables
+ess %>%
+  mutate(
+    isei = isco68_to_isei(isco68),
+    egp = isco68_to_egp(isco68, self_employed, emplno),
+    egp_labels = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
+  )
+```
+
+
 ## Steps to add a new translation
 
 1. Add two csv files respectively in `data-raw/social_classes/labels/` and `data-raw/social_classes/translation/` containing the labels and translation for the two schemas.
@@ -58,6 +90,7 @@ This package is a work in progress and has implemented currently these translati
 
 4. Add proper documentation to the function
 
+
 ## Other R packages
 
 This package has benefitted greatly from other open source packages that already pave the way for translation between social class schemas. In particular, we've learned a lot and borrowed code from all of these packages:
@@ -66,7 +99,6 @@ This package has benefitted greatly from other open source packages that already
 • [SocialPosition](https://cran.r-project.org/web/packages/SocialPosition/index.html): R package
 • [occupar](https://github.com/DiogoFerrari/occupar/): R package
 
-
 ## TODO:
 - Oesch schemas have `.` inside the classes, what to do with those? We get NAs introduced when converting to numeric.
 - Oesch seems to have other labels which are shorter but no requivalence
@@ -74,8 +106,6 @@ This package has benefitted greatly from other open source packages that already
 - Need to make sure which ESEC you parsed from txt matches the ones in their doc. They want more ESEC so you need to map them and add additional ESEC.
 - Add recoding of major/minor codes for all ISCO.
 - Adapt E.O wright schema
-- Ask to them provide three datasets
-- Move all functions to package and document each one
 - Create vignette examples with already existing codifications
 - Plan meeting with them to show current work
 - Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
