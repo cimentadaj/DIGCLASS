@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">DIGCLASS</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,6 +37,12 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/exploring-translations-between-social-classes.html">Exploring translations between social classes</a>
+  </div>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -54,7 +60,7 @@
 <div class="page-header"><h1 id="digclass">DIGCLASS<a class="anchor" aria-label="anchor" href="#digclass"></a>
 </h1></div>
 <!-- badges: start -->
-<!-- badges: end -->
+
 <p>The <code>DIGCLASS</code> R package aims to make translation between occupational social classes easy and comprehensive. It facilitates the translation of the International Standard Classification of Occupations (ISCO) from 1968, 1988 and 2008 to a wide range of social class schemes.</p>
 <p>This package is a work in progress and has implemented currently these translations:</p>
 <ul>
@@ -64,11 +70,11 @@
 <li>
 <input type="checkbox" disabled checked>ISCO68 to ISCO88</li>
 <li>
-<input type="checkbox" disabled checked>ISCO68 to ISCO08 # If this one is done then ISCO08 -&gt; ISCO68 should be done</li>
-<li>
-<input type="checkbox" disabled checked>ISCO68 to ISEI</li>
+<input type="checkbox" disabled checked>ISCO68 to ISCO08</li>
 <li>
 <input type="checkbox" disabled checked>ISCO68 to SIOPS</li>
+<li>
+<input type="checkbox" disabled checked>ISCO68 to ISEI</li>
 <li>
 <input type="checkbox" disabled checked>ISCO68 to EGP</li>
 <li>
@@ -102,15 +108,13 @@
 <strong>ISCO08</strong>
 <ul class="task-list">
 <li>
+<input type="checkbox" disabled checked>ISCO08 to ISCO88</li>
+<li>
 <input type="checkbox" disabled checked>ISCO08 to ISEI</li>
 <li>
 <input type="checkbox" disabled checked>ISCO08 to SIOPS</li>
 <li>
 <input type="checkbox" disabled checked>ISCO08 to OESCH16</li>
-<li>
-<input type="checkbox" disabled>ISCO08 to ISCO68 (not available)</li>
-<li>
-<input type="checkbox" disabled checked>ISCO08 to ISCO88</li>
 </ul>
 </li>
 </ul>
@@ -139,18 +143,18 @@
 <span>    egp_labels <span class="op">=</span> <span class="fu"><a href="reference/isco68_to_egp.html">isco68_to_egp</a></span><span class="op">(</span><span class="va">isco68</span>, <span class="va">self_employed</span>, <span class="va">emplno</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 56,752 × 8</span></span>
-<span><span class="co">#&gt;    isco68 isco88 isco08 emplno self_employed  isei   egp egp_labels            </span></span>
-<span><span class="co">#&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                 </span></span>
-<span><span class="co">#&gt;  1    140   3111     NA      0             0    NA    NA &lt;NA&gt;                  </span></span>
-<span><span class="co">#&gt;  2   3210   3431   4120      0             0    55     3 'routine nonmanual'   </span></span>
-<span><span class="co">#&gt;  3   2119   1210   1120      0             0    69     1 'higher controllers'  </span></span>
-<span><span class="co">#&gt;  4   1320   2320   2330      0             0    71     2 'lo controllers'      </span></span>
-<span><span class="co">#&gt;  5   8550   7137   7411      0             0    40     8 'skilled manual'      </span></span>
-<span><span class="co">#&gt;  6   5401   5131   5311      0             0    24     9 'semi-unskilld manual'</span></span>
-<span><span class="co">#&gt;  7     NA     NA     NA      0             0    NA    NA &lt;NA&gt;                  </span></span>
-<span><span class="co">#&gt;  8   1593   2419   2432      0             0    66     2 'lo controllers'      </span></span>
-<span><span class="co">#&gt;  9   1930   3460   2635      0             0    54     2 'lo controllers'      </span></span>
-<span><span class="co">#&gt; 10   1950   2444   2643      0             0    54     2 'lo controllers'      </span></span>
+<span><span class="co">#&gt;    isco68 isco88 isco08 emplno self_employed isei  egp   egp_labels            </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                 </span></span>
+<span><span class="co">#&gt;  1 0140   3111   3111        0             0 47    2     'lo controllers'      </span></span>
+<span><span class="co">#&gt;  2 3210   3431   4120        0             0 55    3     'routine nonmanual'   </span></span>
+<span><span class="co">#&gt;  3 2119   1210   1120        0             0 69    1     'higher controllers'  </span></span>
+<span><span class="co">#&gt;  4 1320   2320   2330        0             0 71    2     'lo controllers'      </span></span>
+<span><span class="co">#&gt;  5 8550   7137   7411        0             0 40    8     'skilled manual'      </span></span>
+<span><span class="co">#&gt;  6 5401   5131   5311        0             0 24    9     'semi-unskilld manual'</span></span>
+<span><span class="co">#&gt;  7 &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;        0             0 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;                  </span></span>
+<span><span class="co">#&gt;  8 1593   2419   2432        0             0 66    2     'lo controllers'      </span></span>
+<span><span class="co">#&gt;  9 1930   3460   2635        0             0 54    2     'lo controllers'      </span></span>
+<span><span class="co">#&gt; 10 1950   2444   2643        0             0 54    2     'lo controllers'      </span></span>
 <span><span class="co">#&gt; # … with 56,742 more rows</span></span></code></pre></div>
 <p>The nomenclature of the function is <code>{origin}_to_{destination}</code> where <code>origin</code> is the origin class schema and <code>destination</code> is the destination class schema. The usual workflow is for you to type, for example <code>isco</code> and then hit <code>TAB</code> to get auto-completion on all possible translations.</p>
 <p>For those class schemas that have labels, the <code>label</code> argument returns the labels instead of the class codes.</p>
@@ -182,15 +186,16 @@
 <h2 id="todo">TODO:<a class="anchor" aria-label="anchor" href="#todo"></a>
 </h2>
 <ul>
-<li>Oesch schemas have <code>.</code> inside the classes, what to do with those? We get NAs introduced when converting to numeric.</li>
-<li>Oesch seems to have other labels which are shorter but no requivalence</li>
-<li>From parsed txt file only ESEC missing</li>
-<li>Need to make sure which ESEC you parsed from txt matches the ones in their doc. They want more ESEC so you need to map them and add additional ESEC.</li>
-<li>Add recoding of major/minor codes for all ISCO.</li>
-<li>Adapt E.O wright schema</li>
-<li>Create vignette examples with already existing codifications</li>
-<li>Plan meeting with them to show current work</li>
-<li>Improve docs on each translation maybe mentioning what each class schemas is and pointing to the source and the website.</li>
+<li><p>Oesch schemas have <code>.</code> inside the classes, what to do with those? We get NAs introduced when converting to numeric.</p></li>
+<li><p>Oesch seems to have other labels which are shorter but no requivalence</p></li>
+<li><p>From parsed txt file only ESEC missing</p></li>
+<li><p>Need to make sure which ESEC you parsed from txt matches the ones in their doc. They want more ESEC so you need to map them and add additional ESEC.</p></li>
+<li><p>Add recoding of major/minor codes for all ISCO.</p></li>
+<li><p>See if EU-SILC contains all variables needed to construct the E.O Wright schema. If yes, adapt E.O Wright schema</p></li>
+<li><p>Create vignette examples with already existing codifications</p></li>
+<li><p>Plan meeting with them to show current work</p></li>
+<li><p>Improve docs on each translation maybe mentioning what each class schemas is and pointing to the source and the website.</p></li>
+<li><p>Improve vignettes after implementing major/minor codes</p></li>
 </ul>
 </div>
 </div>
@@ -217,7 +222,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/cimentadaj/socialclasses/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/cimentadaj/socialclasses/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
