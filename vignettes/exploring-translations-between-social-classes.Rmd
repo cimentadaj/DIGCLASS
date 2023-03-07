@@ -1,0 +1,97 @@
+---
+title: "Exploring translations between social classes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{exploring-translations-between-social-classes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Exploring translations between social classes
+
+Let's suppose you've received a dataset which contains the International Standard Classification of Occupations (ISCO) on occupations of respondents in a survey. In particular, you've got only the ISCO classification for the year 1968, which is a bit outdated. With the package `DIGCLASS` you can translate that classiciation to many others. Let's load our package and use the data `ess` which contains ISCO68 from the European Social Survey.
+
+
+```{r setup}
+library(DIGCLASS)
+library(dplyr)
+ess
+```
+
+As you can see, this dataset contains `isco68`, `isco88` and `isco08`. Assume for a second that you **do not** have `isco88` and `isco08` and you'd like to translate `isco68` to other class schemas. In `DIGCLASS` you will find all functions that translate `isco68` begin with `isco68_`. So if you typed on your text editor `isco68_` and hit `TAB`, presumably you'll get auto-completion for all possible translations. Here's a selected number of translations you can get for `isco68`:
+
+```{r}
+# Set `labels` to `FALSE` to obtain
+# the translated number instead of the label
+labs <- FALSE
+
+# For some class schemas we use the number of employees that
+# the respondent has in their job. Here we're just recoding
+# some values that are missing.
+ess <- ess %>% mutate(emplno = if_else(emplno > 10000, 0, emplno))
+
+
+# Translate `isco68` to many class schemas
+ess %>%
+  select(isco68, self_employed, emplno) %>%
+  transmute(
+    isco68,
+    isco88 = isco68_to_isco88(isco68, label = labs),
+    isco08 = isco68_to_isco08(isco68, label = labs),
+    siops = isco68_to_siops(isco68),
+    isei = isco68_to_isei(isco68),
+    egp = isco68_to_egp(isco68, self_employed, emplno, label = labs),
+    egp11 = isco68_to_egp11(isco68, self_employed, emplno, label = labs)
+  )
+```
+
+
+As you can see, we got all translations done rather quickly.
+
+`DIGCLASS` aims to have a consistent interface, meaning that if you happen to have ISCO88 instead of ISCO68, the same convention for all functions is used:
+
+```{r}
+ess %>%
+  select(isco88, self_employed, emplno) %>%
+  transmute(
+    isco88,
+    isco68 = isco88_to_isco68(isco88, label = labs),
+    isco88com = isco88_to_isco88com(isco88, label = labs),
+    isco08 = isco88_to_isco08(isco88, label = labs),
+    siops = isco88_to_siops(isco88),
+    isei = isco88_to_isei(isco88),
+    mps = isco88_to_mps(isco88),
+    egp = isco88_to_egp(isco88, self_employed, emplno, label = labs),
+    egp11 = isco88_to_egp11(isco88, self_employed, emplno, label = labs),
+    oesch = isco88_to_oesch(isco88, self_employed, emplno, label = labs)
+  )
+```
+
+Similarly, you can apply transformations for ISCO08 following the same skeleton. For this one let's see `labs = TRUE` to check the labels:
+
+```{r}
+labs <- TRUE
+
+ess %>%
+  select(isco08, self_employed, emplno) %>%
+  transmute(
+    isco08,
+    isco88 = isco08_to_isco88(isco08, label = labs),
+    siops = isco08_to_siops(isco08),
+    isei = isco08_to_isei(isco08),
+    oesch = isco08_to_oesch(isco08, self_employed, emplno, label = labs)
+  )
+
+```
+
+Notice that some classes translate to the labels (`isco88` and `oesch`) but others like `isei` and `siops` are actual numeric translations. That's because they don't have a `label` argument; they are continuous scales.
+
+**Note that swapping the first part of the function (`isco88_` or `isco68_`) for another ISCO will not always work because not all `isco**` have the same translations. Be sure to check the reference of functions to see which translations are available for each ISCO class schema.**

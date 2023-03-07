@@ -17,7 +17,7 @@ test_that("multiple_cols_translator() works correctly", {
 
   # test with label = FALSE
   res2 <- multiple_cols_translator("bar", 2, "col3", translate_df, translate_label_df, label = FALSE)
-  expect_equal(res2, 2)
+  expect_equal(res2, "2")
 
   # test for error when trying to translate a value that's not in the translation table
   expect_error(multiple_cols_translator("foo", 1, "col2", translate_df, translate_label_df, label = TRUE))

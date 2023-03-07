@@ -4,6 +4,8 @@
 # DIGCLASS
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/cimentadaj/socialclasses/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cimentadaj/socialclasses/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The `DIGCLASS` R package aims to make translation between occupational
@@ -16,10 +18,9 @@ translations:
 
 - **ISCO68**
   - [x] ISCO68 to ISCO88
-  - [x] ISCO68 to ISCO08 \# If this one is done then ISCO08 -\> ISCO68
-    should be done
-  - [x] ISCO68 to ISEI
+  - [x] ISCO68 to ISCO08
   - [x] ISCO68 to SIOPS
+  - [x] ISCO68 to ISEI
   - [x] ISCO68 to EGP
   - [x] ISCO68 to EGP11
 - **ISCO88**
@@ -33,11 +34,10 @@ translations:
   - [x] ISCO88 to ISCO08
   - [x] ISCO88 to ISCO68
 - **ISCO08**
+  - [x] ISCO08 to ISCO88
   - [x] ISCO08 to ISEI
   - [x] ISCO08 to SIOPS
   - [x] ISCO08 to OESCH16
-  - [ ] ISCO08 to ISCO68 (not available)
-  - [x] ISCO08 to ISCO88
 
 ## Installation
 
@@ -66,18 +66,18 @@ ess %>%
     egp_labels = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
   )
 #> # A tibble: 56,752 × 8
-#>    isco68 isco88 isco08 emplno self_employed  isei   egp egp_labels            
-#>     <dbl>  <dbl>  <dbl>  <dbl>         <dbl> <dbl> <dbl> <chr>                 
-#>  1    140   3111     NA      0             0    NA    NA <NA>                  
-#>  2   3210   3431   4120      0             0    55     3 'routine nonmanual'   
-#>  3   2119   1210   1120      0             0    69     1 'higher controllers'  
-#>  4   1320   2320   2330      0             0    71     2 'lo controllers'      
-#>  5   8550   7137   7411      0             0    40     8 'skilled manual'      
-#>  6   5401   5131   5311      0             0    24     9 'semi-unskilld manual'
-#>  7     NA     NA     NA      0             0    NA    NA <NA>                  
-#>  8   1593   2419   2432      0             0    66     2 'lo controllers'      
-#>  9   1930   3460   2635      0             0    54     2 'lo controllers'      
-#> 10   1950   2444   2643      0             0    54     2 'lo controllers'      
+#>    isco68 isco88 isco08 emplno self_employed isei  egp   egp_labels            
+#>    <chr>  <chr>  <chr>   <dbl>         <dbl> <chr> <chr> <chr>                 
+#>  1 0140   3111   3111        0             0 47    2     'lo controllers'      
+#>  2 3210   3431   4120        0             0 55    3     'routine nonmanual'   
+#>  3 2119   1210   1120        0             0 69    1     'higher controllers'  
+#>  4 1320   2320   2330        0             0 71    2     'lo controllers'      
+#>  5 8550   7137   7411        0             0 40    8     'skilled manual'      
+#>  6 5401   5131   5311        0             0 24    9     'semi-unskilld manual'
+#>  7 <NA>   <NA>   <NA>        0             0 <NA>  <NA>  <NA>                  
+#>  8 1593   2419   2432        0             0 66    2     'lo controllers'      
+#>  9 1930   3460   2635        0             0 54    2     'lo controllers'      
+#> 10 1950   2444   2643        0             0 54    2     'lo controllers'      
 #> # … with 56,742 more rows
 ```
 
@@ -121,14 +121,25 @@ packages:
 
 - Oesch schemas have `.` inside the classes, what to do with those? We
   get NAs introduced when converting to numeric.
+
 - Oesch seems to have other labels which are shorter but no requivalence
+
 - From parsed txt file only ESEC missing
+
 - Need to make sure which ESEC you parsed from txt matches the ones in
   their doc. They want more ESEC so you need to map them and add
   additional ESEC.
+
 - Add recoding of major/minor codes for all ISCO.
-- Adapt E.O wright schema
+
+- See if EU-SILC contains all variables needed to construct the E.O
+  Wright schema. If yes, adapt E.O Wright schema
+
 - Create vignette examples with already existing codifications
+
 - Plan meeting with them to show current work
+
 - Improve docs on each translation maybe mentioning what each class
   schemas is and pointing to the source and the website.
+
+- Improve vignettes after implementing major/minor codes

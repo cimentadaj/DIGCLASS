@@ -19,7 +19,7 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
 
     transformed <- res[[2]]
   } else {
-    transformed <- as.numeric(res[[output_var]])
+    transformed <- res[[output_var]]
   }
 
   transformed
@@ -38,7 +38,7 @@ multiple_cols_translator <- function(x, col_position, output_var, translate_df, 
 
     transformed <- res[[2]]
   } else {
-    transformed <- as.numeric(transformed)
+    transformed <- transformed
   }
 
   transformed

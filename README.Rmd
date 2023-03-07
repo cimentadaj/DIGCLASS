@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 # DIGCLASS
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/cimentadaj/socialclasses/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cimentadaj/socialclasses/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The `DIGCLASS` R package aims to make translation between occupational social classes easy and comprehensive. It facilitates the translation of the International Standard Classification of Occupations (ISCO) from 1968, 1988 and 2008 to a wide range of social class schemes.
@@ -25,9 +26,9 @@ This package is a work in progress and has implemented currently these translati
 
 * **ISCO68**
   - [X] ISCO68 to ISCO88
-  - [X] ISCO68 to ISCO08 # If this one is done then ISCO08 -> ISCO68 should be done
-  - [X] ISCO68 to ISEI
+  - [X] ISCO68 to ISCO08
   - [X] ISCO68 to SIOPS
+  - [X] ISCO68 to ISEI
   - [X] ISCO68 to EGP
   - [X] ISCO68 to EGP11
 
@@ -43,12 +44,10 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO88 to ISCO68
 
 * **ISCO08**
+  - [X] ISCO08 to ISCO88
   - [X] ISCO08 to ISEI
   - [X] ISCO08 to SIOPS
   - [X] ISCO08 to OESCH16
-  - [ ] ISCO08 to ISCO68 (not available)
-  - [X] ISCO08 to ISCO88
-
 
 
 ## Installation
@@ -107,8 +106,10 @@ This package has benefitted greatly from other open source packages that already
 - From parsed txt file only ESEC missing
 - Need to make sure which ESEC you parsed from txt matches the ones in their doc. They want more ESEC so you need to map them and add additional ESEC.
 - Add recoding of major/minor codes for all ISCO.
-- Adapt E.O wright schema
+- See if EU-SILC contains all variables needed to construct the E.O Wright schema. If yes, adapt E.O Wright schema
 - Create vignette examples with already existing codifications
 - Plan meeting with them to show current work
 - Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
+
+- Improve vignettes after implementing major/minor codes
 
