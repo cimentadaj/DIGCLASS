@@ -118,5 +118,5 @@ This package has benefitted greatly from other open source packages that already
 - [X] Stop if it's not a character
 - [X] Warning if stuff is not 4 digits
 - [] Apply repair_isco on all isco variables
-- [] Examples of reading the data as character vector directly from read_csv / read_dta
+- [X] Examples of reading the data as character vector directly from read_csv / read_dta
 - [] Examples with ISSP
