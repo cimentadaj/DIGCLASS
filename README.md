@@ -127,3 +127,4 @@ This package has benefitted greatly from other open source packages that already
 - [] Apply repair_isco on all isco variables
 - [X] Examples of reading the data as character vector directly from read_csv / read_dta
 - [] Examples with ISSP
+- [] Proofread README to make sure there aren't any grammatical errors
