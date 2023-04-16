@@ -13,6 +13,12 @@
     <loc>https://cimentadaj.github.io/socialclasses/articles/index.html</loc>
   </url>
   <url>
+    <loc>https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html</loc>
+  </url>
+  <url>
+    <loc>https://cimentadaj.github.io/socialclasses/articles/translating_between_hierarchies.html</loc>
+  </url>
+  <url>
     <loc>https://cimentadaj.github.io/socialclasses/authors.html</loc>
   </url>
   <url>
@@ -98,5 +104,8 @@
   </url>
   <url>
     <loc>https://cimentadaj.github.io/socialclasses/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://cimentadaj.github.io/socialclasses/reference/repair_isco.html</loc>
   </url>
 </urlset>
