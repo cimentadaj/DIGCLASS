@@ -104,7 +104,6 @@ isco08_to_siops <- function(x) {
 #'
 #' @export
 isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
-
   col_position <- dplyr::case_when(
     self_employed == 0 ~ 2,
     self_employed == 1 & n_employees == 0 ~ 3,
@@ -122,15 +121,15 @@ isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
   )
 }
 
-#' Swap ISCO08 between 1 (unit group), 2 (minor group), 3 (submajor group) and 4 (major) digit groups
+#' Swap ISCO08 between 1, 2, 3 and 4 digit groups
 #'
-#' This function translates a vector of ISCO08 codes between different digits. For most surveys, this will be translating between the 1 digit occupations (this is called the `unit` group) to more general groups, such as two digits (minor group), three digits (called submajor group) and four digits (major groups).
+#' This function translates a vector of ISCO08 codes between different digits. For most surveys, this will be translating between the 1 digit occupations to more general groups, such as two digits, three digits and four digits.
 #'
-#' Note that to translate using `isco08_swap` you'll need to provide the `from` and `to` arguments. The first one specifies the current number of digits of the input variable. If your variable is 1 digit occupations, then `from` should be `unit`. If you want to translate 1 digit occupations to three digits then the arguments should be `from = "unit"` and `to = "major"`. See the argument description of `from` and `to` for all possible values. As well as examples on how this works
+#' Note that to translate using `isco08_swap` you'll need to provide the `from` and `to` arguments. The first one specifies the current number of digits of the input variable. If your variable is 1 digit occupations, then `from` should be `1`. If you want to translate 1 digit occupations to three digits then the arguments should be `from = 1` and `to = 3`. See the argument description of `from` and `to` for all possible values. As well as examples on how this works
 #'
 #' @param x A character vector of ISCO08 codes.
-#' @param from a string specifying the occupation group of the input vector. Possible values are only "major", "submajor", "minor" and "unit".
-#' @param to a string specifying the desired occupation group for input vector. Possible values are only "major", "submajor", "minor" and "unit".
+#' @param from a numeric specifying the occupation digits of the input vector. Possible values are only 1, 2, 3 or 4.
+#' @param to a numeric specifying the desired occupation digits. Possible values are only 1, 2, 3 or 4.
 #'
 #' @return A character vector of ISCO08 codes.
 #'
@@ -138,20 +137,34 @@ isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
 #' library(dplyr)
 #'
 #' ess %>% mutate(
-#'    isco08_four_digits = isco08_swap(isco08, from = "unit", to = "major"),
-#'    isco08_three_digits = isco08_swap(isco08, from = "unit", to = "submajor"),
-#'    isco08_two_digits = isco08_swap(isco08, from = "unit", to = "minor")
+#'   isco08_four_digits = isco08_swap(isco08, from = 4, to = 1),
+#'   isco08_three_digits = isco08_swap(isco08, from = 4, to = 2),
+#'   isco08_two_digits = isco08_swap(isco08, from = 4, to = 3),
+#'   isco08_one_digits = isco08_swap(isco08, from = 4, to = 4)
 #' )
 #'
 #' @export
 isco08_swap <- function(x,
-                        from = c("unit", "minor", "submajor", "major"),
-                        to = c("unit", "minor", "submajor", "major")) {
+                        from,
+                        to) {
 
-  from <- match.arg(from)
-  to <- match.arg(to)
+  if (from < to) {
+    stop("`from` should always be a bigger digit group than `to`.")
+  }
 
-  if (from == to) return(x)
+  from <- as.character(from)
+  to <- as.character(to)
+  from <- match.arg(from, as.character(1:4))
+  to <- match.arg(to, as.character(1:4))
+
+  opts <- c("4" = "unit", "3" = "minor", "2" = "submajor", "1" = "major")
+
+  from <- unname(opts[from])
+  to <- unname(opts[to])
+
+  if (from == to) {
+    return(x)
+  }
 
   common_translator(
     x,

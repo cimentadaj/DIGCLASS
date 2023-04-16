@@ -2,37 +2,34 @@
 % Please edit documentation in R/isco08.R
 \name{isco08_swap}
 \alias{isco08_swap}
-\title{Swap ISCO08 between 1 (unit group), 2 (minor group), 3 (submajor group) and 4 (major) digit groups}
+\title{Swap ISCO08 between 1, 2, 3 and 4 digit groups}
 \usage{
-isco08_swap(
-  x,
-  from = c("unit", "minor", "submajor", "major"),
-  to = c("unit", "minor", "submajor", "major")
-)
+isco08_swap(x, from, to)
 }
 \arguments{
 \item{x}{A character vector of ISCO08 codes.}
 
-\item{from}{a string specifying the occupation group of the input vector. Possible values are only "major", "submajor", "minor" and "unit".}
+\item{from}{a numeric specifying the occupation digits of the input vector. Possible values are only 1, 2, 3 or 4.}
 
-\item{to}{a string specifying the desired occupation group for input vector. Possible values are only "major", "submajor", "minor" and "unit".}
+\item{to}{a numeric specifying the desired occupation digits. Possible values are only 1, 2, 3 or 4.}
 }
 \value{
 A character vector of ISCO08 codes.
 }
 \description{
-This function translates a vector of ISCO08 codes between different digits. For most surveys, this will be translating between the 1 digit occupations (this is called the \code{unit} group) to more general groups, such as two digits (minor group), three digits (called submajor group) and four digits (major groups).
+This function translates a vector of ISCO08 codes between different digits. For most surveys, this will be translating between the 1 digit occupations to more general groups, such as two digits, three digits and four digits.
 }
 \details{
-Note that to translate using \code{isco08_swap} you'll need to provide the \code{from} and \code{to} arguments. The first one specifies the current number of digits of the input variable. If your variable is 1 digit occupations, then \code{from} should be \code{unit}. If you want to translate 1 digit occupations to three digits then the arguments should be \code{from = "unit"} and \code{to = "major"}. See the argument description of \code{from} and \code{to} for all possible values. As well as examples on how this works
+Note that to translate using \code{isco08_swap} you'll need to provide the \code{from} and \code{to} arguments. The first one specifies the current number of digits of the input variable. If your variable is 1 digit occupations, then \code{from} should be \code{1}. If you want to translate 1 digit occupations to three digits then the arguments should be \code{from = 1} and \code{to = 3}. See the argument description of \code{from} and \code{to} for all possible values. As well as examples on how this works
 }
 \examples{
 library(dplyr)
 
 ess \%>\% mutate(
-   isco08_four_digits = isco08_swap(isco08, from = "unit", to = "major"),
-   isco08_three_digits = isco08_swap(isco08, from = "unit", to = "submajor"),
-   isco08_two_digits = isco08_swap(isco08, from = "unit", to = "minor")
+  isco08_four_digits = isco08_swap(isco08, from = 4, to = 1),
+  isco08_three_digits = isco08_swap(isco08, from = 4, to = 2),
+  isco08_two_digits = isco08_swap(isco08, from = 4, to = 3),
+  isco08_one_digits = isco08_swap(isco08, from = 4, to = 4)
 )
 
 }

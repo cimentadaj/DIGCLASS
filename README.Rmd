@@ -49,6 +49,7 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO08 to SIOPS
   - [X] ISCO08 to OESCH16
 
+* - [X] Translation between major/submajor/minor/unit groups for ISCO68, ISCO88 and ISCO08.
 
 ## Installation
 
@@ -102,19 +103,19 @@ This package has benefitted greatly from other open source packages that already
 
 ## TODO:
 
-- Oesch schemas have `.` inside the classes, what to do with those? We get NAs introduced when converting to numeric.
-- Oesch seems to have other labels which are shorter but no requivalence
-- From parsed txt file only ESEC missing
-- Need to make sure which ESEC you parsed from txt matches the ones in their doc. They want more ESEC so you need to map them and add additional ESEC.
-- Add recoding of major/minor codes for all ISCO.
-- See if EU-SILC contains all variables needed to construct the E.O Wright schema. If yes, adapt E.O Wright schema
-- Create vignette examples with already existing codifications
-- Plan meeting with them to show current work
-- Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
+- [] Oesch schemas have `.` inside the classes, what to do with those? We get NAs introduced when converting to numeric.
+- [] Oesch seems to have other labels which are shorter but no requivalence
+- [] From parsed txt file only ESEC missing
+- [] Need to make sure which ESEC you parsed from txt matches the ones in their doc. They want more ESEC so you need to map them and add additional ESEC.
+- [X] Add recoding of major/minor codes for all ISCO.
+- [] See if EU-SILC contains all variables needed to construct the E.O Wright schema. If yes, adapt E.O Wright schema
+- [X] Create vignette examples with already existing codifications
+- [] Plan meeting with them to show current work
+- [] Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
 
-- Improve vignettes after implementing major/minor codes
-- Create a repair function to complete 4, 3, 2 and 1 digits
-- Stop if it's not a character
-- Warning if stuff is not 4 digits
-- examples of reading the data as character vector directly from read_csv / read_dta
-- Examples with ISSP
+- [X] Improve vignettes after implementing major/minor codes
+- [] Create a repair function to complete 4, 3, 2 and 1 digits
+- [] Stop if it's not a character
+- [] Warning if stuff is not 4 digits
+- [] Examples of reading the data as character vector directly from read_csv / read_dta
+- [] Examples with ISSP

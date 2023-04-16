@@ -1,0 +1,77 @@
+---
+title: "Translating between hierarchies for ISCO68, ISCO88 and ISCO08"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{translating_between_hierarchies}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Translating between hierarchies
+
+Most surveys that contain occupation related variables have 4 digit ISCO occupations. What does that mean? That you're working with the most fine-grained definition of an occupation. In some cases, you want to work with aggregated groups. Instead of knowing something about a mathematician, you'd rather group all math related occupation into a "Scientist" category. `DIGCLASS` has this implemented following the rules of each ISCO schema. Let's load `DIGCLASS`:
+
+```{r setup}
+library(DIGCLASS)
+```
+
+In ISCO parlance, the most granular occupation have what it's called 4 digits. This means that the occupation 4 non-zero digits. Occupation 2111 is a 4 digit occupation because it does not contain any zeroes. In contrast, 2110 is the "parent" category of 2111. To make it even more simple, think that 2111 is the occupation "Physicists and astronomers" while 2110 is "Physicists, chemists and related professionals". You can intuitively group physicists in that broader category. Similarly, the occupation 2110 or "Physicists, chemists and related professionals" is nested within the more broader group 2100 or "Physical, mathematical and engineering science professionals". Finally, the broadest group is 2000, for which the general group definition is "Professionals.
+
+This was just an intuitive explanation of how ISCO codes works. You don't have to remember what each category is. You can always look up these values yourself for better understanding but `DIGCLASS` will do the work of translating everything for you. The important thing to remember is that something you'll want to group fine grained occupations into more broader occupation categories. An example would be that all categories that are within "Physicists, chemists and related professionals" are grouped together. This means that we "convert" the column from 4 digits into 2 digits, for example. In `DIGCLASS` you can do that with the function `isco*_swap` where `*` is the ISCO of preference. Let's look at the ISCO variables we have in the ESS data in `DIGCLASS`:
+
+```{r}
+ess
+```
+
+All three ISCO variables are in four digits but we can convert them to three digits:
+
+```{r}
+ess %>%
+  transmute(
+    isco88,
+    isco88_three = isco88_swap(isco88, from = 4, to = 3)
+  )
+```
+
+As you can see, the three digit translation always has a zero, meaning that it was translated into a broder group. We can do the same for an even broader group, translating from 4 to 2 digits:
+
+```{r}
+ess %>%
+  transmute(
+    isco08,
+    isco08_two = isco08_swap(isco08, from = 4, to = 2)
+  )
+```
+
+We can see that the two digit translation is a broader category than the original four digit occupation. Note that we can translate everything from 4 to 1 but not the other way around:
+
+```{r, error = TRUE}
+ess %>%
+  transmute(
+    isco08,
+    isco08_two = isco08_swap(isco08, from = 2, to = 4)
+  )
+```
+
+That's because we can't translate a more broader group into a finer occupation because it could be many specific occupation within a broder group. Finally, do note that for ISCO68, there are some 1 digit groups missing (0000 and 1000 don't have a broader category), so when you translate from any digit to the 1 digit in ISCO68 you might some missing values for occupation within the major group 0000 and 1000:
+
+```{r}
+ess %>%
+  transmute(
+    isco68,
+    isco68_one = isco68_swap(isco68, from = 4, to = 1)
+  )
+```
+
+Note that the 1 digit groups `2000`, `3000`, `5000` and `8000` are translated correctly. Yet the 1 digit group `1000` or `0000` are never translated because they don't exist in ISCO68. `DIGCLASS` makes the translation either way but note that you'll lose that information when you translate it to other schemas because it's an `NA`.
+
+## Using translated hierarchies for translation between schemas
+
+# TODO: Certain translations need to be done between 3 digits to other schemas. Use an example here.

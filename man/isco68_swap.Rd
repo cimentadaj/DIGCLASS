@@ -2,31 +2,29 @@
 % Please edit documentation in R/isco68.R
 \name{isco68_swap}
 \alias{isco68_swap}
-\title{Swap ISCO68 between 1 (unit group), 2 (minor group) and 3 (major group) digit groups}
+\title{Swap ISCO68 between 1, 2, 3 and 4 digit groups}
 \usage{
-isco68_swap(
-  x,
-  from = c("unit", "minor", "submajor", "major"),
-  to = c("unit", "minor", "submajor", "major")
-)
+isco68_swap(x, from, to)
 }
 \arguments{
 \item{x}{A character vector of ISCO68 codes.}
 
-\item{from}{a string specifying the occupation group of the input vector. Possible values are only "major", "submajor", "minor" and "unit".}
+\item{from}{a numeric specifying the occupation digits of the input vector. Possible values are only 1, 2, 3 or 4.}
 
-\item{to}{a string specifying the desired occupation group for input vector. Possible values are only "major", "submajor", "minor" and "unit".}
+\item{to}{a numeric specifying the desired occupation digits. Possible values are only 1, 2, 3 or 4.}
 }
 \value{
 A character vector of ISCO68 codes.
 }
 \description{
-This function translates a vector of ISCO68 codes between different digits. For most surveys, this will be translating between the 1 digit occupations (this is called the \code{unit} group) to more general groups, such as two digits (minor group), three digits (called submajor group) and four digits (major groups).
+This function translates a vector of ISCO68 codes between different digits. For most surveys, this will be translating between the 1 digit occupations to more general groups, such as two digits, three digits and four digits.
 }
 \details{
-Note that to translate using \code{isco68_swap} you'll need to provide the \code{from} and \code{to} arguments. The first one specifies the current number of digits of the input variable. If your variable is 1 digit occupations, then \code{from} should be \code{unit}. If you want to translate 1 digit occupations to three digits then the arguments should be \code{from = "unit"} and \code{to = "major"}. See the argument description of \code{from} and \code{to} for all possible values. As well as examples on how this works
+Note that to translate using \code{isco68_swap} you'll need to provide the \code{from} and \code{to} arguments. The first one specifies the current number of digits of the input variable. If your variable is 4 digit occupations, then \code{from} should be \code{4}. If you want to translate 4 digit occupations to 3 digits then the arguments should be \code{from = 4} and \code{to = 3}. See the argument description of \code{from} and \code{to} for all possible values as well as examples on how this works.
 
-Note that ISCO68 does not have 4 digits for the groups 0000 and 1000. Any translation to those major groups will return an NA. See the ILO website: \url{https://www.ilo.org/public/english/bureau/stat/isco/isco68/major.htm}.
+Note that translation can only be done from higher to smaller digits (4 to 3, 3 to 2, 3 to 1) and never the other way around (1 to 2, 2 to 3, 3 to 4)
+
+ISCO68 might return some NAs depending on the occupation code as it does not have 4 digits for the groups 0000 and 1000. Any translation from 4 digit codes to 1 digit codes within those groups will return an NA for those major groups. See the ILO website: \url{https://www.ilo.org/public/english/bureau/stat/isco/isco68/major.htm}.
 }
 \examples{
 library(dplyr)
@@ -36,9 +34,10 @@ library(dplyr)
 # such as for occupations that are between 1000 and 200. Remember to
 # check well the result.
 ess \%>\% mutate(
-   isco68_four_digits = isco68_swap(isco68, from = "unit", to = "major"),
-   isco68_three_digits = isco68_swap(isco68, from = "unit", to = "submajor"),
-   isco68_two_digits = isco68_swap(isco68, from = "unit", to = "minor")
+  isco68_four_digits = isco68_swap(isco68, from = 4, to = 1),
+  isco68_three_digits = isco68_swap(isco68, from = 4, to = 2),
+  isco68_two_digits = isco68_swap(isco68, from = 4, to = 3),
+  isco68_one_digits = isco68_swap(isco68, from = 4, to = 4)
 )
 
 }

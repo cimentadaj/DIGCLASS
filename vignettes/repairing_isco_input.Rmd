@@ -1,0 +1,77 @@
+---
+title: "Repairing an ISCO variable"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{repairing_isco_input}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Short Summary
+
+When reading data into R, ISCO variables tend to loose information when read as a number. Be sure to specify that ISCO variables be read as character vectors instead of numeric ones. You can do that for CSV files and Stata formats like this:
+
+```{r, eval = FALSE}
+library(readr)
+# For CSV, specify `col_types`
+isco_ready <- read_csv(isco_csv, col_types = list(ISCO08 = col_character(), ISCO88 = col_character()))
+
+# For Stata
+read_dta("ess.dta", col_types = c(ISCO08 = "character"))
+```
+
+## Repairing ISCO variables
+
+ISCO variables can become corrupted when being read into R. Let me show you a typical example. Suppose we have a CSV file with data on ISCO occupations:
+
+
+```{r setup}
+library(DIGCLASS)
+library(readr)
+
+isco_csv <- "ISCO08,ISCO88
+0110,0110
+0210,0110
+0310,0110
+0100,0110
+0200,0110
+0300,0110
+1000,1000
+1100,1100
+1110,1100
+1111,1110"
+```
+
+This CSV data is in a string in R and we need to read it with `read_csv`. It is quite common for these ISCO columns to be read as a numeric column when using functions such as `read_csv` or `read_dta` (for Stata files). Let's see what happens when we read a column as a numeric:
+
+```{r}
+isco_ready <- read_csv(isco_csv, col_types = list(.default = col_double()))
+```
+
+The first 6 rows lost the first `0`. This is quite dangerous because right now we don't know if the occupation `110` is actually `0110` or `1100`. Since we can't check every single occupation in our dataset to confirm that it kept all the information of each digit, `DIGCLASS` has the function `repair_isco` which tells you whether your ISCO column is ready for analysis. Let's run it:
+
+```{r, error = TRUE}
+repair_isco(isco_ready$ISCO08)
+```
+
+The functions tells us precisely that this ISCO variable has 3 and 4 digit occupations and that it needs to be normalized. We can fix that be reading the data specifying the columns to be as a character:
+
+```{r}
+isco_ready <- read_csv(isco_csv, col_types = list(ISCO08 = col_character(), ISCO88 = col_character()))
+isco_ready$ISCO08 <- repair_isco(isco_ready$ISCO08)
+```
+
+Similarly for Stata files, you should always specify that the ISCO variable should be read as a character like this:
+
+```{r, eval = FALSE}
+read_dta("ess.dta", col_types = c(ISCO08 = "character"))
+```
+

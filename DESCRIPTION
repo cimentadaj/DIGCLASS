@@ -13,12 +13,15 @@ Depends:
     R (>= 2.10)
 LazyData: true
 Imports:
+    cli,
     dplyr,
     magrittr,
     tibble
 Suggests:
     glue,
+    haven,
     knitr,
+    readr,
     rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

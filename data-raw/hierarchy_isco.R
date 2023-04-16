@@ -11,7 +11,7 @@ isco68_full <-
     minor = if_else(str_sub(ISCO68, start = -1, end = -1) == "0", ISCO68, NA),
     unit = ISCO68
   ) %>%
-  fill(major, submajor, minor, unit)
+  fill(major, submajor, minor)
 
 write_csv(isco68_full, "data-raw/social_classes/translation/isco68_hierarchy.csv")
 
