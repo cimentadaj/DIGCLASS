@@ -112,7 +112,6 @@ This package has benefitted greatly from other open source packages that already
 - [X] Create vignette examples with already existing codifications
 - [] Plan meeting with them to show current work
 - [] Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
-
 - [X] Improve vignettes after implementing major/minor codes
 - [X] Create a repair function to complete 4, 3, 2 and 1 digits
 - [X] Stop if it's not a character
