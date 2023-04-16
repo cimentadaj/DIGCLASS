@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 ## Short Summary
 
-When reading data into R, ISCO variables tend to loose information when read as a number. Be sure to specify that ISCO variables be read as character vectors instead of numeric ones. You can do that for CSV files and Stata formats like this:
+When reading data into R, ISCO variables tend to loose information when read as a number. Be sure to specify that ISCO variables be read as character vectors instead of numeric ones. You can do that for CSV files and Stata formats like this (**remember to change the ISCO column names for the ones in your data here**):
 
 ```{r, eval = FALSE}
 library(readr)
