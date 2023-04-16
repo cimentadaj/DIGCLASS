@@ -119,6 +119,10 @@
 <input type="checkbox" disabled checked>ISCO08 to OESCH16</li>
 </ul>
 </li>
+<li><ul class="task-list">
+<li>
+<input type="checkbox" disabled checked>Translation between major/submajor/minor/unit groups for ISCO68, ISCO88 and ISCO08.</li>
+</ul></li>
 </ul>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -157,7 +161,7 @@
 <span><span class="co">#&gt;  8 1593   2419   2432        0             0 66    2     'lo controllers'      </span></span>
 <span><span class="co">#&gt;  9 1930   3460   2635        0             0 54    2     'lo controllers'      </span></span>
 <span><span class="co">#&gt; 10 1950   2444   2643        0             0 54    2     'lo controllers'      </span></span>
-<span><span class="co">#&gt; # … with 56,742 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # ℹ 56,742 more rows</span></span></code></pre></div>
 <p>The nomenclature of the function is <code>{origin}_to_{destination}</code> where <code>origin</code> is the origin class schema and <code>destination</code> is the destination class schema. The usual workflow is for you to type, for example <code>isco</code> and then hit <code>TAB</code> to get auto-completion on all possible translations.</p>
 <p>For those class schemas that have labels, the <code>label</code> argument returns the labels instead of the class codes.</p>
 </div>
@@ -188,16 +192,22 @@
 <h2 id="todo">TODO:<a class="anchor" aria-label="anchor" href="#todo"></a>
 </h2>
 <ul>
-<li><p>Oesch schemas have <code>.</code> inside the classes, what to do with those? We get NAs introduced when converting to numeric.</p></li>
-<li><p>Oesch seems to have other labels which are shorter but no requivalence</p></li>
-<li><p>From parsed txt file only ESEC missing</p></li>
-<li><p>Need to make sure which ESEC you parsed from txt matches the ones in their doc. They want more ESEC so you need to map them and add additional ESEC.</p></li>
-<li><p>Add recoding of major/minor codes for all ISCO.</p></li>
-<li><p>See if EU-SILC contains all variables needed to construct the E.O Wright schema. If yes, adapt E.O Wright schema</p></li>
-<li><p>Create vignette examples with already existing codifications</p></li>
-<li><p>Plan meeting with them to show current work</p></li>
-<li><p>Improve docs on each translation maybe mentioning what each class schemas is and pointing to the source and the website.</p></li>
-<li><p>Improve vignettes after implementing major/minor codes</p></li>
+<li><p>[] Oesch schemas have <code>.</code> inside the classes, what to do with those? We get NAs introduced when converting to numeric.</p></li>
+<li><p>[] Oesch seems to have other labels which are shorter but no requivalence</p></li>
+<li><p>[] From parsed txt file only ESEC missing</p></li>
+<li><p>[] Need to make sure which ESEC you parsed from txt matches the ones in their doc. They want more ESEC so you need to map them and add additional ESEC.</p></li>
+<li><p><input type="checkbox" disabled checked>Add recoding of major/minor codes for all ISCO.</p></li>
+<li><p>[] See if EU-SILC contains all variables needed to construct the E.O Wright schema. If yes, adapt E.O Wright schema</p></li>
+<li><p><input type="checkbox" disabled checked>Create vignette examples with already existing codifications</p></li>
+<li><p>[] Plan meeting with them to show current work</p></li>
+<li><p>[] Improve docs on each translation maybe mentioning what each class schemas is and pointing to the source and the website.</p></li>
+<li><p><input type="checkbox" disabled checked>Improve vignettes after implementing major/minor codes</p></li>
+<li><p><input type="checkbox" disabled checked>Create a repair function to complete 4, 3, 2 and 1 digits</p></li>
+<li><p><input type="checkbox" disabled checked>Stop if it’s not a character</p></li>
+<li><p><input type="checkbox" disabled checked>Warning if stuff is not 4 digits</p></li>
+<li><p>[] Apply repair_isco on all isco variables</p></li>
+<li><p>[] Examples of reading the data as character vector directly from read_csv / read_dta</p></li>
+<li><p>[] Examples with ISSP</p></li>
 </ul>
 </div>
 </div>
