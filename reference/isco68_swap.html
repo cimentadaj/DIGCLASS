@@ -50,8 +50,8 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">isco68_swap</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
-<span>  from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"unit"</span>, <span class="st">"minor"</span>, <span class="st">"major"</span><span class="op">)</span>,</span>
-<span>  to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"unit"</span>, <span class="st">"minor"</span>, <span class="st">"major"</span><span class="op">)</span></span>
+<span>  from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"unit"</span>, <span class="st">"minor"</span>, <span class="st">"submajor"</span>, <span class="st">"major"</span><span class="op">)</span>,</span>
+<span>  to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"unit"</span>, <span class="st">"minor"</span>, <span class="st">"submajor"</span>, <span class="st">"major"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -62,11 +62,11 @@
 
 
 <dt>from</dt>
-<dd><p>a string specifying the occupation group of the input vector. Possible values are only "major", "minor" and "unit".</p></dd>
+<dd><p>a string specifying the occupation group of the input vector. Possible values are only "major", "submajor", "minor" and "unit".</p></dd>
 
 
 <dt>to</dt>
-<dd><p>a string specifying the desired occupation group for input vector. Possible values are only "major", "minor" and "unit".</p></dd>
+<dd><p>a string specifying the desired occupation group for input vector. Possible values are only "major", "submajor", "minor" and "unit".</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -78,32 +78,37 @@
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Note that to translate using <code>isco68_swap</code> you'll need to provide the <code>from</code> and <code>to</code> arguments. The first one specifies the current number of digits of the input variable. If your variable is 1 digit occupations, then <code>from</code> should be <code>unit</code>. If you want to translate 1 digit occupations to three digits then the arguments should be <code>from = "unit"</code> and <code>to = "major"</code>. See the argument description of <code>from</code> and <code>to</code> for all possible values. As well as examples on how this works</p>
-<p>Note that ISCO68 does not have a submajor group as can be seen from the ILO website: <a href="https://www.ilo.org/public/english/bureau/stat/isco/isco68/major.htm" class="external-link">https://www.ilo.org/public/english/bureau/stat/isco/isco68/major.htm</a> . Possible values are only "unit", "minor" and "major".</p>
+<p>Note that ISCO68 does not have 4 digits for the groups 0000 and 1000. Any translation to those major groups will return an NA. See the ILO website: <a href="https://www.ilo.org/public/english/bureau/stat/isco/isco68/major.htm" class="external-link">https://www.ilo.org/public/english/bureau/stat/isco/isco68/major.htm</a>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Note that for certain four digit groups, isco68 does not have a</span></span></span>
+<span class="r-in"><span><span class="co"># major group (0000, 1000). That means that Some NAs might be present,</span></span></span>
+<span class="r-in"><span><span class="co"># such as for occupations that are between 1000 and 200. Remember to</span></span></span>
+<span class="r-in"><span><span class="co"># check well the result.</span></span></span>
 <span class="r-in"><span><span class="va">ess</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>   isco68_four_digits <span class="op">=</span> <span class="fu">isco68_swap</span><span class="op">(</span><span class="va">isco68</span>, from <span class="op">=</span> <span class="st">"unit"</span>, to <span class="op">=</span> <span class="st">"major"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   isco68_three_digits <span class="op">=</span> <span class="fu">isco68_swap</span><span class="op">(</span><span class="va">isco68</span>, from <span class="op">=</span> <span class="st">"unit"</span>, to <span class="op">=</span> <span class="st">"submajor"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>   isco68_two_digits <span class="op">=</span> <span class="fu">isco68_swap</span><span class="op">(</span><span class="va">isco68</span>, from <span class="op">=</span> <span class="st">"unit"</span>, to <span class="op">=</span> <span class="st">"minor"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 56,752 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 56,752 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    isco68 isco88 isco08 emplno self_employed isco68_four_digits</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 0140   3111   3111        0             0 0100              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 3210   3431   4120        0             0 3200              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2119   1210   1120        0             0 2100              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1320   2320   2330        0             0 1300              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 8550   7137   7411        0             0 8500              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 5401   5131   5311        0             0 5400              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 0140   3111   3111        0             0 <span style="color: #BB0000;">NA</span>                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 3210   3431   4120        0             0 3000              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2119   1210   1120        0             0 2000              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1320   2320   2330        0             0 <span style="color: #BB0000;">NA</span>                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 8550   7137   7411        0             0 8000              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 5401   5131   5311        0             0 5000              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          0             0 <span style="color: #BB0000;">NA</span>                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1593   2419   2432        0             0 1500              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1930   3460   2635        0             0 1900              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1950   2444   2643        0             0 1900              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1593   2419   2432        0             0 <span style="color: #BB0000;">NA</span>                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1930   3460   2635        0             0 <span style="color: #BB0000;">NA</span>                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1950   2444   2643        0             0 <span style="color: #BB0000;">NA</span>                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 56,742 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: isco68_two_digits &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: isco68_three_digits &lt;chr&gt;, isco68_two_digits &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
