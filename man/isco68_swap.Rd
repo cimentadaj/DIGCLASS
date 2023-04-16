@@ -6,16 +6,16 @@
 \usage{
 isco68_swap(
   x,
-  from = c("unit", "minor", "major"),
-  to = c("unit", "minor", "major")
+  from = c("unit", "minor", "submajor", "major"),
+  to = c("unit", "minor", "submajor", "major")
 )
 }
 \arguments{
 \item{x}{A character vector of ISCO68 codes.}
 
-\item{from}{a string specifying the occupation group of the input vector. Possible values are only "major", "minor" and "unit".}
+\item{from}{a string specifying the occupation group of the input vector. Possible values are only "major", "submajor", "minor" and "unit".}
 
-\item{to}{a string specifying the desired occupation group for input vector. Possible values are only "major", "minor" and "unit".}
+\item{to}{a string specifying the desired occupation group for input vector. Possible values are only "major", "submajor", "minor" and "unit".}
 }
 \value{
 A character vector of ISCO68 codes.
@@ -26,13 +26,18 @@ This function translates a vector of ISCO68 codes between different digits. For 
 \details{
 Note that to translate using \code{isco68_swap} you'll need to provide the \code{from} and \code{to} arguments. The first one specifies the current number of digits of the input variable. If your variable is 1 digit occupations, then \code{from} should be \code{unit}. If you want to translate 1 digit occupations to three digits then the arguments should be \code{from = "unit"} and \code{to = "major"}. See the argument description of \code{from} and \code{to} for all possible values. As well as examples on how this works
 
-Note that ISCO68 does not have a submajor group as can be seen from the ILO website: \url{https://www.ilo.org/public/english/bureau/stat/isco/isco68/major.htm} . Possible values are only "unit", "minor" and "major".
+Note that ISCO68 does not have 4 digits for the groups 0000 and 1000. Any translation to those major groups will return an NA. See the ILO website: \url{https://www.ilo.org/public/english/bureau/stat/isco/isco68/major.htm}.
 }
 \examples{
 library(dplyr)
 
+# Note that for certain four digit groups, isco68 does not have a
+# major group (0000, 1000). That means that Some NAs might be present,
+# such as for occupations that are between 1000 and 200. Remember to
+# check well the result.
 ess \%>\% mutate(
    isco68_four_digits = isco68_swap(isco68, from = "unit", to = "major"),
+   isco68_three_digits = isco68_swap(isco68, from = "unit", to = "submajor"),
    isco68_two_digits = isco68_swap(isco68, from = "unit", to = "minor")
 )
 
