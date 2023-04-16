@@ -21,6 +21,8 @@ When reading data into R, ISCO variables tend to loose information when read as 
 
 ```{r, eval = FALSE}
 library(readr)
+library(haven)
+
 # For CSV, specify `col_types`
 isco_ready <- read_csv(isco_csv, col_types = list(ISCO08 = col_character(), ISCO88 = col_character()))
 

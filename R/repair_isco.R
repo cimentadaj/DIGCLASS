@@ -24,7 +24,7 @@
 #' @export
 repair_isco <- function(x) {
   if (is.numeric(x)) {
-    cli::cli_alert_warning("ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/exploring-translations-between-social-classes.html for more details. Converting to a character vector.")
+    cli::cli_alert_warning("ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html for more details. Converting to a character vector.")
     x <- as.character(x)
   }
 
