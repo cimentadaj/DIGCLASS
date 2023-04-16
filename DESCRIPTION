@@ -17,6 +17,7 @@ Imports:
     magrittr,
     tibble
 Suggests:
+    glue,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)

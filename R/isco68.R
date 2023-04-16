@@ -17,7 +17,6 @@
 #'
 #' @export
 isco68_to_isco88 <- function(x, label = FALSE) {
-
   common_translator(
     x,
     input_var = "ISCO68",
@@ -47,7 +46,6 @@ isco68_to_isco88 <- function(x, label = FALSE) {
 #'
 #' @export
 isco68_to_isco08 <- function(x, label = FALSE) {
-
   common_translator(
     x,
     input_var = "ISCO68",
@@ -130,7 +128,6 @@ isco68_to_siops <- function(x) {
 #'
 #' @export
 isco68_to_egp <- function(x, self_employed, n_employees, label = FALSE) {
-
   col_position <- dplyr::case_when(
     self_employed == 0 & n_employees == 0 ~ 2,
     self_employed == 0 & dplyr::between(n_employees, 1, 9) ~ 3,
@@ -171,7 +168,6 @@ isco68_to_egp <- function(x, self_employed, n_employees, label = FALSE) {
 #'
 #' @export
 isco68_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
-
   col_position <- dplyr::case_when(
     self_employed == 0 & n_employees == 0 ~ 2,
     self_employed == 0 & dplyr::between(n_employees, 1, 9) ~ 3,
@@ -188,5 +184,47 @@ isco68_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
     translate_df = all_schemas$isco68_to_egp11,
     translate_label_df = all_labels$egp11,
     label = label
+  )
+}
+
+#' Swap ISCO68 between 1 (unit group), 2 (minor group) and 3 (major group) digit groups
+#'
+#' This function translates a vector of ISCO68 codes between different digits. For most surveys, this will be translating between the 1 digit occupations (this is called the `unit` group) to more general groups, such as two digits (minor group), three digits (called submajor group) and four digits (major groups).
+#'
+#' Note that to translate using `isco68_swap` you'll need to provide the `from` and `to` arguments. The first one specifies the current number of digits of the input variable. If your variable is 1 digit occupations, then `from` should be `unit`. If you want to translate 1 digit occupations to three digits then the arguments should be `from = "unit"` and `to = "major"`. See the argument description of `from` and `to` for all possible values. As well as examples on how this works
+#'
+#' Note that ISCO68 does not have a submajor group as can be seen from the ILO website: \url{https://www.ilo.org/public/english/bureau/stat/isco/isco68/major.htm} . Possible values are only "unit", "minor" and "major".
+#'
+#' @param x A character vector of ISCO68 codes.
+#' @param from a string specifying the occupation group of the input vector. Possible values are only "major", "minor" and "unit".
+#' @param to a string specifying the desired occupation group for input vector. Possible values are only "major", "minor" and "unit".
+#'
+#' @return A character vector of ISCO68 codes.
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' ess %>% mutate(
+#'    isco68_four_digits = isco68_swap(isco68, from = "unit", to = "major"),
+#'    isco68_two_digits = isco68_swap(isco68, from = "unit", to = "minor")
+#' )
+#'
+#' @export
+isco68_swap <- function(x,
+                        from = c("unit", "minor", "major"),
+                        to = c("unit", "minor", "major")) {
+
+  from <- match.arg(from)
+  to <- match.arg(to)
+
+  if (from == to) return(x)
+
+  common_translator(
+    x,
+    input_var = from,
+    output_var = to,
+    translate_df = all_schemas$isco68_hierarchy,
+    translate_label_df = NULL,
+    label = FALSE
   )
 }

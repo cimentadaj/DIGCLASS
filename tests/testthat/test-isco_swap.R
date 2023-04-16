@@ -1,0 +1,40 @@
+library(testthat)
+library(glue)
+
+# Define function that runs the tests
+test_isco_swap <- function(swap_function, input) {
+
+  # Create sample input vectors for testing
+  input_vector_1 <- ess[["input"]]
+
+  # Define test cases
+  test_that(glue::glue("Testing {deparse(substitute(swap_function))} function"), {
+
+    # Test with different from and to values
+    output_vector_1 <- swap_function(input_vector_1, from = "unit", to = "major")
+
+    # Check if input and output vectors are different
+    expect_false(identical(input_vector_1, output_vector_1))
+
+    # Check if no NAs were introduced in the output vector
+    expect_equal(sum(is.na(output_vector_1)), sum(is.na(input_vector_1)))
+
+    # test with different from and to values
+    output_vector_2 <- swap_function(input_vector_1, from = "unit", to = "minor")
+
+    # Check if input and output vectors are different
+    expect_false(identical(input_vector_1, output_vector_2))
+
+    # Test with same from and to values
+    output_vector_3 <- swap_function(input_vector_1, from = "unit", to = "unit")
+
+    # Check if input and output vectors are the same
+    expect_true(identical(input_vector_1, output_vector_3))
+
+  })
+}
+
+# Example usage: testing isco08_swap function
+test_isco_swap(isco08_swap, "isco08")
+test_isco_swap(isco88_swap, "isco88")
+test_isco_swap(isco68_swap, "isco68")

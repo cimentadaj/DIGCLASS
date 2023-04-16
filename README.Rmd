@@ -63,7 +63,7 @@ devtools::install_github("cimentadaj/socialclasses")
 
 Here's an example of translating ISCO68 to ISEI and EGP class schemas:
 
-```{r,message=FALSE, warning=FALSE }
+```{r, message = FALSE, warning = FALSE}
 library(DIGCLASS)
 library(dplyr)
 
@@ -101,6 +101,7 @@ This package has benefitted greatly from other open source packages that already
 - [occupar](https://github.com/DiogoFerrari/occupar/): R package
 
 ## TODO:
+
 - Oesch schemas have `.` inside the classes, what to do with those? We get NAs introduced when converting to numeric.
 - Oesch seems to have other labels which are shorter but no requivalence
 - From parsed txt file only ESEC missing
@@ -112,4 +113,8 @@ This package has benefitted greatly from other open source packages that already
 - Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
 
 - Improve vignettes after implementing major/minor codes
-
+- Create a repair function to complete 4, 3, 2 and 1 digits
+- Stop if it's not a character
+- Warning if stuff is not 4 digits
+- examples of reading the data as character vector directly from read_csv / read_dta
+- Examples with ISSP
