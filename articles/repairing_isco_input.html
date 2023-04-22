@@ -89,6 +89,19 @@ names for the ones in your data here</strong>):</p>
 <span></span>
 <span><span class="co"># For Stata</span></span>
 <span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="st">"ess.dta"</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>ISCO08 <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Also, after reading your data, be sure to run
+<code>repair_isco</code> on your ISCO variable to correct for any
+problems. For example:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/repair_isco.html">repair_isco</a></span><span class="op">(</span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; ! ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
+<span><span class="co">#&gt; ℹ ISCO variable has occupations with digits less than 4. Converting to 4 digits.</span></span>
+<span><span class="co">#&gt; • Converted `110` to `0110`</span></span>
+<span><span class="co">#&gt; • Converted `210` to `0210`</span></span>
+<span><span class="co">#&gt; • Converted `310` to `0310`</span></span>
+<span><span class="co">#&gt; • Converted `100` to `0100`</span></span>
+<span><span class="co">#&gt; • Converted `200` to `0200`</span></span>
+<span><span class="co">#&gt; • Converted `300` to `0300`</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="repairing-isco-variables">Repairing ISCO variables<a class="anchor" aria-label="anchor" href="#repairing-isco-variables"></a>
@@ -96,7 +109,7 @@ names for the ones in your data here</strong>):</p>
 <p>ISCO variables can become corrupted when being read into R. Let me
 show you a typical example. Suppose we have a CSV file with data on ISCO
 occupations:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cimentadaj.github.io/socialclasses/">DIGCLASS</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org" class="external-link">readr</a></span><span class="op">)</span></span>
 <span></span>
@@ -116,32 +129,50 @@ occupations:</p>
 read as a numeric column when using functions such as
 <code>read_csv</code> or <code>read_dta</code> (for Stata files). Let’s
 see what happens when we read a column as a numeric:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">isco_ready</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">isco_csv</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>.default <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_double</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>The first 6 rows lost the first <code>0</code>. This is quite
 dangerous because right now we don’t know if the occupation
 <code>110</code> is actually <code>0110</code> or <code>1100</code>.
 Since we can’t check every single occupation in our dataset to confirm
 that it kept all the information of each digit, <code>DIGCLASS</code>
-has the function <code>repair_isco</code> which tells you whether your
-ISCO column is ready for analysis. Let’s run it:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/repair_isco.html">repair_isco</a></span><span class="op">(</span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `repair_isco()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> ISCO variable has occupations with 3 and 4 digits. The column needs to</span></span>
-<span><span class="co">#&gt;   be normalized to have only a single digit.</span></span></code></pre></div>
-<p>The functions tells us precisely that this ISCO variable has 3 and 4
-digit occupations and that it needs to be normalized. We can fix that be
-reading the data specifying the columns to be as a character:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">isco_ready</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">isco_csv</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ISCO08 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span>, ISCO88 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/repair_isco.html">repair_isco</a></span><span class="op">(</span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> ISCO variable ready for analysis</span></span></code></pre></div>
-<p>Similarly for Stata files, you should always specify that the ISCO
-variable should be read as a character like this:</p>
+has the function <code>repair_isco</code> which tells corrects any
+issues. Let’s run it:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/repair_isco.html">repair_isco</a></span><span class="op">(</span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ISCO variable has occupations with digits less than 4. Converting to 4 digits.</span></span>
+<span><span class="co">#&gt; • Converted `110` to `0110`</span></span>
+<span><span class="co">#&gt; • Converted `210` to `0210`</span></span>
+<span><span class="co">#&gt; • Converted `310` to `0310`</span></span>
+<span><span class="co">#&gt; • Converted `100` to `0100`</span></span>
+<span><span class="co">#&gt; • Converted `200` to `0200`</span></span>
+<span><span class="co">#&gt; • Converted `300` to `0300`</span></span></code></pre></div>
+<p>The functions tells us some things:</p>
+<ul>
+<li>If the column is a numeric, and warns that we need to turn it into a
+character</li>
+<li>Warns that there are some occupations with digit less than 4. If
+your input ISCO variable is of 3, 2 or 1 digit, you can change it using
+the <code>occ_digits</code> argument set to another number.</li>
+<li>Shows the transformation it made to harmonize all occupations. All
+transformations will be appending 0’s from the left to the total number
+of digits.</li>
+</ul>
+<p>Ideally, you want to make sure you always read the data as characters
+because that way we can preserve the original coding of the data. You
+can read data as characters like this for a CSV:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">isco_ready</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">isco_csv</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ISCO08 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span>, ISCO88 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/repair_isco.html">repair_isco</a></span><span class="op">(</span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span><span class="op">)</span></span></code></pre></div>
+<p>Note that no messages were printed now. That’s because the function
+is correct and nothing needs to be done. Similarly for Stata files, you
+should always specify that the ISCO variable should be read as a
+character like this:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="st">"ess.dta"</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>ISCO08 <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Once you read your data, be sure to run it through
+<code>repair_isco</code> to notify of any problems.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
