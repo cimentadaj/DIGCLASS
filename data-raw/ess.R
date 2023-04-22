@@ -12,6 +12,7 @@ ess <-
   rename(isco88 = iscoco)
 
 ess$isco88[nchar(ess$isco88) > 4] <- NA
+ess$isco88 <- repair_isco(ess$isco88)
 
 ess <-
   ess %>%

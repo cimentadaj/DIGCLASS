@@ -1,6 +1,6 @@
-common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label) {
+common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, digits = 4) {
 
-  ## x <- repair_isco(x)
+  x <- repair_isco(x, occ_digits = digits)
   res <-
     tibble::tibble(x = as.character(x)) %>%
     dplyr::left_join(translate_df, by = c("x" = input_var))
@@ -26,9 +26,9 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
   transformed
 }
 
-multiple_cols_translator <- function(x, col_position, output_var, translate_df, translate_label_df, label) {
+multiple_cols_translator <- function(x, col_position, output_var, translate_df, translate_label_df, label, digits = 4) {
 
-  ## x <- repair_isco(x)
+  x <- repair_isco(x, occ_digits = digits)
 
   class_match <- match(x, translate_df[[1]])
   matrix_translate_df <- as.matrix(translate_df)

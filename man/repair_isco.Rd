@@ -4,10 +4,12 @@
 \alias{repair_isco}
 \title{Repair an ISCO variable}
 \usage{
-repair_isco(x)
+repair_isco(x, occ_digits = 4)
 }
 \arguments{
 \item{x}{ISCO variable to repair}
+
+\item{occ_digits}{The baseline digits that the function should expect. This is whether the variable is 4/3/2/1 digits.}
 }
 \value{
 Repaired ISCO variable
@@ -16,10 +18,11 @@ Repaired ISCO variable
 ISCO variables need have certain properties. In particular, they must contain occupations of a single digit. This means that all ocupations need to be either 4 digits, 3 digits, 2 digits or 1 digit. The ISCO variable can't have 3 digits and 2 digits at the same time.
 }
 \details{
-When reading datasets, it might happen that the ISCO column is read as a numeric column and occupations such as \code{0140} are converted to \code{140}. It is impossible for \code{DIGCLASS} to determine whether this class is actually \code{0140} or \code{1400}. what this function does is a bit of sanity check:
+When reading datasets, it might happen that the ISCO column is read as a numeric column and occupations such as \code{0140} are converted to \code{140}. What this function does is a bit of sanity check:
 \itemize{
 \item Checks if the provided ISCO variable is a character vector, and if not, warns the user that numeric ISCO variables may contain lost data.
-\item Checks that all occupations have the same number of digits, and if not, raises an error.
+\item Checks that all occupations have the same number of digits and warns if not
+\item Converts all occupations with digits less than \code{occ_digits} to have the same number of digits by appending \code{0} from the left until all have the same number of digits.
 }
 }
 \examples{

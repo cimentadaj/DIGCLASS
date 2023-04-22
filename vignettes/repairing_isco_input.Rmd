@@ -30,6 +30,22 @@ isco_ready <- read_csv(isco_csv, col_types = list(ISCO08 = col_character(), ISCO
 read_dta("ess.dta", col_types = c(ISCO08 = "character"))
 ```
 
+Also, after reading your data, be sure to run `repair_isco` on your ISCO variable to correct for any problems. For example:
+
+```{r, eval = FALSE}
+x <- repair_isco(isco_ready$ISCO08)
+```
+```
+#> ! ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html for more details. Converting to a character vector.
+#> ℹ ISCO variable has occupations with digits less than 4. Converting to 4 digits.
+#> • Converted `110` to `0110`
+#> • Converted `210` to `0210`
+#> • Converted `310` to `0310`
+#> • Converted `100` to `0100`
+#> • Converted `200` to `0200`
+#> • Converted `300` to `0300`
+```
+
 ## Repairing ISCO variables
 
 ISCO variables can become corrupted when being read into R. Let me show you a typical example. Suppose we have a CSV file with data on ISCO occupations:
@@ -58,22 +74,29 @@ This CSV data is in a string in R and we need to read it with `read_csv`. It is 
 isco_ready <- read_csv(isco_csv, col_types = list(.default = col_double()))
 ```
 
-The first 6 rows lost the first `0`. This is quite dangerous because right now we don't know if the occupation `110` is actually `0110` or `1100`. Since we can't check every single occupation in our dataset to confirm that it kept all the information of each digit, `DIGCLASS` has the function `repair_isco` which tells you whether your ISCO column is ready for analysis. Let's run it:
+The first 6 rows lost the first `0`. This is quite dangerous because right now we don't know if the occupation `110` is actually `0110` or `1100`. Since we can't check every single occupation in our dataset to confirm that it kept all the information of each digit, `DIGCLASS` has the function `repair_isco` which tells corrects any issues. Let's run it:
 
-```{r, error = TRUE}
-repair_isco(isco_ready$ISCO08)
+```{r}
+isco_ready$ISCO08 <- repair_isco(isco_ready$ISCO08)
 ```
 
-The functions tells us precisely that this ISCO variable has 3 and 4 digit occupations and that it needs to be normalized. We can fix that be reading the data specifying the columns to be as a character:
+The functions tells us some things:
+
+- If the column is a numeric, and warns that we need to turn it into a character
+- Warns that there are some occupations with digit less than 4. If your input ISCO variable is of 3, 2 or 1 digit, you can change it using the `occ_digits` argument set to another number.
+- Shows the transformation it made to harmonize all occupations. All transformations will be appending 0's from the left to the total number of digits.
+
+Ideally, you want to make sure you always read the data as characters because that way we can preserve the original coding of the data. You can read data as characters like this for a CSV:
 
 ```{r}
 isco_ready <- read_csv(isco_csv, col_types = list(ISCO08 = col_character(), ISCO88 = col_character()))
 isco_ready$ISCO08 <- repair_isco(isco_ready$ISCO08)
 ```
 
-Similarly for Stata files, you should always specify that the ISCO variable should be read as a character like this:
+Note that no messages were printed now. That's because the function is correct and nothing needs to be done. Similarly for Stata files, you should always specify that the ISCO variable should be read as a character like this:
 
 ```{r, eval = FALSE}
 read_dta("ess.dta", col_types = c(ISCO08 = "character"))
 ```
 
+Once you read your data, be sure to run it through `repair_isco` to notify of any problems.
