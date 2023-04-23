@@ -123,7 +123,7 @@ This package has benefitted greatly from other open source packages that already
 - [] Examples with ISSP
 - [] Proofread README to make sure there aren't any grammatical errors
 
-- [] I have to confirm with them how ESEC full-method is calculated. I wrote it like this:
+- [] I have to confirm with them how ESEC full-method is calculated. This applies for both ISCO88 and ISCO08. I wrote it like this:
 
 ```{r, eval=FALSE}
 # Is it an employee?

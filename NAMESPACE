@@ -2,6 +2,7 @@
 
 export("%>%")
 export(isco08_swap)
+export(isco08_to_esec)
 export(isco08_to_isco88)
 export(isco08_to_isei)
 export(isco08_to_oesch)

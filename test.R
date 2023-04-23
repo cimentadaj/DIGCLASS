@@ -8,3 +8,24 @@ ess %>%
     esec_simple = isco88com_to_esec(isco88_three, is_supervisor, self_employed, emplno, full_method = FALSE, label = TRUE)
   ) %>%
   select(isco88_three, starts_with("esec"))
+
+
+ess %>%
+  mutate(
+    isco08_three = isco08_swap(isco08, from = 4, to = 3),
+    esec_full_no_label = isco08_to_esec(
+      isco08_three,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = TRUE
+    ),
+    esec = isco08_to_esec(
+      isco08_three,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = FALSE
+    )
+  ) %>%
+  select(isco08_three, starts_with("esec"))

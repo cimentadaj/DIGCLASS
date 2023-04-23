@@ -81,6 +81,104 @@ isco08_to_siops <- function(x) {
 }
 
 
+#' Translate 3-digit ISCO08 to ESEC
+#'
+#' This function translates a vector of 3-digit ISCO08 codes to ESEC codes using the
+#' translation table stored in the `all_schemas$isco08_to_esec` data frame.
+#'
+#' The ESEC translation is from ISCO08 to ESEC. This translation is borrowed from the `iscogen` Stata package. For more info, search for 'ISCO-08 -> ESEC' in the documentation of the `iscogen` package.
+#'
+#'
+#' Contrary to ISCO88-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 and not ISCO08COM.
+#'
+#' @param x A character vector of 3-digit ISCO08 codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
+#'
+#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
+#'
+#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
+#'
+#' @param n_employees A numeric vector indicating the number of employees for each individual.
+#'
+#' @param label A logical value indicating whether to return the labels of the translated ESEC codes (default is \code{FALSE}).
+#'
+#' @return A character vector of ESEC codes.
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # convert to three digits
+#' ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
+#'
+#' # Using the full method
+#' ess %>%
+#'   transmute(
+#'     esec_label = isco08_to_esec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     ),
+#'     esec = isco08_to_esec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     )
+#'   )
+#'
+#' # Using the simple method
+#' ess %>%
+#'   transmute(
+#'     esec = isco08_to_esec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     ),
+#'     esec_label = isco08_to_esec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' @export
+isco08_to_esec <- function(x,
+                           is_supervisor,
+                           self_employed,
+                           n_employees,
+                           label = FALSE) {
+  # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
+  col_position <- dplyr::case_when(
+    # Is it an employee?
+    self_employed == 0 & is_supervisor == 0 ~ 2,
+    # Is it a supervisor of other people?
+    self_employed == 0 & is_supervisor == 1 ~ 3,
+    self_employed == 1 & n_employees == 0 ~ 4,
+    self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 5,
+    self_employed == 1 & n_employees >= 10 ~ 6
+  )
+
+  res <- multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "ESEC",
+    translate_df = all_schemas$isco08_to_esec,
+    translate_label_df = all_labels$esec,
+    label = label,
+    digits = 4
+  )
+
+  res
+}
+
+
+
 #' Translate ISCO08 to OESCH
 
 #'
@@ -147,7 +245,6 @@ isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
 isco08_swap <- function(x,
                         from,
                         to) {
-
   if (from < to) {
     stop("`from` should always be a bigger digit group than `to`.")
   }

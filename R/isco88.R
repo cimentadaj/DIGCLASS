@@ -335,7 +335,7 @@ isco88com_to_esec <- function(x,
       # Is it a supervisor of other people?
       self_employed == 0 & is_supervisor == 1 ~ 3,
       self_employed == 1 & n_employees == 0 ~ 4,
-      self_employed == 1 & dplyr::between(n_employees, 2, 9) ~ 5,
+      self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 5,
       self_employed == 1 & n_employees >= 10 ~ 6
     )
 
