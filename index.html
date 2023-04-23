@@ -209,7 +209,24 @@
 <li><p>[] Improve docs on each translation maybe mentioning what each class schemas is and pointing to the source and the website.</p></li>
 <li><p>[] Examples with ISSP</p></li>
 <li><p>[] Proofread README to make sure there aren’t any grammatical errors</p></li>
+<li><p>[] I have to confirm with them how ESEC full-method is calculated. I wrote it like this:</p></li>
 </ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is it an employee?</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>self_employed <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> is_supervisor <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Is it a supervisor of other people?</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>self_employed <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> is_supervisor <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>self_employed <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> n_employees <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>self_employed <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> dplyr<span class="sc">::</span><span class="fu">between</span>(n_employees, <span class="dv">2</span>, <span class="dv">9</span>) <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>self_employed <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> n_employees <span class="sc">&gt;=</span> <span class="dv">10</span> <span class="sc">~</span> <span class="dv">6</span></span></code></pre></div>
+<p>but it could be written like this:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is it an employee?</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>self_employed <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Is it a supervisor of other people?</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>is_supervisor <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>self_employed <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> n_employees <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>self_employed <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> dplyr<span class="sc">::</span><span class="fu">between</span>(n_employees, <span class="dv">2</span>, <span class="dv">9</span>) <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>self_employed <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> n_employees <span class="sc">&gt;=</span> <span class="dv">10</span> <span class="sc">~</span> <span class="dv">6</span></span></code></pre></div>
+<p>the only thing changing whether someone is self_employed, regardless of supervision and whether someone is supervisor regardless of anything else. I got the impresion it’s like in #1 because of page 16 in the user-guide of ESEC.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
