@@ -49,6 +49,12 @@
     <loc>https://cimentadaj.github.io/socialclasses/reference/isco08_to_isei.html</loc>
   </url>
   <url>
+    <loc>https://cimentadaj.github.io/socialclasses/reference/isco08_to_microclasses.html</loc>
+  </url>
+  <url>
+    <loc>https://cimentadaj.github.io/socialclasses/reference/isco08_to_msec.html</loc>
+  </url>
+  <url>
     <loc>https://cimentadaj.github.io/socialclasses/reference/isco08_to_oesch.html</loc>
   </url>
   <url>
@@ -107,6 +113,9 @@
   </url>
   <url>
     <loc>https://cimentadaj.github.io/socialclasses/reference/isco88com_to_esec.html</loc>
+  </url>
+  <url>
+    <loc>https://cimentadaj.github.io/socialclasses/reference/isco88com_to_msec.html</loc>
   </url>
   <url>
     <loc>https://cimentadaj.github.io/socialclasses/reference/pipe.html</loc>
