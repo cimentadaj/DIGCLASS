@@ -54,23 +54,4 @@ ess \%>\%
     )
   )
 
-# Using the simple method
-ess \%>\%
-  transmute(
-    esec = isco08_to_esec(
-      isco08_three,
-      is_supervisor,
-      self_employed,
-      emplno,
-      label = FALSE
-    ),
-    esec_label = isco08_to_esec(
-      isco08_three,
-      is_supervisor,
-      self_employed,
-      emplno,
-      label = TRUE
-    )
-  )
-
 }

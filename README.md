@@ -31,12 +31,14 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO88 to ISCO88COM
   - [X] ISCO88 to ISCO08
   - [X] ISCO88 to ISCO68
+  - [X] ISCO88COM to ESEC - 3 digits
 
 * **ISCO08**
   - [X] ISCO08 to ISCO88
   - [X] ISCO08 to ISEI
   - [X] ISCO08 to SIOPS
   - [X] ISCO08 to OESCH16
+  - [X] ISCO08 to ESEC - 3 digits
 
 * - [X] Translation between major/submajor/minor/unit groups for ISCO68, ISCO88 and ISCO08.
 
@@ -116,11 +118,13 @@ This package has benefitted greatly from other open source packages that already
 - [X] Examples of reading the data as character vector directly from read_csv / read_dta
 - [X] Add recoding of major/minor codes for all ISCO.
 - [X] Create vignette examples with already existing codifications
+- [X] Implemented 3 digit translate of isco88/08 to esec
 
+- [] Implement 2 digit translate of isco88/08 to esec
+- [] Implement translation of isco88/08 to eseg
+- [] Implement E.O Wright
 - [] Oesch schemas have `.` inside the classes, what to do with those? We get NAs introduced when converting to numeric.
 - [] Oesch seems to have other labels which are shorter but no requivalence
-- [] From parsed txt file only ESEC missing
-- [] Need to make sure which ESEC you parsed from txt matches the ones in their doc. They want more ESEC so you need to map them and add additional ESEC.
 - [] See if EU-SILC contains all variables needed to construct the E.O Wright schema. If yes, adapt E.O Wright schema
 - [] Plan meeting with them to show current work
 - [] Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
