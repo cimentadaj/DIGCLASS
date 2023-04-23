@@ -115,20 +115,21 @@ of employees, self-employed, etc..</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># convert to three digits</span></span></span>
-<span class="r-in"><span><span class="va">ess</span><span class="op">$</span><span class="va">isco88_three</span> <span class="op">&lt;-</span> <span class="fu"><a href="isco88_swap.html">isco88_swap</a></span><span class="op">(</span><span class="va">ess</span><span class="op">$</span><span class="va">isco88</span>, from <span class="op">=</span> <span class="fl">4</span>, to <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ess</span><span class="op">$</span><span class="va">isco88com</span> <span class="op">&lt;-</span> <span class="fu"><a href="isco88_to_isco88com.html">isco88_to_isco88com</a></span><span class="op">(</span><span class="va">ess</span><span class="op">$</span><span class="va">isco88</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ess</span><span class="op">$</span><span class="va">isco88com_three</span> <span class="op">&lt;-</span> <span class="fu"><a href="isco88_swap.html">isco88_swap</a></span><span class="op">(</span><span class="va">ess</span><span class="op">$</span><span class="va">isco88com</span>, from <span class="op">=</span> <span class="fl">4</span>, to <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Using the full method</span></span></span>
 <span class="r-in"><span><span class="va">ess</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    esec_label <span class="op">=</span> <span class="fu">isco88com_to_esec</span><span class="op">(</span></span></span>
-<span class="r-in"><span>      <span class="va">isco88_three</span>,</span></span>
+<span class="r-in"><span>      <span class="va">isco88com_three</span>,</span></span>
 <span class="r-in"><span>      <span class="va">is_supervisor</span>,</span></span>
 <span class="r-in"><span>      <span class="va">self_employed</span>,</span></span>
 <span class="r-in"><span>      <span class="va">emplno</span>,</span></span>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    esec <span class="op">=</span> <span class="fu">isco88com_to_esec</span><span class="op">(</span></span></span>
-<span class="r-in"><span>      <span class="va">isco88_three</span>,</span></span>
+<span class="r-in"><span>      <span class="va">isco88com_three</span>,</span></span>
 <span class="r-in"><span>      <span class="va">is_supervisor</span>,</span></span>
 <span class="r-in"><span>      <span class="va">self_employed</span>,</span></span>
 <span class="r-in"><span>      <span class="va">emplno</span>,</span></span>
@@ -154,7 +155,7 @@ of employees, self-employed, etc..</p>
 <span class="r-in"><span><span class="va">ess</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    esec_simple <span class="op">=</span> <span class="fu">isco88com_to_esec</span><span class="op">(</span></span></span>
-<span class="r-in"><span>      <span class="va">isco88_three</span>,</span></span>
+<span class="r-in"><span>      <span class="va">isco88com_three</span>,</span></span>
 <span class="r-in"><span>      <span class="va">is_supervisor</span>,</span></span>
 <span class="r-in"><span>      <span class="va">self_employed</span>,</span></span>
 <span class="r-in"><span>      <span class="va">emplno</span>,</span></span>
@@ -162,7 +163,7 @@ of employees, self-employed, etc..</p>
 <span class="r-in"><span>      full_method <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    esec_simple_label <span class="op">=</span> <span class="fu">isco88com_to_esec</span><span class="op">(</span></span></span>
-<span class="r-in"><span>      <span class="va">isco88_three</span>,</span></span>
+<span class="r-in"><span>      <span class="va">isco88com_three</span>,</span></span>
 <span class="r-in"><span>      <span class="va">is_supervisor</span>,</span></span>
 <span class="r-in"><span>      <span class="va">self_employed</span>,</span></span>
 <span class="r-in"><span>      <span class="va">emplno</span>,</span></span>
