@@ -40,7 +40,9 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO08 to OESCH16
   - [X] ISCO08 to ESEC - 3 digits
 
-* - [X] Translation between major/submajor/minor/unit groups for ISCO68, ISCO88 and ISCO08.
+* **Extras**
+  - [X] Translation between major/submajor/minor/unit groups for ISCO68, ISCO88 and ISCO08
+  - [X] Repair ISCO variables
 
 ## Installation
 
@@ -108,7 +110,6 @@ This package has benefitted greatly from other open source packages that already
 - [occupar](https://github.com/DiogoFerrari/occupar/): R package
 
 ## TODO:
-
 
 - [X] Improve vignettes after implementing major/minor codes
 - [X] Create a repair function to complete 4, 3, 2 and 1 digits

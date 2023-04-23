@@ -8698,12 +8698,12 @@
 9333 9 9 9 9 9 9 9 9
 % END
 
-% CODELIST-isco88-esec
+% CODELIST-isco88com-esec-three
 % source: Euroesec matrix.xls obtained on 10apr2020 from
 %         https://www.iser.essex.ac.uk/archives/esec/matrices-and-syntax
 % notes: the ESEC variable here belongs to ESEC-simplified, the simplified
 % version of the ESEC schema. I changed it to ESEC to match directly with
-% the name of ESEC column in the labels. 
+% the name of ESEC column in the labels.
 % variables: ISCO88(3-digit) ESEC-employee ESEC-supervisor
 %            ESEC-selfemp(0) ESEC-selfemp(1-9) ESEC-selfemp(10+)
 %            ESEC
@@ -11792,7 +11792,7 @@
 9629 24.00
 % END
 
-% CODELIST-isco08-esec
+% CODELIST-isco08-esec-three
 % source: esec_08_3_digit_public.xlsx obtained on 27jun2019 from
 %         https://ekharrison.weebly.com/european-socio-economic-classification-esec.html
 % note: codes 960/961/962 are not covered in the 3-digit list in

@@ -1,0 +1,39 @@
+MSEC,MSEC-label-E
+10,Managers
+11,Higher Management Self-Employed
+12,Lower Management Self-Employed
+13,Higher Management Employees
+14,Lower Management Employees
+20,Professionals N.E.C. (Not Elsewhere Classified)
+21,Science/ICT Professionals
+22,Health Professionals
+23,Business Professionals
+24,Social Professionals
+25,Primary and Secondary Education Professionals
+26,"Vocational, Tertiary and Other Education Professionals"
+30,Professional Employees N.E.C.
+31,Technicians
+32,Health Associate Professionals
+33,Business Associate Professionals
+34,Legal and Social Associate Professionals
+35,Non-Commissioned Officers
+40,Small Entrepreneurs
+41,Agricultural Self-Employed
+42,Self-Employed Technicians
+43,Craft and Related Trades Self-Employed
+50,Associate Professionals
+51,General Clerks
+52,Customer Service Clerks
+53,Personal Care Employees
+54,Protective Services
+59,White-Collar Supervisors
+60,Skilled Labor Supervisors
+61,Building and Related Trades Employees
+62,Food Processing and Related Trades Employees
+63,"Metal, Machinery and Related Trades Employees"
+64,Stationary Plant Operators
+65,Mobile Plant Operators
+71,Service and Sales Employees
+72,Blue-Collar Employees
+73,Cleaners and Helpers
+74,Agricultural Employees

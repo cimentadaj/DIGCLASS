@@ -7,7 +7,8 @@ extract_df <- function(schema_txt, pattern_split = "\\s") {
   name_schema <-
     schema_txt[1] %>%
     str_replace_all("% CODELIST-|% LABELLIST-", "") %>%
-    str_replace_all("-", "_to_")
+    str_replace_all("^(.*?)\\-(.*)$", "\\1_to_\\2") %>%
+    str_replace_all("-", "_")
 
   variable_start <- schema_txt %>%
     str_detect("variables") %>%
@@ -34,10 +35,12 @@ extract_df <- function(schema_txt, pattern_split = "\\s") {
 }
 
 extract_df_label <- function(schema_txt, pattern_split = "\\s") {
+
   name_schema <-
     schema_txt[1] %>%
     str_replace_all("% CODELIST-|% LABELLIST-", "") %>%
-    str_replace_all("-", "_to_")
+    str_replace_all("^(.*?)\\-(.*)$", "\\1_to_\\2") %>%
+    str_replace_all("-", "_")
 
   variable_start <- schema_txt %>%
     str_detect("variables") %>%
