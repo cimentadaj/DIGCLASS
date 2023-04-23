@@ -16030,16 +16030,16 @@
 % LABELLIST-egp
 % source: iskoegp.ado (version 1.2 14Oct2004 John_Hendrickx@yahoo.com)
 % variables: EGP EGP-label-E
-1  "higher controllers"
-2  "lo controllers"
-3  "routine nonmanual"
-4  "sempl with emp"
-5  "sempl without empl"
-7  "manual supervisor"
-8  "skilled manual"
-9  "semi-unskilld manual"
-10 "farm labor"
-11 "selfempl farm"
+1  "Higher Controllers"
+2  "Low Controllers"
+3  "Routine Non-manual"
+4  "Self-employed with employee"
+5  "Self-employed without employee"
+7  "Manual Supervisor"
+8  "Skilled Manual"
+9  "Semi-unskilled Manual"
+10 "Farm Labor"
+11 "Self-employed Farm"
 % END
 
 % LABELLIST-egp11
@@ -16050,13 +16050,13 @@
 2  "II: Lower Controllers"
 3  "IIIa: Routine Nonmanual"
 4  "IIIb: Lower Sales-Service"
-5  "IVa: Selfempl with empl"
-6  "IVb: Selfempl no empl"
+5  "IVa: Self-employed with employees"
+6  "IVb: Self-employed with no employees"
 7  "V: Manual Supervisors"
 8  "VI: Skilled Worker"
 9  "VIIa: Unskilled Worker"
 10 "VIIb: Farm Labor"
-11 "IVc: Selfempl Farmer"
+11 "IVc: Self-employed Farmer"
 % END
 
 % LABELLIST-esec

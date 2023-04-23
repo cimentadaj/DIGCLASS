@@ -130,7 +130,7 @@ This package has benefitted greatly from other open source packages that already
 - [] Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
 - [] Examples with ISSP
 - [] Proofread README to make sure there aren't any grammatical errors
-- [] Microclasses has been implemented but returns a vector of a different length.
+- [] Microclasses has been implemented but returns a vector of a different length. Uncomment examples from this function
 
 - [] I have to confirm with them how ESEC full-method is calculated. This applies for both ISCO88 and ISCO08. I wrote it like this:
 
