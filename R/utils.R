@@ -1,6 +1,7 @@
 common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, digits = 4) {
 
   x <- repair_isco(x, occ_digits = digits)
+
   res <-
     tibble::tibble(x = as.character(x)) %>%
     dplyr::left_join(translate_df, by = c("x" = input_var))

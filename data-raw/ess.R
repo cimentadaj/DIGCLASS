@@ -6,8 +6,11 @@ library(DIGCLASS)
 ess <-
   # This is just the fith round of the ESS
   read_csv("~/Downloads/ESS4e04_5.csv", col_types = list(.default = col_character())) %>%
-  mutate(self_employed = ifelse(emplrel == "2", 1, 0)) %>%
-  select(iscoco, emplno, self_employed) %>%
+  mutate(
+    self_employed = ifelse(emplrel == "2", 1, 0),
+    is_supervisor = ifelse(jbspv == "1", 1, 0)
+  ) %>%
+  select(iscoco, emplno, self_employed, is_supervisor) %>%
   mutate(emplno = as.numeric(emplno)) %>%
   rename(isco88 = iscoco)
 

@@ -80,7 +80,7 @@ extract_label <- function(schema_txt, pattern = "\\s") {
   list(name = label$name, label_df = label_df)
 }
 
-
+setwd(here::here("data-raw/social_classes/"))
 schema <- read_lines("social_classes.txt")
 
 labels_section <- which(str_detect(schema, "LABELLIST"))[1]
@@ -99,11 +99,17 @@ for (i in seq_along(begin)) {
   write_csv(schema_ch$schema_df, paste0("translation/", schema_ch$name, ".csv"))
 }
 
-# You fixed all of these things manually:
+# TODO: you fixed all of these things manually:
 
 # isco88_to_siopts on ISCO-88 == 6154 has leading zeroes that mess it up
 # isco08_to_siops on ISCO-08 == 6300 has leading zeroes that messes it up
+
+# isco08_to_esec  and isco88_to_esec have the digits in three digits but without a trailing zero (only 131 instead of 1310). I add that trailing zero manually.
+
+# isco08_to_esec labels, you added a new column to be able to match ESEC-simplified
+
 # isco08_to_esec has comments on last three digits. What should you do with it?
+
 
 ## Schema labels
 schema_label <- schema[labels_section:length(schema)]
@@ -119,4 +125,3 @@ for (i in seq_along(begin)) {
   all_labels[[cleaned_labels$name]] <- cleaned_labels$label_df
   write_csv(cleaned_labels$label_df, paste0("labels/", cleaned_labels$name, ".csv"))
 }
-

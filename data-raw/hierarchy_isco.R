@@ -1,6 +1,8 @@
 library(DIGCLASS)
 library(tidyverse)
 
+setwd(here::here())
+
 isco68 <- read_csv("data-raw/social_classes/labels/isco68.csv")
 
 isco68_full <-

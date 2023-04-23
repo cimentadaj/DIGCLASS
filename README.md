@@ -38,7 +38,6 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO08 to SIOPS
   - [X] ISCO08 to OESCH16
 
-
 * - [X] Translation between major/submajor/minor/unit groups for ISCO68, ISCO88 and ISCO08.
 
 ## Installation
@@ -127,3 +126,31 @@ This package has benefitted greatly from other open source packages that already
 - [] Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
 - [] Examples with ISSP
 - [] Proofread README to make sure there aren't any grammatical errors
+
+- [] I have to confirm with them how ESEC full-method is calculated. I wrote it like this:
+
+
+```r
+# Is it an employee?
+self_employed == 0 & is_supervisor == 0 ~ 2,
+# Is it a supervisor of other people?
+self_employed == 0 & is_supervisor == 1 ~ 3,
+self_employed == 1 & n_employees == 0 ~ 4,
+self_employed == 1 & dplyr::between(n_employees, 2, 9) ~ 5,
+self_employed == 1 & n_employees >= 10 ~ 6
+```
+
+but it could be written like this:
+
+
+```r
+# Is it an employee?
+self_employed == 0 ~ 2,
+# Is it a supervisor of other people?
+is_supervisor == 1 ~ 3,
+self_employed == 1 & n_employees == 0 ~ 4,
+self_employed == 1 & dplyr::between(n_employees, 2, 9) ~ 5,
+self_employed == 1 & n_employees >= 10 ~ 6
+```
+
+the only thing changing whether someone is self_employed, regardless of supervision and whether someone is supervisor regardless of anything else. I got the impresion it's like in #1 because of page 16 in the user-guide of ESEC.

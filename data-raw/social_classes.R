@@ -1,5 +1,7 @@
 library(readr)
 
+setwd(here::here())
+
 all_translation <- list.files("data-raw/social_classes/translation", pattern = "csv", full.names = TRUE)
 all_schemas <- lapply(all_translation, read_csv, col_types = list(.default = col_character()))
 names(all_schemas) <- gsub(".csv", "", basename(all_translation))
