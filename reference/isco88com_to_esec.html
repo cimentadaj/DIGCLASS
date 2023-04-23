@@ -136,20 +136,9 @@ of employees, self-employed, etc..</p>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 56,752 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    esec_label                                                 esec </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 'Lower mgrs/professionals, higher supervisory/technicians' 2    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 'Intermediate occupations'                                 3    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 'Large employers, higher mgrs/professionals'               1    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 'Lower mgrs/professionals, higher supervisory/technicians' 2    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 'Lower supervisors and technicians'                        6    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 'Lower sales and service'                                  7    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>                                                         <span style="color: #BB0000;">NA</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 'Large employers, higher mgrs/professionals'               1    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 'Intermediate occupations'                                 3    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 'Lower mgrs/professionals, higher supervisory/technicians' 2    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 56,742 more rows</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in transmute(., esec_label = isco88com_to_esec(isco88com_three,     is_supervisor, self_employed, emplno, label = TRUE), esec = isco88com_to_esec(isco88com_three,     is_supervisor, self_employed, emplno, label = FALSE)):</span> <span style="color: #00BBBB;">ℹ</span> In argument: `esec_label = isco88com_to_esec(...)`.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `array()`:</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> 'data' must be of a vector type, was 'NULL'</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Using the simple method</span></span></span>
 <span class="r-in"><span><span class="va">ess</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
@@ -170,20 +159,13 @@ of employees, self-employed, etc..</p>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="cn">TRUE</span>, full_method <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 56,752 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    esec_simple esec_simple_label                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2           'Lower mgrs/professionals, higher supervisory/technicians'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 3           'Intermediate occupations'                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1           'Large employers, higher mgrs/professionals'              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2           'Lower mgrs/professionals, higher supervisory/technicians'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 8           'Lower technical'                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 7           'Lower sales and service'                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span>                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1           'Large employers, higher mgrs/professionals'              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 3           'Intermediate occupations'                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2           'Lower mgrs/professionals, higher supervisory/technicians'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 56,742 more rows</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in transmute(., esec_simple = isco88com_to_esec(isco88com_three,     is_supervisor, self_employed, emplno, label = FALSE, full_method = FALSE),     esec_simple_label = isco88com_to_esec(isco88com_three, is_supervisor,         self_employed, emplno, label = TRUE, full_method = FALSE)):</span> <span style="color: #00BBBB;">ℹ</span> In argument: `esec_simple = isco88com_to_esec(...)`.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `auto_copy()`:</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> `x` and `y` must share the same src.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> `x` is a &lt;tbl_df/tbl/data.frame&gt; object.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> `y` is `NULL`.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Set `copy = TRUE` if `y` can be copied to the same source as `x` (may be</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span>   slow).</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
