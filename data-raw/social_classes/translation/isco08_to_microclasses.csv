@@ -1,0 +1,590 @@
+ISCO08,ESEC-MP
+0000,Armed Forces
+1000,Armed Forces
+1100,Armed Forces
+2100,Armed Forces
+3000,Armed Forces
+3100,Armed Forces
+1000,Production and specialized services managers NEC
+1100,Legislators and senior officials
+1110,Legislators and senior officials
+1111,Legislators and senior officials
+1112,Legislators and senior officials
+1113,Legislators and senior officials
+1114,Legislators and senior officials
+1120,Managing directors and chief executives
+1200,Administrative and commercial managers
+1210,Administrative and commercial managers
+1211,Administrative and commercial managers
+1212,Administrative and commercial managers
+1213,Administrative and commercial managers
+1219,Administrative and commercial managers
+1220,Administrative and commercial managers
+1221,Administrative and commercial managers
+1222,Administrative and commercial managers
+1223,Administrative and commercial managers
+1300,Production and specialized services managers NEC
+1310,"Production managers in agriculture, forestry and fisheries"
+1311,"Production managers in agriculture, forestry and fisheries"
+1312,"Production managers in agriculture, forestry and fisheries"
+1320,"Manufacturing, mining, construction and distribution managers"
+1321,"Manufacturing, mining, construction and distribution managers"
+1322,"Manufacturing, mining, construction and distribution managers"
+1323,"Manufacturing, mining, construction and distribution managers"
+1324,"Manufacturing, mining, construction and distribution managers"
+1330,Production and specialized services managers NEC
+1340,welfare managers
+1341,welfare managers
+1342,welfare managers
+1343,welfare managers
+1344,welfare managers
+1345,welfare managers
+1346,Administrative and commercial managers
+1349,Production and specialized services managers NEC
+1400,"Hospitality, retail and other services managers"
+1410,"Hospitality, retail and other services managers"
+1411,"Hospitality, retail and other services managers"
+1412,"Hospitality, retail and other services managers"
+1420,"Hospitality, retail and other services managers"
+1430,"Hospitality, retail and other services managers"
+1431,"Hospitality, retail and other services managers"
+1439,"Hospitality, retail and other services managers"
+2000,Other professionals NEC
+2100,"Natural Science, Mathematicians and Statistics professionals"
+2110,"Natural Science, Mathematicians and Statistics professionals"
+2111,"Natural Science, Mathematicians and Statistics professionals"
+2112,"Natural Science, Mathematicians and Statistics professionals"
+2113,"Natural Science, Mathematicians and Statistics professionals"
+2114,"Natural Science, Mathematicians and Statistics professionals"
+2120,"Natural Science, Mathematicians and Statistics professionals"
+2130,"Natural Science, Mathematicians and Statistics professionals"
+2131,"Natural Science, Mathematicians and Statistics professionals"
+2132,"Natural Science, Mathematicians and Statistics professionals"
+2133,"Natural Science, Mathematicians and Statistics professionals"
+2140,Engineering and Electrotechnology Professionals
+2141,Engineering and Electrotechnology Professionals
+2142,Engineering and Electrotechnology Professionals
+2143,Engineering and Electrotechnology Professionals
+2144,Engineering and Electrotechnology Professionals
+2145,Engineering and Electrotechnology Professionals
+2146,Engineering and Electrotechnology Professionals
+2149,Engineering and Electrotechnology Professionals
+2150,Engineering and Electrotechnology Professionals
+2151,Engineering and Electrotechnology Professionals
+2152,Engineering and Electrotechnology Professionals
+2153,Engineering and Electrotechnology Professionals
+2160,"Architects, planners, surveyors and designers"
+2161,"Architects, planners, surveyors and designers"
+2162,"Architects, planners, surveyors and designers"
+2163,Creative and performing professionals
+2164,"Architects, planners, surveyors and designers"
+2165,"Architects, planners, surveyors and designers"
+2166,Information and communications technology professionals
+2200,Health professionals
+2210,Health professionals
+2211,Health professionals
+2212,Health professionals
+2220,Nursing and midwifery professionals
+2221,Nursing and midwifery professionals
+2222,Nursing and midwifery professionals
+2230,Other health professionals
+2240,Health professionals
+2250,Health professionals
+2260,Other health professionals
+2261,Health professionals
+2262,Health professionals
+2263,Other health professionals
+2264,Other health professionals
+2265,Other health professionals
+2266,Other health professionals
+2267,Other health professionals
+2269,Other health professionals
+2300,Education Teachers NEC
+2310,University and higher education teachers
+2320,Education Teachers NEC
+2330,Secondary education teachers
+2340,Primary school and early childhood teachers
+2341,Primary school and early childhood teachers
+2342,Primary school and early childhood teachers
+2350,Education Teachers NEC
+2351,Education Teachers NEC
+2352,Education Teachers NEC
+2353,Education Teachers NEC
+2354,Education Teachers NEC
+2355,Education Teachers NEC
+2356,Education Teachers NEC
+2359,Education Teachers NEC
+2400,Other professionals NEC
+2410,Finance professionals
+2411,Finance professionals
+2412,Finance professionals
+2413,Finance professionals
+2420,"Administration, Sales, marketing and public relations professionals"
+2421,"Administration, Sales, marketing and public relations professionals"
+2422,"Administration, Sales, marketing and public relations professionals"
+2423,"Administration, Sales, marketing and public relations professionals"
+2424,"Administration, Sales, marketing and public relations professionals"
+2430,"Administration, Sales, marketing and public relations professionals"
+2431,"Administration, Sales, marketing and public relations professionals"
+2432,"Administration, Sales, marketing and public relations professionals"
+2433,"Administration, Sales, marketing and public relations professionals"
+2434,"Administration, Sales, marketing and public relations professionals"
+2500,Information and communications technology professionals
+2510,Information and communications technology professionals
+2511,Information and communications technology professionals
+2512,Information and communications technology professionals
+2513,Information and communications technology professionals
+2514,Information and communications technology professionals
+2519,Information and communications technology professionals
+2520,Information and communications technology professionals
+2521,Information and communications technology professionals
+2522,Information and communications technology professionals
+2523,Information and communications technology professionals
+2529,Information and communications technology professionals
+2600,Other professionals NEC
+2610,Legal professionals
+2611,Legal professionals
+2612,Legal professionals
+2619,Legal professionals
+2620,Other professionals NEC
+2621,Other professionals NEC
+2622,Other professionals NEC
+2630,Social Science Professionals
+2631,Social Science Professionals
+2632,Social Science Professionals
+2633,Social Science Professionals
+2634,Social Science Professionals
+2635,Social Science Professionals
+2636,Other professionals NEC
+2640,Creative and performing professionals
+2641,Creative and performing professionals
+2642,Creative and performing professionals
+2643,Creative and performing professionals
+2650,Creative and performing professionals
+2651,Creative and performing professionals
+2652,Creative and performing professionals
+2653,Creative and performing professionals
+2654,Creative and performing professionals
+2655,Creative and performing professionals
+2656,Creative and performing professionals
+2659,Creative and performing professionals
+3000,Technicians and Engineering associate NEC
+3100,Technicians and Engineering associate NEC
+3110,Physical and engineering science technicians
+3111,Physical and engineering science technicians
+3112,Physical and engineering science technicians
+3113,Physical and engineering science technicians
+3114,Physical and engineering science technicians
+3115,Physical and engineering science technicians
+3116,Physical and engineering science technicians
+3117,Physical and engineering science technicians
+3118,Physical and engineering science technicians
+3119,Physical and engineering science technicians
+3120,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3121,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3122,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3123,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3130,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3131,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3132,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3133,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3134,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3135,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3139,"Mining, manufacturing and construction supervisors and proccess control technicians"
+3140,Technicians and Engineering associate NEC
+3141,Technicians and Engineering associate NEC
+3142,Technicians and Engineering associate NEC
+3143,Technicians and Engineering associate NEC
+3150,Ship and aircraft controllers and technicians
+3151,Ship and aircraft controllers and technicians
+3152,Ship and aircraft controllers and technicians
+3153,Ship and aircraft controllers and technicians
+3154,Ship and aircraft controllers and technicians
+3155,Ship and aircraft controllers and technicians
+3200,HEALTH ASSOCIATES NEC
+3210,HEALTH ASSOCIATES NEC
+3211,HEALTH ASSOCIATES NEC
+3212,HEALTH ASSOCIATES NEC
+3213,HEALTH ASSOCIATES NEC
+3214,HEALTH ASSOCIATES NEC
+3220,Nursing and midwifery associate professionals
+3221,Nursing and midwifery associate professionals
+3222,Nursing and midwifery associate professionals
+3230,HEALTH ASSOCIATES NEC
+3240,HEALTH ASSOCIATES NEC
+3250,HEALTH ASSOCIATES NEC
+3251,HEALTH ASSOCIATES NEC
+3252,HEALTH ASSOCIATES NEC
+3253,HEALTH ASSOCIATES NEC
+3254,HEALTH ASSOCIATES NEC
+3255,HEALTH ASSOCIATES NEC
+3256,HEALTH ASSOCIATES NEC
+3257,HEALTH ASSOCIATES NEC
+3258,HEALTH ASSOCIATES NEC
+3259,HEALTH ASSOCIATES NEC
+3300,Sales and purchasing agents and brokers
+3310,Financial and mathematical associate professionals
+3311,Financial and mathematical associate professionals
+3312,Financial and mathematical associate professionals
+3313,Financial and mathematical associate professionals
+3314,Financial and mathematical associate professionals
+3315,Financial and mathematical associate professionals
+3320,Sales and purchasing agents and brokers
+3321,Sales and purchasing agents and brokers
+3322,Sales and purchasing agents and brokers
+3323,Sales and purchasing agents and brokers
+3324,Sales and purchasing agents and brokers
+3330,Sales and purchasing agents and brokers
+3331,Sales and purchasing agents and brokers
+3332,Sales and purchasing agents and brokers
+3333,Sales and purchasing agents and brokers
+3334,Sales and purchasing agents and brokers
+3339,Sales and purchasing agents and brokers
+3340,Administrative and specialized secretaries
+3341,Administrative and specialized secretaries
+3342,Administrative and specialized secretaries
+3343,Administrative and specialized secretaries
+3344,Administrative and specialized secretaries
+3350,Regulatory government associate professionals
+3351,Regulatory government associate professionals
+3352,Regulatory government associate professionals
+3353,Regulatory government associate professionals
+3354,Regulatory government associate professionals
+3355,Regulatory government associate professionals
+3359,Regulatory government associate professionals
+3400,"social, cultural and related associate professionals NEC"
+3410,"social, cultural and related associate professionals NEC"
+3411,Regulatory government associate professionals
+3412,Regulatory government associate professionals
+3413,"social, cultural and related associate professionals NEC"
+3420,"social, cultural and related associate professionals NEC"
+3421,"social, cultural and related associate professionals NEC"
+3422,"social, cultural and related associate professionals NEC"
+3423,"social, cultural and related associate professionals NEC"
+3430,Creative and performing associate professionals
+3431,Creative and performing associate professionals
+3432,Creative and performing associate professionals
+3433,Creative and performing associate professionals
+3434,Creative and performing associate professionals
+3435,Creative and performing associate professionals
+3500,Information and communications technicians
+3510,Information and communications technicians
+3511,Information and communications technicians
+3512,Information and communications technicians
+3513,Information and communications technicians
+3514,Information and communications technicians
+3520,Information and communications technicians
+3521,Information and communications technicians
+3522,Information and communications technicians
+4000,Clerical Support Workers NEC
+4100,Clerical Support Workers NEC
+4110,General office clerks
+4120,Secretaries (general)
+4130,Clerical Support Workers NEC
+4131,Clerical Support Workers NEC
+4132,Clerical Support Workers NEC
+4200,Clerical Support Workers NEC
+4210,"Tellers, money collectors and related clerks"
+4211,"Tellers, money collectors and related clerks"
+4212,"Tellers, money collectors and related clerks"
+4213,"Tellers, money collectors and related clerks"
+4214,"Tellers, money collectors and related clerks"
+4220,Client information workers
+4221,Client information workers
+4222,Client information workers
+4223,Client information workers
+4224,Client information workers
+4225,Client information workers
+4226,Client information workers
+4227,Client information workers
+4229,Client information workers
+4300,Numerical clerks
+4310,Numerical clerks
+4311,Numerical clerks
+4312,Numerical clerks
+4313,Numerical clerks
+4320,Material recording and transport clerks
+4321,Material recording and transport clerks
+4322,Material recording and transport clerks
+4323,Material recording and transport clerks
+4400,Clerical Support Workers NEC
+4410,Clerical Support Workers NEC
+4411,Clerical Support Workers NEC
+4412,Clerical Support Workers NEC
+4413,Clerical Support Workers NEC
+4414,Clerical Support Workers NEC
+4415,Clerical Support Workers NEC
+4416,Clerical Support Workers NEC
+4419,Clerical Support Workers NEC
+5000, Services and sales workers NEC
+5100, Services and sales workers NEC
+5110, Services and sales workers NEC
+5111, Services and sales workers NEC
+5112,"rail, bus and tram drivers and attendants"
+5113, Services and sales workers NEC
+5120,Cooks
+5130,Waiters and bartenders
+5131,Waiters and bartenders
+5132,Waiters and bartenders
+5140,"Hairdressers, beauticians and related workers"
+5141,"Hairdressers, beauticians and related workers"
+5142,"Hairdressers, beauticians and related workers"
+5150,Cleaners and helpers
+5151,Cleaners and helpers
+5152,Cleaners and helpers
+5153, Services and sales workers NEC
+5160, Services and sales workers NEC
+5161, Services and sales workers NEC
+5162, Services and sales workers NEC
+5163, Services and sales workers NEC
+5164, Services and sales workers NEC
+5165, Services and sales workers NEC
+5169, Services and sales workers NEC
+5200,Sales workers
+5210,Sales workers
+5211,Sales workers
+5212,Sales workers
+5220,Sales workers
+5221,Sales workers
+5222,Sales workers
+5223,Sales workers
+5230,Sales workers
+5240,Sales workers
+5241,Creative and performing associate professionals
+5242,Sales workers
+5243,Sales workers
+5244,Sales workers
+5245,Sales workers
+5246,Sales workers
+5249,Sales workers
+5300, Services and sales workers NEC
+5310,Child care workers and teachers’ aides
+5311,Child care workers and teachers’ aides
+5312,Child care workers and teachers’ aides
+5320,Personal care workers in health services
+5321,Personal care workers in health services
+5322,Personal care workers in health services
+5329,Personal care workers in health services
+5400,Protective services workers
+5410,Protective services workers
+5411,Protective services workers
+5412,Protective services workers
+5413,Protective services workers
+5414,Protective services workers
+5419,Protective services workers
+6000,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6100,Market gardeners and crop growers
+6110,Market gardeners and crop growers
+6111,Market gardeners and crop growers
+6112,Market gardeners and crop growers
+6113,Market gardeners and crop growers
+6114,Market gardeners and crop growers
+6120,Market gardeners and crop growers
+6121,Market gardeners and crop growers
+6122,Market gardeners and crop growers
+6123,Market gardeners and crop growers
+6129,Market gardeners and crop growers
+6130,Market gardeners and crop growers
+6200,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6210,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6220,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6221,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6222,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6223,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6224,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6300,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6310,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6320,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6330,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+6340,"Subsistence and Market-oriented skilled forestry, fishery and hunting workers"
+7000,Craft and related trades workers NEC
+7100,Craft and related trades workers NEC
+7110,Building frame and related trades workers
+7111,Building frame and related trades workers
+7112,Building frame and related trades workers
+7113,Building frame and related trades workers
+7114,Building frame and related trades workers
+7115,Building frame and related trades workers
+7119,Building frame and related trades workers
+7120,Building finishers and related trades workers
+7121,Building finishers and related trades workers
+7122,Building finishers and related trades workers
+7123,Building finishers and related trades workers
+7124,Building finishers and related trades workers
+7125,Building finishers and related trades workers
+7126,Building finishers and related trades workers
+7127,Building finishers and related trades workers
+7130,Building finishers and related trades workers
+7131,Building finishers and related trades workers
+7132,Building finishers and related trades workers
+7133,Building finishers and related trades workers
+7200,"Metal, machinery and related trades workers"
+7210,"Metal, machinery and related trades workers"
+7211,"Metal, machinery and related trades workers"
+7212,"Metal, machinery and related trades workers"
+7213,"Metal, machinery and related trades workers"
+7214,"Metal, machinery and related trades workers"
+7215,"Metal, machinery and related trades workers"
+7220,"Metal, machinery and related trades workers"
+7221,"Metal, machinery and related trades workers"
+7222,"Metal, machinery and related trades workers"
+7223,"Metal, machinery and related trades workers"
+7224,"Metal, machinery and related trades workers"
+7230,Machinery mechanics and repairers
+7231,Machinery mechanics and repairers
+7232,Machinery mechanics and repairers
+7233,Machinery mechanics and repairers
+7234,Machinery mechanics and repairers
+7300,Craft and related trades workers NEC
+7310,"Handicraft, Wood treaters, cabinet-makers and related trades workers"
+7311,"Handicraft, Wood treaters, cabinet-makers and related trades workers"
+7312,"Handicraft, Wood treaters, cabinet-makers and related trades workers"
+7313,"Handicraft, Wood treaters, cabinet-makers and related trades workers"
+7314,"Handicraft, Wood treaters, cabinet-makers and related trades workers"
+7315,"Handicraft, Wood treaters, cabinet-makers and related trades workers"
+7316,"Handicraft, Wood treaters, cabinet-makers and related trades workers"
+7317,"Handicraft, Wood treaters, cabinet-makers and related trades workers"
+7318,"Handicraft, Wood treaters, cabinet-makers and related trades workers"
+7319,"Handicraft, Wood treaters, cabinet-makers and related trades workers"
+7320,Craft and related trades workers NEC
+7321,Craft and related trades workers NEC
+7322,Craft and related trades workers NEC
+7323,Craft and related trades workers NEC
+7400,Electrical and electronics trades workers
+7410,Electrical and electronics trades workers
+7411,Electrical and electronics trades workers
+7412,Electrical and electronics trades workers
+7413,Electrical and electronics trades workers
+7420,Electrical and electronics trades workers
+7421,Electrical and electronics trades workers
+7422,Electrical and electronics trades workers
+7500,Craft and related trades workers NEC
+7510,Food processing and related trades workers
+7511,Food processing and related trades workers
+7512,Food processing and related trades workers
+7513,Food processing and related trades workers
+7514,Food processing and related trades workers
+7515,Food processing and related trades workers
+7516,Food processing and related trades workers
+7520,"Handicraft, wood and Wood treaters, cabinet-makers and related trades workers"
+7521,"Handicraft, wood and Wood treaters, cabinet-makers and related trades workers"
+7522,"Handicraft, wood and Wood treaters, cabinet-makers and related trades workers"
+7523,"Handicraft, wood and Wood treaters, cabinet-makers and related trades workers"
+7530,"Garment, Textile, fur and leather workers and product machine operators"
+7531,"Garment, Textile, fur and leather workers and product machine operators"
+7532,"Garment, Textile, fur and leather workers and product machine operators"
+7533,"Garment, Textile, fur and leather workers and product machine operators"
+7534,"Garment, Textile, fur and leather workers and product machine operators"
+7535,"Garment, Textile, fur and leather workers and product machine operators"
+7536,"Garment, Textile, fur and leather workers and product machine operators"
+7540,Craft and related trades workers NEC
+7541,Craft and related trades workers NEC
+7542,Craft and related trades workers NEC
+7543,Craft and related trades workers NEC
+7544,Craft and related trades workers NEC
+7549,Craft and related trades workers NEC
+8000,Plant and machine operators and Assemblers
+8100,Stationary plant and machine operators
+8110,Stationary plant and machine operators
+8111,Stationary plant and machine operators
+8112,Stationary plant and machine operators
+8113,Stationary plant and machine operators
+8114,Stationary plant and machine operators
+8120,Stationary plant and machine operators
+8121,Stationary plant and machine operators
+8122,Stationary plant and machine operators
+8130,Stationary plant and machine operators
+8131,Stationary plant and machine operators
+8132,Stationary plant and machine operators
+8140,Stationary plant and machine operators
+8141,Stationary plant and machine operators
+8142,Stationary plant and machine operators
+8143,Stationary plant and machine operators
+8150,"Garment, Textile, fur and leather workers and product machine operators"
+8151,"Garment, Textile, fur and leather workers and product machine operators"
+8152,"Garment, Textile, fur and leather workers and product machine operators"
+8153,"Garment, Textile, fur and leather workers and product machine operators"
+8154,"Garment, Textile, fur and leather workers and product machine operators"
+8155,"Garment, Textile, fur and leather workers and product machine operators"
+8156,"Garment, Textile, fur and leather workers and product machine operators"
+8157,"Garment, Textile, fur and leather workers and product machine operators"
+8159,"Garment, Textile, fur and leather workers and product machine operators"
+8160,Stationary plant and machine operators
+8170,Stationary plant and machine operators
+8171,Stationary plant and machine operators
+8172,Stationary plant and machine operators
+8180,Stationary plant and machine operators
+8181,Stationary plant and machine operators
+8182,Stationary plant and machine operators
+8183,Stationary plant and machine operators
+8189,Stationary plant and machine operators
+8200,assemblers
+8210,assemblers
+8211,assemblers
+8212,assemblers
+8219,assemblers
+8300,"Car, van and motorcycle drivers"
+8310,"rail, bus and tram drivers and attendants"
+8311,"rail, bus and tram drivers and attendants"
+8312,"rail, bus and tram drivers and attendants"
+8320,"Car, van and motorcycle drivers"
+8321,"Car, van and motorcycle drivers"
+8322,"Car, van and motorcycle drivers"
+8330,Heavy truck and bus drivers
+8331,"rail, bus and tram drivers and attendants"
+8332,Heavy truck and bus drivers
+8340,Mobile plant operators
+8341,Mobile plant operators
+8342,Mobile plant operators
+8343,Mobile plant operators
+8344,Mobile plant operators
+8350,Mobile plant operators
+9000,Elementary occupations NEC
+9100,Cleaners and helpers
+9110,Cleaners and helpers
+9111,Cleaners and helpers
+9112,Cleaners and helpers
+9120,Cleaners and helpers
+9121,Cleaners and helpers
+9122,Cleaners and helpers
+9123,Cleaners and helpers
+9129,Cleaners and helpers
+9200,"Agricultural, forestry and fishery labourers"
+9210,"Agricultural, forestry and fishery labourers"
+9211,"Agricultural, forestry and fishery labourers"
+9212,"Agricultural, forestry and fishery labourers"
+9213,"Agricultural, forestry and fishery labourers"
+9214,"Agricultural, forestry and fishery labourers"
+9215,"Agricultural, forestry and fishery labourers"
+9216,"Agricultural, forestry and fishery labourers"
+9300,Elementary occupations NEC
+9310,Mining and construction labourers
+9311,Mining and construction labourers
+9312,Mining and construction labourers
+9313,Mining and construction labourers
+9320,Manufacturing and Transport and storage labourers
+9321,Manufacturing and Transport and storage labourers
+9329,Manufacturing and Transport and storage labourers
+9330,Manufacturing and Transport and storage labourers
+9331,"Car, van and motorcycle drivers"
+9332,Mobile plant operators
+9333,Manufacturing and Transport and storage labourers
+9334,Sales workers
+9400,Food preparation assistants
+9410,Food preparation assistants
+9411,Food preparation assistants
+9412,Food preparation assistants
+9500,Elementary occupations NEC
+9510,Elementary occupations NEC
+9520,Elementary occupations NEC
+9600,Elementary occupations NEC
+9610,Elementary occupations NEC
+9611,Elementary occupations NEC
+9612,Elementary occupations NEC
+9613,Elementary occupations NEC
+9620,Elementary occupations NEC
+9621,Elementary occupations NEC
+9622,Elementary occupations NEC
+9623,Elementary occupations NEC
+9624,Elementary occupations NEC
+9629,Elementary occupations NEC

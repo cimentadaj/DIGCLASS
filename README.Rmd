@@ -43,6 +43,7 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO88 to ISCO08
   - [X] ISCO88 to ISCO68
   - [X] ISCO88COM to ESEC - 3 digits
+  - [X] ISCO88COM to MSEC - 3 digits
 
 * **ISCO08**
   - [X] ISCO08 to ISCO88
@@ -50,6 +51,8 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO08 to SIOPS
   - [X] ISCO08 to OESCH16
   - [X] ISCO08 to ESEC - 3 digits
+  - [X] ISCO08 to MSEC - 3 digits
+  - [] ISCO08 to Microclasses
 
 * **Extras**
   - [X] Translation between major/submajor/minor/unit groups for ISCO68, ISCO88 and ISCO08
@@ -127,6 +130,7 @@ This package has benefitted greatly from other open source packages that already
 - [] Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
 - [] Examples with ISSP
 - [] Proofread README to make sure there aren't any grammatical errors
+- [] Microclasses has been implemented but returns a vector of a different length.
 
 - [] I have to confirm with them how ESEC full-method is calculated. This applies for both ISCO88 and ISCO08. I wrote it like this:
 

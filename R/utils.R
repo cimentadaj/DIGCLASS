@@ -7,7 +7,7 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
     dplyr::left_join(translate_df, by = c("x" = input_var))
 
   if (label) {
-    no_labs <- c("isei", "siops", "mps88", "iseisps")
+    no_labs <- c("isei", "siops", "mps88", "iseisps", "microclasses")
     if (tolower(output_var) %in% no_labs) {
       stop(
         "Labels not available for these schemas: ",

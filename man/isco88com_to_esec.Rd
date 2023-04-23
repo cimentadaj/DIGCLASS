@@ -31,15 +31,17 @@ A character vector of ESEC codes.
 }
 \description{
 This function translates a vector of 3-digit ISCO88COM codes to ESEC codes using the
-translation table stored in the \code{all_schemas$isco88_to_esec} data frame. Note that in
-\code{all_schemas$isco88_to_esec} the column \code{ESEC} refers to the simplified ESEC, which
-is matched ISCO code to ESEC code directly, instead of using information on number
+translation table stored in the \code{all_schemas$isco88com_to_esec_three} data frame. Note that in
+\code{all_schemas$isco88com_to_esec_three} the column \code{ESEC} refers to the simplified ESEC, which
+matches ISCO codes to ESEC codes directly, instead of using information on number
 of employees, self-employed, etc..
 }
 \details{
-The ESEC translation is from ISCO88COM to ESEC. This translation is borrowed from the \code{iscogen} Stata package. For more info, search for 'ISCO-88 -> ESEC' in the documentation of the \code{iscogen} package. If you have ISCO88, you can translate it to ISCO88COM using the function \code{isco88_to_isco88com} before translating to ESEC.
-
 The codification used in the User's guide suggests that contrary to the full method, which uses whether the respondent is a supervisor, self-employed and whether the person has subordinates, the simple method matches directly the ISCO code to an ESEC code. For more info, please see page 17 of the European Socio-economic Classification (ESeC) User Guide (2006) by Rode, D. and Harrison, E.
+
+This translation is borrowed from the \code{iscogen} Stata package. For more info, search for 'ISCO-88 -> ESEC' in the documentation of the \code{iscogen} package. If you have ISCO88, you can translate it to ISCO88COM using the function \code{isco88_to_isco88com} before translating to ESEC.
+
+This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
 }
 \examples{
 library(dplyr)
@@ -83,8 +85,9 @@ ess \%>\%
       is_supervisor,
       self_employed,
       emplno,
-      label = TRUE, full_method = FALSE
+      label = TRUE,
+      full_method = FALSE
     )
- )
+  )
 
 }

@@ -1,31 +1,60 @@
 library(dplyr)
 library(stringr)
 
-ess %>%
-  mutate(
-    isco88_three = isco88_swap(isco88, from = 4, to = 3),
-    esec_full_no_label = isco88com_to_esec(isco88_three, is_supervisor, self_employed, emplno, full_method = TRUE, label = TRUE),
-    esec_simple = isco88com_to_esec(isco88_three, is_supervisor, self_employed, emplno, full_method = FALSE, label = TRUE)
-  ) %>%
-  select(isco88_three, starts_with("esec"))
+## ess %>%
+##   mutate(
+##     isco88_three = isco88_swap(isco88, from = 4, to = 3),
+##     esec_full_no_label = isco88com_to_esec(isco88_three, is_supervisor, self_employed, emplno, full_method = TRUE, label = TRUE),
+##     esec_simple = isco88com_to_esec(isco88_three, is_supervisor, self_employed, emplno, full_method = FALSE, label = TRUE)
+##   ) %>%
+##   select(isco88_three, starts_with("esec"))
 
 
+## ess %>%
+##   mutate(
+##     isco08_three = isco08_swap(isco08, from = 4, to = 3),
+##     esec_full_no_label = isco08_to_esec(
+##       isco08_three,
+##       is_supervisor,
+##       self_employed,
+##       emplno,
+##       label = TRUE
+##     ),
+##     esec = isco08_to_esec(
+##       isco08_three,
+##       is_supervisor,
+##       self_employed,
+##       emplno,
+##       label = FALSE
+##     )
+##   ) %>%
+##   select(isco08_three, starts_with("esec"))
+
+
+# convert to three digits
+ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
+
+# Using the full method
 ess %>%
-  mutate(
-    isco08_three = isco08_swap(isco08, from = 4, to = 3),
-    esec_full_no_label = isco08_to_esec(
+  transmute(
+    msec_label = isco08_to_msec(
       isco08_three,
       is_supervisor,
       self_employed,
       emplno,
       label = TRUE
     ),
-    esec = isco08_to_esec(
+    msec = isco08_to_msec(
       isco08_three,
       is_supervisor,
       self_employed,
       emplno,
       label = FALSE
     )
-  ) %>%
-  select(isco08_three, starts_with("esec"))
+  )
+
+
+library(dplyr)
+
+# Using the full method
+isco08_to_microclasses(ess$isco08)

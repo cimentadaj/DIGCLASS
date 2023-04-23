@@ -252,15 +252,16 @@ isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 #' Translate 3-digit ISCO88COM to ESEC
 #'
 #' This function translates a vector of 3-digit ISCO88COM codes to ESEC codes using the
-#' translation table stored in the `all_schemas$isco88_to_esec` data frame. Note that in
-#' `all_schemas$isco88_to_esec` the column `ESEC` refers to the simplified ESEC, which
-#' is matched ISCO code to ESEC code directly, instead of using information on number
+#' translation table stored in the `all_schemas$isco88com_to_esec_three` data frame. Note that in
+#' `all_schemas$isco88com_to_esec_three` the column `ESEC` refers to the simplified ESEC, which
+#' matches ISCO codes to ESEC codes directly, instead of using information on number
 #' of employees, self-employed, etc..
 #'
-#' The ESEC translation is from ISCO88COM to ESEC. This translation is borrowed from the `iscogen` Stata package. For more info, search for 'ISCO-88 -> ESEC' in the documentation of the `iscogen` package. If you have ISCO88, you can translate it to ISCO88COM using the function `isco88_to_isco88com` before translating to ESEC.
-#'
-#'
 #' The codification used in the User's guide suggests that contrary to the full method, which uses whether the respondent is a supervisor, self-employed and whether the person has subordinates, the simple method matches directly the ISCO code to an ESEC code. For more info, please see page 17 of the European Socio-economic Classification (ESeC) User Guide (2006) by Rode, D. and Harrison, E.
+#'
+#' This translation is borrowed from the `iscogen` Stata package. For more info, search for 'ISCO-88 -> ESEC' in the documentation of the `iscogen` package. If you have ISCO88, you can translate it to ISCO88COM using the function `isco88_to_isco88com` before translating to ESEC.
+#'
+#' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
 #'
 #'
 #' @param x A character vector of 3-digit ISCO88COM codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
@@ -314,9 +315,10 @@ isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 #'       is_supervisor,
 #'       self_employed,
 #'       emplno,
-#'       label = TRUE, full_method = FALSE
+#'       label = TRUE,
+#'       full_method = FALSE
 #'     )
-#'  )
+#'   )
 #'
 #' @export
 isco88com_to_esec <- function(x,
@@ -325,7 +327,6 @@ isco88com_to_esec <- function(x,
                               n_employees,
                               full_method = TRUE,
                               label = FALSE) {
-
   # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
 
   if (full_method) {
@@ -343,7 +344,7 @@ isco88com_to_esec <- function(x,
       x = x,
       col_position = col_position,
       output_var = "ESEC",
-      translate_df = all_schemas$isco88_to_esec,
+      translate_df = all_schemas$isco88com_to_esec_three,
       translate_label_df = all_labels$esec,
       label = label,
       digits = 4
@@ -353,7 +354,7 @@ isco88com_to_esec <- function(x,
       x,
       input_var = "ISCO88(3-digit)",
       output_var = "ESEC",
-      translate_df = all_schemas$isco88_to_esec,
+      translate_df = all_schemas$isco88com_to_esec_three,
       translate_label_df = all_labels$esec,
       label = label
     )
@@ -361,6 +362,79 @@ isco88com_to_esec <- function(x,
 
   res
 }
+
+#' Translate 3-digit ISCO88COM to MSEC
+#'
+#' This function translates a vector of 3-digit ISCO88COM codes to MSEC codes using the
+#' translation table stored in the `all_schemas$isco88com_to_msec` data frame.
+#'
+#' This translation we created from the document "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. Although originally called ESEG-Revised, the class schema has been formally called MSEC.
+#'
+#' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
+#'
+#' @param x A character vector of 3-digit ISCO88COM codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
+#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
+#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
+#' @param n_employees A numeric vector indicating the number of employees for each individual.
+#' @param label A logical value indicating whether to return the labels of the translated MSEC codes (default is \code{FALSE}).
+#'
+#' @return A character vector of MSEC codes.
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # convert to three digits
+#' ess$isco88com <- isco88_to_isco88com(ess$isco88)
+#' ess$isco88com_three <- isco88_swap(ess$isco88com, from = 4, to = 3)
+#'
+#' # Using the full method
+#' ess %>%
+#'   transmute(
+#'     msec_label = isco88com_to_msec(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     ),
+#'     msec = isco88com_to_msec(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     )
+#'   )
+#'
+#' @export
+isco88com_to_msec <- function(x,
+                              is_supervisor,
+                              self_employed,
+                              n_employees,
+                              label = FALSE) {
+
+  # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
+    col_position <- dplyr::case_when(
+      self_employed == 1 & n_employees >= 10 ~ 2,
+      self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 3,
+      self_employed == 1 & n_employees == 0 ~ 4,
+      self_employed == 0 & is_supervisor == 1 ~ 5,
+      self_employed == 0 & is_supervisor == 0 ~ 6,
+    )
+
+    res <- multiple_cols_translator(
+      x = x,
+      col_position = col_position,
+      output_var = "MSEC",
+      translate_df = all_schemas$isco88com_to_msec,
+      translate_label_df = all_labels$msec,
+      label = label,
+      digits = 4
+    )
+
+  res
+}
+
 
 
 
@@ -458,5 +532,3 @@ isco88_swap <- function(x,
     label = FALSE
   )
 }
-
-

@@ -22,8 +22,9 @@ ess <-
   mutate(
     emplno = if_else(emplno > 10000, 0, emplno),
     isco68 = isco88_to_isco68(isco88),
-    isco08 = isco68_to_isco08(isco68)
+    isco08 = isco68_to_isco08(isco68),
+    isco88com = isco88_to_isco88com(isco88)
   ) %>%
-  relocate(isco68, isco88, isco08, everything())
+  relocate(isco68, isco88, isco88com, isco08, everything())
 
 usethis::use_data(ess, overwrite = TRUE)

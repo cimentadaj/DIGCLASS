@@ -80,14 +80,118 @@ isco08_to_siops <- function(x) {
   )
 }
 
+#' Translate 3-digit ISCO08 to MSEC
+#'
+#' This function translates a vector of 3-digit ISCO08 codes to MSEC codes using the
+#' translation table stored in the `all_schemas$isco08_to_msec` data frame.
+#'
+#' This translation was created from the document "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. Although originally called ESEG-Revised, the class schema has been formally called MSEC.
+#'
+#' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
+#'
+#' @param x A character vector of 3-digit ISCO08 codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
+#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
+#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
+#' @param n_employees A numeric vector indicating the number of employees for each individual.
+#' @param label A logical value indicating whether to return the labels of the translated MSEC codes (default is \code{FALSE}).
+#'
+#' @return A character vector of MSEC codes.
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # convert to three digits
+#' ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
+#'
+#' # Using the full method
+#' ess %>%
+#'   transmute(
+#'     msec_label = isco08_to_msec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     ),
+#'     msec = isco08_to_msec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     )
+#'   )
+#'
+#' @export
+isco08_to_msec <- function(x,
+                           is_supervisor,
+                           self_employed,
+                           n_employees,
+                           label = FALSE) {
+  # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
+  col_position <- dplyr::case_when(
+    self_employed == 1 & n_employees >= 10 ~ 2,
+    self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 3,
+    self_employed == 1 & n_employees == 0 ~ 4,
+    self_employed == 0 & is_supervisor == 1 ~ 5,
+    self_employed == 0 & is_supervisor == 0 ~ 6,
+  )
+
+  res <- multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "MSEC",
+    translate_df = all_schemas$isco08_to_msec,
+    translate_label_df = all_labels$msec,
+    label = label,
+    digits = 4
+  )
+
+  res
+}
+
+#' Translate 4-digit ISCO08 to Microclasses
+#'
+#' This function translates a vector of 4-digit ISCO08 codes to Microclasses codes using the
+#' translation table stored in the `all_schemas$isco08_to_microclasses` data frame.
+#'
+#' This translation was created from the csv file attached with the document "Creation of the cross walk from ISCO 2008 to micro" written by Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors.
+#'
+#' This function does not have numeric categories so when translating from ISCO08, labels will be returned. The argument \code{label} does not apply to this function.
+#'
+#' @param x A character vector of 4-digit ISCO08 codes.
+#'
+#' @return A character vector of Microclasses codes.
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # Using the full method
+#' # ess %>%
+#' #  transmute(microclasses = isco08_to_microclasses(isco08))
+#'
+#' @export
+isco08_to_microclasses <- function(x) {
+  common_translator(
+    x,
+    input_var = "ISCO08",
+    output_var = "ESEC-MP",
+    translate_df = all_schemas$isco08_to_microclass,
+    translate_label_df = NULL,
+    label = FALSE
+  )
+}
+
+
 
 #' Translate 3-digit ISCO08 to ESEC
 #'
 #' This function translates a vector of 3-digit ISCO08 codes to ESEC codes using the
-#' translation table stored in the `all_schemas$isco08_to_esec` data frame.
+#' translation table stored in the `all_schemas$isco08_to_esec_three` data frame.
 #'
-#' The ESEC translation is from ISCO08 to ESEC. This translation is borrowed from the `iscogen` Stata package. For more info, search for 'ISCO-08 -> ESEC' in the documentation of the `iscogen` package.
+#' This translation is borrowed from the `iscogen` Stata package. For more info, search for 'ISCO-08 -> ESEC' in the documentation of the `iscogen` package.
 #'
+#' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
 #'
 #' Contrary to ISCO88-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 and not ISCO08COM.
 #'
@@ -109,7 +213,6 @@ isco08_to_siops <- function(x) {
 #' # convert to three digits
 #' ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
 #'
-#' # Using the full method
 #' ess %>%
 #'   transmute(
 #'     esec_label = isco08_to_esec(
