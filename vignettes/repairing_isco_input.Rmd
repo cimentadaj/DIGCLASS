@@ -83,7 +83,7 @@ isco_ready$ISCO08 <- repair_isco(isco_ready$ISCO08)
 The functions tells us some things:
 
 - If the column is a numeric, and warns that we need to turn it into a character
-- Warns that there are some occupations with digit less than 4. If your input ISCO variable is of 3, 2 or 1 digit, you can change it using the `occ_digits` argument set to another number.
+- Warns that there are some occupations with digit less than 4. If your input ISCO variable is of 3, 2 or 1 digit, you can change it using the `digits` argument set to another number.
 - Shows the transformation it made to harmonize all occupations. All transformations will be appending 0's from the left to the total number of digits.
 
 Ideally, you want to make sure you always read the data as characters because that way we can preserve the original coding of the data. You can read data as characters like this for a CSV:

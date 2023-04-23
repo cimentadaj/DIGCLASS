@@ -45,20 +45,21 @@ The codification used in the User's guide suggests that contrary to the full met
 library(dplyr)
 
 # convert to three digits
-ess$isco88_three <- isco88_swap(ess$isco88, from = 4, to = 3)
+ess$isco88com <- isco88_to_isco88com(ess$isco88)
+ess$isco88com_three <- isco88_swap(ess$isco88com, from = 4, to = 3)
 
 # Using the full method
 ess \%>\%
   transmute(
     esec_label = isco88com_to_esec(
-      isco88_three,
+      isco88com_three,
       is_supervisor,
       self_employed,
       emplno,
       label = TRUE
     ),
     esec = isco88com_to_esec(
-      isco88_three,
+      isco88com_three,
       is_supervisor,
       self_employed,
       emplno,
@@ -70,7 +71,7 @@ ess \%>\%
 ess \%>\%
   transmute(
     esec_simple = isco88com_to_esec(
-      isco88_three,
+      isco88com_three,
       is_supervisor,
       self_employed,
       emplno,
@@ -78,7 +79,7 @@ ess \%>\%
       full_method = FALSE
     ),
     esec_simple_label = isco88com_to_esec(
-      isco88_three,
+      isco88com_three,
       is_supervisor,
       self_employed,
       emplno,

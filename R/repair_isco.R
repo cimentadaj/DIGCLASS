@@ -6,10 +6,12 @@
 #'
 #' * Checks if the provided ISCO variable is a character vector, and if not, warns the user that numeric ISCO variables may contain lost data.
 #' * Checks that all occupations have the same number of digits and warns if not
-#' * Converts all occupations with digits less than \code{occ_digits} to have the same number of digits by appending `0` from the left until all have the same number of digits.
+#' * Converts all occupations with digits less than \code{digits} to have the same number of digits by appending `0` from the left until all have the same number of digits.
+#'
+#' Even if you're working with 3/2/1 digits, your ISCO codes should have 4 digits. So instead of having an ISCO code 241, DIGCLASS expects 2410, which is a 3-digit code.
 #'
 #' @param x ISCO variable to repair
-#' @param occ_digits The baseline digits that the function should expect. This is whether the variable is 4/3/2/1 digits.
+#' @param digits The baseline digits that the function should expect. This is whether the variable is 4/3/2/1 digits.
 #'
 #' @return Repaired ISCO variable
 #'
@@ -22,7 +24,7 @@
 #' }
 #'
 #' @export
-repair_isco <- function(x, occ_digits = 4) {
+repair_isco <- function(x, digits = 4) {
   if (is.numeric(x)) {
     cli::cli_alert_warning("ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html for more details. Converting to a character vector.")
     x <- as.character(x)
@@ -32,21 +34,21 @@ repair_isco <- function(x, occ_digits = 4) {
   x_nchar <- nchar(x_clean)
   unique_x <- unique(x_nchar)
 
-  if (any(unique_x > occ_digits)) {
-    bigger_digits <- unique_x[unique_x > occ_digits]
+  if (any(unique_x > digits)) {
+    bigger_digits <- unique_x[unique_x > digits]
     bigger_occs <- unique(x_clean[nchar(x_clean) %in% bigger_digits])
     cli::cli_abort(c(
-      "x" = "ISCO variable has occupations with {bigger_digits} digits. The column needs to be normalized to have occupation digits that are {occ_digits} digits or less. Check out these values:",
+      "x" = "ISCO variable has occupations with {bigger_digits} digits. The column needs to be normalized to have occupation digits that are {digits} digits or less. Check out these values:",
       "x" = paste0("x Occupation `", bigger_occs, "`")
     ))
   }
 
-  if (any(unique_x < occ_digits)) {
-    cli::cli_alert_info("ISCO variable has occupations with digits less than {occ_digits}. Converting to {occ_digits} digits.")
+  if (any(unique_x < digits)) {
+    cli::cli_alert_info("ISCO variable has occupations with digits less than {digits}. Converting to {digits} digits.")
 
-    new_x <- pad(x_clean, occ_digits)
-    original_vals <- unique(x_clean[nchar(x_clean) < occ_digits])
-    converted_vals <- pad(original_vals, occ_digits)
+    new_x <- pad(x_clean, digits)
+    original_vals <- unique(x_clean[nchar(x_clean) < digits])
+    converted_vals <- pad(original_vals, digits)
     converted_list <- paste0("Converted `", original_vals, "` to `", converted_vals, "`")
     cli::cli_ul(converted_list)
     x[!is.na(x)] <- new_x

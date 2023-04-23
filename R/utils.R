@@ -1,6 +1,6 @@
 common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, digits = 4) {
 
-  x <- repair_isco(x, occ_digits = digits)
+  x <- repair_isco(x, digits = digits)
 
   res <-
     tibble::tibble(x = as.character(x)) %>%
@@ -29,7 +29,7 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
 
 multiple_cols_translator <- function(x, col_position, output_var, translate_df, translate_label_df, label, digits = 4) {
 
-  x <- repair_isco(x, occ_digits = digits)
+  x <- repair_isco(x, digits = digits)
 
   class_match <- match(x, translate_df[[1]])
   matrix_translate_df <- as.matrix(translate_df)

@@ -276,20 +276,21 @@ isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 #' library(dplyr)
 #'
 #' # convert to three digits
-#' ess$isco88_three <- isco88_swap(ess$isco88, from = 4, to = 3)
+#' ess$isco88com <- isco88_to_isco88com(ess$isco88)
+#' ess$isco88com_three <- isco88_swap(ess$isco88com, from = 4, to = 3)
 #'
 #' # Using the full method
 #' ess %>%
 #'   transmute(
 #'     esec_label = isco88com_to_esec(
-#'       isco88_three,
+#'       isco88com_three,
 #'       is_supervisor,
 #'       self_employed,
 #'       emplno,
 #'       label = TRUE
 #'     ),
 #'     esec = isco88com_to_esec(
-#'       isco88_three,
+#'       isco88com_three,
 #'       is_supervisor,
 #'       self_employed,
 #'       emplno,
@@ -301,7 +302,7 @@ isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 #' ess %>%
 #'   transmute(
 #'     esec_simple = isco88com_to_esec(
-#'       isco88_three,
+#'       isco88com_three,
 #'       is_supervisor,
 #'       self_employed,
 #'       emplno,
@@ -309,7 +310,7 @@ isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 #'       full_method = FALSE
 #'     ),
 #'     esec_simple_label = isco88com_to_esec(
-#'       isco88_three,
+#'       isco88com_three,
 #'       is_supervisor,
 #'       self_employed,
 #'       emplno,
@@ -324,6 +325,9 @@ isco88com_to_esec <- function(x,
                               n_employees,
                               full_method = TRUE,
                               label = FALSE) {
+
+  # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
+
   if (full_method) {
     col_position <- dplyr::case_when(
       # Is it an employee?

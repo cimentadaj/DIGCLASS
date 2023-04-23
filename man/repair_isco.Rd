@@ -4,12 +4,12 @@
 \alias{repair_isco}
 \title{Repair an ISCO variable}
 \usage{
-repair_isco(x, occ_digits = 4)
+repair_isco(x, digits = 4)
 }
 \arguments{
 \item{x}{ISCO variable to repair}
 
-\item{occ_digits}{The baseline digits that the function should expect. This is whether the variable is 4/3/2/1 digits.}
+\item{digits}{The baseline digits that the function should expect. This is whether the variable is 4/3/2/1 digits.}
 }
 \value{
 Repaired ISCO variable
@@ -22,8 +22,10 @@ When reading datasets, it might happen that the ISCO column is read as a numeric
 \itemize{
 \item Checks if the provided ISCO variable is a character vector, and if not, warns the user that numeric ISCO variables may contain lost data.
 \item Checks that all occupations have the same number of digits and warns if not
-\item Converts all occupations with digits less than \code{occ_digits} to have the same number of digits by appending \code{0} from the left until all have the same number of digits.
+\item Converts all occupations with digits less than \code{digits} to have the same number of digits by appending \code{0} from the left until all have the same number of digits.
 }
+
+Even if you're working with 3/2/1 digits, your ISCO codes should have 4 digits. So instead of having an ISCO code 241, DIGCLASS expects 2410, which is a 3-digit code.
 }
 \examples{
 
