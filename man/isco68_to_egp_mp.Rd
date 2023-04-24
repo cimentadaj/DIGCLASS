@@ -35,7 +35,7 @@ EGP-MP is a class schema similar to EGP but reassigns managers and professionals
 \item All occupations with EGP digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a \strong{lower professional}
 }
 
-All other EGP codes remaing the same.
+All other EGP codes remain the same.
 
 This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
 }

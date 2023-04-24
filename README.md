@@ -143,3 +143,4 @@ This package has benefitted greatly from other open source packages that already
 - [] Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
 - [] Examples with ISSP
 - [] Proofread README to make sure there aren't any grammatical errors
+- [] Adds test for managers/professional function

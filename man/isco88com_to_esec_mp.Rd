@@ -45,7 +45,7 @@ After translating from ISCO88COM to ESEC, the logic used to build ESEC-MP is the
 \item All occupations with ESEC digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a \strong{lower professional}
 }
 
-All other ESEC codes remaing the same.
+All other ESEC codes remain the same.
 
 This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
 

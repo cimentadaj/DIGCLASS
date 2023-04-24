@@ -203,7 +203,7 @@ isco68_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 #' * All occupations with EGP digit 2 and is self-employed with more than 1 employee, is a **lower manager**
 #' * All occupations with EGP digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
 #'
-#' All other EGP codes remaing the same.
+#' All other EGP codes remain the same.
 #'
 #' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
 #'
@@ -279,7 +279,7 @@ isco68_to_egp_mp <- function(x,
 #' * All occupations with EGP11 digit 2 and is self-employed with more than 1 employee, is a **lower manager**
 #' * All occupations with EGP11 digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
 #'
-#' All other EGP11 codes remaing the same.
+#' All other EGP11 codes remain the same.
 #'
 #' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
 #'
