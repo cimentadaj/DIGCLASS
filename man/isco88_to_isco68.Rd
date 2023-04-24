@@ -7,7 +7,7 @@
 isco88_to_isco68(x, label = FALSE)
 }
 \arguments{
-\item{x}{A character vector of ISCO08 codes.}
+\item{x}{A character vector of ISCO88 codes.}
 
 \item{label}{A logical value indicating whether to return the labels of the
 translated ISCO88 codes (default is \code{FALSE}).}
@@ -16,13 +16,13 @@ translated ISCO88 codes (default is \code{FALSE}).}
 A character vector of ISCO88 codes.
 }
 \description{
-This function translates a vector of ISCO08 codes to ISCO88 codes using the
-translation table stored in the \code{all_schemas$isco08_to_isco88} data frame.
+This function translates a vector of ISCO88 codes to ISCO68 codes using the
+translation table stored in the \code{all_schemas$isco88_to_isco68} data frame.
 }
 \examples{
 library(dplyr)
 
-ess \%>\% mutate(ISCO88 = isco08_to_isco88(isco08, label = TRUE))
-ess \%>\% mutate(ISCO88 = isco08_to_isco88(isco08, label = FALSE))
+ess \%>\% mutate(ISCO88 = isco88_to_isco68(isco88, label = TRUE))
+ess \%>\% mutate(ISCO88 = isco88_to_isco68(isco88, label = FALSE))
 
 }

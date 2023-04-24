@@ -150,35 +150,36 @@ isco08_to_msec <- function(x,
   res
 }
 
-#' Translate 4-digit ISCO08 to Microclasses
+#' Translate 4-digit ISCO08 to microclasses
 #'
-#' This function translates a vector of 4-digit ISCO08 codes to Microclasses codes using the
-#' translation table stored in the `all_schemas$isco08_to_microclasses` data frame.
+#' This function translates a vector of 4-digit ISCO08 codes to microclasses codes using the
+#' translation table stored in the `all_schemas$isco08_to_microclass` data frame.
 #'
-#' This translation was created from the csv file attached with the document "Creation of the cross walk from ISCO 2008 to micro" written by Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors.
-#'
-#' This function does not have numeric categories so when translating from ISCO08, labels will be returned. The argument \code{label} does not apply to this function.
+#' This translation was created from the Excel file shared by Oscar Smallenbroek called "isco08 to micro with numeric labels.xlsx". For more info, please contact the author.
 #'
 #' @param x A character vector of 4-digit ISCO08 codes.
+#' @param label A logical value indicating whether to return the labels of the translated microclass codes (default is \code{FALSE}).
 #'
-#' @return A character vector of Microclasses codes.
+#' @return A character vector of microclass codes.
 #'
 #' @examples
 #' library(dplyr)
 #'
 #' # Using the full method
-#' # ess %>%
-#' #  transmute(microclasses = isco08_to_microclasses(isco08))
+#' ess %>% transmute(microclasses = isco08_to_microclass(isco08))
+#'
+#'
+#' ess %>% transmute(microclasses = isco08_to_microclass(isco08, label = TRUE))
 #'
 #' @export
-isco08_to_microclasses <- function(x) {
+isco08_to_microclass <- function(x, label = FALSE) {
   common_translator(
     x,
     input_var = "ISCO08",
-    output_var = "ESEC-MP",
+    output_var = "microclass",
     translate_df = all_schemas$isco08_to_microclass,
-    translate_label_df = NULL,
-    label = FALSE
+    translate_label_df = all_labels$microclass,
+    label = label
   )
 }
 
@@ -193,7 +194,7 @@ isco08_to_microclasses <- function(x) {
 #'
 #' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
 #'
-#' Contrary to ISCO88-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 and not ISCO08COM.
+#' Contrary to ISCO88COM-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 and not ISCO08COM.
 #'
 #' @param x A character vector of 3-digit ISCO08 codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
 #'
@@ -262,6 +263,81 @@ isco08_to_esec <- function(x,
 }
 
 
+#' Translate 3-digit ISCO08 to ESEC-MP
+#'
+#' This function translates a vector of 3-digit ISCO08 codes to ESEC-MP codes. ESEC-MP is a class schema similar to ESEC but reassigns managers and professionals (ISCO08 codes 1 and 2) to have both high/low managers and profesionals.
+#'
+#' @details
+#'
+#' The `MP` in `ESEC-MP`stands for Managers and Professionals. The logic used to build this is like this:
+#'
+#' * All occupations with ESEC digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
+#' * All occupations with ESEC digit 1 and is self-employed with more than 1 employee, **is a high manager**
+#' * All occupations with ESEC digit 1 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **high professional**
+#'
+#' * All occupations with ESEC digit 2 and ISCO 1-digit 0 or 1 or has subordinates, is a **lower manager**
+#' * All occupations with ESEC digit 2 and is self-employed with more than 1 employee, is a **lower manager**
+#' * All occupations with ESEC digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
+#'
+#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
+#'
+#' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
+#'
+#' @param x A character vector of 3-digit ISCO08 codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
+#'
+#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
+#'
+#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
+#'
+#' @param n_employees A numeric vector indicating the number of employees for each individual.
+#'
+#' @param label A logical value indicating whether to return the labels of the translated ESEC-MP codes (default is \code{FALSE}).
+#'
+#' @return A character vector of ESEC-MP codes.
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # convert to three digits
+#' ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
+#'
+#' ess %>%
+#'   transmute(
+#'     esec_label = isco08_to_esec_mp(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     ),
+#'     esec = isco08_to_esec_mp(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     )
+#'   )
+#'
+#' @export
+isco08_to_esec_mp <- function(x,
+                              is_supervisor,
+                              self_employed,
+                              n_employees,
+                              label = FALSE) {
+  esec <- isco08_to_esec(x, is_supervisor, self_employed, n_employees, label = FALSE)
+
+  esec_mp <- managers_professionals_helper(
+    x,
+    esec,
+    is_supervisor,
+    self_employed,
+    n_employees,
+    label = label
+  )
+
+  esec_mp
+}
 
 #' Translate ISCO08 to OESCH
 

@@ -188,6 +188,158 @@ isco68_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 }
 
 
+#' Translate ISCO68 to EGP-MP
+#'
+#' This function translates a vector of ISCO68 codes to EGP-MP codes.
+#'
+#' @details
+#' EGP-MP is a class schema similar to EGP but reassigns managers and professionals (ISCO68 codes 1 and 2) to have both high/low managers and profesionals. Note that since this translation first converts ISCO68 to EGP and then applies the following logic to build EGP-MP:
+#'
+#' * All occupations with EGP digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
+#' * All occupations with EGP digit 1 and is self-employed with more than 1 employee, **is a high manager**
+#' * All occupations with EGP digit 1 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **high professional**
+#'
+#' * All occupations with EGP digit 2 and ISCO 1-digit 0 or 1 or has subordinates, is a **lower manager**
+#' * All occupations with EGP digit 2 and is self-employed with more than 1 employee, is a **lower manager**
+#' * All occupations with EGP digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
+#'
+#' All other EGP codes remaing the same.
+#'
+#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
+#'
+#' @param x A character vector of ISCO68 codes.
+#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
+#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
+#' @param n_employees A numeric vector indicating the number of employees for each individual.
+#' @param label A logical value indicating whether to return the labels of the
+#' translated EGP-MP codes (default is \code{FALSE}).
+#'
+#' @return A character vector of EGP-MP codes.
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' ess %>%
+#'   transmute(
+#'     isco68,
+#'     egp_mp = isco68_to_egp_mp(
+#'       isco68,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     ),
+#'     egp_mp_label = isco68_to_egp_mp(
+#'       isco68,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' @export
+isco68_to_egp_mp <- function(x,
+                             is_supervisor,
+                             self_employed,
+                             n_employees,
+                             label = FALSE) {
+  egp <- isco68_to_egp(
+    x,
+    self_employed,
+    n_employees,
+    label = FALSE
+  )
+
+  egp_mp <- managers_professionals_helper(
+    x,
+    egp,
+    is_supervisor,
+    self_employed,
+    n_employees,
+    label = label
+  )
+
+  egp_mp
+}
+
+
+#' Translate ISCO68 to EGP11-MP
+#'
+#' This function translates a vector of ISCO68 codes to EGP11-MP codes.
+#'
+#' @details
+#' EGP11-MP is a class schema similar to EGP11 but reassigns managers and professionals (ISCO68 codes 1 and 2) to have both high/low managers and profesionals. Note that since this translation first converts ISCO68 to EGP11 and then applies the following logic to build EGP11-MP:
+#'
+#' * All occupations with EGP11 digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
+#' * All occupations with EGP11 digit 1 and is self-employed with more than 1 employee, **is a high manager**
+#' * All occupations with EGP11 digit 1 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **high professional**
+#'
+#' * All occupations with EGP11 digit 2 and ISCO 1-digit 0 or 1 or has subordinates, is a **lower manager**
+#' * All occupations with EGP11 digit 2 and is self-employed with more than 1 employee, is a **lower manager**
+#' * All occupations with EGP11 digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
+#'
+#' All other EGP11 codes remaing the same.
+#'
+#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
+#'
+#' @param x A character vector of ISCO68 codes.
+#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
+#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
+#' @param n_employees A numeric vector indicating the number of employees for each individual.
+#' @param label A logical value indicating whether to return the labels of the
+#' translated EGP11-MP codes (default is \code{FALSE}).
+#'
+#' @return A character vector of EGP11-MP codes.
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' ess %>%
+#'   transmute(
+#'     isco68,
+#'     egp_mp = isco68_to_egp11_mp(
+#'       isco68,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     ),
+#'     egp_mp_label = isco68_to_egp11_mp(
+#'       isco68,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' @export
+isco68_to_egp11_mp <- function(x,
+                               is_supervisor,
+                               self_employed,
+                               n_employees,
+                               label = FALSE) {
+  egp <- isco68_to_egp11(
+    x,
+    self_employed,
+    n_employees,
+    label = FALSE
+  )
+
+  egp_mp <- managers_professionals_helper(
+    x,
+    egp,
+    is_supervisor,
+    self_employed,
+    n_employees,
+    label = label
+  )
+
+  egp_mp
+}
+
+
 
 
 #' Swap ISCO68 between 1, 2, 3 and 4 digit groups

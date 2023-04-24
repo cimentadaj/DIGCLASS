@@ -1,9 +1,9 @@
 #' Translate ISCO88 to ISCO68
 #'
-#' This function translates a vector of ISCO08 codes to ISCO88 codes using the
-#' translation table stored in the `all_schemas$isco08_to_isco88` data frame.
+#' This function translates a vector of ISCO88 codes to ISCO68 codes using the
+#' translation table stored in the `all_schemas$isco88_to_isco68` data frame.
 #'
-#' @param x A character vector of ISCO08 codes.
+#' @param x A character vector of ISCO88 codes.
 #' @param label A logical value indicating whether to return the labels of the
 #' translated ISCO88 codes (default is \code{FALSE}).
 #'
@@ -12,8 +12,8 @@
 #' @examples
 #' library(dplyr)
 #'
-#' ess %>% mutate(ISCO88 = isco08_to_isco88(isco08, label = TRUE))
-#' ess %>% mutate(ISCO88 = isco08_to_isco88(isco08, label = FALSE))
+#' ess %>% mutate(ISCO88 = isco88_to_isco68(isco88, label = TRUE))
+#' ess %>% mutate(ISCO88 = isco88_to_isco68(isco88, label = FALSE))
 #'
 #' @export
 isco88_to_isco68 <- function(x, label = FALSE) {
@@ -249,6 +249,158 @@ isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 }
 
 
+#' Translate ISCO88 to EGP-MP
+#'
+#' This function translates a vector of ISCO88 codes to EGP-MP codes.
+#'
+#' @details
+#' EGP-MP is a class schema similar to EGP but reassigns managers and professionals (ISCO88 codes 1 and 2) to have both high/low managers and profesionals. Note that since this translation first converts ISCO88 to EGP and then applies the following logic to build EGP-MP:
+#'
+#' * All occupations with EGP digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
+#' * All occupations with EGP digit 1 and is self-employed with more than 1 employee, **is a high manager**
+#' * All occupations with EGP digit 1 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **high professional**
+#'
+#' * All occupations with EGP digit 2 and ISCO 1-digit 0 or 1 or has subordinates, is a **lower manager**
+#' * All occupations with EGP digit 2 and is self-employed with more than 1 employee, is a **lower manager**
+#' * All occupations with EGP digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
+#'
+#' All other EGP codes remaing the same.
+#'
+#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
+#'
+#' @param x A character vector of ISCO88 codes.
+#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
+#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
+#' @param n_employees A numeric vector indicating the number of employees for each individual.
+#' @param label A logical value indicating whether to return the labels of the
+#' translated EGP-MP codes (default is \code{FALSE}).
+#'
+#' @return A character vector of EGP-MP codes.
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     egp_mp = isco88_to_egp_mp(
+#'       isco88,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     ),
+#'     egp_mp_label = isco88_to_egp_mp(
+#'       isco88,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     )
+#'   )
+##'
+#' @export
+isco88_to_egp_mp <- function(x,
+                             is_supervisor,
+                             self_employed,
+                             n_employees,
+                             label = FALSE) {
+  egp <- isco88_to_egp(
+    x,
+    self_employed,
+    n_employees,
+    label = FALSE
+  )
+
+  egp_mp <- managers_professionals_helper(
+    x,
+    egp,
+    is_supervisor,
+    self_employed,
+    n_employees,
+    label = label
+  )
+
+  egp_mp
+}
+
+
+#' Translate ISCO88 to EGP11-MP
+#'
+#' This function translates a vector of ISCO88 codes to EGP11-MP codes.
+#'
+#' @details
+#' EGP11-MP is a class schema similar to EGP11 but reassigns managers and professionals (ISCO88 codes 1 and 2) to have both high/low managers and profesionals. Note that since this translation first converts ISCO88 to EGP11 and then applies the following logic to build EGP11-MP:
+#'
+#' * All occupations with EGP11 digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
+#' * All occupations with EGP11 digit 1 and is self-employed with more than 1 employee, **is a high manager**
+#' * All occupations with EGP11 digit 1 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **high professional**
+#'
+#' * All occupations with EGP11 digit 2 and ISCO 1-digit 0 or 1 or has subordinates, is a **lower manager**
+#' * All occupations with EGP11 digit 2 and is self-employed with more than 1 employee, is a **lower manager**
+#' * All occupations with EGP11 digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
+#'
+#' All other EGP11 codes remaing the same.
+#'
+#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
+#'
+#' @param x A character vector of ISCO88 codes.
+#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
+#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
+#' @param n_employees A numeric vector indicating the number of employees for each individual.
+#' @param label A logical value indicating whether to return the labels of the
+#' translated EGP11-MP codes (default is \code{FALSE}).
+#'
+#' @return A character vector of EGP11-MP codes.
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     egp_mp = isco88_to_egp11_mp(
+#'       isco88,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     ),
+#'     egp_mp_label = isco88_to_egp11_mp(
+#'       isco88,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' @export
+isco88_to_egp11_mp <- function(x,
+                               is_supervisor,
+                               self_employed,
+                               n_employees,
+                               label = FALSE) {
+  egp <- isco88_to_egp11(
+    x,
+    self_employed,
+    n_employees,
+    label = FALSE
+  )
+
+  egp_mp <- managers_professionals_helper(
+    x,
+    egp,
+    is_supervisor,
+    self_employed,
+    n_employees,
+    label = label
+  )
+
+  egp_mp
+}
+
+
 #' Translate 3-digit ISCO88COM to ESEC
 #'
 #' This function translates a vector of 3-digit ISCO88COM codes to ESEC codes using the
@@ -363,6 +515,125 @@ isco88com_to_esec <- function(x,
   res
 }
 
+
+#' Translate 3-digit ISCO88COM to ESEC-MP
+#'
+#' This function translates a vector of 3-digit ISCO88COM codes to ESEC-MP codes. ESEC-MP is a class schema similar to ESEC but reassigns managers and professionals (ISCO88COM codes 1 and 2) to have both high/low managers and profesionals. Note that since this translation first converts ISCO88COM to ESEC, this function has the possibility of using the 'Full-method' or the 'Simple method' for translating ISCO88COM to ESEC.
+#'
+#' The codification used in the ESEC user's guide suggests that contrary to the full method, which uses whether the respondent is a supervisor, self-employed, employee and whether the person has subordinates, the simple method matches directly the ISCO code to an ESEC code. For more info, please see page 17 of the European Socio-economic Classification (ESeC) User Guide (2006) by Rode, D. and Harrison, E.
+#'
+#' After translating from ISCO88COM to ESEC, the logic used to build ESEC-MP is the following:
+#'
+#' * All occupations with ESEC digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
+#' * All occupations with ESEC digit 1 and is self-employed with more than 1 employee, **is a high manager**
+#' * All occupations with ESEC digit 1 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **high professional**
+#'
+#' * All occupations with ESEC digit 2 and ISCO 1-digit 0 or 1 or has subordinates, is a **lower manager**
+#' * All occupations with ESEC digit 2 and is self-employed with more than 1 employee, is a **lower manager**
+#' * All occupations with ESEC digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
+#'
+#' All other ESEC codes remaing the same.
+#'
+#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
+#'
+#' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
+#'
+#'
+#' @param x A character vector of 3-digit ISCO88COM codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
+#'
+#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
+#'
+#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
+#'
+#' @param n_employees A numeric vector indicating the number of employees for each individual.
+#'
+#' @param full_method logical value indicating whether to do the translation using the full method (uses ISCO codes as well as information on number of employees, self-employed, etc..) or the simplified method (matches ISCO codes directly with ESEC codes).
+#'
+#' @param label A logical value indicating whether to return the labels of the translated ESEC codes (default is \code{FALSE}).
+#' @return A character vector of ESEC-MP codes.
+#'
+#' @examples
+#'
+#' library(dplyr)
+#'
+#' # Convert to three digits and isc08com
+#' ess$isco88com <- isco88_to_isco88com(ess$isco88)
+#' ess$isco88com_three <- isco88_swap(ess$isco88com, from = 4, to = 3)
+#'
+#' # Using the full method
+#' ess %>%
+#'   transmute(
+#'     isco88com_three,
+#'     esec_label = isco88com_to_esec_mp(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       full_method = TRUE,
+#'       label = TRUE
+#'     ),
+#'     esec = isco88com_to_esec_mp(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       full_method = TRUE,
+#'       label = FALSE
+#'     )
+#'   )
+#'
+#' # Using the simple method
+#' ess %>%
+#'   transmute(
+#'     isco88com_three,
+#'     esec_simple = isco88com_to_esec_mp(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       full_method = FALSE,
+#'       label = FALSE
+#'     ),
+#'     esec_simple_label = isco88com_to_esec_mp(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       full_method = FALSE,
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' @export
+isco88com_to_esec_mp <- function(x,
+                                 is_supervisor,
+                                 self_employed,
+                                 n_employees,
+                                 full_method = TRUE,
+                                 label = FALSE) {
+  esec <- isco88com_to_esec(
+    x,
+    is_supervisor,
+    self_employed,
+    n_employees,
+    full_method = full_method,
+    label = FALSE
+  )
+
+  esec_mp <- managers_professionals_helper(
+    x,
+    esec,
+    is_supervisor,
+    self_employed,
+    n_employees,
+    label = label
+  )
+
+  esec_mp
+}
+
+
+
 #' Translate 3-digit ISCO88COM to MSEC
 #'
 #' This function translates a vector of 3-digit ISCO88COM codes to MSEC codes using the
@@ -412,25 +683,24 @@ isco88com_to_msec <- function(x,
                               self_employed,
                               n_employees,
                               label = FALSE) {
-
   # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
-    col_position <- dplyr::case_when(
-      self_employed == 1 & n_employees >= 10 ~ 2,
-      self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 3,
-      self_employed == 1 & n_employees == 0 ~ 4,
-      self_employed == 0 & is_supervisor == 1 ~ 5,
-      self_employed == 0 & is_supervisor == 0 ~ 6,
-    )
+  col_position <- dplyr::case_when(
+    self_employed == 1 & n_employees >= 10 ~ 2,
+    self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 3,
+    self_employed == 1 & n_employees == 0 ~ 4,
+    self_employed == 0 & is_supervisor == 1 ~ 5,
+    self_employed == 0 & is_supervisor == 0 ~ 6,
+  )
 
-    res <- multiple_cols_translator(
-      x = x,
-      col_position = col_position,
-      output_var = "MSEC",
-      translate_df = all_schemas$isco88com_to_msec,
-      translate_label_df = all_labels$msec,
-      label = label,
-      digits = 4
-    )
+  res <- multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "MSEC",
+    translate_df = all_schemas$isco88com_to_msec,
+    translate_label_df = all_labels$msec,
+    label = label,
+    digits = 4
+  )
 
   res
 }

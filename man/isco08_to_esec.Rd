@@ -29,7 +29,7 @@ This translation is borrowed from the \code{iscogen} Stata package. For more inf
 
 This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
 
-Contrary to ISCO88-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 and not ISCO08COM.
+Contrary to ISCO88COM-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 and not ISCO08COM.
 }
 \examples{
 library(dplyr)
