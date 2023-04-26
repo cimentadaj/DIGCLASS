@@ -113,11 +113,11 @@
 <li>
 <input type="checkbox" disabled checked>ISCO88 to ISCO68</li>
 <li>
-<input type="checkbox" disabled checked>ISCO88COM to ESEC - 3 digits</li>
+<input type="checkbox" disabled checked>ISCO88COM to ESEC - ISCO88COM must be 3 digits</li>
 <li>
-<input type="checkbox" disabled checked>ISCO88COM to ESEC-MP - 3 digits</li>
+<input type="checkbox" disabled checked>ISCO88COM to ESEC-MP - ISCO88COM must be 3 digits</li>
 <li>
-<input type="checkbox" disabled checked>ISCO88COM to MSEC - 3 digits</li>
+<input type="checkbox" disabled checked>ISCO88COM to MSEC - ISCO88COM must be 3 digits</li>
 </ul>
 </li>
 <li>
@@ -132,11 +132,13 @@
 <li>
 <input type="checkbox" disabled checked>ISCO08 to OESCH16</li>
 <li>
-<input type="checkbox" disabled checked>ISCO08 to ESEC - 3 digits</li>
+<input type="checkbox" disabled checked>ISCO08 to ESEC - ISCO08 must be 3 digits</li>
 <li>
-<input type="checkbox" disabled checked>ISCO08 to ESEC-MP - 3 digits</li>
+<input type="checkbox" disabled checked>ISCO08 to ESEC - ISCO08 must be 2 digits</li>
 <li>
-<input type="checkbox" disabled checked>ISCO08 to MSEC - 3 digits</li>
+<input type="checkbox" disabled checked>ISCO08 to ESEC-MP - ISCO08 must be 3 digits</li>
+<li>
+<input type="checkbox" disabled checked>ISCO08 to MSEC - ISCO08 must be 3 digits</li>
 <li>
 <input type="checkbox" disabled checked>ISCO08 to Microclasses</li>
 </ul>
@@ -232,16 +234,16 @@
 <li><p><input type="checkbox" disabled checked>Microclasses has been implemented but returns a vector of a different length. Uncomment examples from this function</p></li>
 <li><p><input type="checkbox" disabled checked>I have to confirm with them how ESEC full-method is calculated. This applies for both ISCO88 and ISCO08. I wrote it like this:</p></li>
 <li><p><input type="checkbox" disabled checked>Oesch schemas have <code>.</code> inside the classes, what to do with those? We get NAs introduced when converting to numeric.</p></li>
-<li><p>[] Implement 2 digit translate of isco88/08 to esec</p></li>
-<li><p>[] Implement translation of isco88/08 to eseg</p></li>
-<li><p>[] Implement E.O Wright</p></li>
-<li><p>[] Oesch seems to have other labels which are shorter but no requivalence</p></li>
-<li><p>[] See if EU-SILC contains all variables needed to construct the E.O Wright schema. If yes, adapt E.O Wright schema</p></li>
-<li><p>[] Plan meeting with them to show current work</p></li>
-<li><p>[] Improve docs on each translation maybe mentioning what each class schemas is and pointing to the source and the website.</p></li>
-<li><p>[] Examples with ISSP</p></li>
-<li><p>[] Proofread README to make sure there aren’t any grammatical errors</p></li>
-<li><p>[] Adds test for managers/professional function</p></li>
+<li><p><input type="checkbox" disabled checked>Add 2-digit translation from ISCO88/08 to ESEC</p></li>
+<li><p>[] Add E.O Wright translation</p></li>
+<li><p>[] Add ISCO to ESEG translation (waiting for Guillem’s input)</p></li>
+<li><p>[] Add IPICS (waiting for Oscar to contact Florian)</p></li>
+<li><p>[] Write more tutorials on how to use the package</p></li>
+<li><p>[] Revise the documentation of the entire package, check for typos, etc…</p></li>
+<li><p>[] Add some more tests for the functions in the package</p></li>
+<li><p>[] Add some examples with the ISSP data</p></li>
+<li><p>[] Add a general check to fail if the number digits doesnt align with the translation function</p></li>
+<li><p>[] Add option to make labeling consistent between ESEC and EGP and their respective MP versions (see do file for ESEC-MP in the zip file Giullelm send).</p></li>
 </ul>
 </div>
 </div>
