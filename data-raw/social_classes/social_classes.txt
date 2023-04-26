@@ -11793,7 +11793,7 @@
 % END
 
 % CODELIST-isco08-microclass
-% source:  "isco08 to micro with numeric labels.xls" obtained on 24apr2023 from
+% source: "isco08 to micro with numeric labels.xls" obtained on 24apr2023 from
 % from Oscar Smallenbroek.
 % variables: ISCO08 microclass
 0000 990
@@ -12579,6 +12579,77 @@
 % 961 9 6 4 4 1  % see note above
 % 962 9 6 4 4 1  % see note above
 % END
+
+
+% CODELIST-isco08-esec-two
+% source: Euresec matrix (3 digits + 2 digits, full).xlsx obtained on 25apr2023 from
+%         Oscar Smallenbroek.
+% note: ISCO08 code 1300 and 8300 for column `ESEC-employee` has the possibility of
+% being either ESEC code 1/2 or 8/9 respectively. We chose to keep 1 and 8 because
+% they were the most predominant in ESEC translations in the European Social Survey data.
+% variables: ISCO08(2-digit) ESEC-selfemp(10+) ESEC-selfemp(1-9) ESEC-selfemp(0)
+% ESEC-supervisor ESEC-employee
+
+0110 1 1 1 1 1
+0210 3 3 3 2 3
+0310 3 3 3 2 3
+1000 1 4 4 1 1
+1100 1 1 1 1 1
+1200 1 4 4 1 1
+1300 1 4 4 1 1
+1400 1 4 4 2 2
+2000 1 1 1 1 1
+2100 1 1 1 1 1
+2200 1 2 2 2 2
+2300 1 2 2 2 2
+2400 1 1 1 1 1
+2500 1 2 2 2 2
+2600 1 1 1 1 1
+3000 1 4 4 2 3
+3100 1 2 2 2 2
+3200 1 2 2 2 2
+3300 1 2 2 2 2
+3400 1 4 4 2 3
+3500 1 4 4 2 3
+4000 1 4 4 2 3
+4100 1 4 4 2 3
+4200 1 4 4 6 7
+4300 1 4 4 2 3
+4400 1 4 4 6 3
+5000 1 4 4 6 7
+5100 1 4 4 6 7
+5200 1 4 4 6 7
+5300 1 4 4 6 7
+5400 3 3 3 6 7
+6000 1 5 5 6 8
+6100 1 5 5 6 8
+6200 1 5 5 6 8
+6300 5 5 5 5 5
+7000 1 4 4 6 8
+7100 1 4 4 6 8
+7200 1 4 4 6 8
+7300 1 4 4 6 8
+7400 1 4 4 6 8
+7500 1 4 4 6 8
+8000 1 4 4 6 9
+8100 1 4 4 6 9
+8200 1 4 4 6 9
+8300 1 4 4 6 8
+8310 1 4 4 6 8
+8320 1 4 4 6 9
+8330 1 4 4 6 8
+8340 1 4 4 6 9
+8350 1 4 4 6 8
+9000 1 4 4 6 9
+9100 1 4 4 6 9
+9200 1 5 5 6 9
+9300 1 5 5 6 9
+9400 1 4 4 6 9
+9500 1 4 4 6 9
+9600 1 4 4 6 9
+
+% END
+
 
 % CODELIST-isco08-oesch
 % source: iscooesch.ado (May 2018) by Simon Kaiser

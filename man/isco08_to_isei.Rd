@@ -2,23 +2,27 @@
 % Please edit documentation in R/isco08.R
 \name{isco08_to_isei}
 \alias{isco08_to_isei}
-\title{Translate ISCO08 to ISEI}
+\title{Translate 4-digit ISCO08 to ISEI}
 \usage{
 isco08_to_isei(x)
 }
 \arguments{
-\item{x}{A character vector of ISCO08 codes.}
+\item{x}{A character vector of 4-digit ISCO08 codes.}
 }
 \value{
-A numeric vector of ISEI codes.
+A character vector of ISEI codes.
 }
 \description{
-This function translates a vector of ISCO08 codes to ISEI codes using the
-translation table stored in the \code{all_schemas$isco08_to_isei} data frame.
+This function translates a vector of 4-digit ISCO08 codes to ISEI codes using the translation table stored in the \code{all_schema$isco08_to_isei} data frame.
+}
+\details{
+This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO08 -> ISEI}.
+
+Since \code{ISEI} doesn't have any labels, the \code{labels} is not availabe in this function. The source of the translation is \code{isco08_with_isei.pdf} from \url{http://www.harryganzeboom.nl/isco08/}.
 }
 \examples{
 library(dplyr)
 
-ess \%>\% mutate(ISEI = isco08_to_isei(isco08))
+ess \%>\% transmute(isco08, isei = isco08_to_isei(isco08))
 
 }

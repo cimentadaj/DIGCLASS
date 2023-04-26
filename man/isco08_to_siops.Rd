@@ -2,23 +2,27 @@
 % Please edit documentation in R/isco08.R
 \name{isco08_to_siops}
 \alias{isco08_to_siops}
-\title{Translate ISCO08 to SIOPS}
+\title{Translate 4-digit ISCO08 to SIOPS}
 \usage{
 isco08_to_siops(x)
 }
 \arguments{
-\item{x}{A character vector of ISCO08 codes.}
+\item{x}{A character vector of 4-digit ISCO08 codes.}
 }
 \value{
 A character vector of SIOPS codes.
 }
 \description{
-This function translates a vector of ISCO08 codes to SIOPS codes using the
-translation table stored in the \code{all_schemas$isco08_to_siops} data frame.
+This function translates a vector of 4-digit ISCO08 codes to SIOPS codes using the translation table stored in the \code{all_schema$isco08_to_siops} data frame.
+}
+\details{
+This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO08 -> SIOPS}.
+
+Since \code{SIOPS} doesn't have any labels, the \code{labels} is not availabe in this function. The source of the translation is \code{isqotrei08.sps} from \url{http://www.harryganzeboom.nl/isco08/}.
 }
 \examples{
 library(dplyr)
 
-ess \%>\% mutate(SIOPS = isco08_to_siops(isco08))
+ess \%>\% transmute(isco08, SIOPS = isco08_to_siops(isco08))
 
 }

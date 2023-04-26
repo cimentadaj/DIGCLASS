@@ -186,6 +186,46 @@ ess %>%
   arrange(as.numeric(esec))
 
 
+res <- readxl::read_excel("/home/jorge/Downloads/class_schema/Carlos_ClassSchemes/ESeC (ISCO 88-08)/Euresec matrix (3 digits + 2 digits, full).xlsx", skip = 2, sheet = 3)
+
+zero <- str_detect(res$Code, "^0")
+
+res <-
+  res %>%
+  mutate(
+    Code = case_when(
+      zero ~ paste0(Code, "0"),
+      TRUE ~ paste0(Code, "00")
+    )
+  ) %>%
+  select(-Description)
+
+
+formatted_output <- sprintf("%s %s %s %s %s %s\n", res[[1]], res[[2]], res[[3]], res[[4]], res[[5]], res[[6]])
+cat(formatted_output)
+
+library(dplyr)
+
+# convert to two digits
+ess$isco08_two <- isco08_swap(ess$isco08, from = 4, to = 2)
+
+ess %>%
+  transmute(
+    esec_label = isco08_two_to_esec(
+      isco08_two,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = TRUE
+    ),
+    esec = isco08_two_to_esec(
+      isco08_two,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = FALSE
+    )
+  )
 
 
 library(dplyr)

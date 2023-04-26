@@ -2,7 +2,7 @@
 % Please edit documentation in R/isco08.R
 \name{isco08_to_microclass}
 \alias{isco08_to_microclass}
-\title{Translate 4-digit ISCO08 to microclasses}
+\title{Translate 4-digit ISCO08 to microclass}
 \usage{
 isco08_to_microclass(x, label = FALSE)
 }
@@ -15,8 +15,7 @@ isco08_to_microclass(x, label = FALSE)
 A character vector of microclass codes.
 }
 \description{
-This function translates a vector of 4-digit ISCO08 codes to microclasses codes using the
-translation table stored in the \code{all_schemas$isco08_to_microclass} data frame.
+This function translates a vector of 4-digit ISCO08 codes to microclass codes using the translation table stored in the \code{all_schema$isco08_to_microclass} data frame.
 }
 \details{
 This translation was created from the Excel file shared by Oscar Smallenbroek called "isco08 to micro with numeric labels.xlsx". For more info, please contact the author.
@@ -25,9 +24,10 @@ This translation was created from the Excel file shared by Oscar Smallenbroek ca
 library(dplyr)
 
 # Using the full method
-ess \%>\% transmute(microclasses = isco08_to_microclass(isco08))
-
-
-ess \%>\% transmute(microclasses = isco08_to_microclass(isco08, label = TRUE))
+ess \%>\% transmute(
+  isco08,
+  microclasses = isco08_to_microclass(isco08),
+  microclasses_label = isco08_to_microclass(isco08, label = TRUE)
+)
 
 }

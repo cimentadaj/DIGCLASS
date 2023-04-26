@@ -7,7 +7,7 @@
 isco08_to_esec_mp(x, is_supervisor, self_employed, n_employees, label = FALSE)
 }
 \arguments{
-\item{x}{A character vector of 3-digit ISCO08 codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.}
+\item{x}{A character vector of 3-digit ISCO08 codes. Even though these should be 3-digit, instead of 131, the code should be 1310, which is the 3-digit version of ISCO.}
 
 \item{is_supervisor}{A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).}
 
@@ -21,9 +21,9 @@ isco08_to_esec_mp(x, is_supervisor, self_employed, n_employees, label = FALSE)
 A character vector of ESEC-MP codes.
 }
 \description{
-This function translates a vector of 3-digit ISCO08 codes to ESEC-MP codes. ESEC-MP is a class schema similar to ESEC but reassigns managers and professionals (ISCO08 codes 1 and 2) to have both high/low managers and profesionals.
+This function translates a vector of 3-digit ISCO08 codes to ESEC-MP codes using the translation table stored in the \code{all_schema$isco08_to_esec} data frame. After translating to ESEC, this function reassigns managers and professionals (ISCO08 codes 1 and 2) to have both high/low managers and profesionals
 }
-\details{
+\section{TODO: After this is corrected in the code, correct it here and in all docs.}{
 The \code{MP} in \code{ESEC-MP}stands for Managers and Professionals. The logic used to build this is like this:
 \itemize{
 \item All occupations with ESEC digit 1 and ISCO 1-digit 0 or 1 or has subordinates, \strong{is a high manager}
@@ -36,8 +36,11 @@ The \code{MP} in \code{ESEC-MP}stands for Managers and Professionals. The logic 
 
 This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
 
-This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
+This function will accept 3 digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3-digits (1310, 1320, etc..)
+
+Contrary to ISCO88COM-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 and not ISCO08COM.
 }
+
 \examples{
 library(dplyr)
 
@@ -46,20 +49,20 @@ ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
 
 ess \%>\%
   transmute(
-    esec_label = isco08_to_esec_mp(
-      isco08_three,
-      is_supervisor,
-      self_employed,
-      emplno,
-      label = TRUE
-    ),
-    esec = isco08_to_esec_mp(
+    isco08_three,
+    esec = isco08_to_esec(
       isco08_three,
       is_supervisor,
       self_employed,
       emplno,
       label = FALSE
+    ),
+    esec_label = isco08_to_esec(
+      isco08_three,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = TRUE
     )
   )
-
 }

@@ -747,30 +747,8 @@ isco88_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
 }
 
 
-#' Swap ISCO88 between 1, 2, 3 and 4 digit groups
-#'
-#' This function translates a vector of ISCO88 codes between different digits. For most surveys, this will be translating between the 4 digit occupations to more general groups, such as two digits, three digits and four digits.
-#'
-#' Note that to translate using `isco88_swap` you'll need to provide the `from` and `to` arguments. The first one specifies the current number of digits of the input variable. If your variable is 4 digit occupations, then `from` should be `4`. If you want to translate 4 digit occupations to 3 digits then the arguments should be `from = 4` and `to = 3`. See the argument description of `from` and `to` for all possible values as well as examples on how this works.
-#'
-#' Note that translation can only be done from higher to smaller digits (4 to 3, 3 to 2, 3 to 1) and never the other way around (1 to 2, 2 to 3, 3 to 4)
-#'
-#' @param x A character vector of ISCO88 codes.
-#' @param from a numeric specifying the occupation digits of the input vector. Possible values are only 1, 2, 3 or 4.
-#' @param to a numeric specifying the desired occupation digits. Possible values are only 1, 2, 3 or 4.
-#'
-#' @return A character vector of ISCO88 codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' ess %>% mutate(
-#'   isco88_four_digits = isco88_swap(isco88, from = 4, to = 1),
-#'   isco88_three_digits = isco88_swap(isco88, from = 4, to = 2),
-#'   isco88_two_digits = isco88_swap(isco88, from = 4, to = 3),
-#'   isco88_one_digits = isco88_swap(isco88, from = 4, to = 4)
-#' )
-#'
+#' @rdname isco08_swap
+#' @order 2
 #' @export
 isco88_swap <- function(x,
                         from,

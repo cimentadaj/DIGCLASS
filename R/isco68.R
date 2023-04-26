@@ -342,37 +342,8 @@ isco68_to_egp11_mp <- function(x,
 
 
 
-#' Swap ISCO68 between 1, 2, 3 and 4 digit groups
-#'
-#' This function translates a vector of ISCO68 codes between different digits. For most surveys, this will be translating between the 1 digit occupations to more general groups, such as two digits, three digits and four digits.
-#'
-#' Note that to translate using `isco68_swap` you'll need to provide the `from` and `to` arguments. The first one specifies the current number of digits of the input variable. If your variable is 4 digit occupations, then `from` should be `4`. If you want to translate 4 digit occupations to 3 digits then the arguments should be `from = 4` and `to = 3`. See the argument description of `from` and `to` for all possible values as well as examples on how this works.
-#'
-#' Note that translation can only be done from higher to smaller digits (4 to 3, 3 to 2, 3 to 1) and never the other way around (1 to 2, 2 to 3, 3 to 4)
-#'
-#' ISCO68 might return some NAs depending on the occupation code as it does not have 4 digits for the groups 0000 and 1000. Any translation from 4 digit codes to 1 digit codes within those groups will return an NA for those major groups. See the ILO website: \url{https://www.ilo.org/public/english/bureau/stat/isco/isco68/major.htm}.
-#'
-#'
-#' @param x A character vector of ISCO68 codes.
-#' @param from a numeric specifying the occupation digits of the input vector. Possible values are only 1, 2, 3 or 4.
-#' @param to a numeric specifying the desired occupation digits. Possible values are only 1, 2, 3 or 4.
-#'
-#' @return A character vector of ISCO68 codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' # Note that for certain four digit groups, isco68 does not have a
-#' # major group (0000, 1000). That means that Some NAs might be present,
-#' # such as for occupations that are between 1000 and 200. Remember to
-#' # check well the result.
-#' ess %>% mutate(
-#'   isco68_four_digits = isco68_swap(isco68, from = 4, to = 1),
-#'   isco68_three_digits = isco68_swap(isco68, from = 4, to = 2),
-#'   isco68_two_digits = isco68_swap(isco68, from = 4, to = 3),
-#'   isco68_one_digits = isco68_swap(isco68, from = 4, to = 4)
-#' )
-#'
+#' @rdname isco08_swap
+#' @order 3
 #' @export
 isco68_swap <- function(x,
                         from,

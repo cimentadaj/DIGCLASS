@@ -35,18 +35,19 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO88 to ISCO88COM
   - [X] ISCO88 to ISCO08
   - [X] ISCO88 to ISCO68
-  - [X] ISCO88COM to ESEC - 3 digits
-  - [X] ISCO88COM to ESEC-MP - 3 digits
-  - [X] ISCO88COM to MSEC - 3 digits
+  - [X] ISCO88COM to ESEC - ISCO88COM must be 3 digits
+  - [X] ISCO88COM to ESEC-MP - ISCO88COM must be 3 digits
+  - [X] ISCO88COM to MSEC - ISCO88COM must be 3 digits
 
 * **ISCO08**
   - [X] ISCO08 to ISCO88
   - [X] ISCO08 to ISEI
   - [X] ISCO08 to SIOPS
   - [X] ISCO08 to OESCH16
-  - [X] ISCO08 to ESEC - 3 digits
-  - [X] ISCO08 to ESEC-MP - 3 digits
-  - [X] ISCO08 to MSEC - 3 digits
+  - [X] ISCO08 to ESEC - ISCO08 must be 3 digits
+  - [X] ISCO08 to ESEC - ISCO08 must be 2 digits
+  - [X] ISCO08 to ESEC-MP - ISCO08 must be 3 digits
+  - [X] ISCO08 to MSEC - ISCO08 must be 3 digits
   - [X] ISCO08 to Microclasses
 
 * **Extras**
@@ -133,14 +134,14 @@ This package has benefitted greatly from other open source packages that already
 - [X] Microclasses has been implemented but returns a vector of a different length. Uncomment examples from this function
 - [X] I have to confirm with them how ESEC full-method is calculated. This applies for both ISCO88 and ISCO08. I wrote it like this:
 - [X] Oesch schemas have `.` inside the classes, what to do with those? We get NAs introduced when converting to numeric.
+- [X] Add 2-digit translation from ISCO88/08 to ESEC
 
-- [] Implement 2 digit translate of isco88/08 to esec
-- [] Implement translation of isco88/08 to eseg
-- [] Implement E.O Wright
-- [] Oesch seems to have other labels which are shorter but no requivalence
-- [] See if EU-SILC contains all variables needed to construct the E.O Wright schema. If yes, adapt E.O Wright schema
-- [] Plan meeting with them to show current work
-- [] Improve docs on each translation maybe mentioning what each  class schemas is and pointing to the source and the website.
-- [] Examples with ISSP
-- [] Proofread README to make sure there aren't any grammatical errors
-- [] Adds test for managers/professional function
+- [] Add E.O Wright translation
+- [] Add ISCO to ESEG translation (waiting for Guillem's input)
+- [] Add IPICS (waiting for Oscar to contact Florian)
+- [] Write more tutorials on how to use the package
+- [] Revise the documentation of the entire package, check for typos, etc...
+- [] Add some more tests for the functions in the package
+- [] Add some examples with the ISSP data
+- [] Add a general check to fail if the number digits doesnt align with the translation function
+- [] Add option to make labeling consistent between ESEC and EGP and their respective MP versions (see do file for ESEC-MP in the zip file Giullelm send).

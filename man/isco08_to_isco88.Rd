@@ -2,27 +2,33 @@
 % Please edit documentation in R/isco08.R
 \name{isco08_to_isco88}
 \alias{isco08_to_isco88}
-\title{Translate ISCO08 to ISCO88}
+\title{Translate 4-digit ISCO08 to ISCO88}
 \usage{
 isco08_to_isco88(x, label = FALSE)
 }
 \arguments{
-\item{x}{A character vector of ISCO08 codes.}
+\item{x}{A character vector of 4-digit ISCO08 codes.}
 
-\item{label}{A logical value indicating whether to return the labels of the
-translated ISCO88 codes (default is \code{FALSE}).}
+\item{label}{A logical value indicating whether to return the labels of the translated ISCO88 codes (default is \code{FALSE}).}
 }
 \value{
 A character vector of ISCO88 codes.
 }
 \description{
-This function translates a vector of ISCO08 codes to ISCO88 codes using the
-translation table stored in the \code{all_schemas$isco08_to_isco88} data frame.
+This function translates a vector of 4-digit ISCO08 codes to ISCO88 codes using the translation table stored in the \code{all_schema$isco08_to_isco88} data frame.
+}
+\details{
+This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO08 -> ISCO88}.
+
+This translation uses first mapping in case of duplicates (repeated mappings); this is consistent with the source because in SPSS later mappings are ignored. The source of the translation is \code{isco0888.sps} from \url{http://www.harryganzeboom.nl/isco08/}.
 }
 \examples{
 library(dplyr)
 
-ess \%>\% mutate(ISCO88 = isco08_to_isco88(isco08, label = TRUE))
-ess \%>\% mutate(ISCO88 = isco08_to_isco88(isco08, label = FALSE))
+ess \%>\% transmute(
+  isco08,
+  isco88 = isco08_to_isco88(isco08, label = FALSE),
+  isco88_label = isco08_to_isco88(isco08, label = TRUE)
+)
 
 }
