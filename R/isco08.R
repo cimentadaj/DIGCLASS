@@ -1,221 +1,36 @@
-#' `r rg_template_title("ISCO08", "ISCO88")`
+#' `r rg_template_title("ISCO08/ISCO88COM", "ESEC", digit = 3)`
 #'
-#' `r rg_template_intro("ISCO08", "ISCO88", "isco08_to_isco88")`
+#' `r rg_template_intro("ISCO08/ISCO08COM", "ESEC", c("isco08_to_esec", "isco88com_to_esec_three"), digit = 3)`
 #'
-#' @details`r rg_template_details_iscogen("ISCO08", "ISCO88")`
+#' @details `r rg_template_details_iscogen("ISCO08/ISCO88COM", "ESEC")`
 #'
-#' This translation uses first mapping in case of duplicates (repeated mappings); this is consistent with the source because in SPSS later mappings are ignored. The source of the translation is `isco0888.sps` from \url{http://www.harryganzeboom.nl/isco08/}.
+#' `r rg_template_digits_warning(digit = 3)`
 #'
-#' @param x `r rg_template_arg_x("ISCO08")`
-#' @param label `r rg_template_arg_label("ISCO88")`
+#' ISCO88COM has two types of translations: simple and full method. The full method uses information on whether the respondent is a supervisor, self-employed and the number of subordinates of the employee. In contrast, the simple method matches directly the ISCO code to an ESEC code.
 #'
-#' @return `r rg_template_return("ISCO88")`
+#' For more info, please see page 17 of the European Socio-economic Classification (ESeC) User Guide (2006) by Rode, D. and Harrison, E.
 #'
-#' @examples
-#' library(dplyr)
 #'
-#' ess %>% transmute(
-#'   isco08,
-#'   isco88 = isco08_to_isco88(isco08, label = FALSE),
-#'   isco88_label = isco08_to_isco88(isco08, label = TRUE)
-#' )
+#' The translation for ISCO88 is done from ISCO88COM which is not ISCO88. If you have ISCO88, you can translate it to ISCO88COM using the function `DIGCLASS::isco88_to_isco88com` before translating to ESEC.
 #'
-#' @export
-isco08_to_isco88 <- function(x, label = FALSE) {
-  common_translator(
-    x,
-    input_var = "ISCO08",
-    output_var = "ISCO88",
-    translate_df = all_schemas$isco08_to_isco88,
-    translate_label_df = all_labels$isco88,
-    label = label
-  )
-}
-
-
-#' `r rg_template_title("ISCO08", "ISEI")`
 #'
-#' `r rg_template_intro("ISCO08", "ISEI", "isco08_to_isei")`
+#' Contrary to ISCO88COM-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 directly to ESEC.
 #'
-#' @details`r rg_template_details_iscogen("ISCO08", "ISEI")`
-#'
-#' Since `ISEI` doesn't have any labels, the `labels` is not availabe in this function. The source of the translation is `isco08_with_isei.pdf` from \url{http://www.harryganzeboom.nl/isco08/}.
-#'
-#' @param x `r rg_template_arg_x("ISCO08")`
-#'
-#' @return `r rg_template_return("ISEI")`
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' ess %>% transmute(isco08, isei = isco08_to_isei(isco08))
-#'
-#' @export
-isco08_to_isei <- function(x) {
-  common_translator(
-    x,
-    input_var = "ISCO08",
-    output_var = "ISEI-08",
-    translate_df = all_schemas$isco08_to_isei,
-    translate_label_df = NULL,
-    label = FALSE
-  )
-}
-
-
-#' `r rg_template_title("ISCO08", "SIOPS")`
-#'
-#' `r rg_template_intro("ISCO08", "SIOPS", "isco08_to_siops")`
-#'
-#' @details`r rg_template_details_iscogen("ISCO08", "SIOPS")`
-#'
-#' Since `SIOPS` doesn't have any labels, the `labels` is not availabe in this function. The source of the translation is `isqotrei08.sps` from \url{http://www.harryganzeboom.nl/isco08/}.
-#'
-#' @param x `r rg_template_arg_x("ISCO08")`
-#'
-#' @return `r rg_template_return("SIOPS")`
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' ess %>% transmute(isco08, SIOPS = isco08_to_siops(isco08))
-#'
-#' @export
-isco08_to_siops <- function(x) {
-  common_translator(
-    x,
-    input_var = "ISCO08",
-    output_var = "SIOPS-08",
-    translate_df = all_schemas$isco08_to_siops,
-    translate_label_df = NULL,
-    label = FALSE
-  )
-}
-
-#' Translate 3-digit ISCO08 to MSEC
-#'
-#' This function translates a vector of 3-digit ISCO08 codes to MSEC codes using the
-#' translation table stored in the `all_schemas$isco08_to_msec` data frame.
-#'
-#' This translation was created from the document "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. Although originally called ESEG-Revised, the class schema has been formally called MSEC.
-#'
-#' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
-#'
-#' @param x A character vector of 3-digit ISCO08 codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
-#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
-#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
-#' @param n_employees A numeric vector indicating the number of employees for each individual.
-#' @param label A logical value indicating whether to return the labels of the translated MSEC codes (default is \code{FALSE}).
-#'
-#' @return A character vector of MSEC codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' # convert to three digits
-#' ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
-#'
-#' # Using the full method
-#' ess %>%
-#'   transmute(
-#'     msec_label = isco08_to_msec(
-#'       isco08_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = TRUE
-#'     ),
-#'     msec = isco08_to_msec(
-#'       isco08_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = FALSE
-#'     )
-#'   )
-#'
-#' @export
-isco08_to_msec <- function(x,
-                           is_supervisor,
-                           self_employed,
-                           n_employees,
-                           label = FALSE) {
-  # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
-  col_position <- dplyr::case_when(
-    self_employed == 1 & n_employees >= 10 ~ 2,
-    self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 3,
-    self_employed == 1 & n_employees == 0 ~ 4,
-    self_employed == 0 & is_supervisor == 1 ~ 5,
-    self_employed == 0 & is_supervisor == 0 ~ 6,
-  )
-
-  res <- multiple_cols_translator(
-    x = x,
-    col_position = col_position,
-    output_var = "MSEC",
-    translate_df = all_schemas$isco08_to_msec,
-    translate_label_df = all_labels$msec,
-    label = label,
-    digits = 4
-  )
-
-  res
-}
-
-#' `r rg_template_title("ISCO08", "microclass")`
-#'
-#' `r rg_template_intro("ISCO08", "microclass", "isco08_to_microclass")`
-#'
-#' @details This translation was created from the Excel file shared by Oscar Smallenbroek called "isco08 to micro with numeric labels.xlsx". For more info, please contact the author.
-#'
-#' @param x `r rg_template_arg_x("ISCO08")`
-#' @param label `r rg_template_arg_label("microclass")`
-#'
-#' @return `r rg_template_return("microclass")`
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' # Using the full method
-#' ess %>% transmute(
-#'   isco08,
-#'   microclasses = isco08_to_microclass(isco08),
-#'   microclasses_label = isco08_to_microclass(isco08, label = TRUE)
-#' )
-#'
-#' @export
-isco08_to_microclass <- function(x, label = FALSE) {
-  common_translator(
-    x,
-    input_var = "ISCO08",
-    output_var = "microclass",
-    translate_df = all_schemas$isco08_to_microclass,
-    translate_label_df = all_labels$microclass,
-    label = label
-  )
-}
-
-
-#' `r rg_template_title("ISCO08", "ESEC", digit = 3)`
-#'
-#' `r rg_template_intro("ISCO08", "ESEC", "isco08_to_esec", digit = 3)`
-#'
-#' @details `r rg_template_details_iscogen("ISCO08", "ESEC")` `r rg_template_digits_warning(digit = 3)`
-#'
-#' Contrary to ISCO88COM-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 and not ISCO08COM.
-#'
-#' @param x `r rg_template_arg_x_digit("ISCO08", digit = 3)`
+#' @param x `r rg_template_arg_x_digit("ISCO", digit = 3)`
 #' @param is_supervisor `r rg_template_arg_supervisor()`
 #' @param self_employed `r rg_template_arg_selfemployed()`
 #' @param n_employees `r rg_template_arg_nemployees()`
+#' @param full_method a boolean on whether to apply the full method or the simple method.
 #' @param label `r rg_template_arg_label("ESEC")`
 #'
 #' @return `r rg_template_return("ESEC")`
 #'
+#' @order 1
+#'
 #' @examples
 #' library(dplyr)
 #'
-#' # convert to three digits
+#' # convert isco08 to three digits
 #' ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
 #'
 #' ess %>%
@@ -234,6 +49,47 @@ isco08_to_microclass <- function(x, label = FALSE) {
 #'       self_employed,
 #'       emplno,
 #'       label = TRUE
+#'     )
+#'   )
+#'
+#' # convert isco88 to three digits
+#' ess$isco88com_three <- isco88_swap(ess$isco88com, from = 4, to = 3)
+#'
+#' # Using the full method
+#' ess %>%
+#'   transmute(
+#'     isco88com_three,
+#'     esec_label = isco88com_to_esec(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE,
+#'       full_method = TRUE
+#'     ),
+#'     esec_no_label = isco88com_to_esec(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE,
+#'       full_method = TRUE
+#'     )
+#'   )
+#'
+#' # Using the simple method
+#' ess %>%
+#'   transmute(
+#'     isco88com_three,
+#'     esec_simple = isco88com_to_esec(
+#'       isco88com_three,
+#'       label = FALSE,
+#'       full_method = FALSE
+#'     ),
+#'     esec_simple_label = isco88com_to_esec(
+#'       isco88com_three,
+#'       label = TRUE,
+#'       full_method = FALSE
 #'     )
 #'   )
 #'
@@ -267,87 +123,15 @@ isco08_to_esec <- function(x,
   res
 }
 
-
-#' `r rg_template_title("ISCO08", "ESEC-MP", digit = 3)`
-#'
-#' `r rg_template_intro("ISCO08", "ESEC-MP", "isco08_to_esec", digit = 3)` After translating to ESEC, this function reassigns managers and professionals (ISCO08 codes 1 and 2) to have both high/low managers and profesionals
-#'
-#' @details
-#'
-#' # TODO: After this is corrected in the code, correct it here and in all docs.
-#' The `MP` in `ESEC-MP`stands for Managers and Professionals. The logic used to build this is like this:
-#'
-#' * All occupations with ESEC digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
-#' * All occupations with ESEC digit 1 and is self-employed with more than 1 employee, **is a high manager**
-#' * All occupations with ESEC digit 1 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **high professional**
-#'
-#' * All occupations with ESEC digit 2 and ISCO 1-digit 0 or 1 or has subordinates, is a **lower manager**
-#' * All occupations with ESEC digit 2 and is self-employed with more than 1 employee, is a **lower manager**
-#' * All occupations with ESEC digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
-#'
-#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
-#'
-#' `r rg_template_digits_warning(digit = 3)`
-#'
-#' Contrary to ISCO88COM-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 and not ISCO08COM.
-#'
-#' @param x `r rg_template_arg_x_digit("ISCO08", digit = 3)`
-#' @inheritParams isco08_to_esec
-#' @param label `r rg_template_arg_label("ESEC-MP")`
-#'
-#' @return `r rg_template_return("ESEC-MP")`
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' # convert to three digits
-#' ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
-#'
-#' ess %>%
-#'   transmute(
-#'     isco08_three,
-#'     esec = isco08_to_esec(
-#'       isco08_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = FALSE
-#'     ),
-#'     esec_label = isco08_to_esec(
-#'       isco08_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = TRUE
-#'     )
-#'   )
-#' @export
-isco08_to_esec_mp <- function(x,
-                              is_supervisor,
-                              self_employed,
-                              n_employees,
-                              label = FALSE) {
-  esec <- isco08_to_esec(x, is_supervisor, self_employed, n_employees, label = FALSE)
-
-  esec_mp <- managers_professionals_helper(
-    x,
-    esec,
-    is_supervisor,
-    self_employed,
-    n_employees,
-    label = label
-  )
-
-  esec_mp
-}
-
 #' `r rg_template_title("ISCO08", "ESEC", digit = 2)`
 #'
 #' `r rg_template_intro("ISCO08", "ESEC", "isco08_two_to_esec", digit = 2)`
 #'
 #' `r rg_template_digits_warning(digit = 2)`
 #'
-#' @param x `r rg_template_arg_x_digit("ISCO08", digit = 2)`
+#' This is exactly the same as `DIGCLASS::isco08_to_esec` but for two digit ISCO.
+#'
+#' @param x `r rg_template_arg_x_digit("ISCO", digit = 2)`
 #'
 #' @inheritParams isco08_to_esec
 #'
@@ -406,6 +190,385 @@ isco08_two_to_esec <- function(x,
 
 
 
+
+
+#' `r rg_template_title("ISCO08/ISCO88COM", "ESEC-MP", digit = 3)`
+#'
+#' `r rg_template_intro("ISCO08/ISCO88COM", "ESEC-MP", c("isco08_to_esec", "isco88com_to_esec_three"), digit = 3)` After translating to ESEC using these tables, this function reassigns managers and professionals (ISCO08/ISCO88COM codes 1 and 2) to have both high/low managers and profesionals
+#'
+#' @details
+#'
+#' This function translates a vector of 3-digit ISCO08/ISCO88COM codes to ESEC-MP codes.
+#'
+#' ESEC-MP is a class schema similar to ESEC but reassigns managers and professionals (ISCO08/ISCO88COM codes 1 and 2) to have both high/low managers and profesionals. Similarly to `DIGCLASS::isco88com_to_esec`, `isco88com_to_esec_mp` allows to translate using the simple or full method. `isco08_to_esec_mp` does not allow to translate using two different methods and uses the full method by default.
+#'
+#' # TODO: After this is corrected in the code, correct it here and in all docs.
+#' This schema is a slight variation of the original ESEC and the logic used to build this is like this:
+#'
+#' * All occupations with ESEC digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
+#' * All occupations with ESEC digit 1 and is self-employed with more than 1 employee, **is a high manager**
+#' * All occupations with ESEC digit 1 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **high professional**
+#'
+#' * All occupations with ESEC digit 2 and ISCO 1-digit 0 or 1 or has subordinates, is a **lower manager**
+#' * All occupations with ESEC digit 2 and is self-employed with more than 1 employee, is a **lower manager**
+#' * All occupations with ESEC digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
+#'
+#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
+#'
+#' `r rg_template_digits_warning(digit = 3)`
+#'
+#' @inheritParams isco08_to_esec
+#' @param label `r rg_template_arg_label("ESEC-MP")`
+#'
+#' @return `r rg_template_return("ESEC-MP")`
+#'
+#' @order 1
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # convert to three digits
+#' ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
+#'
+#' ess %>%
+#'   transmute(
+#'     isco08_three,
+#'     esec = isco08_to_esec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     ),
+#'     esec_label = isco08_to_esec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' # Convert isco88com to three digits
+#' ess$isco88com_three <- isco88_swap(ess$isco88com, from = 4, to = 3)
+#'
+#' # Using the full method
+#' ess %>%
+#'   transmute(
+#'     isco88com_three,
+#'     esec = isco88com_to_esec_mp(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       full_method = TRUE,
+#'       label = FALSE
+#'     ),
+#'     esec_label = isco88com_to_esec_mp(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       full_method = TRUE,
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' # Using the simple method. For esec_mp
+#' # we need all variables (is_supervisor, self_employed, etc..)
+#' # because we need to assign the manager/professionals depending
+#' # these variables.
+#' ess %>%
+#'   transmute(
+#'     isco88com_three,
+#'     esec_simple = isco88com_to_esec_mp(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       full_method = FALSE,
+#'       label = FALSE
+#'     ),
+#'     esec_simple_label = isco88com_to_esec_mp(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       full_method = FALSE,
+#'       label = TRUE
+#'     )
+#'   )
+#
+#' @export
+isco08_to_esec_mp <- function(x,
+                              is_supervisor,
+                              self_employed,
+                              n_employees,
+                              label = FALSE) {
+  esec <- isco08_to_esec(x, is_supervisor, self_employed, n_employees, label = FALSE)
+
+  esec_mp <- managers_professionals_helper(
+    x,
+    esec,
+    is_supervisor,
+    self_employed,
+    n_employees,
+    label = label
+  )
+
+  esec_mp
+}
+
+
+
+
+#' `r rg_template_title("ISCO08/ISCO68", "ISCO88")`
+#'
+#' `r rg_template_intro("ISCO08/ISCO68", "ISCO88", "isco08_to_isco88 / all_schema$isco68_to_isco88")`
+#'
+#' @details`r rg_template_details_iscogen("ISCO08/ISCO68", "ISCO88")`
+#'
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @param label `r rg_template_arg_label("ISCO")`
+#'
+#' @return `r rg_template_return("ISCO88")`
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # isco08
+#' ess %>% transmute(
+#'   isco08,
+#'   isco88 = isco08_to_isco88(isco08, label = FALSE),
+#'   isco88_label = isco08_to_isco88(isco08, label = TRUE)
+#' )
+#'
+#' # isco68
+#' ess %>% transmute(
+#'   isco68,
+#'   isco88 = isco68_to_isco88(isco68, label = FALSE),
+#'   isco88_label = isco68_to_isco88(isco68, label = TRUE)
+#' )
+#'
+#' @export
+isco08_to_isco88 <- function(x, label = FALSE) {
+  common_translator(
+    x,
+    input_var = "ISCO08",
+    output_var = "ISCO88",
+    translate_df = all_schemas$isco08_to_isco88,
+    translate_label_df = all_labels$isco88,
+    label = label
+  )
+}
+
+
+#' `r rg_template_title("ISCO08/ISCO88/ISCO68", "ISEI")`
+#'
+#' `r rg_template_intro("ISCO08/ISCO88/ISCO68", "ISEI", paste0("isco", c('08', '88', '68'), "_to_isei"))`
+#'
+#' @details`r rg_template_details_iscogen("ISCO08/ISCO88/ISCO88", "ISEI")`
+#'
+#' Since `ISEI` doesn't have any labels, the `labels` is not availabe in this function.
+#'
+#' @param x `r rg_template_arg_x("ISCO")`
+#'
+#' @return `r rg_template_return("ISEI")`
+#'
+#' @order 1
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' ess %>%
+#'   transmute(
+#'     isco08,
+#'     isco88,
+#'     isco68,
+#'     isei_08 = isco08_to_isei(isco08),
+#'     isei_88 = isco88_to_isei(isco88),
+#'     isei_68 = isco68_to_isei(isco68)
+#' )
+#'
+#' @export
+isco08_to_isei <- function(x) {
+  common_translator(
+    x,
+    input_var = "ISCO08",
+    output_var = "ISEI-08",
+    translate_df = all_schemas$isco08_to_isei,
+    translate_label_df = NULL,
+    label = FALSE
+  )
+}
+
+
+#' `r rg_template_title("ISCO08/ISCO88/ISCO68", "SIOPS")`
+#'
+#' `r rg_template_intro("ISCO08/ISCO88/ISCO68", "SIOPS", paste0("isco", c('08', '88', '68'), "_to_siops"))`
+#'
+#' @details`r rg_template_details_iscogen("ISCO08/ISCO88/ISCO88", "SIOPS")`
+#'
+#' Since `SIOPS` doesn't have any labels, the `labels` is not availabe in this function.
+#'
+#' @param x `r rg_template_arg_x("ISCO")`
+#'
+#' @return `r rg_template_return("SIOPS")`
+#'
+#' @order 1
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' ess %>%
+#'   transmute(
+#'     isco08,
+#'     isco88,
+#'     isco68,
+#'     siops_08 = isco08_to_siops(isco08),
+#'     siops_88 = isco88_to_siops(isco88),
+#'     siops_68 = isco68_to_siops(isco68)
+#'   )
+#'
+#' @export
+isco08_to_siops <- function(x) {
+  common_translator(
+    x,
+    input_var = "ISCO08",
+    output_var = "SIOPS-08",
+    translate_df = all_schemas$isco08_to_siops,
+    translate_label_df = NULL,
+    label = FALSE
+  )
+}
+
+#' `r rg_template_title("ISCO08/ISCO88COM", "MSEC", digit = 3)`
+#'
+#'
+#' `r rg_template_intro("ISCO08/ISCO88COM", "MSEC", paste0("isco", c('08', '88com'), "_to_msec"), digit = 3)`
+#'
+#' These translations were created from the document "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. Although originally called ESEG-Revised, the class schema has been formally called MSEC.
+#'
+#' `r rg_template_digits_warning(digit = 3)`
+#'
+#' @param x `r rg_template_arg_x_digit("ISCO", digit = 3)`
+#' @inheritParams isco08_to_esec
+#' @param label `r rg_template_arg_label("MSEC")`
+#'
+#' @return `r rg_template_return("MSEC")`
+#'
+#' @order 1
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # convert to three digits
+#' ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
+#' ess$isco88com_three <- isco88_swap(ess$isco88com, from = 4, to = 3)
+#'
+#' # isco08
+#' ess %>%
+#'   transmute(
+#'     isco08_three,
+#'     msec_label = isco08_to_msec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     ),
+#'     msec = isco08_to_msec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     )
+#'   )
+#'
+#' # isco88com
+#' ess %>%
+#'   transmute(
+#'     isco88com_three,
+#'     msec_label = isco88com_to_msec(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     ),
+#'     msec = isco88com_to_msec(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     )
+#'   )
+#'
+#' @export
+isco08_to_msec <- function(x,
+                           is_supervisor,
+                           self_employed,
+                           n_employees,
+                           label = FALSE) {
+  # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
+  col_position <- dplyr::case_when(
+    self_employed == 1 & n_employees >= 10 ~ 2,
+    self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 3,
+    self_employed == 1 & n_employees == 0 ~ 4,
+    self_employed == 0 & is_supervisor == 1 ~ 5,
+    self_employed == 0 & is_supervisor == 0 ~ 6,
+  )
+
+  res <- multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "MSEC",
+    translate_df = all_schemas$isco08_to_msec,
+    translate_label_df = all_labels$msec,
+    label = label,
+    digits = 4
+  )
+
+  res
+}
+
+#' `r rg_template_title("ISCO08", "microclass")`
+#'
+#' `r rg_template_intro("ISCO08", "microclass", "isco08_to_microclass")`
+#'
+#' @details This translation was created from the Excel file shared by Oscar Smallenbroek called "isco08 to micro with numeric labels.xlsx". For more info, please contact the author.
+#'
+#' @param x `r rg_template_arg_x("ISCO08")`
+#' @param label `r rg_template_arg_label("microclass")`
+#'
+#' @return `r rg_template_return("microclass")`
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' ess %>% transmute(
+#'   isco08,
+#'   microclasses = isco08_to_microclass(isco08),
+#'   microclasses_label = isco08_to_microclass(isco08, label = TRUE)
+#' )
+#'
+#' @export
+isco08_to_microclass <- function(x, label = FALSE) {
+  common_translator(
+    x,
+    input_var = "ISCO08",
+    output_var = "microclass",
+    translate_df = all_schemas$isco08_to_microclass,
+    translate_label_df = all_labels$microclass,
+    label = label
+  )
+}
+
+
+
+
 #' `r rg_template_title("ISCO08", "OESCH")`
 #'
 #' `r rg_template_intro("ISCO08", "OESCH", "isco08_to_oesch")`
@@ -423,7 +586,7 @@ isco08_two_to_esec <- function(x,
 #'     isco08,
 #'     oesch = isco08_to_oesch(isco08, self_employed, emplno, label = FALSE),
 #'     oesch_label = isco08_to_oesch(isco08, self_employed, emplno, label = TRUE)
-#' )
+#'   )
 #'
 #' @export
 isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
@@ -477,7 +640,7 @@ isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
 #'     isco08_two = isco08_swap(isco08, from = 4, to = 2),
 #'     isco08_three = isco08_swap(isco08, from = 4, to = 3),
 #'     isco08_four = isco08_swap(isco08, from = 4, to = 4)
-#' )
+#'   )
 #'
 #' # isco88
 #' ess %>%
@@ -487,7 +650,7 @@ isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
 #'     isco88_two = isco88_swap(isco88, from = 4, to = 2),
 #'     isco88_three = isco88_swap(isco88, from = 4, to = 3),
 #'     isco88_four = isco88_swap(isco88, from = 4, to = 4)
-#' )
+#'   )
 #'
 #' # isco68
 #' # Note that for certain four digit groups, isco68 does not have a
@@ -501,7 +664,7 @@ isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
 #'     isco68_two = isco68_swap(isco68, from = 4, to = 2),
 #'     isco68_three = isco68_swap(isco68, from = 4, to = 3),
 #'     isco68_four = isco68_swap(isco68, from = 4, to = 4)
-#' )
+#'   )
 #'
 #' @export
 isco08_swap <- function(x,

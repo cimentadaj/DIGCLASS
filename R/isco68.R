@@ -1,20 +1,4 @@
-#' Translate ISCO68 to ISCO88
-#'
-#' This function translates a vector of ISCO68 codes to ISCO88 codes using the
-#' translation table stored in the `all_schemas$isco68_to_isco88` data frame.
-#'
-#' @param x A character vector of ISCO68 codes.
-#' @param label A logical value indicating whether to return the labels of the
-#' translated ISCO88 codes (default is \code{FALSE}).
-#'
-#' @return A character vector of ISCO88 codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' ess %>% mutate(ISCO88 = isco68_to_isco88(isco68, label = TRUE))
-#' ess %>% mutate(ISCO88 = isco68_to_isco88(isco68, label = FALSE))
-#'
+#' @rdname isco08_to_isco88
 #' @export
 isco68_to_isco88 <- function(x, label = FALSE) {
   common_translator(
@@ -56,20 +40,8 @@ isco68_to_isco08 <- function(x, label = FALSE) {
   )
 }
 
-#' Translate ISCO68 to ISEI
-#'
-#' This function translates a vector of ISCO68 codes to ISEI codes using the
-#' translation table stored in the `all_schemas$isco68_to_isei` data frame.
-#'
-#' @param x A character vector of ISCO68 codes.
-#'
-#' @return A character vector of ISEI codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' ess %>% mutate(ISEI = isco68_to_isei(isco68))
-#'
+#' @rdname isco08_to_isei
+#' @order 3
 #' @export
 isco68_to_isei <- function(x) {
   common_translator(
@@ -82,20 +54,8 @@ isco68_to_isei <- function(x) {
   )
 }
 
-#' Translate ISCO68 to SIOPS
-#'
-#' This function translates a vector of ISCO68 codes to SIOPS codes using the
-#' translation table stored in the `all_schemas$isco68_to_siops` data frame.
-#'
-#' @param x A character vector of ISCO68 codes.
-#'
-#' @return A character vector of SIOPS codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' ess %>% mutate(SIOPS = isco68_to_siops(isco68))
-#'
+#' @rdname isco08_to_siops
+#' @order 3
 #' @export
 isco68_to_siops <- function(x) {
   common_translator(

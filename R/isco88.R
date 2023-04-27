@@ -86,20 +86,8 @@ isco88_to_isco88com <- function(x, label = FALSE) {
   )
 }
 
-#' Translate ISCO88 to ISEI
-#'
-#' This function translates a vector of ISCO88 codes to ISEI codes using the
-#' translation table stored in the `all_schemas$isco88_to_isei` data frame.
-#'
-#' @param x A character vector of ISCO88 codes.
-#'
-#' @return A numeric vector of ISEI codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' ess %>% mutate(ISEI = isco88_to_isei(isco88))
-#'
+#' @rdname isco08_to_isei
+#' @order 2
 #' @export
 isco88_to_isei <- function(x) {
   common_translator(
@@ -113,20 +101,8 @@ isco88_to_isei <- function(x) {
 }
 
 
-#' Translate ISCO88 to SIOPS
-#'
-#' This function translates a vector of ISCO88 codes to SIOPS codes using the
-#' translation table stored in the `all_schemas$isco88_to_siops` data frame.
-#'
-#' @param x A character vector of ISCO88 codes.
-#'
-#' @return A character vector of SIOPS codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' ess %>% mutate(SIOPS = isco88_to_siops(isco88))
-#'
+#' @rdname isco08_to_siops
+#' @order 2
 #' @export
 isco88_to_siops <- function(x) {
   common_translator(
@@ -401,77 +377,8 @@ isco88_to_egp11_mp <- function(x,
 }
 
 
-#' Translate 3-digit ISCO88COM to ESEC
-#'
-#' This function translates a vector of 3-digit ISCO88COM codes to ESEC codes using the
-#' translation table stored in the `all_schemas$isco88com_to_esec_three` data frame. Note that in
-#' `all_schemas$isco88com_to_esec_three` the column `ESEC` refers to the simplified ESEC, which
-#' matches ISCO codes to ESEC codes directly, instead of using information on number
-#' of employees, self-employed, etc..
-#'
-#' The codification used in the User's guide suggests that contrary to the full method, which uses whether the respondent is a supervisor, self-employed and whether the person has subordinates, the simple method matches directly the ISCO code to an ESEC code. For more info, please see page 17 of the European Socio-economic Classification (ESeC) User Guide (2006) by Rode, D. and Harrison, E.
-#'
-#' This translation is borrowed from the `iscogen` Stata package. For more info, search for 'ISCO-88 -> ESEC' in the documentation of the `iscogen` package. If you have ISCO88, you can translate it to ISCO88COM using the function `isco88_to_isco88com` before translating to ESEC.
-#'
-#' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
-#'
-#'
-#' @param x A character vector of 3-digit ISCO88COM codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
-#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
-#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
-#' @param n_employees A numeric vector indicating the number of employees for each individual.
-#' @param full_method logical value indicating whether to do the translation using the full method (uses ISCO codes as well as information on number of employees, self-employed, etc..) or the simplified method (matches ISCO codes directly with ESEC codes).
-#' @param label A logical value indicating whether to return the labels of the translated ESEC codes (default is \code{FALSE}).
-#'
-#' @return A character vector of ESEC codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' # convert to three digits
-#' ess$isco88com <- isco88_to_isco88com(ess$isco88)
-#' ess$isco88com_three <- isco88_swap(ess$isco88com, from = 4, to = 3)
-#'
-#' # Using the full method
-#' ess %>%
-#'   transmute(
-#'     esec_label = isco88com_to_esec(
-#'       isco88com_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = TRUE
-#'     ),
-#'     esec = isco88com_to_esec(
-#'       isco88com_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = FALSE
-#'     )
-#'   )
-#'
-#' # Using the simple method
-#' ess %>%
-#'   transmute(
-#'     esec_simple = isco88com_to_esec(
-#'       isco88com_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = FALSE,
-#'       full_method = FALSE
-#'     ),
-#'     esec_simple_label = isco88com_to_esec(
-#'       isco88com_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = TRUE,
-#'       full_method = FALSE
-#'     )
-#'   )
-#'
+#'@rdname isco08_to_esec
+#'@order 2
 #' @export
 isco88com_to_esec <- function(x,
                               is_supervisor,
@@ -516,94 +423,8 @@ isco88com_to_esec <- function(x,
 }
 
 
-#' Translate 3-digit ISCO88COM to ESEC-MP
-#'
-#' This function translates a vector of 3-digit ISCO88COM codes to ESEC-MP codes. ESEC-MP is a class schema similar to ESEC but reassigns managers and professionals (ISCO88COM codes 1 and 2) to have both high/low managers and profesionals. Note that since this translation first converts ISCO88COM to ESEC, this function has the possibility of using the 'Full-method' or the 'Simple method' for translating ISCO88COM to ESEC.
-#'
-#' The codification used in the ESEC user's guide suggests that contrary to the full method, which uses whether the respondent is a supervisor, self-employed, employee and whether the person has subordinates, the simple method matches directly the ISCO code to an ESEC code. For more info, please see page 17 of the European Socio-economic Classification (ESeC) User Guide (2006) by Rode, D. and Harrison, E.
-#'
-#' After translating from ISCO88COM to ESEC, the logic used to build ESEC-MP is the following:
-#'
-#' * All occupations with ESEC digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
-#' * All occupations with ESEC digit 1 and is self-employed with more than 1 employee, **is a high manager**
-#' * All occupations with ESEC digit 1 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **high professional**
-#'
-#' * All occupations with ESEC digit 2 and ISCO 1-digit 0 or 1 or has subordinates, is a **lower manager**
-#' * All occupations with ESEC digit 2 and is self-employed with more than 1 employee, is a **lower manager**
-#' * All occupations with ESEC digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
-#'
-#' All other ESEC codes remain the same.
-#'
-#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
-#'
-#' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
-#'
-#'
-#' @param x A character vector of 3-digit ISCO88COM codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
-#'
-#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
-#'
-#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
-#'
-#' @param n_employees A numeric vector indicating the number of employees for each individual.
-#'
-#' @param full_method logical value indicating whether to do the translation using the full method (uses ISCO codes as well as information on number of employees, self-employed, etc..) or the simplified method (matches ISCO codes directly with ESEC codes).
-#'
-#' @param label A logical value indicating whether to return the labels of the translated ESEC codes (default is \code{FALSE}).
-#' @return A character vector of ESEC-MP codes.
-#'
-#' @examples
-#'
-#' library(dplyr)
-#'
-#' # Convert to three digits and isc08com
-#' ess$isco88com <- isco88_to_isco88com(ess$isco88)
-#' ess$isco88com_three <- isco88_swap(ess$isco88com, from = 4, to = 3)
-#'
-#' # Using the full method
-#' ess %>%
-#'   transmute(
-#'     isco88com_three,
-#'     esec_label = isco88com_to_esec_mp(
-#'       isco88com_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       full_method = TRUE,
-#'       label = TRUE
-#'     ),
-#'     esec = isco88com_to_esec_mp(
-#'       isco88com_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       full_method = TRUE,
-#'       label = FALSE
-#'     )
-#'   )
-#'
-#' # Using the simple method
-#' ess %>%
-#'   transmute(
-#'     isco88com_three,
-#'     esec_simple = isco88com_to_esec_mp(
-#'       isco88com_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       full_method = FALSE,
-#'       label = FALSE
-#'     ),
-#'     esec_simple_label = isco88com_to_esec_mp(
-#'       isco88com_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       full_method = FALSE,
-#'       label = TRUE
-#'     )
-#'   )
-#'
+#' @rdname isco08_to_esec_mp
+#' @order 2
 #' @export
 isco88com_to_esec_mp <- function(x,
                                  is_supervisor,
@@ -633,50 +454,8 @@ isco88com_to_esec_mp <- function(x,
 }
 
 
-
-#' Translate 3-digit ISCO88COM to MSEC
-#'
-#' This function translates a vector of 3-digit ISCO88COM codes to MSEC codes using the
-#' translation table stored in the `all_schemas$isco88com_to_msec` data frame.
-#'
-#' This translation we created from the document "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. Although originally called ESEG-Revised, the class schema has been formally called MSEC.
-#'
-#' This function will accept 3-digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3 digits (1310, 1230, etc..)
-#'
-#' @param x A character vector of 3-digit ISCO88COM codes. Even though these should be 3-digit, instead of 130, the code should be 1300, which is the 3-digit version of ISCO.
-#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
-#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
-#' @param n_employees A numeric vector indicating the number of employees for each individual.
-#' @param label A logical value indicating whether to return the labels of the translated MSEC codes (default is \code{FALSE}).
-#'
-#' @return A character vector of MSEC codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' # convert to three digits
-#' ess$isco88com <- isco88_to_isco88com(ess$isco88)
-#' ess$isco88com_three <- isco88_swap(ess$isco88com, from = 4, to = 3)
-#'
-#' # Using the full method
-#' ess %>%
-#'   transmute(
-#'     msec_label = isco88com_to_msec(
-#'       isco88com_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = TRUE
-#'     ),
-#'     msec = isco88com_to_msec(
-#'       isco88com_three,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = FALSE
-#'     )
-#'   )
-#'
+#' @rdname isco08_to_msec
+#' @order 2
 #' @export
 isco88com_to_msec <- function(x,
                               is_supervisor,

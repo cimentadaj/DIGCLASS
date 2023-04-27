@@ -103,7 +103,10 @@ rg_template_title <- function(from, to, digit = 4) {
 }
 
 rg_template_intro <- function(from, to, translate_df, digit = 4) {
-  glue::glue("This function translates a vector of {digit}-digit {from} codes to {to} codes using the translation table stored in the `all_schema${translate_df}` data frame.")
+
+  plural <- if (length(translate_df) == 1) "" else "s"
+
+  glue::glue("This function translates a vector of {digit}-digit {from} codes to {to} codes using the translation table{plural} stored in `{paste0('all_schema$', translate_df, collapse = ' / ')}`.")
 }
 
 rg_template_details_iscogen <- function(from, to) {
@@ -135,7 +138,7 @@ rg_template_arg_x_digit <- function(from, digit = 4) {
 
   chosen_x <- slot_digits(digit = digit)
   x <- rg_template_arg_x(from, digit = digit)
-  glue::glue("{x} Even though these should be {digit}-digit, instead of {chosen_x[1]}, the code should be {chosen_x[2]}, which is the {digit}-digit version of ISCO.")
+  glue::glue("{x} This should be the 4-digit equivalent so instead of {chosen_x[1]}, the code should be {chosen_x[2]}, which is the 4-digit version of of the {digit}-digit ISCO.")
 }
 
 
@@ -153,7 +156,7 @@ rg_template_arg_selfemployed <- function() {
 }
 
 rg_template_arg_nemployees <- function() {
-  glue::glue("A numeric vector indicating the number of employees for each individual.")
+  glue::glue("A numeric vector indicating the number of employees under each respondent.")
 }
 
 

@@ -11,7 +11,7 @@ isco08_to_oesch(x, self_employed, n_employees, label = FALSE)
 
 \item{self_employed}{A numeric vector indicating whether each individual is self-employed (1) or not (0).}
 
-\item{n_employees}{A numeric vector indicating the number of employees for each individual.}
+\item{n_employees}{A numeric vector indicating the number of employees under each respondent.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated OESCH codes (default is \code{FALSE}).}
 }
@@ -19,7 +19,7 @@ isco08_to_oesch(x, self_employed, n_employees, label = FALSE)
 A character vector of OESCH codes.
 }
 \description{
-This function translates a vector of 4-digit ISCO08 codes to OESCH codes using the translation table stored in the \code{all_schema$isco08_to_oesch} data frame.
+This function translates a vector of 4-digit ISCO08 codes to OESCH codes using the translation table stored in \code{all_schema$isco08_to_oesch}.
 }
 \examples{
 library(dplyr)
@@ -29,6 +29,6 @@ ess \%>\%
     isco08,
     oesch = isco08_to_oesch(isco08, self_employed, emplno, label = FALSE),
     oesch_label = isco08_to_oesch(isco08, self_employed, emplno, label = TRUE)
-)
+  )
 
 }

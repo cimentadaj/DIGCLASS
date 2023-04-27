@@ -7,21 +7,23 @@
 isco08_two_to_esec(x, is_supervisor, self_employed, n_employees, label = FALSE)
 }
 \arguments{
-\item{x}{A character vector of 2-digit ISCO08 codes. Even though these should be 2-digit, instead of 13, the code should be 1300, which is the 2-digit version of ISCO.}
+\item{x}{A character vector of 2-digit ISCO codes. This should be the 4-digit equivalent so instead of 13, the code should be 1300, which is the 4-digit version of of the 2-digit ISCO.}
 
 \item{is_supervisor}{A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).}
 
 \item{self_employed}{A numeric vector indicating whether each individual is self-employed (1) or not (0).}
 
-\item{n_employees}{A numeric vector indicating the number of employees for each individual.}
+\item{n_employees}{A numeric vector indicating the number of employees under each respondent.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated ESEC codes (default is \code{FALSE}).}
 }
 \description{
-This function translates a vector of 2-digit ISCO08 codes to ESEC codes using the translation table stored in the \code{all_schema$isco08_two_to_esec} data frame.
+This function translates a vector of 2-digit ISCO08 codes to ESEC codes using the translation table stored in \code{all_schema$isco08_two_to_esec}.
 }
 \details{
 This function will accept 2 digit codes as 4 digits. This means that if the 2-digit code is 13 then it should be 1300. All codes should be 4 digits, even though the code is represented as 2-digits (1300, 1400, etc..)
+
+This is exactly the same as \code{DIGCLASS::isco08_to_esec} but for two digit ISCO.
 }
 \examples{
 library(dplyr)

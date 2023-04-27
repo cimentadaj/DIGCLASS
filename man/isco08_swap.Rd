@@ -45,7 +45,7 @@ ess \%>\%
     isco08_two = isco08_swap(isco08, from = 4, to = 2),
     isco08_three = isco08_swap(isco08, from = 4, to = 3),
     isco08_four = isco08_swap(isco08, from = 4, to = 4)
-)
+  )
 
 # isco88
 ess \%>\%
@@ -55,7 +55,7 @@ ess \%>\%
     isco88_two = isco88_swap(isco88, from = 4, to = 2),
     isco88_three = isco88_swap(isco88, from = 4, to = 3),
     isco88_four = isco88_swap(isco88, from = 4, to = 4)
-)
+  )
 
 # isco68
 # Note that for certain four digit groups, isco68 does not have a
@@ -69,6 +69,6 @@ ess \%>\%
     isco68_two = isco68_swap(isco68, from = 4, to = 2),
     isco68_three = isco68_swap(isco68, from = 4, to = 3),
     isco68_four = isco68_swap(isco68, from = 4, to = 4)
-)
+  )
 
 }
