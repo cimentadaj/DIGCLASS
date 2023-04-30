@@ -298,7 +298,6 @@ isco08_two_to_esec <- function(x,
 #'       label = TRUE
 #'     )
 #'   )
-#
 #' @export
 isco08_to_esec_mp <- function(x,
                               is_supervisor,
@@ -324,14 +323,16 @@ isco08_to_esec_mp <- function(x,
 
 #' `r rg_template_title("ISCO08/ISCO68", "ISCO88")`
 #'
-#' `r rg_template_intro("ISCO08/ISCO68", "ISCO88", "isco08_to_isco88 / all_schema$isco68_to_isco88")`
+#' `r rg_template_intro("ISCO08/ISCO68", "ISCO88", c("isco08_to_isco88", "isco68_to_isco88"))`
 #'
 #' @details`r rg_template_details_iscogen("ISCO08/ISCO68", "ISCO88")`
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
-#' @param label `r rg_template_arg_label("ISCO")`
+#' @param label `r rg_template_arg_label("ISCO88")`
 #'
 #' @return `r rg_template_return("ISCO88")`
+#'
+#' @order 1
 #'
 #' @examples
 #' library(dplyr)
@@ -451,7 +452,6 @@ isco08_to_siops <- function(x) {
 #'
 #' `r rg_template_digits_warning(digit = 3)`
 #'
-#' @param x `r rg_template_arg_x_digit("ISCO", digit = 3)`
 #' @inheritParams isco08_to_esec
 #' @param label `r rg_template_arg_label("MSEC")`
 #'
@@ -540,7 +540,7 @@ isco08_to_msec <- function(x,
 #'
 #' @details This translation was created from the Excel file shared by Oscar Smallenbroek called "isco08 to micro with numeric labels.xlsx". For more info, please contact the author.
 #'
-#' @param x `r rg_template_arg_x("ISCO08")`
+#' @param x `r rg_template_arg_x("ISCO")`
 #' @param label `r rg_template_arg_label("microclass")`
 #'
 #' @return `r rg_template_return("microclass")`
@@ -569,23 +569,37 @@ isco08_to_microclass <- function(x, label = FALSE) {
 
 
 
-#' `r rg_template_title("ISCO08", "OESCH")`
+#' `r rg_template_title("ISCO08/ISCO88", "OESCH")`
 #'
-#' `r rg_template_intro("ISCO08", "OESCH", "isco08_to_oesch")`
+#' `r rg_template_intro("ISCO08/ISCO88", "OESCH", c("isco08_to_oesch", "isco88_to_oesch"))`
 #'
-#' @param x `r rg_template_arg_x("ISCO08")`
+#' @details `r rg_template_details_iscogen("ISCO08/ISCO88", "OESCH")`
+#'
+#' @param x `r rg_template_arg_x("ISCO")`
 #' @inheritParams isco08_to_esec
 #' @param label `r rg_template_arg_label("OESCH")`
 #' @return `r rg_template_return("OESCH")`
 #'
+#' @order 1
+#'
 #' @examples
 #' library(dplyr)
 #'
+#' # isco08
 #' ess %>%
 #'   transmute(
 #'     isco08,
 #'     oesch = isco08_to_oesch(isco08, self_employed, emplno, label = FALSE),
 #'     oesch_label = isco08_to_oesch(isco08, self_employed, emplno, label = TRUE)
+#'   )
+#'
+#'
+#' # isco88
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     oesch = isco88_to_oesch(isco88, self_employed, emplno, label = FALSE),
+#'     oesch_label = isco88_to_oesch(isco88, self_employed, emplno, label = TRUE)
 #'   )
 #'
 #' @export

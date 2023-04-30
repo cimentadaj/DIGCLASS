@@ -209,6 +209,20 @@ library(dplyr)
 # convert to two digits
 ess$isco08_two <- isco08_swap(ess$isco08, from = 4, to = 2)
 
+# isco88
+ess %>% transmute(
+  isco88,
+  egp = isco88_to_egp(isco88, self_employed, emplno, label = FALSE0),
+  egp_label = isco88_to_egp(isco88, self_employed, emplno, label = TRUE)
+)
+
+# isco68
+ess %>% transmute(
+  isco68,
+  egp = isco68_to_egp(isco68, self_employed, emplno, label = FALSE0),
+  egp_label = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
+)
+
 ess %>%
   transmute(
     esec_label = isco08_two_to_esec(

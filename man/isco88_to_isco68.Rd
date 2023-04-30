@@ -2,27 +2,33 @@
 % Please edit documentation in R/isco88.R
 \name{isco88_to_isco68}
 \alias{isco88_to_isco68}
-\title{Translate ISCO88 to ISCO68}
+\title{Translate 4-digit ISCO88 to ISCO68}
 \usage{
 isco88_to_isco68(x, label = FALSE)
 }
 \arguments{
-\item{x}{A character vector of ISCO88 codes.}
+\item{x}{A character vector of 4-digit ISCO codes.}
 
-\item{label}{A logical value indicating whether to return the labels of the
-translated ISCO88 codes (default is \code{FALSE}).}
+\item{label}{A logical value indicating whether to return the labels of the translated ISCO68 codes (default is \code{FALSE}).}
 }
 \value{
-A character vector of ISCO88 codes.
+A character vector of ISCO68 codes.
 }
 \description{
-This function translates a vector of ISCO88 codes to ISCO68 codes using the
-translation table stored in the \code{all_schemas$isco88_to_isco68} data frame.
+This function translates a vector of 4-digit ISCO88 codes to ISCO68 codes using the translation table stored in \code{all_schema$isco88_to_isco68}.
+}
+\details{
+This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO88 -> ISCO68}.
 }
 \examples{
 library(dplyr)
 
-ess \%>\% mutate(ISCO88 = isco88_to_isco68(isco88, label = TRUE))
-ess \%>\% mutate(ISCO88 = isco88_to_isco68(isco88, label = FALSE))
+# isco88
+ess \%>\%
+  transmute(
+    isco88,
+    isco68 = isco88_to_isco68(isco88, label = FALSE),
+    isco68_label = isco88_to_isco68(isco88, label = TRUE)
+  )
 
 }

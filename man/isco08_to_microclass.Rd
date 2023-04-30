@@ -7,7 +7,7 @@
 isco08_to_microclass(x, label = FALSE)
 }
 \arguments{
-\item{x}{A character vector of 4-digit ISCO08 codes.}
+\item{x}{A character vector of 4-digit ISCO codes.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated microclass codes (default is \code{FALSE}).}
 }

@@ -2,23 +2,31 @@
 % Please edit documentation in R/isco88.R
 \name{isco88_to_mps}
 \alias{isco88_to_mps}
-\title{Translate ISCO88 to MPS}
+\title{Translate 4-digit ISCO88 to MPS}
 \usage{
 isco88_to_mps(x)
 }
 \arguments{
-\item{x}{A character vector of ISCO88 codes.}
+\item{x}{A character vector of 4-digit ISCO codes.}
+
+\item{label}{A logical value indicating whether to return the labels of the translated MPS codes (default is \code{FALSE}).}
 }
 \value{
 A character vector of MPS codes.
 }
 \description{
-This function translates a vector of ISCO88 codes to MPS codes using the
-translation table stored in the \code{all_schemas$isco88_to_mps} data frame.
+This function translates a vector of 4-digit ISCO88 codes to MPS codes using the translation table stored in \code{all_schema$isco88_to_mps}.
+}
+\details{
+This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO88 -> MPS}.
 }
 \examples{
 library(dplyr)
 
-ess \%>\% mutate(MPS = isco88_to_mps(isco88))
+ess \%>\%
+  transmute(
+    isco88,
+    mps = isco88_to_mps(isco88),
+  )
 
 }

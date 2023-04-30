@@ -1,19 +1,26 @@
-#' Translate ISCO88 to ISCO68
+#' `r rg_template_title("ISCO88", "ISCO68")`
 #'
-#' This function translates a vector of ISCO88 codes to ISCO68 codes using the
-#' translation table stored in the `all_schemas$isco88_to_isco68` data frame.
+#' `r rg_template_intro("ISCO88", "ISCO68", "isco88_to_isco68")`
 #'
-#' @param x A character vector of ISCO88 codes.
-#' @param label A logical value indicating whether to return the labels of the
-#' translated ISCO88 codes (default is \code{FALSE}).
+#' @details`r rg_template_details_iscogen("ISCO88", "ISCO68")`
 #'
-#' @return A character vector of ISCO88 codes.
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @param label `r rg_template_arg_label("ISCO68")`
+#'
+#' @return `r rg_template_return("ISCO68")`
+#'
+#' @order 1
 #'
 #' @examples
 #' library(dplyr)
 #'
-#' ess %>% mutate(ISCO88 = isco88_to_isco68(isco88, label = TRUE))
-#' ess %>% mutate(ISCO88 = isco88_to_isco68(isco88, label = FALSE))
+#' # isco88
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     isco68 = isco88_to_isco68(isco88, label = FALSE),
+#'     isco68_label = isco88_to_isco68(isco88, label = TRUE)
+#'   )
 #'
 #' @export
 isco88_to_isco68 <- function(x, label = FALSE) {
@@ -27,23 +34,38 @@ isco88_to_isco68 <- function(x, label = FALSE) {
   )
 }
 
-
-#' Translate ISCO88 to ISCO08
+#' `r rg_template_title("ISCO88/ISCO68", "ISCO08")`
 #'
-#' This function translates a vector of ISCO88 codes to ISCO08 codes using the
-#' translation table stored in the `all_schemas$isco88_to_isco08` data frame.
+#' `r rg_template_intro("ISCO88/ISCO68", "ISCO08", c("isco88_to_isco08", "isco68_to_isco08"))`
 #'
-#' @param x A character vector of ISCO88 codes.
-#' @param label A logical value indicating whether to return the labels of the
-#' translated ISCO08 codes (default is \code{FALSE}).
+#' @details`r rg_template_details_iscogen("ISCO88/ISCO68", "ISCO08")`
 #'
-#' @return A character vector of ISCO08 codes.
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @param label `r rg_template_arg_label("ISCO08")`
+#'
+#' @return `r rg_template_return("ISCO08")`
+#'
+#' @order 1
 #'
 #' @examples
 #' library(dplyr)
 #'
-#' ess %>% mutate(ISCO08 = isco88_to_isco08(isco88, label = TRUE))
-#' ess %>% mutate(ISCO08 = isco88_to_isco08(isco88, label = FALSE))
+#' # isco88
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     isco08 = isco88_to_isco08(isco88, label = FALSE),
+#'     isco08_label = isco88_to_isco08(isco88, label = TRUE)
+#' )
+#'
+#' # isco68
+#' ess %>%
+#'   transmute(
+#'     isco68,
+#'     isco08 = isco68_to_isco08(isco68, label = FALSE),
+#'     isco08_label = isco68_to_isco08(isco68, label = TRUE)
+#' )
+#'
 #'
 #' @export
 isco88_to_isco08 <- function(x, label = FALSE) {
@@ -57,22 +79,28 @@ isco88_to_isco08 <- function(x, label = FALSE) {
   )
 }
 
-#' Translate ISCO88 to ISCO88COM
+
+#' `r rg_template_title("ISCO88", "ISCO88COM")`
 #'
-#' This function translates a vector of ISCO88 codes to ISCO88COM codes using the
-#' translation table stored in the `all_schemas$isco88_to_isco88com` data frame.
+#' `r rg_template_intro("ISCO88", "ISCO88COM", "isco88_to_isco88com")`
 #'
-#' @param x A character vector of ISCO88 codes.
-#' @param label A logical value indicating whether to return the labels of the
-#' translated ISCO88COM codes (default is \code{FALSE}).
+#' @details`r rg_template_details_iscogen("ISCO88", "ISCO88COM")`
 #'
-#' @return A character vector of ISCO88COM codes.
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @param label `r rg_template_arg_label("ISCO88COM")`
 #'
+#' @return `r rg_template_return("ISCO88COM")`
+#'
+
 #' @examples
 #' library(dplyr)
 #'
-#' ess %>% mutate(ISCO88COM = isco88_to_isco88com(isco88, label = TRUE))
-#' ess %>% mutate(ISCO88COM = isco88_to_isco88com(isco88, label = FALSE))
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     isco88com = isco88_to_isco88com(isco88, label = FALSE),
+#'     isco88com_label = isco88_to_isco88com(isco88, label = TRUE)
+#' )
 #'
 #' @export
 isco88_to_isco88com <- function(x, label = FALSE) {
@@ -115,19 +143,26 @@ isco88_to_siops <- function(x) {
   )
 }
 
-#' Translate ISCO88 to MPS
+#' `r rg_template_title("ISCO88", "MPS")`
 #'
-#' This function translates a vector of ISCO88 codes to MPS codes using the
-#' translation table stored in the `all_schemas$isco88_to_mps` data frame.
+#' `r rg_template_intro("ISCO88", "MPS", "isco88_to_mps")`
 #'
-#' @param x A character vector of ISCO88 codes.
+#' @details`r rg_template_details_iscogen("ISCO88", "MPS")`
 #'
-#' @return A character vector of MPS codes.
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @param label `r rg_template_arg_label("MPS")`
+#'
+#' @return `r rg_template_return("MPS")`
+#'
 #'
 #' @examples
 #' library(dplyr)
 #'
-#' ess %>% mutate(MPS = isco88_to_mps(isco88))
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     mps = isco88_to_mps(isco88),
+#'   )
 #'
 #' @export
 isco88_to_mps <- function(x) {
@@ -141,24 +176,36 @@ isco88_to_mps <- function(x) {
   )
 }
 
-#' Translate ISCO88 to EGP
+#' `r rg_template_title("ISCO88/ISCO68", "EGP")`
 #'
-#' This function translates a vector of ISCO88 codes to EGP codes using the
-#' translation table stored in the `all_schemas$isco88_to_egp` data frame.
+#' `r rg_template_intro("ISCO88/ISCO68", "EGP", c("isco88_to_egp", "isco68_to_egp"))`
 #'
-#' @param x A character vector of ISCO88 codes.
-#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
-#' @param n_employees A numeric vector indicating the number of employees for each individual.
-#' @param label A logical value indicating whether to return the labels of the
-#' translated EGP codes (default is \code{FALSE}).
+#' @details`r rg_template_details_iscogen("ISCO88/IS68", "EGP")`
 #'
-#' @return A character vector of EGP codes.
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @inheritParams isco08_to_esec
+#' @param label `r rg_template_arg_label("EGP")`
+#'
+#' @return `r rg_template_return("EGP")`
+#'
+#' @order 1
 #'
 #' @examples
 #' library(dplyr)
 #'
-#' ess %>% mutate(EGP = isco88_to_egp(isco88, self_employed, emplno, label = TRUE))
-#' ess %>% mutate(EGP = isco88_to_egp(isco88, self_employed, emplno, label = FALSE))
+#' # isco88
+#' ess %>% transmute(
+#'   isco88,
+#'   egp = isco88_to_egp(isco88, self_employed, emplno, label = FALSE),
+#'   egp_label = isco88_to_egp(isco88, self_employed, emplno, label = TRUE)
+#' )
+#'
+#' # isco68
+#' ess %>% transmute(
+#'   isco68,
+#'   egp = isco68_to_egp(isco68, self_employed, emplno, label = FALSE),
+#'   egp_label = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
+#' )
 #'
 #' @export
 isco88_to_egp <- function(x, self_employed, n_employees, label = FALSE) {
@@ -182,24 +229,36 @@ isco88_to_egp <- function(x, self_employed, n_employees, label = FALSE) {
 }
 
 
-#' Translate ISCO88 to EGP11
+#' `r rg_template_title("ISCO88/ISCO68", "EGP11")`
 #'
-#' This function translates a vector of ISCO88 codes to EGP11 codes using the
-#' translation table stored in the `all_schemas$isco88_to_egp11` data frame.
+#' `r rg_template_intro("ISCO88/ISCO68", "EGP11", c("isco88_to_egp11", "isco68_to_egp11"))`
 #'
-#' @param x A character vector of ISCO88 codes.
-#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
-#' @param n_employees A numeric vector indicating the number of employees for each individual.
-#' @param label A logical value indicating whether to return the labels of the
-#' translated EGP11 codes (default is \code{FALSE}).
+#' @details`r rg_template_details_iscogen("ISCO88/ISCO68", "EGP11")`
 #'
-#' @return A character vector of EGP codes.
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @inheritParams isco08_to_esec
+#' @param label `r rg_template_arg_label("EGP11")`
+#'
+#' @return `r rg_template_return("EGP11")`
+#'
+#' @order 1
 #'
 #' @examples
 #' library(dplyr)
 #'
-#' ess %>% mutate(EGP = isco88_to_egp11(isco88, self_employed, emplno, label = TRUE))
-#' ess %>% mutate(EGP = isco88_to_egp11(isco88, self_employed, emplno, label = FALSE))
+#' # isco88
+#' ess %>% transmute(
+#'   isco88,
+#'   egp11 = isco88_to_egp11(isco88, self_employed, emplno, label = FALSE),
+#'   egp11_label = isco88_to_egp11(isco88, self_employed, emplno, label = TRUE)
+#' )
+#'
+#' # isco68
+#' ess %>% transmute(
+#'   isco68,
+#'   egp11 = isco68_to_egp11(isco68, self_employed, emplno, label = FALSE),
+#'   egp11_label = isco68_to_egp11(isco68, self_employed, emplno, label = TRUE)
+#' )
 #'
 #' @export
 isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
@@ -225,12 +284,16 @@ isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 }
 
 
-#' Translate ISCO88 to EGP-MP
+#' `r rg_template_title("ISCO88/ISCO68", "EGP-MP")`
 #'
-#' This function translates a vector of ISCO88 codes to EGP-MP codes.
+#' `r rg_template_intro("ISCO88/ISCO68", "EGP-MP", c("isco88_to_egp", "isco68_to_egp"))` After translating to EGP using these tables, this function reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals
 #'
 #' @details
-#' EGP-MP is a class schema similar to EGP but reassigns managers and professionals (ISCO88 codes 1 and 2) to have both high/low managers and profesionals. Note that since this translation first converts ISCO88 to EGP and then applies the following logic to build EGP-MP:
+#'
+#' EGP-MP is a class schema similar to EGP but reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals.
+#'
+#' # TODO: After this is corrected in the code, correct it here and in all docs.
+#' This schema is a slight variation of the original EGP and the logic used to build this is like this:
 #'
 #' * All occupations with EGP digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
 #' * All occupations with EGP digit 1 and is self-employed with more than 1 employee, **is a high manager**
@@ -240,22 +303,21 @@ isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 #' * All occupations with EGP digit 2 and is self-employed with more than 1 employee, is a **lower manager**
 #' * All occupations with EGP digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
 #'
-#' All other EGP codes remain the same.
+#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "EGP-MP.do". For more info, please contact the author.
 #'
-#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
 #'
-#' @param x A character vector of ISCO88 codes.
-#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
-#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
-#' @param n_employees A numeric vector indicating the number of employees for each individual.
-#' @param label A logical value indicating whether to return the labels of the
-#' translated EGP-MP codes (default is \code{FALSE}).
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @inheritParams isco08_to_esec
+#' @param label `r rg_template_arg_label("EGP-MP")`
 #'
-#' @return A character vector of EGP-MP codes.
+#' @return `r rg_template_return("EGP-MP")`
+#'
+#' @order 1
 #'
 #' @examples
 #' library(dplyr)
 #'
+#' # isco88
 #' ess %>%
 #'   transmute(
 #'     isco88,
@@ -274,7 +336,27 @@ isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 #'       label = TRUE
 #'     )
 #'   )
-##'
+#'
+#' # isco68
+#' ess %>%
+#'   transmute(
+#'     isco68,
+#'     egp_mp = isco68_to_egp_mp(
+#'       isco68,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     ),
+#'     egp_mp_label = isco68_to_egp_mp(
+#'       isco68,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     )
+#'   )
+#'
 #' @export
 isco88_to_egp_mp <- function(x,
                              is_supervisor,
@@ -301,12 +383,16 @@ isco88_to_egp_mp <- function(x,
 }
 
 
-#' Translate ISCO88 to EGP11-MP
+#' `r rg_template_title("ISCO88/ISCO68", "EGP11-MP")`
 #'
-#' This function translates a vector of ISCO88 codes to EGP11-MP codes.
+#' `r rg_template_intro("ISCO88/ISCO68", "EGP11-MP", c("isco88_to_egp11", "isco68_to_egp11"))` After translating to EGP11 using these tables, this function reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals
 #'
 #' @details
-#' EGP11-MP is a class schema similar to EGP11 but reassigns managers and professionals (ISCO88 codes 1 and 2) to have both high/low managers and profesionals. Note that since this translation first converts ISCO88 to EGP11 and then applies the following logic to build EGP11-MP:
+#'
+#' EGP11-MP is a class schema similar to EGP11 but reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals.
+#'
+#' # TODO: After this is corrected in the code, correct it here and in all docs.
+#' This schema is a slight variation of the original EGP11 and the logic used to build this is like this:
 #'
 #' * All occupations with EGP11 digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
 #' * All occupations with EGP11 digit 1 and is self-employed with more than 1 employee, **is a high manager**
@@ -316,34 +402,53 @@ isco88_to_egp_mp <- function(x,
 #' * All occupations with EGP11 digit 2 and is self-employed with more than 1 employee, is a **lower manager**
 #' * All occupations with EGP11 digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
 #'
-#' All other EGP11 codes remain the same.
+#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "EGP-MP.do". For more info, please contact the author.
 #'
-#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
 #'
-#' @param x A character vector of ISCO88 codes.
-#' @param is_supervisor A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
-#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
-#' @param n_employees A numeric vector indicating the number of employees for each individual.
-#' @param label A logical value indicating whether to return the labels of the
-#' translated EGP11-MP codes (default is \code{FALSE}).
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @inheritParams isco08_to_esec
+#' @param label `r rg_template_arg_label("EGP11-MP")`
 #'
-#' @return A character vector of EGP11-MP codes.
+#' @return `r rg_template_return("EGP11-MP")`
+#'
+#' @order 1
 #'
 #' @examples
 #' library(dplyr)
 #'
+#' # isco88
 #' ess %>%
 #'   transmute(
 #'     isco88,
-#'     egp_mp = isco88_to_egp11_mp(
+#'     egp11_mp = isco88_to_egp11_mp(
 #'       isco88,
 #'       is_supervisor,
 #'       self_employed,
 #'       emplno,
 #'       label = FALSE
 #'     ),
-#'     egp_mp_label = isco88_to_egp11_mp(
+#'     egp11_mp_label = isco88_to_egp11_mp(
 #'       isco88,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' # isco68
+#' ess %>%
+#'   transmute(
+#'     isco68,
+#'     egp11_mp = isco68_to_egp11_mp(
+#'       isco68,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE
+#'     ),
+#'     egp11_mp_label = isco68_to_egp11_mp(
+#'       isco68,
 #'       is_supervisor,
 #'       self_employed,
 #'       emplno,
@@ -487,25 +592,8 @@ isco88com_to_msec <- function(x,
 
 
 
-#' Translate ISCO88 to OESCH
-#'
-#' This function translates a vector of ISCO88 codes to OESCH codes using the
-#' translation table stored in the `all_schemas$isco88_to_oesch` data frame.
-#'
-#' @param x A character vector of ISCO88 codes.
-#' @param self_employed A numeric vector indicating whether each individual is self-employed (1) or not (0).
-#' @param n_employees A numeric vector indicating the number of employees for each individual.
-#' @param label A logical value indicating whether to return the labels of the
-#' translated OESCH codes (default is \code{FALSE}).
-#'
-#' @return A character vector of OESCH codes.
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' ess %>% mutate(EGP = isco88_to_oesch(isco88, self_employed, emplno, label = TRUE))
-#' ess %>% mutate(EGP = isco88_to_oesch(isco88, self_employed, emplno, label = FALSE))
-#'
+#' @rdname isco08_to_oesch
+#' @order 2
 #' @export
 isco88_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
   col_position <- dplyr::case_when(

@@ -2,3 +2,50 @@ url: https://cimentadaj.github.io/socialclasses/
 template:
   bootstrap: 5
 
+
+reference:
+- subtitle: Built-in datasets
+  contents:
+    - ess
+    - all_labels
+    - all_schemas
+
+- subtitle: ESEC-related
+  desc: >
+    Functions the translate to ESEC-related schemas
+  contents:
+    - matches("esec|msec")
+
+- subtitle: EGP-related
+  desc: >
+    Functions the translate to EGP-related schemas
+  contents:
+    - matches("egp")
+
+- subtitle: Numeric schemas
+  desc: >
+    Functions the translate to schemas which are only numeric such as ISEI.
+  contents:
+    - isco08_to_isei
+    - isco08_to_siops
+    - isco88_to_mps
+
+- subtitle: Other schemas
+  desc: >
+    Functions the translate to other schemas.
+  contents:
+    - isco08_to_microclass
+    - isco08_to_isco88
+    - isco08_to_oesch
+    - isco88_to_isco08
+    - isco88_to_isco88com
+    - isco88_to_isco68
+
+
+- subtitle: Utility functions
+  desc: >
+    Utility functions to manipulate ISCO vectors
+  contents:
+    - matches("swap")
+    - repair_isco
+

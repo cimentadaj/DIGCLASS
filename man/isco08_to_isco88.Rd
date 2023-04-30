@@ -12,13 +12,13 @@ isco68_to_isco88(x, label = FALSE)
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
 
-\item{label}{A logical value indicating whether to return the labels of the translated ISCO codes (default is \code{FALSE}).}
+\item{label}{A logical value indicating whether to return the labels of the translated ISCO88 codes (default is \code{FALSE}).}
 }
 \value{
 A character vector of ISCO88 codes.
 }
 \description{
-This function translates a vector of 4-digit ISCO08/ISCO68 codes to ISCO88 codes using the translation table stored in \code{all_schema$isco08_to_isco88 / all_schema$isco68_to_isco88}.
+This function translates a vector of 4-digit ISCO08/ISCO68 codes to ISCO88 codes using the translation tables stored in \code{all_schema$isco08_to_isco88 / all_schema$isco68_to_isco88}.
 }
 \details{
 This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO08/ISCO68 -> ISCO88}.
