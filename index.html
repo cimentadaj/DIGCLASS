@@ -174,8 +174,8 @@
 <span><span class="va">ess</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>    isei <span class="op">=</span> <span class="fu"><a href="reference/isco08_to_isei.html">isco68_to_isei</a></span><span class="op">(</span><span class="va">isco68</span><span class="op">)</span>,</span>
-<span>    egp <span class="op">=</span> <span class="fu"><a href="reference/isco68_to_egp.html">isco68_to_egp</a></span><span class="op">(</span><span class="va">isco68</span>, <span class="va">self_employed</span>, <span class="va">emplno</span><span class="op">)</span>,</span>
-<span>    egp_labels <span class="op">=</span> <span class="fu"><a href="reference/isco68_to_egp.html">isco68_to_egp</a></span><span class="op">(</span><span class="va">isco68</span>, <span class="va">self_employed</span>, <span class="va">emplno</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>    egp <span class="op">=</span> <span class="fu"><a href="reference/isco88_to_egp.html">isco68_to_egp</a></span><span class="op">(</span><span class="va">isco68</span>, <span class="va">self_employed</span>, <span class="va">emplno</span><span class="op">)</span>,</span>
+<span>    egp_labels <span class="op">=</span> <span class="fu"><a href="reference/isco88_to_egp.html">isco68_to_egp</a></span><span class="op">(</span><span class="va">isco68</span>, <span class="va">self_employed</span>, <span class="va">emplno</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 56,752 × 10</span></span>
 <span><span class="co">#&gt;    isco68 isco88 isco88com isco08 emplno self_employed is_supervisor isei  egp  </span></span>
@@ -235,11 +235,11 @@
 <li><p><input type="checkbox" disabled checked>I have to confirm with them how ESEC full-method is calculated. This applies for both ISCO88 and ISCO08. I wrote it like this:</p></li>
 <li><p><input type="checkbox" disabled checked>Oesch schemas have <code>.</code> inside the classes, what to do with those? We get NAs introduced when converting to numeric.</p></li>
 <li><p><input type="checkbox" disabled checked>Add 2-digit translation from ISCO88/08 to ESEC</p></li>
+<li><p><input type="checkbox" disabled checked>Revise the documentation of each function</p></li>
 <li><p>[] Add E.O Wright translation</p></li>
 <li><p>[] Add ISCO to ESEG translation (waiting for Guillem’s input)</p></li>
 <li><p>[] Add IPICS (waiting for Oscar to contact Florian)</p></li>
 <li><p>[] Write more tutorials on how to use the package</p></li>
-<li><p>[] Revise the documentation of the entire package, check for typos, etc…</p></li>
 <li><p>[] Add some more tests for the functions in the package</p></li>
 <li><p>[] Add some examples with the ISSP data</p></li>
 <li><p>[] Add a general check to fail if the number digits doesnt align with the translation function</p></li>
