@@ -8,8 +8,6 @@ isco88_to_mps(x)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
-
-\item{label}{A logical value indicating whether to return the labels of the translated MPS codes (default is \code{FALSE}).}
 }
 \value{
 A character vector of MPS codes.

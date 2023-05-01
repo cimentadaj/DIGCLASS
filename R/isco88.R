@@ -150,7 +150,6 @@ isco88_to_siops <- function(x) {
 #' @details`r rg_template_details_iscogen("ISCO88", "MPS")`
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
-#' @param label `r rg_template_arg_label("MPS")`
 #'
 #' @return `r rg_template_return("MPS")`
 #'
