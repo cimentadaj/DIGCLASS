@@ -569,14 +569,20 @@ isco08_to_microclass <- function(x, label = FALSE) {
 
 
 
-#' `r rg_template_title("ISCO08/ISCO88", "OESCH")`
+#' `r rg_template_title("ISCO08/ISCO88", "OESCH16/OESCH8/OESCH5")`
 #'
-#' `r rg_template_intro("ISCO08/ISCO88", "OESCH", c("isco08_to_oesch", "isco88_to_oesch"))`
+#' `r rg_template_intro("ISCO08/ISCO88", "OESCH", c("isco08_to_oesch16", "isco88_to_oesch16", "oesch16_to_oesch8", "oesch16_to_oesch5"))`
 #'
-#' @details `r rg_template_details_iscogen("ISCO08/ISCO88", "OESCH")`
+#' @details This function works by first translating to OESCH16 and then translating to other OESCH variants, if the user has requested this through the `n_classes` argument.
+#'
+#' `r rg_template_details_iscogen("ISCO88/IS68", "OESCH")` For translations between OESCH16 and OESCH8/OESCH5, see the source of the Stata package `oesch` [here](http://fmwww.bc.edu/repec/bocode/o/oesch.ado).
+#'
+#' For more details, users can see the translation used in this package in `all_schema$oesch16_to_oesch8` and `all_schema$oesch16_to_oesch5`. Moreover, the labels used can be found in `all_labels$oesch16`, `all_labels$oesch8` and `all_labels$oesch5`.
+#
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @inheritParams isco08_to_esec
+#' @param n_classes a numeric value indicating the number of OESCH classes to obtain. Default is 16 OESCH classes. The possible values are 16 classes, 8 classes and 5 classes. For more information, see the details section.
 #' @param label `r rg_template_arg_label("OESCH")`
 #' @return `r rg_template_return("OESCH")`
 #'
@@ -589,8 +595,9 @@ isco08_to_microclass <- function(x, label = FALSE) {
 #' ess %>%
 #'   transmute(
 #'     isco08,
-#'     oesch = isco08_to_oesch(isco08, self_employed, emplno, label = FALSE),
-#'     oesch_label = isco08_to_oesch(isco08, self_employed, emplno, label = TRUE)
+#'     oesch16 = isco08_to_oesch(isco08, self_employed, emplno, label = FALSE),
+#'     oesch8 = isco08_to_oesch(isco08, self_employed, emplno, n_classes = 8, label = FALSE),
+#'     oesch5 = isco08_to_oesch(isco08, self_employed, emplno, n_classes = 5, label = FALSE),
 #'   )
 #'
 #'
@@ -598,12 +605,16 @@ isco08_to_microclass <- function(x, label = FALSE) {
 #' ess %>%
 #'   transmute(
 #'     isco88,
-#'     oesch = isco88_to_oesch(isco88, self_employed, emplno, label = FALSE),
-#'     oesch_label = isco88_to_oesch(isco88, self_employed, emplno, label = TRUE)
+#'     oesch16 = isco88_to_oesch(isco88, self_employed, emplno, label = FALSE),
+#'     oesch8 = isco88_to_oesch(isco88, self_employed, emplno, n_classes = 8, label = FALSE),
+#'     oesch5 = isco88_to_oesch(isco88, self_employed, emplno, n_classes = 5, label = FALSE),
 #'   )
 #'
 #' @export
-isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
+isco08_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label = FALSE) {
+  stopifnot(n_classes %in% c(16, 8, 5))
+  stopifnot(length(n_classes) == 1)
+
   col_position <- dplyr::case_when(
     self_employed == 0 ~ 2,
     self_employed == 1 & n_employees == 0 ~ 3,
@@ -611,14 +622,42 @@ isco08_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
     self_employed == 1 & n_employees >= 10 ~ 5,
   )
 
-  multiple_cols_translator(
-    x = x,
-    col_position = col_position,
-    output_var = "OESCH",
-    translate_df = all_schemas$isco08_to_oesch,
-    translate_label_df = all_labels$oesch,
-    label = label
-  )
+  schema <- all_schemas$isco08_to_oesch16
+  input_var <- "OESCH16"
+  output_var <- paste0("OESCH", n_classes)
+
+  all_classes <-
+    list(
+      `8` = list(all_schemas$oesch16_to_oesch8, all_labels$oesch8),
+      `5` = list(all_schemas$oesch16_to_oesch5, all_labels$oesch5)
+    )
+
+  if (n_classes == 16) {
+    oesch16 <-
+      multiple_cols_translator(
+        x = x,
+        col_position = col_position,
+        output_var = input_var,
+        translate_df = schema,
+        translate_label_df = all_labels$oesch16,
+        label = label
+      )
+
+    return(oesch16)
+  } else {
+    oesch <- main_schema_to_others(
+      x,
+      col_position,
+      n_classes,
+      schema,
+      input_var,
+      output_var,
+      all_classes,
+      label
+    )
+
+    return(oesch)
+  }
 }
 
 #' Swap ISCO08/ISCO88/ISCO88 between 1, 2, 3 and 4 digit groups

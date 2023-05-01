@@ -50,7 +50,6 @@ ess %>%
     siops = isco68_to_siops(isco68),
     isei = isco68_to_isei(isco68),
     egp = isco68_to_egp(isco68, self_employed, emplno, label = labs),
-    egp11 = isco68_to_egp11(isco68, self_employed, emplno, label = labs)
   )
 ```
 
@@ -71,7 +70,6 @@ ess %>%
     isei = isco88_to_isei(isco88),
     mps = isco88_to_mps(isco88),
     egp = isco88_to_egp(isco88, self_employed, emplno, label = labs),
-    egp11 = isco88_to_egp11(isco88, self_employed, emplno, label = labs),
     oesch = isco88_to_oesch(isco88, self_employed, emplno, label = labs)
   )
 ```

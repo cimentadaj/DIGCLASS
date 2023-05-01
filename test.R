@@ -209,17 +209,19 @@ library(dplyr)
 # convert to two digits
 ess$isco08_two <- isco08_swap(ess$isco08, from = 4, to = 2)
 
+n_c <- 3
+
 # isco88
 ess %>% transmute(
   isco88,
-  egp = isco88_to_egp(isco88, self_employed, emplno, label = FALSE0),
-  egp_label = isco88_to_egp(isco88, self_employed, emplno, label = TRUE)
+  egp = isco88_to_egp(isco88, self_employed, emplno, n_classes = n_c, label = FALSE),
+  egp_label = isco88_to_egp(isco88, self_employed, emplno, n_classes = n_c, label = TRUE)
 )
 
 # isco68
 ess %>% transmute(
   isco68,
-  egp = isco68_to_egp(isco68, self_employed, emplno, label = FALSE0),
+  egp = isco68_to_egp(isco68, self_employed, emplno, label = FALSE),
   egp_label = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
 )
 

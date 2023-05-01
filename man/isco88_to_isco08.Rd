@@ -32,7 +32,7 @@ ess \%>\%
     isco88,
     isco08 = isco88_to_isco08(isco88, label = FALSE),
     isco08_label = isco88_to_isco08(isco88, label = TRUE)
-)
+  )
 
 # isco68
 ess \%>\%
@@ -40,7 +40,6 @@ ess \%>\%
     isco68,
     isco08 = isco68_to_isco08(isco68, label = FALSE),
     isco08_label = isco68_to_isco08(isco68, label = TRUE)
-)
-
+  )
 
 }

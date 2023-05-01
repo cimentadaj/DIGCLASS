@@ -56,7 +56,7 @@ isco88_to_isco68 <- function(x, label = FALSE) {
 #'     isco88,
 #'     isco08 = isco88_to_isco08(isco88, label = FALSE),
 #'     isco08_label = isco88_to_isco08(isco88, label = TRUE)
-#' )
+#'   )
 #'
 #' # isco68
 #' ess %>%
@@ -64,8 +64,7 @@ isco88_to_isco68 <- function(x, label = FALSE) {
 #'     isco68,
 #'     isco08 = isco68_to_isco08(isco68, label = FALSE),
 #'     isco08_label = isco68_to_isco08(isco68, label = TRUE)
-#' )
-#'
+#'   )
 #'
 #' @export
 isco88_to_isco08 <- function(x, label = FALSE) {
@@ -100,7 +99,7 @@ isco88_to_isco08 <- function(x, label = FALSE) {
 #'     isco88,
 #'     isco88com = isco88_to_isco88com(isco88, label = FALSE),
 #'     isco88com_label = isco88_to_isco88com(isco88, label = TRUE)
-#' )
+#'   )
 #'
 #' @export
 isco88_to_isco88com <- function(x, label = FALSE) {
@@ -175,14 +174,19 @@ isco88_to_mps <- function(x) {
   )
 }
 
-#' `r rg_template_title("ISCO88/ISCO68", "EGP")`
+#' `r rg_template_title("ISCO88/ISCO68", "EGP11/EGP7/EGP5/EGP3")`
 #'
-#' `r rg_template_intro("ISCO88/ISCO68", "EGP", c("isco88_to_egp", "isco68_to_egp"))`
+#' `r rg_template_intro("ISCO88/ISCO68", "EGP11/EGP7/EGP5/EGP3", c("isco88_to_egp11", "isco68_to_egp11", "egp11_to_egp7", "egp11_to_egp5", "egp11_to_egp3"))`
 #'
-#' @details`r rg_template_details_iscogen("ISCO88/IS68", "EGP")`
+#' @details This function works by first translating to EGP11 and then translating to other EGP variants, if the user has requested this through the `n_classes` argument.
+#'
+#' `r rg_template_details_iscogen("ISCO88/IS68", "EGP11")` For translations between EGP11 and EGP7/EGP5/EGP3, see the source of the `occupar` R package [here](https://github.com/DiogoFerrari/occupar/blob/7130d94438f1da2a4aac4731437991a8eea88436/R/occupar_occupation.R#L226-L288).
+#'
+#' For more details, users can see the translation used in this package in `all_schema$egp11_to_egp7`, `all_schema$egp11_to_egp5` and `all_schema$egp11_to_egp3`. Moreover, the labels used can be found in `all_labels$egp11`, `all_labels$egp7`, `all_labels$egp5` and `all_labels$egp3`.
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @inheritParams isco08_to_esec
+#' @param n_classes a numeric value indicating the number of EGP classes to obtain. Default is 11 EGP classes. The possible values are 11 classes, 7 classes, 5 classes and 3 classes. For more information, see the details section.
 #' @param label `r rg_template_arg_label("EGP")`
 #'
 #' @return `r rg_template_return("EGP")`
@@ -195,19 +199,26 @@ isco88_to_mps <- function(x) {
 #' # isco88
 #' ess %>% transmute(
 #'   isco88,
-#'   egp = isco88_to_egp(isco88, self_employed, emplno, label = FALSE),
-#'   egp_label = isco88_to_egp(isco88, self_employed, emplno, label = TRUE)
+#'   egp11 = isco88_to_egp(isco88, self_employed, emplno, label = FALSE),
+#'   egp7 = isco88_to_egp(isco88, self_employed, emplno, n_classes = 7, label = FALSE),
+#'   egp5 = isco88_to_egp(isco88, self_employed, emplno, n_classes = 5, label = FALSE),
+#'   egp3 = isco88_to_egp(isco88, self_employed, emplno, n_classes = 3, label = FALSE),
 #' )
 #'
 #' # isco68
 #' ess %>% transmute(
 #'   isco68,
-#'   egp = isco68_to_egp(isco68, self_employed, emplno, label = FALSE),
-#'   egp_label = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
+#'   egp11 = isco68_to_egp(isco68, self_employed, emplno, label = FALSE),
+#'   egp7 = isco68_to_egp(isco68, self_employed, emplno, n_classes = 7, label = FALSE),
+#'   egp5 = isco68_to_egp(isco68, self_employed, emplno, n_classes = 5, label = FALSE),
+#'   egp3 = isco68_to_egp(isco68, self_employed, emplno, n_classes = 3, label = FALSE)
 #' )
 #'
 #' @export
-isco88_to_egp <- function(x, self_employed, n_employees, label = FALSE) {
+isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label = FALSE) {
+  stopifnot(n_classes %in% c(11, 7, 5, 3))
+  stopifnot(length(n_classes) == 1)
+
   col_position <- dplyr::case_when(
     self_employed == 0 & n_employees == 0 ~ 2,
     self_employed == 0 & dplyr::between(n_employees, 1, 9) ~ 3,
@@ -217,75 +228,48 @@ isco88_to_egp <- function(x, self_employed, n_employees, label = FALSE) {
     self_employed == 1 & n_employees >= 10 ~ 7,
   )
 
-  multiple_cols_translator(
-    x = x,
-    col_position = col_position,
-    output_var = "EGP",
-    translate_df = all_schemas$isco88_to_egp,
-    translate_label_df = all_labels$egp,
-    label = label
-  )
-}
+  schema <- all_schemas$isco88_to_egp11
+  input_var <- "EGP11"
+  output_var <- paste0("EGP", n_classes)
+  all_classes <-
+    list(
+      `7` = list(all_schemas$egp11_to_egp7, all_labels$egp7),
+      `5` = list(all_schemas$egp11_to_egp5, all_labels$egp5),
+      `3` = list(all_schemas$egp11_to_egp3, all_labels$egp3)
+    )
 
 
-#' `r rg_template_title("ISCO88/ISCO68", "EGP11")`
-#'
-#' `r rg_template_intro("ISCO88/ISCO68", "EGP11", c("isco88_to_egp11", "isco68_to_egp11"))`
-#'
-#' @details`r rg_template_details_iscogen("ISCO88/ISCO68", "EGP11")`
-#'
-#' @param x `r rg_template_arg_x("ISCO")`
-#' @inheritParams isco08_to_esec
-#' @param label `r rg_template_arg_label("EGP11")`
-#'
-#' @return `r rg_template_return("EGP11")`
-#'
-#' @order 1
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' # isco88
-#' ess %>% transmute(
-#'   isco88,
-#'   egp11 = isco88_to_egp11(isco88, self_employed, emplno, label = FALSE),
-#'   egp11_label = isco88_to_egp11(isco88, self_employed, emplno, label = TRUE)
-#' )
-#'
-#' # isco68
-#' ess %>% transmute(
-#'   isco68,
-#'   egp11 = isco68_to_egp11(isco68, self_employed, emplno, label = FALSE),
-#'   egp11_label = isco68_to_egp11(isco68, self_employed, emplno, label = TRUE)
-#' )
-#'
-#' @export
-isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
-  col_position <- dplyr::case_when(
-    self_employed == 0 & n_employees == 0 ~ 2,
-    self_employed == 0 & n_employees == 1 ~ 3,
-    self_employed == 0 & dplyr::between(n_employees, 2, 9) ~ 4,
-    self_employed == 0 & n_employees >= 10 ~ 5,
-    self_employed == 1 & n_employees == 0 ~ 6,
-    self_employed == 1 & n_employees == 1 ~ 7,
-    self_employed == 1 & dplyr::between(n_employees, 2, 9) ~ 8,
-    self_employed == 1 & n_employees >= 10 ~ 9,
-  )
+  if (n_classes == 11) {
+    egp11 <-
+      multiple_cols_translator(
+        x = x,
+        col_position = col_position,
+        output_var = "EGP11",
+        translate_df = schema,
+        translate_label_df = all_labels$egp11,
+        label = label
+      )
 
-  multiple_cols_translator(
-    x = x,
-    col_position = col_position,
-    output_var = "EGP",
-    translate_df = all_schemas$isco88_to_egp11,
-    translate_label_df = all_labels$egp11,
-    label = label
-  )
+    return(egp11)
+  } else {
+    egp <- main_schema_to_others(
+      x,
+      col_position,
+      n_classes,
+      schema,
+      input_var,
+      output_var,
+      all_classes,
+      label
+    )
+    return(egp)
+  }
 }
 
 
 #' `r rg_template_title("ISCO88/ISCO68", "EGP-MP")`
 #'
-#' `r rg_template_intro("ISCO88/ISCO68", "EGP-MP", c("isco88_to_egp", "isco68_to_egp"))` After translating to EGP using these tables, this function reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals
+#' `r rg_template_intro("ISCO88/ISCO68", "EGP-MP", c("isco88_to_egp11", "isco68_to_egp11"))` After translating to EGP using these tables, this function reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals. Note that this function translates to EGP11 (not EGP7/EGP5/EGP3) and then reassigns categories to have both high/low managers and professionals.
 #'
 #' @details
 #'
@@ -303,6 +287,8 @@ isco88_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
 #' * All occupations with EGP digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
 #'
 #' This translation was created from the Stata do file shared by Oscar Smallenbroek called "EGP-MP.do". For more info, please contact the author.
+#'
+#' **Note that this translation uses EGP11.**
 #'
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
@@ -382,107 +368,8 @@ isco88_to_egp_mp <- function(x,
 }
 
 
-#' `r rg_template_title("ISCO88/ISCO68", "EGP11-MP")`
-#'
-#' `r rg_template_intro("ISCO88/ISCO68", "EGP11-MP", c("isco88_to_egp11", "isco68_to_egp11"))` After translating to EGP11 using these tables, this function reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals
-#'
-#' @details
-#'
-#' EGP11-MP is a class schema similar to EGP11 but reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals.
-#'
-#' # TODO: After this is corrected in the code, correct it here and in all docs.
-#' This schema is a slight variation of the original EGP11 and the logic used to build this is like this:
-#'
-#' * All occupations with EGP11 digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**
-#' * All occupations with EGP11 digit 1 and is self-employed with more than 1 employee, **is a high manager**
-#' * All occupations with EGP11 digit 1 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **high professional**
-#'
-#' * All occupations with EGP11 digit 2 and ISCO 1-digit 0 or 1 or has subordinates, is a **lower manager**
-#' * All occupations with EGP11 digit 2 and is self-employed with more than 1 employee, is a **lower manager**
-#' * All occupations with EGP11 digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
-#'
-#' This translation was created from the Stata do file shared by Oscar Smallenbroek called "EGP-MP.do". For more info, please contact the author.
-#'
-#'
-#' @param x `r rg_template_arg_x("ISCO")`
-#' @inheritParams isco08_to_esec
-#' @param label `r rg_template_arg_label("EGP11-MP")`
-#'
-#' @return `r rg_template_return("EGP11-MP")`
-#'
-#' @order 1
-#'
-#' @examples
-#' library(dplyr)
-#'
-#' # isco88
-#' ess %>%
-#'   transmute(
-#'     isco88,
-#'     egp11_mp = isco88_to_egp11_mp(
-#'       isco88,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = FALSE
-#'     ),
-#'     egp11_mp_label = isco88_to_egp11_mp(
-#'       isco88,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = TRUE
-#'     )
-#'   )
-#'
-#' # isco68
-#' ess %>%
-#'   transmute(
-#'     isco68,
-#'     egp11_mp = isco68_to_egp11_mp(
-#'       isco68,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = FALSE
-#'     ),
-#'     egp11_mp_label = isco68_to_egp11_mp(
-#'       isco68,
-#'       is_supervisor,
-#'       self_employed,
-#'       emplno,
-#'       label = TRUE
-#'     )
-#'   )
-#'
-#' @export
-isco88_to_egp11_mp <- function(x,
-                               is_supervisor,
-                               self_employed,
-                               n_employees,
-                               label = FALSE) {
-  egp <- isco88_to_egp11(
-    x,
-    self_employed,
-    n_employees,
-    label = FALSE
-  )
-
-  egp_mp <- managers_professionals_helper(
-    x,
-    egp,
-    is_supervisor,
-    self_employed,
-    n_employees,
-    label = label
-  )
-
-  egp_mp
-}
-
-
-#'@rdname isco08_to_esec
-#'@order 2
+#' @rdname isco08_to_esec
+#' @order 2
 #' @export
 isco88com_to_esec <- function(x,
                               is_supervisor,
@@ -594,7 +481,10 @@ isco88com_to_msec <- function(x,
 #' @rdname isco08_to_oesch
 #' @order 2
 #' @export
-isco88_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
+isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label = FALSE) {
+  stopifnot(n_classes %in% c(16, 8, 5))
+  stopifnot(length(n_classes) == 1)
+
   col_position <- dplyr::case_when(
     self_employed == 0 ~ 2,
     self_employed == 1 & n_employees == 0 ~ 3,
@@ -602,14 +492,42 @@ isco88_to_oesch <- function(x, self_employed, n_employees, label = FALSE) {
     self_employed == 1 & n_employees >= 10 ~ 5,
   )
 
-  multiple_cols_translator(
-    x = x,
-    col_position = col_position,
-    output_var = "OESCH",
-    translate_df = all_schemas$isco88_to_oesch,
-    translate_label_df = all_labels$oesch,
-    label = label
-  )
+  schema <- all_schemas$isco88_to_oesch16
+  input_var <- "OESCH16"
+  output_var <- paste0("OESCH", n_classes)
+
+  all_classes <-
+    list(
+      `8` = list(all_schemas$oesch16_to_oesch8, all_labels$oesch8),
+      `5` = list(all_schemas$oesch16_to_oesch5, all_labels$oesch5)
+    )
+
+  if (n_classes == 16) {
+    oesch16 <-
+      multiple_cols_translator(
+        x = x,
+        col_position = col_position,
+        output_var = input_var,
+        translate_df = schema,
+        translate_label_df = all_labels$oesch16,
+        label = label
+      )
+
+    return(oesch16)
+  } else {
+    oesch <- main_schema_to_others(
+      x,
+      col_position,
+      n_classes,
+      schema,
+      input_var,
+      output_var,
+      all_classes,
+      label
+    )
+
+    return(oesch)
+  }
 }
 
 

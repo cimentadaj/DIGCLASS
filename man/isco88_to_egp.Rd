@@ -3,11 +3,11 @@
 \name{isco88_to_egp}
 \alias{isco88_to_egp}
 \alias{isco68_to_egp}
-\title{Translate 4-digit ISCO88/ISCO68 to EGP}
+\title{Translate 4-digit ISCO88/ISCO68 to EGP11/EGP7/EGP5/EGP3}
 \usage{
-isco88_to_egp(x, self_employed, n_employees, label = FALSE)
+isco88_to_egp(x, self_employed, n_employees, n_classes = 11, label = FALSE)
 
-isco68_to_egp(x, self_employed, n_employees, label = FALSE)
+isco68_to_egp(x, self_employed, n_employees, n_classes = 11, label = FALSE)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
@@ -16,16 +16,22 @@ isco68_to_egp(x, self_employed, n_employees, label = FALSE)
 
 \item{n_employees}{A numeric vector indicating the number of employees under each respondent.}
 
+\item{n_classes}{a numeric value indicating the number of EGP classes to obtain. Default is 11 EGP classes. The possible values are 11 classes, 7 classes, 5 classes and 3 classes. For more information, see the details section.}
+
 \item{label}{A logical value indicating whether to return the labels of the translated EGP codes (default is \code{FALSE}).}
 }
 \value{
 A character vector of EGP codes.
 }
 \description{
-This function translates a vector of 4-digit ISCO88/ISCO68 codes to EGP codes using the translation tables stored in \code{all_schema$isco88_to_egp / all_schema$isco68_to_egp}.
+This function translates a vector of 4-digit ISCO88/ISCO68 codes to EGP11/EGP7/EGP5/EGP3 codes using the translation tables stored in \code{all_schema$isco88_to_egp11 / all_schema$isco68_to_egp11 / all_schema$egp11_to_egp7 / all_schema$egp11_to_egp5 / all_schema$egp11_to_egp3}.
 }
 \details{
-This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO88/IS68 -> EGP}.
+This function works by first translating to EGP11 and then translating to other EGP variants, if the user has requested this through the \code{n_classes} argument.
+
+This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO88/IS68 -> EGP11}. For translations between EGP11 and EGP7/EGP5/EGP3, see the source of the \code{occupar} R package \href{https://github.com/DiogoFerrari/occupar/blob/7130d94438f1da2a4aac4731437991a8eea88436/R/occupar_occupation.R#L226-L288}{here}.
+
+For more details, users can see the translation used in this package in \code{all_schema$egp11_to_egp7}, \code{all_schema$egp11_to_egp5} and \code{all_schema$egp11_to_egp3}. Moreover, the labels used can be found in \code{all_labels$egp11}, \code{all_labels$egp7}, \code{all_labels$egp5} and \code{all_labels$egp3}.
 }
 \examples{
 library(dplyr)
@@ -33,15 +39,19 @@ library(dplyr)
 # isco88
 ess \%>\% transmute(
   isco88,
-  egp = isco88_to_egp(isco88, self_employed, emplno, label = FALSE),
-  egp_label = isco88_to_egp(isco88, self_employed, emplno, label = TRUE)
+  egp11 = isco88_to_egp(isco88, self_employed, emplno, label = FALSE),
+  egp7 = isco88_to_egp(isco88, self_employed, emplno, n_classes = 7, label = FALSE),
+  egp5 = isco88_to_egp(isco88, self_employed, emplno, n_classes = 5, label = FALSE),
+  egp3 = isco88_to_egp(isco88, self_employed, emplno, n_classes = 3, label = FALSE),
 )
 
 # isco68
 ess \%>\% transmute(
   isco68,
-  egp = isco68_to_egp(isco68, self_employed, emplno, label = FALSE),
-  egp_label = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
+  egp11 = isco68_to_egp(isco68, self_employed, emplno, label = FALSE),
+  egp7 = isco68_to_egp(isco68, self_employed, emplno, n_classes = 7, label = FALSE),
+  egp5 = isco68_to_egp(isco68, self_employed, emplno, n_classes = 5, label = FALSE),
+  egp3 = isco68_to_egp(isco68, self_employed, emplno, n_classes = 3, label = FALSE)
 )
 
 }

@@ -3,11 +3,11 @@
 \name{isco08_to_oesch}
 \alias{isco08_to_oesch}
 \alias{isco88_to_oesch}
-\title{Translate 4-digit ISCO08/ISCO88 to OESCH}
+\title{Translate 4-digit ISCO08/ISCO88 to OESCH16/OESCH8/OESCH5}
 \usage{
-isco08_to_oesch(x, self_employed, n_employees, label = FALSE)
+isco08_to_oesch(x, self_employed, n_employees, n_classes = 16, label = FALSE)
 
-isco88_to_oesch(x, self_employed, n_employees, label = FALSE)
+isco88_to_oesch(x, self_employed, n_employees, n_classes = 16, label = FALSE)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
@@ -16,16 +16,22 @@ isco88_to_oesch(x, self_employed, n_employees, label = FALSE)
 
 \item{n_employees}{A numeric vector indicating the number of employees under each respondent.}
 
+\item{n_classes}{a numeric value indicating the number of OESCH classes to obtain. Default is 16 OESCH classes. The possible values are 16 classes, 8 classes and 5 classes. For more information, see the details section.}
+
 \item{label}{A logical value indicating whether to return the labels of the translated OESCH codes (default is \code{FALSE}).}
 }
 \value{
 A character vector of OESCH codes.
 }
 \description{
-This function translates a vector of 4-digit ISCO08/ISCO88 codes to OESCH codes using the translation tables stored in \code{all_schema$isco08_to_oesch / all_schema$isco88_to_oesch}.
+This function translates a vector of 4-digit ISCO08/ISCO88 codes to OESCH codes using the translation tables stored in \code{all_schema$isco08_to_oesch16 / all_schema$isco88_to_oesch16 / all_schema$oesch16_to_oesch8 / all_schema$oesch16_to_oesch5}.
 }
 \details{
-This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO08/ISCO88 -> OESCH}.
+This function works by first translating to OESCH16 and then translating to other OESCH variants, if the user has requested this through the \code{n_classes} argument.
+
+This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO88/IS68 -> OESCH}. For translations between OESCH16 and OESCH8/OESCH5, see the source of the Stata package \code{oesch} \href{http://fmwww.bc.edu/repec/bocode/o/oesch.ado}{here}.
+
+For more details, users can see the translation used in this package in \code{all_schema$oesch16_to_oesch8} and \code{all_schema$oesch16_to_oesch5}. Moreover, the labels used can be found in \code{all_labels$oesch16}, \code{all_labels$oesch8} and \code{all_labels$oesch5}.
 }
 \examples{
 library(dplyr)
@@ -34,8 +40,9 @@ library(dplyr)
 ess \%>\%
   transmute(
     isco08,
-    oesch = isco08_to_oesch(isco08, self_employed, emplno, label = FALSE),
-    oesch_label = isco08_to_oesch(isco08, self_employed, emplno, label = TRUE)
+    oesch16 = isco08_to_oesch(isco08, self_employed, emplno, label = FALSE),
+    oesch8 = isco08_to_oesch(isco08, self_employed, emplno, n_classes = 8, label = FALSE),
+    oesch5 = isco08_to_oesch(isco08, self_employed, emplno, n_classes = 5, label = FALSE),
   )
 
 
@@ -43,8 +50,9 @@ ess \%>\%
 ess \%>\%
   transmute(
     isco88,
-    oesch = isco88_to_oesch(isco88, self_employed, emplno, label = FALSE),
-    oesch_label = isco88_to_oesch(isco88, self_employed, emplno, label = TRUE)
+    oesch16 = isco88_to_oesch(isco88, self_employed, emplno, label = FALSE),
+    oesch8 = isco88_to_oesch(isco88, self_employed, emplno, n_classes = 8, label = FALSE),
+    oesch5 = isco88_to_oesch(isco88, self_employed, emplno, n_classes = 5, label = FALSE),
   )
 
 }

@@ -24,7 +24,7 @@ isco68_to_egp_mp(x, is_supervisor, self_employed, n_employees, label = FALSE)
 A character vector of EGP-MP codes.
 }
 \description{
-This function translates a vector of 4-digit ISCO88/ISCO68 codes to EGP-MP codes using the translation tables stored in \code{all_schema$isco88_to_egp / all_schema$isco68_to_egp}. After translating to EGP using these tables, this function reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals
+This function translates a vector of 4-digit ISCO88/ISCO68 codes to EGP-MP codes using the translation tables stored in \code{all_schema$isco88_to_egp11 / all_schema$isco68_to_egp11}. After translating to EGP using these tables, this function reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals. Note that this function translates to EGP11 (not EGP7/EGP5/EGP3) and then reassigns categories to have both high/low managers and professionals.
 }
 \details{
 EGP-MP is a class schema similar to EGP but reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals.
@@ -41,6 +41,8 @@ This schema is a slight variation of the original EGP and the logic used to buil
 }
 
 This translation was created from the Stata do file shared by Oscar Smallenbroek called "EGP-MP.do". For more info, please contact the author.
+
+\strong{Note that this translation uses EGP11.}
 }
 
 \examples{

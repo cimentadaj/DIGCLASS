@@ -57,7 +57,10 @@ isco68_to_siops <- function(x) {
 #' @rdname isco88_to_egp
 #' @order 2
 #' @export
-isco68_to_egp <- function(x, self_employed, n_employees, label = FALSE) {
+isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label = FALSE) {
+  stopifnot(n_classes %in% c(11, 7, 5, 3))
+  stopifnot(length(n_classes) == 1)
+
   col_position <- dplyr::case_when(
     self_employed == 0 & n_employees == 0 ~ 2,
     self_employed == 0 & dplyr::between(n_employees, 1, 9) ~ 3,
@@ -67,40 +70,43 @@ isco68_to_egp <- function(x, self_employed, n_employees, label = FALSE) {
     self_employed == 1 & n_employees >= 10 ~ 7,
   )
 
-  multiple_cols_translator(
-    x = x,
-    col_position = col_position,
-    output_var = "EGP",
-    translate_df = all_schemas$isco68_to_egp,
-    translate_label_df = all_labels$egp,
-    label = label
-  )
+  schema <- all_schemas$isco68_to_egp11
+  input_var <- "EGP11"
+  output_var <- paste0("EGP", n_classes)
+  all_classes <-
+    list(
+      `7` = list(all_schemas$egp11_to_egp7, all_labels$egp7),
+      `5` = list(all_schemas$egp11_to_egp5, all_labels$egp5),
+      `3` = list(all_schemas$egp11_to_egp3, all_labels$egp3)
+    )
+
+  if (n_classes == 11) {
+    egp11 <-
+      multiple_cols_translator(
+        x = x,
+        col_position = col_position,
+        output_var = "EGP11",
+        translate_df = schema,
+        translate_label_df = all_labels$egp11,
+        label = label
+      )
+
+    return(egp11)
+  } else {
+    egp <- main_schema_to_others(
+      x,
+      col_position,
+      n_classes,
+      schema,
+      input_var,
+      output_var,
+      all_classes,
+      label
+    )
+
+    return(egp)
+  }
 }
-
-
-#' @rdname isco88_to_egp11
-#' @order 2
-#' @export
-isco68_to_egp11 <- function(x, self_employed, n_employees, label = FALSE) {
-  col_position <- dplyr::case_when(
-    self_employed == 0 & n_employees == 0 ~ 2,
-    self_employed == 0 & dplyr::between(n_employees, 1, 9) ~ 3,
-    self_employed == 0 & n_employees >= 10 ~ 4,
-    self_employed == 1 & n_employees == 0 ~ 5,
-    self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 6,
-    self_employed == 1 & n_employees >= 10 ~ 7,
-  )
-
-  multiple_cols_translator(
-    x = x,
-    col_position = col_position,
-    output_var = "EGP",
-    translate_df = all_schemas$isco68_to_egp11,
-    translate_label_df = all_labels$egp11,
-    label = label
-  )
-}
-
 
 #' @rdname isco88_to_egp_mp
 #' @order 2
@@ -128,35 +134,6 @@ isco68_to_egp_mp <- function(x,
 
   egp_mp
 }
-
-
-#' @rdname isco88_to_egp11_mp
-#' @order 2
-#' @export
-isco68_to_egp11_mp <- function(x,
-                               is_supervisor,
-                               self_employed,
-                               n_employees,
-                               label = FALSE) {
-  egp <- isco68_to_egp11(
-    x,
-    self_employed,
-    n_employees,
-    label = FALSE
-  )
-
-  egp_mp <- managers_professionals_helper(
-    x,
-    egp,
-    is_supervisor,
-    self_employed,
-    n_employees,
-    label = label
-  )
-
-  egp_mp
-}
-
 
 
 

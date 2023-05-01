@@ -28,6 +28,6 @@ ess \%>\%
     isco88,
     isco88com = isco88_to_isco88com(isco88, label = FALSE),
     isco88com_label = isco88_to_isco88com(isco88, label = TRUE)
-)
+  )
 
 }

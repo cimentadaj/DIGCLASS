@@ -137,6 +137,8 @@ This package has benefitted greatly from other open source packages that already
 - [X] Add 2-digit translation from ISCO88/08 to ESEC
 - [X] Revise the documentation of each function
 
+- [] Add different n.classes for EGP
+- [] Add different n.classes for OESCH
 - [] Add E.O Wright translation
 - [] Add ISCO to ESEG translation (waiting for Guillem's input)
 - [] Add IPICS (waiting for Oscar to contact Florian)

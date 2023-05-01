@@ -1,5 +1,7 @@
-common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, digits = 4) {
-  x <- repair_isco(x, digits = digits)
+common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, digits = 4, repair_isco = TRUE) {
+  if (repair_isco) {
+    x <- repair_isco(x, digits = digits)
+  }
 
   res <-
     tibble::tibble(x = as.character(x)) %>%
@@ -98,12 +100,39 @@ managers_professionals_helper <- function(x, esec, is_supervisor, n_employees, s
   mp
 }
 
+main_schema_to_others <- function(x, col_position, n_classes, schema, input_var, output_var, all_classes, label) {
+  main_class <-
+    multiple_cols_translator(
+      x = x,
+      col_position = col_position,
+      output_var = input_var,
+      translate_df = schema,
+      translate_label_df = NULL,
+      label = FALSE
+    )
+
+  translation_tables <- all_classes[[as.character(n_classes)]]
+
+  variant <- common_translator(
+    main_class,
+    input_var = input_var,
+    output_var = output_var,
+    translate_df = translation_tables[[1]],
+    translate_label_df = translation_tables[[2]],
+    label = label,
+    # Do not repair because it's the translated main class which is not an ISCO variable
+    repair_isco = FALSE
+  )
+
+  variant
+}
+
+
 rg_template_title <- function(from, to, digit = 4) {
   glue::glue("Translate {digit}-digit {from} to {to}")
 }
 
 rg_template_intro <- function(from, to, translate_df, digit = 4) {
-
   plural <- if (length(translate_df) == 1) "" else "s"
 
   glue::glue("This function translates a vector of {digit}-digit {from} codes to {to} codes using the translation table{plural} stored in `{paste0('all_schema$', translate_df, collapse = ' / ')}`.")
@@ -122,7 +151,6 @@ slot_digits <- function(digit = 3) {
 }
 
 rg_template_digits_warning <- function(digit = 3) {
-
   chosen_x <- slot_digits(digit = digit)
 
   # IMPORTANTE: Do not change how some {digit} have {digit}- and other are just {digit} followed by a space
@@ -135,7 +163,6 @@ rg_template_arg_x <- function(from, digit = 4) {
 }
 
 rg_template_arg_x_digit <- function(from, digit = 4) {
-
   chosen_x <- slot_digits(digit = digit)
   x <- rg_template_arg_x(from, digit = digit)
   glue::glue("{x} This should be the 4-digit equivalent so instead of {chosen_x[1]}, the code should be {chosen_x[2]}, which is the 4-digit version of of the {digit}-digit ISCO.")
@@ -162,7 +189,6 @@ rg_template_arg_nemployees <- function() {
 
 rg_template_return <- function(to) {
   glue::glue("A character vector of {to} codes.")
-
 }
 
-utils::globalVariables(c("all_schemas", "all_labels"))
+utils::globalVariables(c("all_schemas", "all_labels", "input_var", "output_var"))
