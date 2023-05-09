@@ -41,7 +41,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/exploring-translations-between-social-classes.html">Exploring translations between social classes</a>
+    <a class="dropdown-item" href="articles/case-study-issp.html">Case study: Exploring Occupations Using The International Social Survey Programme (ISSP)</a>
+    <a class="dropdown-item" href="articles/exploring-translations-between-social-classes-ess.html">Exploring translations between social classes using the ESS data</a>
     <a class="dropdown-item" href="articles/repairing_isco_input.html">Repairing an ISCO variable</a>
     <a class="dropdown-item" href="articles/translating_between_hierarchies.html">Translating between hierarchies for ISCO68, ISCO88 and ISCO08</a>
   </div>
@@ -78,11 +79,7 @@
 <li>
 <input type="checkbox" disabled checked>ISCO68 to ISEI</li>
 <li>
-<input type="checkbox" disabled checked>ISCO68 to EGP</li>
-<li>
-<input type="checkbox" disabled checked>ISCO68 to EGP-MP</li>
-<li>
-<input type="checkbox" disabled checked>ISCO68 to EGP11</li>
+<input type="checkbox" disabled checked>ISCO68 to EGP11/EGP7/EGP5/EGP3</li>
 <li>
 <input type="checkbox" disabled checked>ISCO68 to EGP11-MP</li>
 </ul>
@@ -97,15 +94,11 @@
 <li>
 <input type="checkbox" disabled checked>ISCO88 to MPS88</li>
 <li>
-<input type="checkbox" disabled checked>ISCO88 to EGP</li>
-<li>
-<input type="checkbox" disabled checked>ISCO88 to EGP-MP</li>
-<li>
-<input type="checkbox" disabled checked>ISCO88 to EGP11</li>
+<input type="checkbox" disabled checked>ISCO88 to EGP11/EGP7/EGP5</li>
 <li>
 <input type="checkbox" disabled checked>ISCO88 to EGP11-MP</li>
 <li>
-<input type="checkbox" disabled checked>ISCO88 to OESCH16</li>
+<input type="checkbox" disabled checked>ISCO88 to OESCH16/OESCH8/OESCH5</li>
 <li>
 <input type="checkbox" disabled checked>ISCO88 to ISCO88COM</li>
 <li>
@@ -130,7 +123,7 @@
 <li>
 <input type="checkbox" disabled checked>ISCO08 to SIOPS</li>
 <li>
-<input type="checkbox" disabled checked>ISCO08 to OESCH16</li>
+<input type="checkbox" disabled checked>ISCO08 to OESCH16/OESCH8/OESCH5</li>
 <li>
 <input type="checkbox" disabled checked>ISCO08 to ESEC - ISCO08 must be 3 digits</li>
 <li>
@@ -238,14 +231,17 @@
 <li><p><input type="checkbox" disabled checked>Revise the documentation of each function</p></li>
 <li><p><input type="checkbox" disabled checked>Add different n.classes for EGP</p></li>
 <li><p><input type="checkbox" disabled checked>Add different n.classes for OESCH</p></li>
+<li><p><input type="checkbox" disabled checked>Add a general check to fail if the number digits doesnt align with the translation function</p></li>
+<li><p><input type="checkbox" disabled checked>Add some more tests for the functions in the package</p></li>
+<li><p><input type="checkbox" disabled checked>Add tests for EGP/OESCH that do translations between broader and finegrained classes</p></li>
+<li><p><input type="checkbox" disabled checked>Write more tutorials on how to use the package</p></li>
+<li><p><input type="checkbox" disabled checked>Add some examples with the ISSP data</p></li>
+<li><p>[] Refactor EGP/OESCH. These functions share so much code for swwitching between general and more finegrained schemas. You need to simplify and reuse both on code and on documentation.</p></li>
 <li><p>[] Add E.O Wright translation</p></li>
 <li><p>[] Add ISCO to ESEG translation (waiting for Guillem’s input)</p></li>
 <li><p>[] Add IPICS (waiting for Oscar to contact Florian)</p></li>
-<li><p>[] Write more tutorials on how to use the package</p></li>
-<li><p>[] Add some more tests for the functions in the package</p></li>
-<li><p>[] Add some examples with the ISSP data</p></li>
-<li><p>[] Add a general check to fail if the number digits doesnt align with the translation function</p></li>
-<li><p>[] Add option to make labeling consistent between ESEC and EGP and their respective MP versions (see do file for ESEC-MP in the zip file Giullelm send).</p></li>
+<li><p>[] All ISCOCOM functions should be if it’s not isco88com</p></li>
+<li><p>[] Add option to make labeling consistent between ESEC and EGP and their respective MP versions (see do file for ESEC-MP in the zip file Giullelm send).-</p></li>
 </ul>
 </div>
 </div>
