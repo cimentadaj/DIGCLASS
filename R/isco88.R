@@ -377,7 +377,6 @@ isco88com_to_esec <- function(x,
                               n_employees,
                               full_method = TRUE,
                               label = FALSE) {
-  # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
 
   if (full_method) {
     col_position <- dplyr::case_when(
@@ -397,7 +396,7 @@ isco88com_to_esec <- function(x,
       translate_df = all_schemas$isco88com_to_esec_three,
       translate_label_df = all_labels$esec,
       label = label,
-      digits = 4
+      digits = 3
     )
   } else {
     res <- common_translator(
@@ -406,7 +405,8 @@ isco88com_to_esec <- function(x,
       output_var = "ESEC",
       translate_df = all_schemas$isco88com_to_esec_three,
       translate_label_df = all_labels$esec,
-      label = label
+      label = label,
+      digits = 3
     )
   }
 
@@ -453,7 +453,6 @@ isco88com_to_msec <- function(x,
                               self_employed,
                               n_employees,
                               label = FALSE) {
-  # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
   col_position <- dplyr::case_when(
     self_employed == 1 & n_employees >= 10 ~ 2,
     self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 3,
@@ -469,7 +468,7 @@ isco88com_to_msec <- function(x,
     translate_df = all_schemas$isco88com_to_msec,
     translate_label_df = all_labels$msec,
     label = label,
-    digits = 4
+    digits = 3
   )
 
   res

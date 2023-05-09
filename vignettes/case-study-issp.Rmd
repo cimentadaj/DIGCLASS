@@ -1,0 +1,180 @@
+---
+title: "Case study: Exploring Occupations Using The International Social Survey Programme (ISSP)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{case-study-issp}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(DIGCLASS)
+library(dplyr)
+library(haven)
+```
+
+The International Social Survey Programme (ISSP) is a cross-national collaboration programme conducting annual surveys on diverse topics relevant to social sciences. Since its foundation, over one million respondents have participated in the surveys of the ISSP. All collected data and documentation is available free of charge.
+
+The ISSP contains data for the ISCO08 class schema as well as additional information on the working conditions of respondents. The `DIGCLASS` package contains a copy of the 2020 edition of the survey for these variables. I've deliberately left this data as it comes from the ISSP, meaning that we need to do a real-world cleanup of the data as well as cleaning up the ISCO08 variable. Let's look at how this data looks like:
+
+```{r}
+issp
+```
+
+It has around 22K rows and 4 columns., Here's what each column means:
+
+* isco08: The ISCO08 class schema. Currently in 4-digits.
+* emprel: The employee relationship of the respondent. Could be self-employed, employee or in a family business.
+* nsup: Number of subordinates, if there are any.
+* wrksup: Whether the respondent has subordinates, or in other words, whether the respondent is a supervisor.
+
+Each of these columns has some values that are not valid, like "Did not respond" and so on. Let's look at each of these columns to understand which values need to be excluded:
+
+```{r}
+issp %>%
+  count(emprel)
+```
+
+For the employee relationship, we have values -9 and -4 which should not be there. They measure whether the question doesn't apply and whether there was no answer. Let's look at  `nsup` and `wrksup`:
+
+```{r}
+issp %>%
+  count(nsup)
+```
+
+
+```{r}
+issp %>%
+  count(wrksup)
+```
+
+It seems that all columns (including ISCO08) have values -4 and -9 to reflect respondents which didn't answer and whether the question doesn't apply. Since we don't need these for our case study, let's convert them to `NA`'s. Remember that these can be useful for other analysis so don't just remove them automatically.
+
+```{r}
+issp <- issp %>% mutate_all(~ if_else(.x < 0, NA, .x))
+```
+
+With the previous code, we loop over all columns and apply the function `if_else` to make sure we remove all values that are below 0. Alright, let's now focus on the `isco08` column. Let's say we want to convert `isco08` to `isco88`. Let's use the function `isco08_to_isco88`:
+
+```{r}
+issp <- issp %>% mutate(isco88 = isco08_to_isco88(isco08))
+```
+
+Notice that there were several messages. First, it tells us that the ISCO variable was not a character vector. It warns this because numeric columns convert ISCO codes such as `0110` to `110` and we loose information. This makes it impossible to separate the 3-digit ISCO code `310` from `0310` converted to `310`. For that reason, all functions in `DIGCLASS` will raise a warning like this one if it finds that ISCO comes as a character vector.
+
+After this warning, it also mentions that certain occupations have less than 4 digits. It **assumes** these are always ISCO occupations that need a preceding `0` in front. It takes the liberty of converting these automatically by appending the 0's in front. For more details on how this works and how to fix these values yourself, the message points the user to the link [https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html](https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html).
+
+As you can see yourself, despite these messages, these were all warnings and information messages. It translated everything correctly to ISCO88:
+
+```{r}
+issp %>% select(isco88)
+```
+
+The explanation above works for most of the translations implemented in `DIGCLASS`. This means that most translations in `DIGCLASS` do not need previous transformations or additional variables to make the translation. This applies to the vast majority of the translations in `DIGCLASS`.
+
+However, there are cases where we have to translate these 4-digit schemas into broader groups. For example to translate using `isco08_to_msec`, `isco08` needs to be translated to the 3-digit equivalent. Moreover, to translate to `msec` we need other variables like the number of subordinates that the respondent has, as well as whether the respondent is self-employed or an employee. Let's recode these into the needed values. The columns need to be recoded like this:
+
+* `is_supervisor`: A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).
+
+* `self_employed`: A numeric vector indicating whether each individual is self-employed (1) or not (0).
+
+* `n_employees`: A numeric vector indicating the number of employees under each respondent. **If the respondent has 0 employees, it should say `0` and not `NA`**.
+
+Let's recode each one:
+
+```{r}
+issp <-
+  issp %>%
+  mutate(
+    is_supervisor = ifelse(wrksup == 2, 0, wrksup),
+    self_employed = case_when(
+      emprel %in% c(1, 5) ~ 0,
+      emprel %in% 2:4 ~ 1,
+      TRUE ~ NA
+    ),
+    n_employees = ifelse(is_supervisor == 0, 0, nsup)
+  ) %>%
+  select(isco08, is_supervisor, self_employed, n_employees)
+
+issp
+```
+
+Let's explain what's happening here. I recoded that if `wrksup` is 2, it means the person does is not supervisor (we want supervisors to have a `1` and non-supervisors to have a `0`), otherwise continue with the `1` that is set to for supervisors.
+
+For `self_employed` I recoded that if the respondent is an employee or works at a family business, the respondent is an employee (`0`). If it is self-employed of any kind (with or without employees), it is self-employed (`1`). Otherwise, all values should be missing.
+
+Finally, for the number of employees we need to explicitly say if the respondent has 0 employees. It's not enough to leave it as `NA`. We recode it such that if the user is **not** a supervisor (equal to `0` in `is_supervisor`), then it should have `0` employees in `n_employees`.
+
+With these columns recoded, let's try to convert ISCO08 to MSEC using these columns:
+
+```{r, error = TRUE}
+issp <- issp %>% mutate(msec = isco08_to_msec(isco08, is_supervisor, self_employed, n_employees))
+```
+
+Aside from the usual warnings saying that some values are recoded to have 4 digits, there's an error message saying that the ISCO vector should be 3-digits. This might happen for some translations for which a certain number of digits might be necessary. For translating ISCO between different digits, we use the functions `isco*_swap` where `*` represents the given year of interest. For our case, we're looking for `isco08_swap`. At the same time, we can remove all those warnings of transforming values like `110` to `0110` by running `isco08` through `repair_isco` once and saving it.
+
+Let's do both:
+
+```{r}
+issp <-
+  issp %>%
+  mutate(
+    isco08 = repair_isco(isco08),
+    isco08_three = isco08_swap(isco08, from = 4, to = 3)
+  )
+
+issp
+```
+
+We shouldn't see any more warning messages. Now that we translate `isco08` to `isco08_three` (you can see that `isco08_three` always ends with a `0`, because we've translated it to 3-digit codes). Let's use `isco08_to_msec` to translate it:
+
+```{r}
+issp <-
+  issp %>%
+  mutate(
+    msec = isco08_to_msec(isco08_three, is_supervisor, self_employed, n_employees)
+  )
+
+issp
+```
+
+There we go. We now see an `msec` column that contains the translation. All translation functions in `DIGCLASS` that have labels contain an argument called `label` that if set to `TRUE` will return the labels instead of the numbers. Here's an example with `msec`:
+
+```{r}
+issp %>%
+  mutate(
+    msec = isco08_to_msec(isco08_three, is_supervisor, self_employed, n_employees, label = TRUE)
+  ) %>%
+  count(msec)
+```
+
+One final example comes from we call "chained" translations. For some examples you'll need to translate to a new class schema, that then needs to be used as the input to another class schema. For example, to translate from `isco88` to `msec`, you'll need to translate to `isco88com` because that's the only available translation for `isco88`. Here's how we would do it:
+
+```{r}
+issp %>%
+  mutate(
+    isco88 = isco08_to_isco88(isco08),
+    isco88com = isco88_to_isco88com(isco88),
+    isco88com_three = isco88_swap(isco88com, from = 4, to = 3),
+    msec = isco88com_to_msec(isco88com_three, is_supervisor, self_employed, n_employees, label = TRUE)
+  ) %>%
+  count(msec)
+```
+
+As you can see, the `DIGCLASS` offers all the pieces to make very complicated translations rather easily. Since ISSP only contains `isco08`, we did the following translations:
+
+* Convert ISCO08 to ISCO88
+* Convert ISCO88 to ISCO88COM
+* Convert ISCO88COM from 4-digits to 3-digits
+* Convert ISCO88COM 3-digits into MSEC
+
+This flexibility allows the user to do any sort of arbitrary transformation if needed as well as build more complicated pipelines that transform certain class schemas automatically to other expressions, such as bigger digit groups and subsequent transformations.
+
+These examples paint very clear picture of all the different types of transformations that are possible in this package. If you've worked out how to run all of these examples, then you're ready to navigate `DIGCLASS`.

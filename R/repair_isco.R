@@ -31,6 +31,7 @@ repair_isco <- function(x, digits = 4) {
   }
 
   x_clean <- x[!is.na(x)]
+  ## x_clean <- gsub("0*$", "", x_clean)
   x_nchar <- nchar(x_clean)
   unique_x <- unique(x_nchar)
 

@@ -18,20 +18,16 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO68 to ISCO08
   - [X] ISCO68 to SIOPS
   - [X] ISCO68 to ISEI
-  - [X] ISCO68 to EGP
-  - [X] ISCO68 to EGP-MP
-  - [X] ISCO68 to EGP11
+  - [X] ISCO68 to EGP11/EGP7/EGP5/EGP3
   - [X] ISCO68 to EGP11-MP
 
 * **ISCO88**
   - [X] ISCO88 to ISEI
   - [X] ISCO88 to SIOPS
   - [X] ISCO88 to MPS88
-  - [X] ISCO88 to EGP
-  - [X] ISCO88 to EGP-MP
-  - [X] ISCO88 to EGP11
+  - [X] ISCO88 to EGP11/EGP7/EGP5
   - [X] ISCO88 to EGP11-MP
-  - [X] ISCO88 to OESCH16
+  - [X] ISCO88 to OESCH16/OESCH8/OESCH5
   - [X] ISCO88 to ISCO88COM
   - [X] ISCO88 to ISCO08
   - [X] ISCO88 to ISCO68
@@ -43,7 +39,7 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO08 to ISCO88
   - [X] ISCO08 to ISEI
   - [X] ISCO08 to SIOPS
-  - [X] ISCO08 to OESCH16
+  - [X] ISCO08 to OESCH16/OESCH8/OESCH5
   - [X] ISCO08 to ESEC - ISCO08 must be 3 digits
   - [X] ISCO08 to ESEC - ISCO08 must be 2 digits
   - [X] ISCO08 to ESEC-MP - ISCO08 must be 3 digits
@@ -138,12 +134,18 @@ This package has benefitted greatly from other open source packages that already
 - [X] Revise the documentation of each function
 - [X] Add different n.classes for EGP
 - [X] Add different n.classes for OESCH
+- [X] Add a general check to fail if the number digits doesnt align with the translation function
+- [X] Add some more tests for the functions in the package
+- [X] Add tests for EGP/OESCH that do translations between broader and finegrained classes
+- [X] Write more tutorials on how to use the package
+- [X] Add some examples with the ISSP data
+
+
+- [] Refactor EGP/OESCH. These functions share so much code for swwitching between general and more finegrained schemas. You need to simplify and reuse both on code and on documentation.
 
 - [] Add E.O Wright translation
 - [] Add ISCO to ESEG translation (waiting for Guillem's input)
 - [] Add IPICS (waiting for Oscar to contact Florian)
-- [] Write more tutorials on how to use the package
-- [] Add some more tests for the functions in the package
-- [] Add some examples with the ISSP data
-- [] Add a general check to fail if the number digits doesnt align with the translation function
-- [] Add option to make labeling consistent between ESEC and EGP and their respective MP versions (see do file for ESEC-MP in the zip file Giullelm send).
+- [] All ISCOCOM functions should be if it's not isco88com
+- [] Add option to make labeling consistent between ESEC and EGP and their respective MP versions (see do file for ESEC-MP in the zip file Giullelm send).-
+

@@ -282,3 +282,16 @@ left_join(tp, tpa, by = "micro")
 
 formatted_output <- sprintf("%s %s\n", tp[[1]], tp[[2]])
 cat(formatted_output)
+
+
+issp %>%
+  mutate(
+    is_supervisor = ifelse(wrksup == 2, 0, wrksup),
+    self_employed = case_when(
+      emprel %in% c(1, 5) ~ 0,
+      emprel %in% 2:4 ~ 1,
+      TRUE ~ NA
+    ),
+    n_employees = ifelse(is_supervisor == 0, 0, nsup)
+  ) %>%
+  select(isco08, is_supervisor, self_employed, n_employees)

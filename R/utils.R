@@ -1,7 +1,11 @@
 common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, digits = 4, repair_isco = TRUE) {
+
   if (repair_isco) {
-    x <- repair_isco(x, digits = digits)
+    # All checks must being by whether the function has 4 digits (regardless of it's 1300 or 13111)
+    x <- repair_isco(x, digits = 4)
   }
+
+  count_digits(x, digits = digits)
 
   res <-
     tibble::tibble(x = as.character(x)) %>%
@@ -28,8 +32,50 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
   transformed
 }
 
+count_digits <- function(x, digits) {
+  all_digits <- c(
+    `1` = 3,
+    `2` = 2,
+    `3` = 1,
+    `4` = 0
+  )
+
+  # Exclude 0100, 0000, etc..
+  # because they mess up the counting of 0's. Even a 4 digit can
+  # contain 0100 and technically contains three zeroes
+  begins_zero <- substr(x, 1, 1) == 0
+  x <- x[!begins_zero]
+  x <- x[!is.na(x)]
+
+  counts <- table(sapply(strsplit(x, ""), function(code) sum(code == "0"))) / length(x)
+  # Add missing numbers as names with value 0
+  missing_numbers <- as.character(setdiff(unname(all_digits), names(counts)))
+  counts[missing_numbers] <- 0
+
+  if (digits == 4) {
+    if (counts[as.character(1)] > 0.95) {
+      # This means that the number of ISCOs with 1 digit is too high, so this is probably
+      # a 3-digit number.
+      counts[as.character(0)] <- counts[as.character(0)]
+    } else {
+        # combine counts of 1 and 0 zeroes into only 0 because the 1 digit ISCO contains
+        # a lot of both.
+      counts[as.character(0)] <- counts[as.character(1)] + counts[as.character(0)]
+    }
+
+  }
+
+  n_zeroes <- as.character(all_digits[[as.character(digits)]])
+  if (counts[n_zeroes] < 0.85) {
+    cli::cli_abort("`x` might not be a {digits}-digit ISCO vector. Convert to {digits} digits using `isco08/88/68_swap`.")
+  }
+}
+
 multiple_cols_translator <- function(x, col_position, output_var, translate_df, translate_label_df, label, digits = 4) {
-  x <- repair_isco(x, digits = digits)
+
+  # All checks must being by whether the function has 4 digits (regardless of it's 1300 or 13111)
+  x <- repair_isco(x, digits = 4)
+  count_digits(x, digits = digits)
 
   class_match <- match(x, translate_df[[1]])
   matrix_translate_df <- as.matrix(translate_df)

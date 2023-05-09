@@ -99,7 +99,7 @@ isco08_to_esec <- function(x,
                            self_employed,
                            n_employees,
                            label = FALSE) {
-  # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
+
   col_position <- dplyr::case_when(
     # Is it an employee?
     self_employed == 0 & is_supervisor == 0 ~ 2,
@@ -117,7 +117,7 @@ isco08_to_esec <- function(x,
     translate_df = all_schemas$isco08_to_esec_three,
     translate_label_df = all_labels$esec,
     label = label,
-    digits = 4
+    digits = 3
   )
 
   res
@@ -166,7 +166,7 @@ isco08_two_to_esec <- function(x,
                                self_employed,
                                n_employees,
                                label = FALSE) {
-  # TODO: this function should fail if `x` is not 2 digits (1300 instead of 13)
+
   col_position <- dplyr::case_when(
     self_employed == 1 & n_employees >= 10 ~ 1,
     self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 2,
@@ -182,7 +182,7 @@ isco08_two_to_esec <- function(x,
     translate_df = all_schemas$isco08_to_esec_two,
     translate_label_df = all_labels$esec,
     label = label,
-    digits = 4
+    digits = 2
   )
 
   res
@@ -512,7 +512,6 @@ isco08_to_msec <- function(x,
                            self_employed,
                            n_employees,
                            label = FALSE) {
-  # TODO: this function should fail if `x` is not 3 digits (1310 instead of 131)
   col_position <- dplyr::case_when(
     self_employed == 1 & n_employees >= 10 ~ 2,
     self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 3,
@@ -528,7 +527,7 @@ isco08_to_msec <- function(x,
     translate_df = all_schemas$isco08_to_msec,
     translate_label_df = all_labels$msec,
     label = label,
-    digits = 4
+    digits = 3
   )
 
   res
@@ -747,6 +746,6 @@ isco08_swap <- function(x,
     output_var = to,
     translate_df = all_schemas$isco08_hierarchy,
     translate_label_df = NULL,
-    label = FALSE
+    label = FALSE,
   )
 }
