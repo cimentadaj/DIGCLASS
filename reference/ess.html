@@ -55,10 +55,23 @@ between schemas.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>dataframe</p>
+    <p>Data Frame</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>The codebook for the columns is:</p><ul><li><p><code>isco68</code>: The ISCO68 class schema in 4-digits.</p></li>
+<li><p><code>isco88</code>: The ISCO88 class schema in 4-digits.</p></li>
+<li><p><code>isco88com</code>: The ISCO88COM class schema in 4-digits.</p></li>
+<li><p><code>isco08</code>: The ISCO08 class schema in 4-digits.</p></li>
+<li><p><code>emplno</code>: Number of subordinates, if there are any. If 0 employees, the number is 0 and not an <code>NA</code>, as it should be in your data for using <code>DIGCLASS</code>.</p></li>
+<li><p><code>self_employed</code>: A numeric vector indicating whether each individual is self-employed (1) or an employee (0).</p></li>
+<li><p><code>is_supervisor</code>: A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).</p></li>
+<li><p><code>control_work</code>: A likert-scale type question from 0 to 10 where 0 is whether an individual has no control over their work/organisation decisions and 10 is complete control over work/organization decisions. For an example, see the variable <code>iorgact</code> in the European Social Survey.</p></li>
+<li><p><code>control_daily</code>: A likert-scale type question from 0 to 10 where 0 means the respondent has no control to decide how their own daily work is/was organised and 10 is complete control to decide how their own daily work is/was organised. For an example, see the variable <code>wkdcorga</code> in the European Social Survey.</p></li>
+</ul></div>
 
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
