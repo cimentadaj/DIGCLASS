@@ -11,7 +11,7 @@ isco08_two_to_esec(x, is_supervisor, self_employed, n_employees, label = FALSE)
 
 \item{is_supervisor}{A numeric vector indicating whether each individual is a supervisor (1, e.g. responsible for other employees) or not (0).}
 
-\item{self_employed}{A numeric vector indicating whether each individual is self-employed (1) or not (0).}
+\item{self_employed}{A numeric vector indicating whether each individual is self-employed (1) or an employee (0).}
 
 \item{n_employees}{A numeric vector indicating the number of employees under each respondent.}
 

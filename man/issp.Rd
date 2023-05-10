@@ -4,18 +4,19 @@
 \alias{issp}
 \title{An example data frame with data from the International Social Survey Programme (ISSP).}
 \format{
-dataframe
+Data Frame
 }
 \description{
 Just an example data frame to show how the package can be used to translate
-between schemas. The source can be found at \url{https://issp.org/data-download/by-year/}. The columns refer to:
+between schemas. The source can be found at \url{https://issp.org/data-download/by-year/}.
 }
 \details{
+The columns in the data frame refer to:
 \itemize{
-\item isco08: The ISCO08 class schema. Currently in 4-digits.
-\item emprel: The employee relationship of the respondent. Could be self-employed, employee or in a family business.
-\item nsup: Number of subordinates, if there are any.
-\item wrksup: Whether the respondent has subordinates, or in other words, whether the respondent is a supervisor.
+\item \code{isco08}: The ISCO08 class schema. Currently in 4-digits.
+\item \code{emprel}: The employee relationship of the respondent. Could be self-employed, employee or in a family business.
+\item \code{nsup}: Number of subordinates, if there are any.
+\item \code{wrksup}: Whether the respondent has subordinates, or in other words, whether the respondent is a supervisor.
 }
 
 For how to do a proper analysis of this data in \code{DIGCLASS} and how to recode this data set, see the vignette "Case study: Exploring Occupations Using The International Social Survey Programme (ISSP)" in the package website.

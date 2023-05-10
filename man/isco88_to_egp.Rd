@@ -12,7 +12,7 @@ isco68_to_egp(x, self_employed, n_employees, n_classes = 11, label = FALSE)
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
 
-\item{self_employed}{A numeric vector indicating whether each individual is self-employed (1) or not (0).}
+\item{self_employed}{A numeric vector indicating whether each individual is self-employed (1) or an employee (0).}
 
 \item{n_employees}{A numeric vector indicating the number of employees under each respondent.}
 

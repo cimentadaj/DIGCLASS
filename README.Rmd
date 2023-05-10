@@ -45,6 +45,7 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO88COM to ESEC - ISCO88COM must be 3 digits
   - [X] ISCO88COM to ESEC-MP - ISCO88COM must be 3 digits
   - [X] ISCO88COM to MSEC - ISCO88COM must be 3 digits
+  - [X] ISCO88COM to WRIGHT
 
 * **ISCO08**
   - [X] ISCO08 to ISCO88
@@ -134,13 +135,13 @@ This package has benefitted greatly from other open source packages that already
 - [X] Add tests for EGP/OESCH that do translations between broader and finegrained classes
 - [X] Write more tutorials on how to use the package
 - [X] Add some examples with the ISSP data
-
+- [X] Add E.O Wright translation
 
 - [] Refactor EGP/OESCH. These functions share so much code for swwitching between general and more finegrained schemas. You need to simplify and reuse both on code and on documentation.
 
-- [] Add E.O Wright translation
 - [] Add ISCO to ESEG translation (waiting for Guillem's input)
 - [] Add IPICS (waiting for Oscar to contact Florian)
-- [] All ISCOCOM functions should be if it's not isco88com
+
+- [] All ISCOCOM functions should be if it's not isco88com (not sure this is practical since many surveys will simply have not that many occupations making it indistinguishable to separate say ISCO88COM from ISCO88 and ISCO08. Say you're missing a code: it could be because it's a different class schema or because that occupation is missing from the data).
 - [] Add option to make labeling consistent between ESEC and EGP and their respective MP versions (see do file for ESEC-MP in the zip file Giullelm send).-
 

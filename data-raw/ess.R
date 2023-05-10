@@ -10,7 +10,14 @@ ess <-
     self_employed = ifelse(emplrel == "2", 1, 0),
     is_supervisor = ifelse(jbspv == "1", 1, 0)
   ) %>%
-  select(iscoco, emplno, self_employed, is_supervisor) %>%
+  select(
+    iscoco,
+    emplno,
+    self_employed,
+    is_supervisor,
+    control_work = iorgact,
+    control_daily = wkdcorga
+  ) %>%
   mutate(emplno = as.numeric(emplno)) %>%
   rename(isco88 = iscoco)
 
@@ -19,6 +26,8 @@ ess$isco88 <- repair_isco(ess$isco88)
 
 ess <-
   ess %>%
+  mutate_at(c("control_work", "control_daily"), as.numeric) %>%
+  mutate_at(c("control_work", "control_daily"), ~ if_else(.x > 10, NA, .x)) %>%
   mutate(
     emplno = if_else(emplno > 10000, 0, emplno),
     isco68 = isco88_to_isco68(isco88),

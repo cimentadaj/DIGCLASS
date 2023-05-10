@@ -377,7 +377,6 @@ isco88com_to_esec <- function(x,
                               n_employees,
                               full_method = TRUE,
                               label = FALSE) {
-
   if (full_method) {
     col_position <- dplyr::case_when(
       # Is it an employee?
@@ -529,6 +528,121 @@ isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
   }
 }
 
+#' This function translates a vector of 4-digit ISCO88COM codes to the E.O Wright class schema.
+#'
+#' `r rg_template_intro("ISCO88COM", "Wright", "isco88com_to_wright")`
+#'
+#' @details The translation implemented in this function was originally developed by Erik Olin Wright. There are three possible types of translations: the "simple" version, the "decision-making" version and the "power-class" version. This translation was implemented following the SPSS script from Håkon Leiulfsrud and Heidi Jensberg. For more information, please contact the authors.
+#'
+#' @param x `r rg_template_arg_x_digit("ISCO")`
+#'
+#' @inheritParams isco08_to_esec
+#'
+#' @param control_work A likert-scale type question from 0 to 10 where 0 is whether an individual has no control over their work/organisation decisions and 10 is complete control over work/organization decisions. For an example, see the variable `iorgact` in the European Social Survey.
+#' @param control_daily A likert-scale type question from 0 to 10 where 0 means the respondent has no control to decide how their own daily work is/was organised and 10 is complete control to decide how their own daily work is/was organised. For an example, see the variable `wkdcorga` in the European Social Survey.
+#'
+#' @param type The type of translation to make. Possible values are "simple", "decision-making" and "power-class".
+#'
+#'
+#' @examples
+#' library(dplyr)
+#'
+#'
+#' # E.O Wright - Simple translation
+#' ess %>%
+#'   transmute(
+#'     isco88com,
+#'     wr_simple = isco88com_to_wright(
+#'       isco88com,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       control_work,
+#'       control_daily,
+#'       type = "simple"
+#'     ),
+#'     wr_simple_label = isco88com_to_wright(
+#'       isco88com,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       control_work,
+#'       control_daily,
+#'       type = "simple",
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' # E.O Wright - Decision-making translation
+#' ess %>%
+#'   transmute(
+#'     isco88com,
+#'     wr_decision = isco88com_to_wright(
+#'       isco88com,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       control_work,
+#'       control_daily,
+#'       type = "decision-making"
+#'     ),
+#'     wr_decision_label = isco88com_to_wright(
+#'       isco88com,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       control_work,
+#'       control_daily,
+#'       type = "decision-making",
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' # E.O Wright - Power-class translation
+#' ess %>%
+#'   transmute(
+#'     isco88com,
+#'     wr_power = isco88com_to_wright(
+#'       isco88com,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       control_work,
+#'       control_daily,
+#'       type = "power-class"
+#'     ),
+#'     wr_power_label = isco88com_to_wright(
+#'       isco88com,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       control_work,
+#'       control_daily,
+#'       type = "power-class",
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' @export
+isco88com_to_wright <- function(x,
+                                is_supervisor,
+                                self_employed,
+                                n_employees,
+                                control_work,
+                                control_daily,
+                                type,
+                                label = FALSE) {
+  construct_wright(
+    x,
+    is_supervisor,
+    self_employed,
+    n_employees,
+    control_work,
+    control_daily,
+    type = type,
+    label = label
+  )
+}
 
 #' @rdname isco08_swap
 #' @order 2

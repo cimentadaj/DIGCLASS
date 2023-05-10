@@ -41,6 +41,7 @@ reference:
     - isco88_to_isco08
     - isco88_to_isco88com
     - isco88_to_isco68
+    - isco88com_to_wright
 
 
 - subtitle: Utility functions
