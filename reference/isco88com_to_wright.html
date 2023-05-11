@@ -86,7 +86,7 @@
 
 
 <dt>control_daily</dt>
-<dd><p>A likert-scale type question from 0 to 10 where 0 means the respondent has no control to decide how their own daily work is/was organised and 10 is complete control to decide how their own daily work is/was organised. For an example, see the variable <code>wkdcorga</code> in the European Social Survey.</p></dd>
+<dd><p>A likert-scale type question from 1 to 4 where 1 means complete control to decide how their own daily work is/was organised and 4 means no control to decide how their own daily work is/was organised. For an example, see the variable <code>orgwrk</code> in the European Social Survey. Another example is recoding the variable <code>wkdcorga</code> from the European Social Survey such that 8-10 is 1, 5-7 is 2, 2-4 is 3 and 0-1 is 4.</p></dd>
 
 
 <dt>type</dt>
@@ -175,13 +175,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 3111                9 Skilled workers        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 3431               12 Low skilled workers    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1210                4 Expert managers        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2320                9 Skilled workers        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1210               <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2320               <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 7137                8 Skilled supervisors    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 5131               12 Low skilled workers    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>                  3 Self empl w/no empoyees</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2419                5 Expert supervisors     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 3460                9 Skilled workers        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 3460               <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2444                6 Experts                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 56,742 more rows</span></span>
 <span class="r-in"><span></span></span>
@@ -214,13 +214,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 3111           7   Skilled workers            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 3431           6.5 Low skilled Semi autonomous</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1210           4   Skilled Managers           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2320           7   Skilled workers            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1210          <span style="color: #BB0000;">NA</span>   <span style="color: #BB0000;">NA</span>                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2320          <span style="color: #BB0000;">NA</span>   <span style="color: #BB0000;">NA</span>                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 7137           5   Skilled supervisors        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 5131           7.5 Low skilled workers        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>             3   Self empl                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2419           5   Skilled supervisors        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 3460           7   Skilled workers            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 3460          <span style="color: #BB0000;">NA</span>   <span style="color: #BB0000;">NA</span>                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2444           7   Skilled workers            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 56,742 more rows</span></span>
 <span class="r-in"><span></span></span>
