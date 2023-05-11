@@ -10,13 +10,21 @@ ess <-
     self_employed = ifelse(emplrel == "2", 1, 0),
     is_supervisor = ifelse(jbspv == "1", 1, 0)
   ) %>%
-  select(
+  mutate_at(c("wkdcorga", "iorgact"), as.numeric) %>%
+  transmute(
     iscoco,
     emplno,
     self_employed,
     is_supervisor,
     control_work = iorgact,
-    control_daily = wkdcorga
+    control_daily = wkdcorga,
+    control_daily = case_when(
+      control_daily >= 8 & control_daily <= 10 ~ 1,
+      control_daily >= 5 & control_daily <= 7 ~ 2,
+      control_daily >= 2 & control_daily <= 4 ~ 3,
+      control_daily >= 0 & control_daily <= 1 ~ 4,
+      TRUE ~ NA
+    )
   ) %>%
   mutate(emplno = as.numeric(emplno)) %>%
   rename(isco88 = iscoco)
@@ -26,8 +34,7 @@ ess$isco88 <- repair_isco(ess$isco88)
 
 ess <-
   ess %>%
-  mutate_at(c("control_work", "control_daily"), as.numeric) %>%
-  mutate_at(c("control_work", "control_daily"), ~ if_else(.x > 10, NA, .x)) %>%
+  mutate_at(c("control_work", "control_daily"), ~ if_else(.x > 4, NA, .x)) %>%
   mutate(
     emplno = if_else(emplno > 10000, 0, emplno),
     isco68 = isco88_to_isco68(isco88),

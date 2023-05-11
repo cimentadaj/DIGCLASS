@@ -598,7 +598,6 @@ construct_wright <- function(x,
   skill[skill == 24] <- 3
   skill[skill == 26] <- 3
 
-
   ## # MAN1: How to differentiate between supervisors and managers
   ## # based on whether they control their own work
   control_work[control_work >= 0 & control_work <= 7] <- 0
@@ -611,24 +610,16 @@ construct_wright <- function(x,
   dp[self_employed == 0 & is_supervisor == 0 & control_work == 0] <- 4
   dp[dp == 0] <- NA
 
-
-  ## # variable is different in rest of rounds, need to recode then merge
-  orgwrk <- NA
-  orgwrk[control_daily >= 8 & control_daily <= 10] <- 1
-  orgwrk[control_daily >= 5 & control_daily <= 7] <- 2
-  orgwrk[control_daily >= 2 & control_daily <= 4] <- 3
-  orgwrk[control_daily >= 0 & control_daily <= 1] <- 4
-
   man <- NA
-  man[self_employed == 0 & dp == 1 & orgwrk == 1] <- 1
-  man[self_employed == 0 & dp == 1 & orgwrk > 2] <- 3
-  man[self_employed == 0 & dp == 2 & orgwrk == 1] <- 2
-  man[self_employed == 0 & dp == 1 & orgwrk == 2] <- 2
-  man[self_employed == 0 & dp == 2 & orgwrk > 1] <- 3
-  man[self_employed == 0 & dp == 3 & orgwrk == 1] <- 2
-  man[self_employed == 0 & dp == 3 & orgwrk > 1] <- 3
-  man[self_employed == 0 & dp == 4 & orgwrk == 1] <- 3
-  man[self_employed == 0 & dp == 4 & orgwrk > 1] <- 4
+  man[self_employed == 0 & dp == 1 & control_daily == 1] <- 1
+  man[self_employed == 0 & dp == 1 & control_daily > 2] <- 3
+  man[self_employed == 0 & dp == 2 & control_daily == 1] <- 2
+  man[self_employed == 0 & dp == 1 & control_daily == 2] <- 2
+  man[self_employed == 0 & dp == 2 & control_daily > 1] <- 3
+  man[self_employed == 0 & dp == 3 & control_daily == 1] <- 2
+  man[self_employed == 0 & dp == 3 & control_daily > 1] <- 3
+  man[self_employed == 0 & dp == 4 & control_daily == 1] <- 3
+  man[self_employed == 0 & dp == 4 & control_daily > 1] <- 4
 
   wr_simp <- NA
   wr_simp[n_employees == 2] <- 1
@@ -677,12 +668,12 @@ construct_wright <- function(x,
   pc[wr_dm == 12] <- 7.5
 
   wr_p <- pc
-  wr_p[pc == 6 & (control_daily >= 8 & control_daily <= 10)] <- 6
-  wr_p[pc == 7 & (control_daily >= 8 & control_daily <= 10)] <- 6
-  wr_p[pc == 6 & (control_daily >= 0 & control_daily <= 7)] <- 6.5
-  wr_p[pc == 7 & (control_daily >= 0 & control_daily <= 7)] <- 6.5
-  wr_p[pc == 7.5 & (control_daily >= 8 & control_daily <= 10)] <- 7
-  wr_p[pc == 7.5 & (control_daily >= 0 & control_daily <= 7)] <- 7.5
+  wr_p[pc == 6 & (control_daily %in% 1)] <- 6
+  wr_p[pc == 7 & (control_daily %in% 1)] <- 6
+  wr_p[pc == 6 & (control_daily %in% c(2, 3, 4))] <- 6.5
+  wr_p[pc == 7 & (control_daily %in% c(2, 3, 4))] <- 6.5
+  wr_p[pc == 7.5 & (control_daily %in% 1)] <- 7
+  wr_p[pc == 7.5 & (control_daily %in% c(2, 3, 4))] <- 7.5
 
   wr_p2 <- wr_p
   wr_p <- NA
@@ -760,6 +751,7 @@ construct_wright <- function(x,
     return(wr_p)
   }
 }
+
 
 main_schema_to_others <- function(x, col_position, n_classes, schema, input_var, output_var, all_classes, label) {
   main_class <-

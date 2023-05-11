@@ -17,7 +17,7 @@
 #'
 #' * `control_work`: A likert-scale type question from 0 to 10 where 0 is whether an individual has no control over their work/organisation decisions and 10 is complete control over work/organization decisions. For an example, see the variable `iorgact` in the European Social Survey.
 #'
-#' * `control_daily`: A likert-scale type question from 0 to 10 where 0 means the respondent has no control to decide how their own daily work is/was organised and 10 is complete control to decide how their own daily work is/was organised. For an example, see the variable `wkdcorga` in the European Social Survey.
+#' * `control_daily`: A likert-scale type question from 1 to 4 where 1 means complete control to decide how their own daily work is/was organised and 4 means no control to decide how their own daily work is/was organised. For an example, see the variable `orgwrk` in the European Social Survey. Another example is recoding the variable `wkdcorga` from the European Social Survey such that 8-10 is 1, 5-7 is 2, 2-4 is 3 and 0-1 is 4.
 #'
 #' @name ess
 #' @format Data Frame
