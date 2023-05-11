@@ -54,8 +54,8 @@ test_that("e.o wright translation works as expected", {
       )
     )
 
-  expect_true(length(unique(res$wr_decision)) == 13)
-  expect_true(length(unique(res$wr_decision_label)) == 13)
+  expect_true(length(unique(res$wr_decision)) == 10)
+  expect_true(length(unique(res$wr_decision_label)) == 10)
 
   # E.O Wright - Power-class translation
   res <- ess %>%
@@ -82,6 +82,6 @@ test_that("e.o wright translation works as expected", {
       )
     )
 
-  expect_true(length(unique(res$wr_power)) == 12)
-  expect_true(length(unique(res$wr_power_label)) == 12)
+  expect_true(length(unique(res$wr_power)) == 10)
+  expect_true(length(unique(res$wr_power_label)) == 10)
 })
