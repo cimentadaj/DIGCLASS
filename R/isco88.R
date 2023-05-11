@@ -632,6 +632,9 @@ isco88com_to_wright <- function(x,
                                 control_daily,
                                 type,
                                 label = FALSE) {
+  x <- repair_isco(x)
+  count_digits(x, digits = 4)
+
   construct_wright(
     x,
     is_supervisor,
