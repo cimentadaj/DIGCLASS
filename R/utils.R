@@ -146,6 +146,190 @@ managers_professionals_helper <- function(x, esec, is_supervisor, n_employees, s
   mp
 }
 
+construct_eseg <- function(isco1, isco2, work_status, main_activity, age, type, label) {
+  type <- match.arg(type, c("one-digit", "two-digit"))
+
+  eseg <-
+    dplyr::case_when(
+      # 0 digit
+      isco2 %in% "02" & work_status %in% 0 ~ 3.5,
+      isco2 %in% "03" & work_status %in% 0 ~ 5.4,
+
+      # 1 digit
+      isco2 %in% "11" & work_status %in% 1 ~ 1.1,
+      isco2 %in% "11" & work_status %in% 0 ~ 1.3,
+      isco2 %in% "12" & work_status %in% 1 ~ 1.1,
+      isco2 %in% "12" & work_status %in% 0 ~ 1.3,
+      isco2 %in% "13" & work_status %in% 1 ~ 1.1,
+      isco2 %in% "13" & work_status %in% 0 ~ 1.3,
+      isco2 %in% "14" & work_status %in% 1 ~ 1.2,
+      isco2 %in% "14" & work_status %in% 0 ~ 1.4,
+      isco1 %in% "1" & work_status %in% c(1, 0) & main_activity %in% 5 ~ 8.1,
+      isco1 %in% "1" & work_status %in% 1 & main_activity %in% 5 ~ 8.4,
+
+      # 2 digit
+      isco2 %in% "21" & work_status %in% c(1, 0) ~ 2.1,
+      isco2 %in% "22" & work_status %in% c(1, 0) ~ 2.2,
+      isco2 %in% "23" & work_status %in% c(1, 0) ~ 2.5,
+      isco2 %in% "24" & work_status %in% c(1, 0) ~ 2.3,
+      isco2 %in% "25" & work_status %in% c(1, 0) ~ 2.1,
+      isco2 %in% "26" & work_status %in% c(1, 0) ~ 2.4,
+      isco1 %in% "2" & work_status %in% c(1, 0) & main_activity %in% 5 ~ 8.2,
+      isco1 %in% "2" & work_status %in% 1 & main_activity %in% 5 ~ 8.4,
+
+      # 3 digit
+      isco2 %in% "31" & work_status %in% 0 ~ 3.1,
+      isco2 %in% "32" & work_status %in% 0 ~ 3.2,
+      isco2 %in% "33" & work_status %in% 0 ~ 3.3,
+      isco2 %in% "34" & work_status %in% 0 ~ 3.4,
+      isco2 %in% "35" & work_status %in% 0 ~ 3.1,
+      isco1 %in% "3" & work_status %in% 1 ~ 4.2,
+      isco1 %in% "3" & work_status %in% 0 & main_activity %in% 5 ~ 8.3,
+      isco1 %in% "3" & work_status %in% 1 & main_activity %in% 5 ~ 8.4,
+
+      # 4 digit
+      isco2 %in% "41" & work_status %in% 0 ~ 5.1,
+      isco2 %in% "42" & work_status %in% 0 ~ 5.2,
+      isco2 %in% "43" & work_status %in% 0 ~ 5.1,
+      isco2 %in% "44" & work_status %in% 0 ~ 5.1,
+      isco1 %in% "4" & work_status %in% 1 ~ 4.2,
+      isco1 %in% "4" & work_status %in% 0 & main_activity %in% 5 ~ 8.5,
+      isco1 %in% "4" & work_status %in% 1 & main_activity %in% 5 ~ 8.4,
+
+      # 5 digit
+      isco2 %in% "51" & work_status %in% 0 ~ 7.1,
+      isco2 %in% "52" & work_status %in% 0 ~ 7.1,
+      isco2 %in% "53" & work_status %in% 0 ~ 5.3,
+      isco2 %in% "54" & work_status %in% 0 ~ 5.4,
+      isco1 %in% "5" & work_status %in% 1 ~ 4.2,
+      isco1 %in% "5" & work_status %in% 1 & main_activity %in% 5 ~ 8.4,
+      # Here codes 8.5 and 8.7 overlap meaning that I could assign any of the two. I
+      # picked 8.7 becasue 8.5 was used earlier.
+      isco1 %in% "5" & work_status %in% 0 & main_activity %in% 5 ~ 8.7,
+
+      # 6 digit
+      isco1 %in% "6" & work_status %in% 1 ~ 4.1,
+      isco1 %in% "6" & work_status %in% 0 ~ 7.4,
+      isco1 %in% "6" & work_status %in% 1 & main_activity %in% 5 ~ 8.4,
+      isco1 %in% "6" & work_status %in% 0 & main_activity %in% 5 ~ 8.7,
+
+      # 7 digit
+      isco2 %in% "71" & work_status %in% 0 ~ 6.1,
+      isco2 %in% "72" & work_status %in% 0 ~ 6.3,
+      isco2 %in% "73" & work_status %in% 0 ~ 6.3,
+      isco2 %in% "74" & work_status %in% 0 ~ 6.3,
+      isco2 %in% "75" & work_status %in% 0 ~ 6.2,
+      isco1 %in% "7" & work_status %in% 1 ~ 4.3,
+      isco1 %in% "7" & work_status %in% 1 & main_activity %in% 5 ~ 8.4,
+      isco1 %in% "7" & work_status %in% 0 & main_activity %in% 5 ~ 8.6,
+
+      # 8 digit
+      isco2 %in% "81" & work_status %in% 0 ~ 6.4,
+      isco2 %in% "82" & work_status %in% 0 ~ 6.4,
+      isco2 %in% "83" & work_status %in% 0 ~ 6.5,
+      isco1 %in% "8" & work_status %in% 1 ~ 4.3,
+      isco1 %in% "8" & work_status %in% 1 & main_activity %in% 5 ~ 8.4,
+      isco1 %in% "8" & work_status %in% 0 & main_activity %in% 5 ~ 8.6,
+
+      # 9 digit
+      isco2 %in% "91" & work_status %in% 0 ~ 7.3,
+      isco2 %in% "92" & work_status %in% 0 ~ 7.2,
+      isco2 %in% "93" & work_status %in% 0 ~ 7.2,
+      isco2 %in% "94" & work_status %in% 0 ~ 7.2,
+      isco2 %in% "95" & work_status %in% 0 ~ 7.3,
+      isco2 %in% "96" & work_status %in% 0 ~ 7.2,
+      isco1 %in% "9" & work_status %in% 1 ~ 4.3,
+      isco1 %in% "9" & work_status %in% 1 & main_activity %in% 5 ~ 8.4,
+      isco1 %in% "9" & work_status %in% 0 & main_activity %in% 5 ~ 8.7,
+
+      # Other
+      work_status %in% 2 & age > 64 & main_activity %in% 5 ~ 8.8,
+      work_status %in% 2 & age < 65 & main_activity %in% 2 ~ 9.1,
+      work_status %in% 2 & age < 65 & main_activity %in% 3 ~ 9.2,
+
+      # Here codes 9.3 and 9.4 overlap meaning that I could assign any of the two. I
+      # picked 9.3.
+      work_status %in% 2 & age < 65 & main_activity %in% 4 ~ 9.3,
+
+      # All else NA.
+      TRUE ~ NA
+    )
+
+  if (type == "two-digit") {
+    if (label) {
+      lookup <- c(
+        `1.1` = "11 Higher managerial self-employed",
+        `1.2` = "12 Lower managerial self-employed",
+        `1.3` = "13 Higher managerial employees",
+        `1.4` = "14 Lower managerial employees",
+        `2.1` = "21 Science, engineering and information and communications technology (ICT) professionals",
+        `2.2` = "22 Health professionals",
+        `2.3` = "23 Business and administration professionals",
+        `2.4` = "24 Legal, social and cultural professionals",
+        `2.5` = "25 Teaching professionals",
+        `3.1` = "31 Science, engineering and ICT technicians and associated professionals",
+        `3.2` = "32 Health associate professionals",
+        `3.3` = "33 Business and administration associate professionals",
+        `3.4` = "34 Legal, social and cultural associate professionals",
+        `3.5` = "35 Non-commissioned armed forces officers",
+        `4.1` = "41 Skilled agricultural self-employed workers",
+        `4.2` = "42 Technicians, clerical support, services and sales self-employed workers",
+        `4.3` = "43 Craft and related trades self-employed workers",
+        `5.1` = "51 General and numerical clerks and other clerical support employees",
+        `5.2` = "52 Customer services clerks",
+        `5.3` = "53 Personal care employees",
+        `5.4` = "54 Armed forced occupations and protective service employees",
+        `6.1` = "61 Building and related trade employees",
+        `6.2` = "62 Food processing, wood working, garment employees",
+        `6.3` = "63 Metal, machinery, handicraft, printing, electrical and electronic trades employees",
+        `6.4` = "64 Stationary plant and machine operators and assemblers",
+        `6.5` = "65 Drivers",
+        `7.1` = "71 Personal services and sales employees",
+        `7.2` = "72 Blue collar employees and food preparation assistants in elementary occupations",
+        `7.3` = "73 Cleaners and helpers and services employees in elementary occupations",
+        `7.4` = "74 Agricultural employees",
+        `8.1` = "81 Retired Managers",
+        `8.2` = "82 Retired professionals",
+        `8.3` = "83 Retired technicians and associate professionals",
+        `8.4` = "84 Retired small entrepreneurs",
+        `8.5` = "85 Retired skilled white collars",
+        `8.6` = "86 Retired skilled blue-collars",
+        `8.7` = "87 Retired less skilled workers",
+        `8.8` = "88 Other inactive aged 65 or more",
+        `9.1` = "91 Students",
+        `9.2` = "92 Permanently disabled",
+        `9.3` = "93 Unemployed not elsewhere classified",
+        `9.4` = "94 Other inactive aged less than 65 years"
+      )
+
+      eseg <- lookup[as.character(eseg)]
+  }
+
+  return(as.character(eseg))
+  }
+
+  if (type == "one-digit") {
+    eseg_one <- substr(as.character(eseg), 1, 1)
+    if (label) {
+      lookup <- c(
+        `1` = "1 Manager",
+        `2` = "2 Professionals",
+        `3` = "3 Technicians and associated professeional employees",
+        `4` = "4 Small entrepreneur",
+        `5` = "5 Clerks and skilled service employees",
+        `6` = "6 Industrial skilled employees",
+        `7` = "7 Less skilled employees",
+        `8` = "8 Retired persons and non-employed people >=65",
+        `9` = "9 Other non-employed persons aged < 65"
+      )
+
+      eseg_one <- lookup[as.character(eseg_one)]
+    }
+
+    return(as.character(eseg_one))
+  }
+}
+
 
 construct_wright <- function(x,
                              is_supervisor,
@@ -705,7 +889,7 @@ construct_wright <- function(x,
 
       wr_simp <- lookup[as.character(wr_simp)]
     }
-    return(wr_simp)
+    return(as.character(wr_simp))
   }
 
   if (type == "decision-making") {
@@ -727,7 +911,7 @@ construct_wright <- function(x,
 
       wr_dm <- lookup[as.character(wr_dm)]
     }
-    return(wr_dm)
+    return(as.character(wr_dm))
   }
 
   if (type == "power-class") {
@@ -748,7 +932,7 @@ construct_wright <- function(x,
 
       wr_p <- lookup[as.character(wr_p)]
     }
-    return(wr_p)
+    return(as.character(wr_p))
   }
 }
 

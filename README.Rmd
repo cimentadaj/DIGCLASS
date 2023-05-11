@@ -57,6 +57,7 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO08 to ESEC-MP - ISCO08 must be 3 digits
   - [X] ISCO08 to MSEC - ISCO08 must be 3 digits
   - [X] ISCO08 to Microclasses
+  - [X] ISCO08 to ESEG - ISCO08 must be 2 digits
 
 * **Extras**
   - [X] Translation between major/submajor/minor/unit groups for ISCO68, ISCO88 and ISCO08
@@ -103,7 +104,6 @@ For those class schemas that have labels, the `label` argument returns the label
 
 4. Add proper documentation to the function
 
-
 ## Other R packages
 
 This package has benefitted greatly from other open source packages that already pave the way for translation between social class schemas. In particular, we've learned a lot and borrowed code from all of these packages:
@@ -136,10 +136,10 @@ This package has benefitted greatly from other open source packages that already
 - [X] Write more tutorials on how to use the package
 - [X] Add some examples with the ISSP data
 - [X] Add E.O Wright translation
+- [X] Add ISCO to ESEG translation (waiting for Guillem's input)
 
 - [] Refactor EGP/OESCH. These functions share so much code for swwitching between general and more finegrained schemas. You need to simplify and reuse both on code and on documentation.
 
-- [] Add ISCO to ESEG translation (waiting for Guillem's input)
 - [] Add IPICS (waiting for Oscar to contact Florian)
 
 - [] All ISCOCOM functions should be if it's not isco88com (not sure this is practical since many surveys will simply have not that many occupations making it indistinguishable to separate say ISCO88COM from ISCO88 and ISCO08. Say you're missing a code: it could be because it's a different class schema or because that occupation is missing from the data).

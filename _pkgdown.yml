@@ -15,7 +15,7 @@ reference:
   desc: >
     Functions the translate to ESEC-related schemas
   contents:
-    - matches("esec|msec")
+    - matches("esec|msec|eseg")
 
 - subtitle: EGP-related
   desc: >

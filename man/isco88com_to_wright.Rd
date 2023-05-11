@@ -2,7 +2,7 @@
 % Please edit documentation in R/isco88.R
 \name{isco88com_to_wright}
 \alias{isco88com_to_wright}
-\title{This function translates a vector of 4-digit ISCO88COM codes to the E.O Wright class schema.}
+\title{Translates a vector of 4-digit ISCO88COM codes to the E.O Wright class schema.}
 \usage{
 isco88com_to_wright(
   x,
@@ -30,10 +30,10 @@ isco88com_to_wright(
 
 \item{type}{The type of translation to make. Possible values are "simple", "decision-making" and "power-class".}
 
-\item{label}{A logical value indicating whether to return the labels of the translated ESEC codes (default is \code{FALSE}).}
+\item{label}{A logical value indicating whether to return the labels of the translated WRIGHT codes (default is \code{FALSE}).}
 }
 \description{
-This function translates a vector of 4-digit ISCO88COM codes to Wright codes using the translation table stored in \code{all_schema$isco88com_to_wright}.
+This function translates a vector of 4-digit ISCO88COM codes to the E.O Wright class schema.
 }
 \details{
 The translation implemented in this function was originally developed by Erik Olin Wright. There are three possible types of translations: the "simple" version, the "decision-making" version and the "power-class" version. This translation was implemented following the SPSS script from Håkon Leiulfsrud and Heidi Jensberg. For more information, please contact the authors.

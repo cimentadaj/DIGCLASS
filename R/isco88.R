@@ -528,9 +528,9 @@ isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
   }
 }
 
-#' This function translates a vector of 4-digit ISCO88COM codes to the E.O Wright class schema.
+#' Translates 4-digit ISCO88COM to WRIGHT.
 #'
-#' `r rg_template_intro("ISCO88COM", "Wright", "isco88com_to_wright")`
+#' This function translates a vector of 4-digit ISCO88COM codes to the E.O Wright class schema.
 #'
 #' @details The translation implemented in this function was originally developed by Erik Olin Wright. There are three possible types of translations: the "simple" version, the "decision-making" version and the "power-class" version. This translation was implemented following the SPSS script from Håkon Leiulfsrud and Heidi Jensberg. For more information, please contact the authors.
 #'
@@ -543,6 +543,7 @@ isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
 #'
 #' @param type The type of translation to make. Possible values are "simple", "decision-making" and "power-class".
 #'
+#' @param label `r rg_template_arg_label("WRIGHT")`
 #'
 #' @examples
 #' library(dplyr)

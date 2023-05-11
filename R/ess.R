@@ -19,6 +19,10 @@
 #'
 #' * `control_daily`: A likert-scale type question from 1 to 4 where 1 means complete control to decide how their own daily work is/was organised and 4 means no control to decide how their own daily work is/was organised. For an example, see the variable `orgwrk` in the European Social Survey. Another example is recoding the variable `wkdcorga` from the European Social Survey such that 8-10 is 1, 5-7 is 2, 2-4 is 3 and 0-1 is 4.
 #'
+#'* `work_status`: This is the same as `self_employed` but has non-employed respondents coded as `2`. The unique values are `1 = self_employed`, `0 = employee` and `2 = non employed`. This variable was constructed using the variable `emplrel` and `mainact` for the unemployed.
+#'
+#'* `main_activity`: A numeric vector where `1 = respondent is working`, `2 = respondent is in education`, `3 = respondent is disabled `, `4 = respondent has no paid work (household work, taking care of children, etc..)` and `5 = respondent is retired`. This variable can be recoded using the `mainact` variable from the European Social Survey.
+#'
 #' @name ess
 #' @format Data Frame
 NULL

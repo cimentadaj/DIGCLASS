@@ -99,7 +99,6 @@ isco08_to_esec <- function(x,
                            self_employed,
                            n_employees,
                            label = FALSE) {
-
   col_position <- dplyr::case_when(
     # Is it an employee?
     self_employed == 0 & is_supervisor == 0 ~ 2,
@@ -166,7 +165,6 @@ isco08_two_to_esec <- function(x,
                                self_employed,
                                n_employees,
                                label = FALSE) {
-
   col_position <- dplyr::case_when(
     self_employed == 1 & n_employees >= 10 ~ 1,
     self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 2,
@@ -389,7 +387,7 @@ isco08_to_isco88 <- function(x, label = FALSE) {
 #'     isei_08 = isco08_to_isei(isco08),
 #'     isei_88 = isco88_to_isei(isco88),
 #'     isei_68 = isco68_to_isei(isco68)
-#' )
+#'   )
 #'
 #' @export
 isco08_to_isei <- function(x) {
@@ -657,6 +655,96 @@ isco08_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
 
     return(oesch)
   }
+}
+
+#' Translates 2-digit ISCO08 to ESEG.
+#'
+#' This function translates a vector of 2-digit ISCO88COM codes to the ESEG class schema.
+#'
+#' @details The translation was implemented following the work of Kea Tijdens in the document "ESEG-2014 coding scheme + explanatory note". For more details, see the last table in the document [here](https://seriss.eu/wp-content/uploads/2016/12/SERISS-Deliverable-D8-13-ESeG-coding_submitted.pdf).
+#'
+#' @param x `r rg_template_arg_x_digit("ISCO", digit = 2)`
+#'
+#' @param work_status A numeric vector of values from 0 to 3 where `1 = self_employed`, `0 = employee` and `2 = non employed`.
+#'
+#' @param main_activity A numeric vector of values from 1 to 5 where `1 = respondent is working`, `2 = respondent is in education`, `3 = respondent is disabled `, `4 = respondent has no paid work (household work, taking care of children, etc..)` and `5 = respondent is retired`. For an example, see the variable `mainact` from the European Social Survey.
+#'
+#' @param age A numeric vector of ages of the respondent.
+#'
+#' @param type The type of translation to make. Possible values are "one-digit" and "two-digit". The "one-digit" translation returns a broad summary based translation of only 9 categories, whereas the "two-digit" translation returns a much bigger ESEG translation of more than 25 categories.
+#'
+#' @param label `r rg_template_arg_label("ESEG")`
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # Convert isco08 to two digits
+#' ess$isco08_two <- isco08_swap(ess$isco08, from = 4, to = 2)
+#'
+#' # Using the two-digit translation
+#' ess %>%
+#'   transmute(
+#'     isco08_two,
+#'     eseg = isco08_to_eseg(
+#'       isco08_two,
+#'       work_status,
+#'       main_activity,
+#'       agea,
+#'       type = "two-digit"
+#'     ),
+#'     eseg_label = isco08_to_eseg(
+#'       isco08_two,
+#'       work_status,
+#'       main_activity,
+#'       agea,
+#'       type = "two-digit",
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' # Using the one-digit translation
+#' ess %>%
+#'   transmute(
+#'     isco08_two,
+#'     eseg = isco08_to_eseg(
+#'       isco08_two,
+#'       work_status,
+#'       main_activity,
+#'       agea,
+#'       type = "one-digit"
+#'     ),
+#'     eseg_label = isco08_to_eseg(
+#'       isco08_two,
+#'       work_status,
+#'       main_activity,
+#'       agea,
+#'       type = "one-digit",
+#'       label = TRUE
+#'     )
+#'   )
+#'
+#' @export
+isco08_to_eseg <- function(x,
+                           work_status,
+                           main_activity,
+                           age,
+                           type,
+                           label = FALSE) {
+
+  x <- repair_isco(x, digits = 4)
+  count_digits(x, digits = 2)
+  isco1 <- substr(x, 1, 1)
+  isco2 <- substr(x, 1, 2)
+
+  construct_eseg(
+    isco1,
+    isco2,
+    work_status,
+    main_activity,
+    age,
+    type = type,
+    label = label
+  )
 }
 
 #' Swap ISCO08/ISCO88/ISCO88 between 1, 2, 3 and 4 digit groups
