@@ -73,9 +73,9 @@
 
     
     
-<div class="section level3">
-<h3 id="translating-between-hierarchies">Translating between hierarchies<a class="anchor" aria-label="anchor" href="#translating-between-hierarchies"></a>
-</h3>
+<div class="section level2">
+<h2 id="translating-between-hierarchies">Translating between hierarchies<a class="anchor" aria-label="anchor" href="#translating-between-hierarchies"></a>
+</h2>
 <p>Most surveys that contain occupation related variables have 4 digit
 ISCO occupations. What does that mean? That you’re working with the most
 fine-grained definition of an occupation. In some cases, you want to
@@ -229,14 +229,78 @@ makes the translation either way but note that you’ll lose that
 information when you translate it to other schemas because it’s an
 <code>NA</code>.</p>
 </div>
-<div class="section level3">
-<h3 id="using-translated-hierarchies-for-translation-between-schemas">Using translated hierarchies for translation between schemas<a class="anchor" aria-label="anchor" href="#using-translated-hierarchies-for-translation-between-schemas"></a>
-</h3>
-</div>
 <div class="section level2">
-<h2 id="todo-certain-translations-need-to-be-done-between-3-digits-to-other-schemas--use-an-example-here-">TODO: Certain translations need to be done between 3 digits to other
-schemas. Use an example here.<a class="anchor" aria-label="anchor" href="#todo-certain-translations-need-to-be-done-between-3-digits-to-other-schemas--use-an-example-here-"></a>
+<h2 id="using-translated-hierarchies-for-translation-between-schemas">Using translated hierarchies for translation between schemas<a class="anchor" aria-label="anchor" href="#using-translated-hierarchies-for-translation-between-schemas"></a>
 </h2>
+<p><code>isco*_swap</code> are important functions because some
+translations require ISCO variables to be in different digits. For
+example, to translate ISCO08 to the ESEC class schema, ISCO08 needs to
+be in 3-digits. How would that translation look like? Here’s an
+example:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># convert isco08 to three digits</span></span>
+<span><span class="va">ess</span><span class="op">$</span><span class="va">isco08_three</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/isco08_swap.html">isco08_swap</a></span><span class="op">(</span><span class="va">ess</span><span class="op">$</span><span class="va">isco08</span>, from <span class="op">=</span> <span class="fl">4</span>, to <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ess</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span></span>
+<span>    <span class="va">isco08_three</span>,</span>
+<span>    esec <span class="op">=</span> <span class="fu"><a href="../reference/isco08_to_esec.html">isco08_to_esec</a></span><span class="op">(</span></span>
+<span>      <span class="va">isco08_three</span>,</span>
+<span>      <span class="va">is_supervisor</span>,</span>
+<span>      <span class="va">self_employed</span>,</span>
+<span>      <span class="va">emplno</span>,</span>
+<span>      label <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 56,752 × 2</span></span></span>
+<span><span class="co">#&gt;    isco08_three esec </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 3110         2    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 4120         3    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1120         1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2330         2    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7410         6    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 5310         7    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2430         1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2630         1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2640         2    </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 56,742 more rows</span></span></span></code></pre></div>
+<p>Similarly, ESEC has another translation but based on ISCO08 being
+2-digits. Here’s an example:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># convert to two digits</span></span>
+<span><span class="va">ess</span><span class="op">$</span><span class="va">isco08_two</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/isco08_swap.html">isco08_swap</a></span><span class="op">(</span><span class="va">ess</span><span class="op">$</span><span class="va">isco08</span>, from <span class="op">=</span> <span class="fl">4</span>, to <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ess</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span></span>
+<span>    <span class="va">isco08_two</span>,</span>
+<span>    esec <span class="op">=</span> <span class="fu"><a href="../reference/isco08_two_to_esec.html">isco08_two_to_esec</a></span><span class="op">(</span></span>
+<span>      <span class="va">isco08_two</span>,</span>
+<span>      <span class="va">is_supervisor</span>,</span>
+<span>      <span class="va">self_employed</span>,</span>
+<span>      <span class="va">emplno</span>,</span>
+<span>      label <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 56,752 × 2</span></span></span>
+<span><span class="co">#&gt;    isco08_two esec </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 3100       2    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 4100       2    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1100       1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2300       2    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7400       4    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 5300       6    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2400       1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2600       1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2600       1    </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 56,742 more rows</span></span></span></code></pre></div>
+<p>As you can see, <code>isco*_swap</code> are functions that serve and
+facilitate a common task in ISCO translations.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

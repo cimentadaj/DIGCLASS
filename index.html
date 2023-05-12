@@ -215,39 +215,6 @@
 <a href="https://github.com/DiogoFerrari/occupar/" class="external-link">occupar</a>: R package</li>
 </ul>
 </div>
-<div class="section level2">
-<h2 id="todo">TODO:<a class="anchor" aria-label="anchor" href="#todo"></a>
-</h2>
-<ul>
-<li><p><input type="checkbox" disabled checked>Improve vignettes after implementing major/minor codes</p></li>
-<li><p><input type="checkbox" disabled checked>Create a repair function to complete 4, 3, 2 and 1 digits</p></li>
-<li><p><input type="checkbox" disabled checked>Stop if it’s not a character</p></li>
-<li><p><input type="checkbox" disabled checked>Warning if stuff is not 4 digits</p></li>
-<li><p><input type="checkbox" disabled checked>Apply repair_isco on all isco variables</p></li>
-<li><p><input type="checkbox" disabled checked>Examples of reading the data as character vector directly from read_csv / read_dta</p></li>
-<li><p><input type="checkbox" disabled checked>Add recoding of major/minor codes for all ISCO.</p></li>
-<li><p><input type="checkbox" disabled checked>Create vignette examples with already existing codifications</p></li>
-<li><p><input type="checkbox" disabled checked>Implemented 3 digit translate of isco88/08 to esec</p></li>
-<li><p><input type="checkbox" disabled checked>Microclasses has been implemented but returns a vector of a different length. Uncomment examples from this function</p></li>
-<li><p><input type="checkbox" disabled checked>I have to confirm with them how ESEC full-method is calculated. This applies for both ISCO88 and ISCO08. I wrote it like this:</p></li>
-<li><p><input type="checkbox" disabled checked>Oesch schemas have <code>.</code> inside the classes, what to do with those? We get NAs introduced when converting to numeric.</p></li>
-<li><p><input type="checkbox" disabled checked>Add 2-digit translation from ISCO88/08 to ESEC</p></li>
-<li><p><input type="checkbox" disabled checked>Revise the documentation of each function</p></li>
-<li><p><input type="checkbox" disabled checked>Add different n.classes for EGP</p></li>
-<li><p><input type="checkbox" disabled checked>Add different n.classes for OESCH</p></li>
-<li><p><input type="checkbox" disabled checked>Add a general check to fail if the number digits doesnt align with the translation function</p></li>
-<li><p><input type="checkbox" disabled checked>Add some more tests for the functions in the package</p></li>
-<li><p><input type="checkbox" disabled checked>Add tests for EGP/OESCH that do translations between broader and finegrained classes</p></li>
-<li><p><input type="checkbox" disabled checked>Write more tutorials on how to use the package</p></li>
-<li><p><input type="checkbox" disabled checked>Add some examples with the ISSP data</p></li>
-<li><p><input type="checkbox" disabled checked>Add E.O Wright translation</p></li>
-<li><p><input type="checkbox" disabled checked>Add ISCO to ESEG translation (waiting for Guillem’s input)</p></li>
-<li><p>[] Refactor EGP/OESCH. These functions share so much code for swwitching between general and more finegrained schemas. You need to simplify and reuse both on code and on documentation.</p></li>
-<li><p>[] Add IPICS (waiting for Oscar to contact Florian)</p></li>
-<li><p>[] All ISCOCOM functions should be if it’s not isco88com (not sure this is practical since many surveys will simply have not that many occupations making it indistinguishable to separate say ISCO88COM from ISCO88 and ISCO08. Say you’re missing a code: it could be because it’s a different class schema or because that occupation is missing from the data).</p></li>
-<li><p>[] Add option to make labeling consistent between ESEC and EGP and their respective MP versions (see do file for ESEC-MP in the zip file Giullelm send).-</p></li>
-</ul>
-</div>
 </div>
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
