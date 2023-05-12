@@ -13,7 +13,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 # DIGCLASS
 
 <!-- badges: start -->
@@ -111,37 +110,3 @@ This package has benefitted greatly from other open source packages that already
 - [ISCOGEN](https://github.com/benjann/iscogen): Stata package
 - [SocialPosition](https://cran.r-project.org/web/packages/SocialPosition/index.html): R package
 - [occupar](https://github.com/DiogoFerrari/occupar/): R package
-
-## TODO:
-
-- [X] Improve vignettes after implementing major/minor codes
-- [X] Create a repair function to complete 4, 3, 2 and 1 digits
-- [X] Stop if it's not a character
-- [X] Warning if stuff is not 4 digits
-- [X] Apply repair_isco on all isco variables
-- [X] Examples of reading the data as character vector directly from read_csv / read_dta
-- [X] Add recoding of major/minor codes for all ISCO.
-- [X] Create vignette examples with already existing codifications
-- [X] Implemented 3 digit translate of isco88/08 to esec
-- [X] Microclasses has been implemented but returns a vector of a different length. Uncomment examples from this function
-- [X] I have to confirm with them how ESEC full-method is calculated. This applies for both ISCO88 and ISCO08. I wrote it like this:
-- [X] Oesch schemas have `.` inside the classes, what to do with those? We get NAs introduced when converting to numeric.
-- [X] Add 2-digit translation from ISCO88/08 to ESEC
-- [X] Revise the documentation of each function
-- [X] Add different n.classes for EGP
-- [X] Add different n.classes for OESCH
-- [X] Add a general check to fail if the number digits doesnt align with the translation function
-- [X] Add some more tests for the functions in the package
-- [X] Add tests for EGP/OESCH that do translations between broader and finegrained classes
-- [X] Write more tutorials on how to use the package
-- [X] Add some examples with the ISSP data
-- [X] Add E.O Wright translation
-- [X] Add ISCO to ESEG translation (waiting for Guillem's input)
-
-- [] Refactor EGP/OESCH. These functions share so much code for swwitching between general and more finegrained schemas. You need to simplify and reuse both on code and on documentation.
-
-- [] Add IPICS (waiting for Oscar to contact Florian)
-
-- [] All ISCOCOM functions should be if it's not isco88com (not sure this is practical since many surveys will simply have not that many occupations making it indistinguishable to separate say ISCO88COM from ISCO88 and ISCO08. Say you're missing a code: it could be because it's a different class schema or because that occupation is missing from the data).
-- [] Add option to make labeling consistent between ESEC and EGP and their respective MP versions (see do file for ESEC-MP in the zip file Giullelm send).-
-

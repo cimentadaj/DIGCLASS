@@ -182,7 +182,7 @@ ess %>%
       label = FALSE
     )
   ) %>%
-  count(esec, esec_mp_label) %>%
+  count(esec, esec_label, esec_mp_label) %>%
   arrange(as.numeric(esec))
 
 

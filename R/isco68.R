@@ -123,12 +123,33 @@ isco68_to_egp_mp <- function(x,
     label = FALSE
   )
 
+  lookup_egp <- stats::setNames(as.character(5:13), as.character(3:11))
+  labs <- c(
+    "Higher Managers",
+    "Lower Managers",
+    "Higher Professionals",
+    "Lower Professionals",
+    "Routine Nonmanual",
+    "Lower Sales-Service",
+    "Self-employed with employees",
+    "Self-employed with no employees",
+    "Manual Supervisors",
+    "Skilled Worker",
+    "Unskilled Worker",
+    "Farm Labor",
+    "Self-employed Farmer"
+  )
+
+  labs <- stats::setNames(labs, as.character(1:13))
+
   egp_mp <- managers_professionals_helper(
     x,
     egp,
     is_supervisor,
     self_employed,
     n_employees,
+    lookup_labels = lookup_egp,
+    schema_labels = labs,
     label = label
   )
 

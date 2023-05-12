@@ -75,4 +75,45 @@ Note that the 1 digit groups `2000`, `3000`, `5000` and `8000` are translated co
 
 ## Using translated hierarchies for translation between schemas
 
-# TODO: Certain translations need to be done between 3 digits to other schemas. Use an example here.
+`isco*_swap` are important functions because some translations require ISCO variables to be in different digits. For example, to translate ISCO08 to the ESEC class schema, ISCO08 needs to be in 3-digits. How would that translation look like? Here's an example:
+
+```{r}
+library(dplyr)
+
+# convert isco08 to three digits
+ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
+
+ess %>%
+  transmute(
+    isco08_three,
+    esec = isco08_to_esec(
+      isco08_three,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = FALSE
+    )
+  )
+```
+
+Similarly, ESEC has another translation but based on ISCO08 being 2-digits. Here's an example:
+
+```{r}
+# convert to two digits
+ess$isco08_two <- isco08_swap(ess$isco08, from = 4, to = 2)
+
+ess %>%
+  transmute(
+    isco08_two,
+    esec = isco08_two_to_esec(
+      isco08_two,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = FALSE
+    )
+  )
+```
+
+
+As you can see, `isco*_swap` are functions that serve and facilitate a common task in ISCO translations.

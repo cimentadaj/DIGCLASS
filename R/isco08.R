@@ -302,7 +302,28 @@ isco08_to_esec_mp <- function(x,
                               self_employed,
                               n_employees,
                               label = FALSE) {
+
   esec <- isco08_to_esec(x, is_supervisor, self_employed, n_employees, label = FALSE)
+
+
+  # Since we're replacing esec 1 and esec 2 for 1, 2, 3 and 4, we need
+  # to replace esec 3:9 to be now 5:11 such that the labels of esec_mp
+  # match.
+  lookup_esec <- stats::setNames(as.character(5:11), as.character(3:9))
+
+  labs <- c(
+    "1" = "Higher Manager",
+    "2" = "Higher Professional",
+    "3" = "Lower Manager",
+    "4" = "Lower Professional",
+    "5" = "Higher-grade White-collar",
+    "6" = "Self-employed and Small Employer",
+    "7" = "Self-employed and Small Employer agriculture",
+    "8" = "Higher-grade Blue-collar",
+    "9" = "Lower-grade White-collar",
+    "10" = "Lower-grade Blue-collar",
+    "11" = "Routine"
+  )
 
   esec_mp <- managers_professionals_helper(
     x,
@@ -310,6 +331,8 @@ isco08_to_esec_mp <- function(x,
     is_supervisor,
     self_employed,
     n_employees,
+    lookup_labels = lookup_esec,
+    schema_labels = labs,
     label = label
   )
 

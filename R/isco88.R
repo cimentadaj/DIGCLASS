@@ -269,7 +269,7 @@ isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
 
 #' `r rg_template_title("ISCO88/ISCO68", "EGP-MP")`
 #'
-#' `r rg_template_intro("ISCO88/ISCO68", "EGP-MP", c("isco88_to_egp11", "isco68_to_egp11"))` After translating to EGP using these tables, this function reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals. Note that this function translates to EGP11 (not EGP7/EGP5/EGP3) and then reassigns categories to have both high/low managers and professionals.
+#' `r rg_template_intro("ISCO88/ISCO68", "EGP-MP", c("isco88_to_egp11", "isco68_to_egp11"))` After translating to EGP using these tables, this function reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals. Note that this function translates to EGP11 (not EGP7/EGP5/EGP3) and then reassigns categories to have both high/low managers and professionals. **Note that this translation uses EGP11.**
 #'
 #' @details
 #'
@@ -288,7 +288,6 @@ isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
 #'
 #' This translation was created from the Stata do file shared by Oscar Smallenbroek called "EGP-MP.do". For more info, please contact the author.
 #'
-#' **Note that this translation uses EGP11.**
 #'
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
@@ -355,12 +354,33 @@ isco88_to_egp_mp <- function(x,
     label = FALSE
   )
 
+  lookup_egp <- stats::setNames(as.character(5:13), as.character(3:11))
+  labs <- c(
+    "Higher Managers",
+    "Lower Managers",
+    "Higher Professionals",
+    "Lower Professionals",
+    "Routine Nonmanual",
+    "Lower Sales-Service",
+    "Self-employed with employees",
+    "Self-employed with no employees",
+    "Manual Supervisors",
+    "Skilled Worker",
+    "Unskilled Worker",
+    "Farm Labor",
+    "Self-employed Farmer"
+  )
+
+  labs <- stats::setNames(labs, as.character(1:13))
+
   egp_mp <- managers_professionals_helper(
     x,
     egp,
     is_supervisor,
     self_employed,
     n_employees,
+    lookup_labels = lookup_egp,
+    schema_labels = labs,
     label = label
   )
 
@@ -431,12 +451,32 @@ isco88com_to_esec_mp <- function(x,
     label = FALSE
   )
 
+  labs <- c(
+    "1" = "Higher Manager",
+    "2" = "Higher Professional",
+    "3" = "Lower Manager",
+    "4" = "Lower Professional",
+    "5" = "Higher-grade White-collar",
+    "6" = "Self-employed and Small Employer",
+    "7" = "Self-employed and Small Employer agriculture",
+    "8" = "Higher-grade Blue-collar",
+    "9" = "Lower-grade White-collar",
+    "10" = "Lower-grade Blue-collar",
+    "11" = "Routine"
+  )
+
+  # Since we're replacing esec 1 and esec 2 for 1, 2, 3 and 4, we need
+  # to replace esec 3:9 to be now 5:11 such that the labels of esec_mp
+  # match.
+  lookup_esec <- stats::setNames(as.character(5:11), as.character(3:9))
   esec_mp <- managers_professionals_helper(
     x,
     esec,
     is_supervisor,
     self_employed,
     n_employees,
+    lookup_labels = lookup_esec,
+    schema_labels = labs,
     label = label
   )
 
