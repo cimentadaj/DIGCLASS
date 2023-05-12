@@ -2,7 +2,7 @@
 % Please edit documentation in R/isco88.R
 \name{isco88com_to_wright}
 \alias{isco88com_to_wright}
-\title{Translates a vector of 4-digit ISCO88COM codes to the E.O Wright class schema.}
+\title{Translates 4-digit ISCO88COM to WRIGHT.}
 \usage{
 isco88com_to_wright(
   x,

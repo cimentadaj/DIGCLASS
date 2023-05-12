@@ -2,7 +2,7 @@
 % Please edit documentation in R/isco08.R
 \name{isco08_to_eseg}
 \alias{isco08_to_eseg}
-\title{Translates a vector of 2-digit ISCO08 codes to the ESEG class schema.}
+\title{Translates 2-digit ISCO08 to ESEG.}
 \usage{
 isco08_to_eseg(x, work_status, main_activity, age, type, label = FALSE)
 }
