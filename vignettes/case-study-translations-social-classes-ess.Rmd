@@ -1,8 +1,8 @@
 ---
-title: "Exploring translations between social classes using the ESS data"
+title: "Case study: Exploring translations between social classes using the ESS data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{exploring-translations-between-social-classes-ess}
+  %\VignetteIndexEntry{case-study-translations-social-classes-ess.Rmd}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
