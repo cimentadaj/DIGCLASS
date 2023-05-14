@@ -125,19 +125,19 @@ isco68_to_egp_mp <- function(x,
 
   lookup_egp <- stats::setNames(as.character(5:13), as.character(3:11))
   labs <- c(
-    "Higher Managers",
-    "Lower Managers",
-    "Higher Professionals",
-    "Lower Professionals",
-    "Routine Nonmanual",
-    "Lower Sales-Service",
-    "Self-employed with employees",
-    "Self-employed with no employees",
-    "Manual Supervisors",
-    "Skilled Worker",
-    "Unskilled Worker",
-    "Farm Labor",
-    "Self-employed Farmer"
+    "Ia Higher Managers",
+    "Ib Lower Managers",
+    "IIa Higher Professionals",
+    "IIb Lower Professionals",
+    "IIIa Routine Nonmanual",
+    "IIIb Lower Sales-Service",
+    "IVa Self-employed with employees",
+    "IVb Self-employed with no employees",
+    "V Manual Supervisors",
+    "VI Skilled Worker",
+    "VIIa Unskilled Worker",
+    "VIIb Farm Labor",
+    "IVc Self-employed Farmer"
   )
 
   labs <- stats::setNames(labs, as.character(1:13))
