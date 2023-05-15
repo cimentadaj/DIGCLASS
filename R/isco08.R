@@ -586,6 +586,59 @@ isco08_to_microclass <- function(x, label = FALSE) {
   )
 }
 
+#' `r rg_template_title("ISCO08/ISCO88", "IPICS")`
+#'
+#' `r rg_template_intro("ISCO08/ISCO88", "IPICS", c("isco08_to_ipics", "isco88_to_ipics"))`
+#'
+#' @details These translation were created from the CSV files shared by Oscar Smallenbroek name "ISCO08 to IPICS.csv" and "ISCO88 to IPICS.csv". For more info, please contact the author.
+#'
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @inheritParams isco08_to_esec
+#' @param label `r rg_template_arg_label("IPICS")`
+#'
+#' @return `r rg_template_return("IPICS")`
+#'
+#' @order 1
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # isco08
+#' ess %>% transmute(
+#'   isco08,
+#'   ipics = isco08_to_ipics(isco08, self_employed, emplno),
+#'   ipics_label = isco08_to_ipics(isco08, self_employed, emplno, label = TRUE)
+#' )
+#'
+#'
+#' # isco88
+#' ess %>% transmute(
+#'   isco88,
+#'   ipics = isco88_to_ipics(isco88, self_employed, emplno),
+#'   ipics_label = isco88_to_ipics(isco88, self_employed, emplno, label = TRUE)
+#' )
+#'
+#' @export
+isco08_to_ipics <- function(x, self_employed, n_employees, label = FALSE) {
+
+  col_position <- dplyr::case_when(
+    self_employed == 0 & n_employees == 0 ~ 2,
+    self_employed == 0 & dplyr::between(n_employees, 1, 10) ~ 3,
+    self_employed == 1 & n_employees == 0 ~ 4,
+    self_employed == 1 & dplyr::between(n_employees, 1, 10) ~ 5,
+    self_employed == 1 & n_employees > 11 ~ 6
+  )
+
+  res <- multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "IPICS",
+    translate_df = all_schemas$isco08_to_ipics,
+    translate_label_df = all_labels$ipics,
+    label = label,
+    digits = 4
+  )
+}
 
 
 

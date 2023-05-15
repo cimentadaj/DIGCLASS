@@ -142,6 +142,8 @@ isco88_to_siops <- function(x) {
   )
 }
 
+
+
 #' `r rg_template_title("ISCO88", "MPS")`
 #'
 #' `r rg_template_intro("ISCO88", "MPS", "isco88_to_mps")`
@@ -387,6 +389,29 @@ isco88_to_egp_mp <- function(x,
   egp_mp
 }
 
+#' @rdname isco08_to_ipics
+#' @order 2
+#' @export
+isco88_to_ipics <- function(x, self_employed, n_employees, label = FALSE) {
+  col_position <- dplyr::case_when(
+    self_employed == 0 & n_employees == 0 ~ 2,
+    self_employed == 0 & dplyr::between(n_employees, 1, 10) ~ 3,
+    self_employed == 1 & n_employees == 0 ~ 4,
+    self_employed == 1 & dplyr::between(n_employees, 1, 10) ~ 5,
+    self_employed == 1 & n_employees > 11 ~ 6
+  )
+
+  res <- multiple_cols_translator(
+    x = x,
+    col_position = col_position,
+    output_var = "IPICS",
+    translate_df = all_schemas$isco88_to_ipics,
+    translate_label_df = all_labels$ipics,
+    label = label,
+    digits = 4
+  )
+}
+
 
 #' @rdname isco08_to_esec
 #' @order 2
@@ -431,6 +456,7 @@ isco88com_to_esec <- function(x,
 
   res
 }
+
 
 
 #' @rdname isco08_to_esec_mp

@@ -23,6 +23,7 @@ This package is a work in progress and has implemented currently these translati
 * **ISCO88**
   - [X] ISCO88 to ISEI
   - [X] ISCO88 to SIOPS
+  - [X] ISCO88 to IPICS
   - [X] ISCO88 to MPS88
   - [X] ISCO88 to EGP11/EGP7/EGP5
   - [X] ISCO88 to EGP11-MP
@@ -39,12 +40,13 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO08 to ISCO88
   - [X] ISCO08 to ISEI
   - [X] ISCO08 to SIOPS
+  - [X] ISCO08 to Microclasses
+  - [X] ISCO08 to IPICS
   - [X] ISCO08 to OESCH16/OESCH8/OESCH5
   - [X] ISCO08 to ESEC - ISCO08 must be 3 digits
   - [X] ISCO08 to ESEC - ISCO08 must be 2 digits
   - [X] ISCO08 to ESEC-MP - ISCO08 must be 3 digits
   - [X] ISCO08 to MSEC - ISCO08 must be 3 digits
-  - [X] ISCO08 to Microclasses
   - [X] ISCO08 to ESEG - ISCO08 must be 2 digits
 
 * **Extras**

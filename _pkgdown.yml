@@ -38,6 +38,7 @@ reference:
     - isco08_to_microclass
     - isco08_to_isco88
     - isco08_to_oesch
+    - matches("ipics")
     - isco88_to_isco08
     - isco88_to_isco88com
     - isco88_to_isco68
