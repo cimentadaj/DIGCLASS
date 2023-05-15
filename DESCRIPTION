@@ -1,9 +1,12 @@
 Package: DIGCLASS
 Title: A package to translate between occupational classes in R. Currently translate ISCO68/88/08 to dozens of occupational classes
 Version: 0.0.1
-Authors@R:
-    person("Jorge", "Cimentada", , "cimentadaj@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-5594-1156"))
+Authors@R: c(
+    person("Jorge", "Cimentada", ,"cimentadaj@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5594-1156")),
+    person("Guillem", "Vidal-Lorda", ,"gvlorda@gmail.com", role = c("aut"), comment = c(ORCID = "0000-0002-3407-4230")),
+    person("Carlos", "Gil-Hernández", ,"carlos.gilhernandez@eui.eu", role = c("aut"), comment = c(ORCID = "0000-0001-8482-3706")),
+    person("Oscar", "Oscar Smallenbroek", ,"Oscar.Smallenbroek@eui.eu", role = c("aut"), comment = c(ORCID = "0000-0003-4280-8406"))
+    )
 Description: What the package does (one paragraph).
 License: GPL (>= 3)
 Encoding: UTF-8
