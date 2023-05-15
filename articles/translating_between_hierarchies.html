@@ -121,20 +121,20 @@ Let’s look at the ISCO variables we have in the ESS data in
 <code>DIGCLASS</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ess</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 56,752 × 12</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 48,285 × 12</span></span></span>
 <span><span class="co">#&gt;    isco68 isco88 isco88com isco08 emplno self_employed is_supervisor</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 0140   3111   3111      3111        0             0             1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3210   3431   3431      4120        0             0             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2119   1210   1210      1120        0             0             1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1320   2320   2320      2330        0             0             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 8550   7137   7137      7411        0             0             1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 5401   5131   5131      5311        0             0             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          0             0             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1593   2419   2419      2432        0             0             1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1930   3460   3460      2635        0             0             0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1950   2444   2444      2643        0             0             0</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 56,742 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 5890   5169   5169      5414        0             1             0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2120   1222   1222      1321        0             0             1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 7200   8120   8120      3135        0             0             0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 9310   7141   7141      7131        0             0             1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 6220   6111   6111      6111        0             0             0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 6220   6111   6111      6111        0             0             1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 9595   9313   9313      9313        0             0             1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 6000   1221   1221      1311        0             0             1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 6000   1221   1221      1311        2             1             1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 6220   6111   6111      6111        0             0             1</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 48,275 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 5 more variables: control_work &lt;dbl&gt;, control_daily &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   work_status &lt;dbl&gt;, main_activity &lt;dbl&gt;, agea &lt;dbl&gt;</span></span></span></code></pre></div>
 <p>All three ISCO variables are in four digits but we can convert them
@@ -145,20 +145,20 @@ to three digits:</p>
 <span>    <span class="va">isco88</span>,</span>
 <span>    isco88_three <span class="op">=</span> <span class="fu"><a href="../reference/isco08_swap.html">isco88_swap</a></span><span class="op">(</span><span class="va">isco88</span>, from <span class="op">=</span> <span class="fl">4</span>, to <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 56,752 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 48,285 × 2</span></span></span>
 <span><span class="co">#&gt;    isco88 isco88_three</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 3111   3110        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3431   3430        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1210   1210        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2320   2320        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7137   7130        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 5131   5130        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2419   2410        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 3460   3460        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2444   2440        </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 56,742 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 5169   5160        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1222   1220        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 8120   8120        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 7141   7140        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 6111   6110        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 6111   6110        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 9313   9310        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1221   1220        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1221   1220        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 6111   6110        </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 48,275 more rows</span></span></span></code></pre></div>
 <p>As you can see, the three digit translation always has a zero,
 meaning that it was translated into a broder group. We can do the same
 for an even broader group, translating from 4 to 2 digits:</p>
@@ -168,20 +168,20 @@ for an even broader group, translating from 4 to 2 digits:</p>
 <span>    <span class="va">isco08</span>,</span>
 <span>    isco08_two <span class="op">=</span> <span class="fu"><a href="../reference/isco08_swap.html">isco08_swap</a></span><span class="op">(</span><span class="va">isco08</span>, from <span class="op">=</span> <span class="fl">4</span>, to <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 56,752 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 48,285 × 2</span></span></span>
 <span><span class="co">#&gt;    isco08 isco08_two</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 3111   3100      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 4120   4100      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1120   1100      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2330   2300      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7411   7400      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 5311   5300      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2432   2400      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2635   2600      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2643   2600      </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 56,742 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 5414   5400      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1321   1300      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 3135   3100      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 7131   7100      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 6111   6100      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 6111   6100      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 9313   9300      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1311   1300      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1311   1300      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 6111   6100      </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 48,275 more rows</span></span></span></code></pre></div>
 <p>We can see that the two digit translation is a broader category than
 the original four digit occupation. Note that we can translate
 everything from 4 to 1 but not the other way around:</p>
@@ -207,20 +207,20 @@ values for occupation within the major group 0000 and 1000:</p>
 <span>    <span class="va">isco68</span>,</span>
 <span>    isco68_one <span class="op">=</span> <span class="fu"><a href="../reference/isco08_swap.html">isco68_swap</a></span><span class="op">(</span><span class="va">isco68</span>, from <span class="op">=</span> <span class="fl">4</span>, to <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 56,752 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 48,285 × 2</span></span></span>
 <span><span class="co">#&gt;    isco68 isco68_one</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 0140   <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3210   3000      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 2119   2000      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1320   1000      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 8550   8000      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 5401   5000      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1593   1000      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1930   1000      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1950   1000      </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 56,742 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 5890   5000      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 2120   2000      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 7200   7000      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 9310   9000      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 6220   6000      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 6220   6000      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 9595   9000      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 6000   6000      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 6000   6000      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 6220   6000      </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 48,275 more rows</span></span></span></code></pre></div>
 <p>Note that the 1 digit groups <code>2000</code>, <code>3000</code>,
 <code>5000</code> and <code>8000</code> are translated correctly. Yet
 the 1 digit group <code>1000</code> or <code>0000</code> are never
@@ -254,20 +254,20 @@ example:</p>
 <span>      label <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 56,752 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 48,285 × 2</span></span></span>
 <span><span class="co">#&gt;    isco08_three esec </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 3110         2    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 4120         3    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1120         1    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2330         2    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7410         6    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 5310         7    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2430         1    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2630         1    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2640         2    </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 56,742 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 5410         3    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1320         2    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 3130         6    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 7130         6    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 6110         8    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 6110         6    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 9310         6    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1310         2    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1310         5    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 6110         6    </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 48,275 more rows</span></span></span></code></pre></div>
 <p>Similarly, ESEC has another translation but based on ISCO08 being
 2-digits. Here’s an example:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -285,20 +285,20 @@ example:</p>
 <span>      label <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 56,752 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 48,285 × 2</span></span></span>
 <span><span class="co">#&gt;    isco08_two esec </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 3100       2    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 4100       2    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1100       1    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 2300       2    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7400       4    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 5300       6    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 2400       1    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 2600       1    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 2600       1    </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 56,742 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 5400       3    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1300       4    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 3100       2    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 7100       4    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 6100       6    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 6100       5    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 9300       5    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1300       4    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1300       1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 6100       5    </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 48,275 more rows</span></span></span></code></pre></div>
 <p>As you can see, <code>isco*_swap</code> are functions that serve and
 facilitate a common task in ISCO translations.</p>
 </div>
