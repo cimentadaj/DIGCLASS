@@ -1,4 +1,4 @@
-common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, digits = 4, repair_isco = TRUE) {
+common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, check_isco = NULL, digits = 4, repair_isco = TRUE) {
 
   if (repair_isco) {
     # All checks must being by whether the function has 4 digits (regardless of it's 1300 or 13111)
@@ -6,6 +6,8 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
   }
 
   count_digits(x, digits = digits)
+
+  check_isco(x, check_isco)
 
   res <-
     tibble::tibble(x = as.character(x)) %>%
@@ -30,6 +32,25 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
   }
 
   transformed
+}
+
+check_isco <- function(x, check_isco) {
+  if (!is.null(check_isco)) {
+    check_isco <- match.arg(check_isco, c("isco08", "isco68", "isco88", "isco88com"))
+
+    lookup_check <- list(
+      `isco08` = all_labels$isco08[[1]],
+      `isco68` = all_labels$isco68[[1]],
+      `isco88` = all_labels$isco88[[1]],
+      `isco88com` = all_labels$isco88com[[1]]
+    )
+
+    x_clean <- x[!is.na(x)]
+
+    if (!all(x_clean %in% lookup_check[[as.character(check_isco)]])) {
+      cli::cli_alert_warning("`x` might not be {toupper(check_isco)}. This function assumes `x` is {toupper(check_isco)}.")
+    }
+  }
 }
 
 count_digits <- function(x, digits) {
@@ -71,11 +92,19 @@ count_digits <- function(x, digits) {
   }
 }
 
-multiple_cols_translator <- function(x, col_position, output_var, translate_df, translate_label_df, label, digits = 4) {
+multiple_cols_translator <- function(x,
+                                     col_position,
+                                     output_var,
+                                     translate_df,
+                                     translate_label_df,
+                                     label,
+                                     check_isco = NULL,
+                                     digits = 4) {
 
   # All checks must being by whether the function has 4 digits (regardless of it's 1300 or 13111)
   x <- repair_isco(x, digits = 4)
   count_digits(x, digits = digits)
+  check_isco(x, check_isco)
 
   class_match <- match(x, translate_df[[1]])
   matrix_translate_df <- as.matrix(translate_df)
@@ -931,7 +960,8 @@ construct_wright <- function(x,
 }
 
 
-main_schema_to_others <- function(x, col_position, n_classes, schema, input_var, output_var, all_classes, label) {
+main_schema_to_others <- function(x, col_position, n_classes, schema, input_var, output_var, all_classes, label, check_isco = NULL) {
+  
   main_class <-
     multiple_cols_translator(
       x = x,
@@ -939,6 +969,7 @@ main_schema_to_others <- function(x, col_position, n_classes, schema, input_var,
       output_var = input_var,
       translate_df = schema,
       translate_label_df = NULL,
+      check_isco = check_isco,
       label = FALSE
     )
 

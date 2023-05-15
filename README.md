@@ -71,7 +71,7 @@ Here's an example of translating ISCO68 to ISEI and EGP class schemas:
 library(DIGCLASS)
 library(dplyr)
 
-# Internal data for the European Social Survey round 5
+# Internal data for the European Social Survey round 6
 # containing different ISCO variables
 ess %>%
   mutate(

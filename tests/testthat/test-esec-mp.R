@@ -2,7 +2,7 @@ library(dplyr)
 
 test_that("esec_mp translation works as expected", {
 
-  ess$isco08_three <- isco08_swap(ess$isco88, from = 4, to = 3)
+  ess$isco08_three <- isco08_swap(ess$isco08, from = 4, to = 3)
 
   res <-
     ess %>%
@@ -55,8 +55,8 @@ test_that("esec_mp translation works as expected", {
 
   expect_true(is.character(res$esec_mp))
   expect_true(is.character(res$esec_mp_label))
-  expect_true(length(unique(res$esec_mp)) == 12)
-  expect_true(length(unique(res$esec_mp_label)) == 12)
+  expect_true(length(unique(res$esec_mp)) == 11)
+  expect_true(length(unique(res$esec_mp_label)) == 11)
 
 
   # Using the simple method
@@ -84,6 +84,6 @@ test_that("esec_mp translation works as expected", {
 
   expect_true(is.character(res$esec_mp))
   expect_true(is.character(res$esec_mp_label))
-  expect_true(length(unique(res$esec_mp)) == 12)
-  expect_true(length(unique(res$esec_mp_label)) == 12)
+  expect_true(length(unique(res$esec_mp)) == 11)
+  expect_true(length(unique(res$esec_mp_label)) == 11)
 })

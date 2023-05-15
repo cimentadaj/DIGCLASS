@@ -5,14 +5,17 @@ library(DIGCLASS)
 
 ess <-
   # This is just the fith round of the ESS
-  read_csv("~/Downloads/ESS4e04_5.csv", col_types = list(.default = col_character())) %>%
+  read_csv("~/Downloads/ESS6e02_5.csv", col_types = list(.default = col_character()))
+
+ess <-
+  ess %>%
   mutate(
     self_employed = ifelse(emplrel == "2", 1, 0),
     is_supervisor = ifelse(jbspv == "1", 1, 0)
   ) %>%
   mutate_at(c("wkdcorga", "iorgact", "agea"), as.numeric) %>%
   transmute(
-    iscoco,
+    isco08,
     emplno,
     self_employed,
     is_supervisor,
@@ -44,19 +47,20 @@ ess <-
     ),
     agea = ifelse(agea > 500, NA, agea)
   ) %>%
-  mutate(emplno = as.numeric(emplno)) %>%
-  rename(isco88 = iscoco)
+  mutate(emplno = as.numeric(emplno))
+  ## rename(isco88 = iscoco)
 
-ess$isco88[nchar(ess$isco88) > 4] <- NA
-ess$isco88 <- repair_isco(ess$isco88)
+ess$isco08[nchar(ess$isco08) > 4] <- NA
+ess$isco08 <- repair_isco(ess$isco08)
 
 ess <-
   ess %>%
+  filter(!is.na(isco08)) %>%
   mutate_at(c("control_work", "control_daily"), ~ if_else(.x > 4, NA, .x)) %>%
   mutate(
     emplno = if_else(emplno > 10000, 0, emplno),
+    isco88 = isco08_to_isco88(isco08),
     isco68 = isco88_to_isco68(isco88),
-    isco08 = isco68_to_isco08(isco68),
     isco88com = isco88_to_isco88com(isco88)
   ) %>%
   relocate(isco68, isco88, isco88com, isco08, everything())

@@ -1,4 +1,4 @@
-#' An example data frame with data from the European Social Survey, round 5.
+#' An example data frame with data from the European Social Survey, round 6.
 #'
 #' Just an example data frame to show how the package can be used to translate
 #' between schemas.

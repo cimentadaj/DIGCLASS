@@ -116,6 +116,7 @@ isco08_to_esec <- function(x,
     translate_df = all_schemas$isco08_to_esec_three,
     translate_label_df = all_labels$esec,
     label = label,
+    check_isco = "isco08",
     digits = 3
   )
 
@@ -180,6 +181,7 @@ isco08_two_to_esec <- function(x,
     translate_df = all_schemas$isco08_to_esec_two,
     translate_label_df = all_labels$esec,
     label = label,
+    check_isco = "isco08",
     digits = 2
   )
 
@@ -380,6 +382,7 @@ isco08_to_isco88 <- function(x, label = FALSE) {
     output_var = "ISCO88",
     translate_df = all_schemas$isco08_to_isco88,
     translate_label_df = all_labels$isco88,
+    check_isco = "isco08",
     label = label
   )
 }
@@ -420,6 +423,7 @@ isco08_to_isei <- function(x) {
     output_var = "ISEI-08",
     translate_df = all_schemas$isco08_to_isei,
     translate_label_df = NULL,
+    check_isco = "isco08",
     label = FALSE
   )
 }
@@ -460,6 +464,7 @@ isco08_to_siops <- function(x) {
     output_var = "SIOPS-08",
     translate_df = all_schemas$isco08_to_siops,
     translate_label_df = NULL,
+    check_isco = "isco08",
     label = FALSE
   )
 }
@@ -548,6 +553,7 @@ isco08_to_msec <- function(x,
     translate_df = all_schemas$isco08_to_msec,
     translate_label_df = all_labels$msec,
     label = label,
+    check_isco = "isco08",
     digits = 3
   )
 
@@ -582,6 +588,7 @@ isco08_to_microclass <- function(x, label = FALSE) {
     output_var = "microclass",
     translate_df = all_schemas$isco08_to_microclass,
     translate_label_df = all_labels$microclass,
+    check_isco = "isco08",
     label = label
   )
 }
@@ -636,6 +643,7 @@ isco08_to_ipics <- function(x, self_employed, n_employees, label = FALSE) {
     translate_df = all_schemas$isco08_to_ipics,
     translate_label_df = all_labels$ipics,
     label = label,
+    check_isco = "isco08",
     digits = 4
   )
 }
@@ -713,6 +721,7 @@ isco08_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
         output_var = input_var,
         translate_df = schema,
         translate_label_df = all_labels$oesch16,
+        check_isco = "isco08",
         label = label
       )
 
@@ -726,7 +735,8 @@ isco08_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
       input_var,
       output_var,
       all_classes,
-      label
+      label,
+      check_isco = "isco08"
     )
 
     return(oesch)
@@ -809,6 +819,7 @@ isco08_to_eseg <- function(x,
 
   x <- repair_isco(x, digits = 4)
   count_digits(x, digits = 2)
+  check_isco(x, check_isco = "isco08")
   isco1 <- substr(x, 1, 1)
   isco2 <- substr(x, 1, 2)
 
@@ -910,6 +921,7 @@ isco08_swap <- function(x,
     output_var = to,
     translate_df = all_schemas$isco08_hierarchy,
     translate_label_df = NULL,
+    check_isco = "isco08",
     label = FALSE,
   )
 }

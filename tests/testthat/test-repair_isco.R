@@ -3,14 +3,14 @@ library(testthat)
 # Test for numeric input
 test_that("numeric input is converted to character", {
   x <- 1234
-  repaired_x <- repair_isco(x)
-  expect_type(repaired_x, "character")
+  expect_message(repair_isco(x))
+  expect_type(suppressMessages(repair_isco(x)), "character")
 })
 
 # Test for ISCO variable with occupations of less than 4 digits
 test_that("occupations with less than 4 digits are padded", {
   x <- c("123", "4567", "89", NA, "1234")
-  repaired_x <- repair_isco(x, digits = 4)
+  repaired_x <- suppressMessages(repair_isco(x, digits = 4))
   expect_equal(repaired_x, c("0123", "4567", "0089", NA, "1234"))
 })
 

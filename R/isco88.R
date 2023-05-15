@@ -30,6 +30,7 @@ isco88_to_isco68 <- function(x, label = FALSE) {
     output_var = "ISCO68",
     translate_df = all_schemas$isco88_to_isco68,
     translate_label_df = all_labels$isco68,
+    check_isco = "isco88",
     label = label
   )
 }
@@ -74,6 +75,7 @@ isco88_to_isco08 <- function(x, label = FALSE) {
     output_var = "ISCO08",
     translate_df = all_schemas$isco88_to_isco08,
     translate_label_df = all_labels$isco08,
+    check_isco = "isco88",
     label = label
   )
 }
@@ -109,6 +111,7 @@ isco88_to_isco88com <- function(x, label = FALSE) {
     output_var = "ISCO88COM",
     translate_df = all_schemas$isco88_to_isco88com,
     translate_label_df = all_labels$isco88com,
+    check_isco = "isco88",
     label = label
   )
 }
@@ -123,6 +126,7 @@ isco88_to_isei <- function(x) {
     output_var = "ISEI",
     translate_df = all_schemas$isco88_to_isei,
     translate_label_df = NULL,
+    check_isco = "isco88",
     label = FALSE
   )
 }
@@ -138,6 +142,7 @@ isco88_to_siops <- function(x) {
     output_var = "SIOPS",
     translate_df = all_schemas$isco88_to_siops,
     translate_label_df = NULL,
+    check_isco = "isco88",
     label = FALSE
   )
 }
@@ -172,6 +177,7 @@ isco88_to_mps <- function(x) {
     output_var = "MPS88",
     translate_df = all_schemas$isco88_to_mps,
     translate_label_df = NULL,
+    check_isco = "isco88",
     label = FALSE
   )
 }
@@ -249,6 +255,7 @@ isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
         output_var = "EGP11",
         translate_df = schema,
         translate_label_df = all_labels$egp11,
+        check_isco = "isco88",
         label = label
       )
 
@@ -262,6 +269,7 @@ isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
       input_var,
       output_var,
       all_classes,
+      check_isco = "isco88",
       label
     )
     return(egp)
@@ -407,6 +415,7 @@ isco88_to_ipics <- function(x, self_employed, n_employees, label = FALSE) {
     output_var = "IPICS",
     translate_df = all_schemas$isco88_to_ipics,
     translate_label_df = all_labels$ipics,
+    check_isco = "isco88",
     label = label,
     digits = 4
   )
@@ -440,6 +449,7 @@ isco88com_to_esec <- function(x,
       translate_df = all_schemas$isco88com_to_esec_three,
       translate_label_df = all_labels$esec,
       label = label,
+      check_isco = "isco88com",
       digits = 3
     )
   } else {
@@ -450,6 +460,7 @@ isco88com_to_esec <- function(x,
       translate_df = all_schemas$isco88com_to_esec_three,
       translate_label_df = all_labels$esec,
       label = label,
+      check_isco = "isco88com",
       digits = 3
     )
   }
@@ -518,6 +529,9 @@ isco88com_to_msec <- function(x,
                               self_employed,
                               n_employees,
                               label = FALSE) {
+
+
+
   col_position <- dplyr::case_when(
     self_employed == 1 & n_employees >= 10 ~ 2,
     self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 3,
@@ -533,6 +547,7 @@ isco88com_to_msec <- function(x,
     translate_df = all_schemas$isco88com_to_msec,
     translate_label_df = all_labels$msec,
     label = label,
+    check_isco = "isco88com",
     digits = 3
   )
 
@@ -574,6 +589,7 @@ isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
         output_var = input_var,
         translate_df = schema,
         translate_label_df = all_labels$oesch16,
+        check_isco = "isco88",
         label = label
       )
 
@@ -587,6 +603,7 @@ isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
       input_var,
       output_var,
       all_classes,
+      check_isco = "isco88",
       label
     )
 
@@ -701,6 +718,7 @@ isco88com_to_wright <- function(x,
                                 label = FALSE) {
   x <- repair_isco(x)
   count_digits(x, digits = 4)
+  check_isco(x, check_isco = "isco88com")
 
   construct_wright(
     x,
@@ -744,6 +762,7 @@ isco88_swap <- function(x,
     output_var = to,
     translate_df = all_schemas$isco88_hierarchy,
     translate_label_df = NULL,
+    check_isco = "isco88",
     label = FALSE
   )
 }

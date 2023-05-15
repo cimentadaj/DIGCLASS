@@ -2,7 +2,7 @@
 % Please edit documentation in R/ess.R
 \name{ess}
 \alias{ess}
-\title{An example data frame with data from the European Social Survey, round 5.}
+\title{An example data frame with data from the European Social Survey, round 6.}
 \format{
 Data Frame
 }

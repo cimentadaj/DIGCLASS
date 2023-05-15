@@ -8,6 +8,7 @@ isco68_to_isco88 <- function(x, label = FALSE) {
     output_var = "ISCO88",
     translate_df = all_schemas$isco68_to_isco88,
     translate_label_df = all_labels$isco88,
+    check_isco = "isco68",
     label = label
   )
 }
@@ -22,6 +23,7 @@ isco68_to_isco08 <- function(x, label = FALSE) {
     output_var = "ISCO08",
     translate_df = all_schemas$isco68_to_isco08,
     translate_label_df = all_labels$isco08,
+    check_isco = "isco68",
     label = label
   )
 }
@@ -36,6 +38,7 @@ isco68_to_isei <- function(x) {
     output_var = "ISEI",
     translate_df = all_schemas$isco68_to_isei,
     translate_label_df = NULL,
+    check_isco = "isco68",
     label = FALSE
   )
 }
@@ -50,6 +53,7 @@ isco68_to_siops <- function(x) {
     output_var = "SIOPS",
     translate_df = all_schemas$isco68_to_siops,
     translate_label_df = NULL,
+    check_isco = "isco68",
     label = FALSE
   )
 }
@@ -88,6 +92,7 @@ isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
         output_var = "EGP11",
         translate_df = schema,
         translate_label_df = all_labels$egp11,
+        check_isco = "isco68",
         label = label
       )
 
@@ -101,7 +106,8 @@ isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
       input_var,
       output_var,
       all_classes,
-      label
+      label,
+      check_isco = "isco68"
     )
 
     return(egp)
@@ -189,6 +195,7 @@ isco68_swap <- function(x,
     output_var = to,
     translate_df = all_schemas$isco68_hierarchy,
     translate_label_df = NULL,
+    check_isco = "isco68",
     label = FALSE
   )
 }
