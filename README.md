@@ -5,7 +5,7 @@
 # DIGCLASS
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/cimentadaj/socialclasses/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cimentadaj/socialclasses/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/cimentadaj/DIGCLASS/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cimentadaj/DIGCLASS/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The `DIGCLASS` R package aims to make translation between occupational social classes easy and comprehensive. It facilitates the translation of the International Standard Classification of Occupations (ISCO) from 1968, 1988 and 2008 to a wide range of social class schemes.
@@ -59,7 +59,7 @@ You can install the development version of DIGCLASS from [GitHub](https://github
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("cimentadaj/socialclasses")
+devtools::install_github("cimentadaj/DIGCLASS")
 ```
 
 ## Example

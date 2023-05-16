@@ -36,7 +36,7 @@ Also, after reading your data, be sure to run `repair_isco` on your ISCO variabl
 x <- repair_isco(isco_ready$ISCO08)
 ```
 ```
-#> ! ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html for more details. Converting to a character vector.
+#> ! ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/DIGCLASS/articles/repairing_isco_input.html for more details. Converting to a character vector.
 #> ℹ ISCO variable has occupations with digits less than 4. Converting to 4 digits.
 #> • Converted `110` to `0110`
 #> • Converted `210` to `0210`

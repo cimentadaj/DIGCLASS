@@ -69,7 +69,7 @@ issp <- issp %>% mutate(isco88 = isco08_to_isco88(isco08))
 
 Notice that there were several messages. First, it tells us that the ISCO variable was not a character vector. It warns this because numeric columns convert ISCO codes such as `0110` to `110` and we loose information. This makes it impossible to separate the 3-digit ISCO code `310` from `0310` converted to `310`. For that reason, all functions in `DIGCLASS` will raise a warning like this one if it finds that ISCO comes as a character vector.
 
-After this warning, it also mentions that certain occupations have less than 4 digits. It **assumes** these are always ISCO occupations that need a preceding `0` in front. It takes the liberty of converting these automatically by appending the 0's in front. For more details on how this works and how to fix these values yourself, the message points the user to the link [https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html](https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html).
+After this warning, it also mentions that certain occupations have less than 4 digits. It **assumes** these are always ISCO occupations that need a preceding `0` in front. It takes the liberty of converting these automatically by appending the 0's in front. For more details on how this works and how to fix these values yourself, the message points the user to the link [https://cimentadaj.github.io/DIGCLASS/articles/repairing_isco_input.html](https://cimentadaj.github.io/DIGCLASS/articles/repairing_isco_input.html).
 
 As you can see yourself, despite these messages, these were all warnings and information messages. It translated everything correctly to ISCO88:
 
