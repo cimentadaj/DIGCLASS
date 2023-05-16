@@ -74,7 +74,7 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cimentadaj.github.io/socialclasses/">DIGCLASS</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cimentadaj.github.io/DIGCLASS/">DIGCLASS</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
@@ -184,7 +184,7 @@ Let’s say we want to convert <code>isco08</code> to <code>isco88</code>.
 Let’s use the function <code>isco08_to_isco88</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">issp</span> <span class="op">&lt;-</span> <span class="va">issp</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>isco88 <span class="op">=</span> <span class="fu"><a href="../reference/isco08_to_isco88.html">isco08_to_isco88</a></span><span class="op">(</span><span class="va">isco08</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/DIGCLASS/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ISCO variable has occupations with digits less than 4. Converting to 4 digits.</span></span>
 <span><span class="co">#&gt; • Converted `110` to `0110`</span></span>
 <span><span class="co">#&gt; • Converted `310` to `0310`</span></span>
@@ -202,7 +202,7 @@ less than 4 digits. It <strong>assumes</strong> these are always ISCO
 occupations that need a preceding <code>0</code> in front. It takes the
 liberty of converting these automatically by appending the 0’s in front.
 For more details on how this works and how to fix these values yourself,
-the message points the user to the link <a href="https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html">https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html</a>.</p>
+the message points the user to the link <a href="https://cimentadaj.github.io/DIGCLASS/articles/repairing_isco_input.html">https://cimentadaj.github.io/DIGCLASS/articles/repairing_isco_input.html</a>.</p>
 <p>As you can see yourself, despite these messages, these were all
 warnings and information messages. It translated everything correctly to
 ISCO88:</p>
@@ -296,7 +296,7 @@ employees in <code>n_employees</code>.</p>
 these columns:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">issp</span> <span class="op">&lt;-</span> <span class="va">issp</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>msec <span class="op">=</span> <span class="fu"><a href="../reference/isco08_to_msec.html">isco08_to_msec</a></span><span class="op">(</span><span class="va">isco08</span>, <span class="va">is_supervisor</span>, <span class="va">self_employed</span>, <span class="va">n_employees</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/DIGCLASS/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ISCO variable has occupations with digits less than 4. Converting to 4 digits.</span></span>
 <span><span class="co">#&gt; • Converted `110` to `0110`</span></span>
 <span><span class="co">#&gt; • Converted `310` to `0310`</span></span>
@@ -325,7 +325,7 @@ through <code>repair_isco</code> once and saving it.</p>
 <span>    isco08 <span class="op">=</span> <span class="fu"><a href="../reference/repair_isco.html">repair_isco</a></span><span class="op">(</span><span class="va">isco08</span><span class="op">)</span>,</span>
 <span>    isco08_three <span class="op">=</span> <span class="fu"><a href="../reference/isco08_swap.html">isco08_swap</a></span><span class="op">(</span><span class="va">isco08</span>, from <span class="op">=</span> <span class="fl">4</span>, to <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/socialclasses/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/DIGCLASS/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ISCO variable has occupations with digits less than 4. Converting to 4 digits.</span></span>
 <span><span class="co">#&gt; • Converted `110` to `0110`</span></span>
 <span><span class="co">#&gt; • Converted `310` to `0310`</span></span>
