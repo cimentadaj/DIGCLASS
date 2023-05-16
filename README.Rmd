@@ -95,7 +95,7 @@ The nomenclature of the function is `{origin}_to_{destination}` where `origin` i
 
 For those class schemas that have labels, the `label` argument returns the labels instead of the class codes.
 
-## Steps to add a new translation
+## Steps to add a new translation 
 
 1. Add two csv files respectively in `data-raw/social_classes/labels/` and `data-raw/social_classes/translation/` containing the labels and translation for the two schemas.
 

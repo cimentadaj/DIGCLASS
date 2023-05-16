@@ -79,28 +79,30 @@ ess %>%
     egp = isco68_to_egp(isco68, self_employed, emplno),
     egp_labels = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
   )
-#> # A tibble: 56,752 × 10
-#>    isco68 isco88 isco88com isco08 emplno self_employed is_supervisor isei  egp  
-#>    <chr>  <chr>  <chr>     <chr>   <dbl>         <dbl>         <dbl> <chr> <chr>
-#>  1 0140   3111   3111      3111        0             0             1 47    2    
-#>  2 3210   3431   3431      4120        0             0             0 55    3    
-#>  3 2119   1210   1210      1120        0             0             1 69    1    
-#>  4 1320   2320   2320      2330        0             0             0 71    2    
-#>  5 8550   7137   7137      7411        0             0             1 40    8    
-#>  6 5401   5131   5131      5311        0             0             0 24    9    
-#>  7 <NA>   <NA>   <NA>      <NA>        0             0             0 <NA>  <NA> 
-#>  8 1593   2419   2419      2432        0             0             1 66    2    
-#>  9 1930   3460   3460      2635        0             0             0 54    2    
-#> 10 1950   2444   2444      2643        0             0             0 54    2    
-#> # ℹ 56,742 more rows
-#> # ℹ 1 more variable: egp_labels <chr>
+#> # A tibble: 48,285 × 15
+#>    isco68 isco88 isco88com isco08 emplno self_employed is_supervisor
+#>    <chr>  <chr>  <chr>     <chr>   <dbl>         <dbl>         <dbl>
+#>  1 5890   5169   5169      5414        0             1             0
+#>  2 2120   1222   1222      1321        0             0             1
+#>  3 7200   8120   8120      3135        0             0             0
+#>  4 9310   7141   7141      7131        0             0             1
+#>  5 6220   6111   6111      6111        0             0             0
+#>  6 6220   6111   6111      6111        0             0             1
+#>  7 9595   9313   9313      9313        0             0             1
+#>  8 6000   1221   1221      1311        0             0             1
+#>  9 6000   1221   1221      1311        2             1             1
+#> 10 6220   6111   6111      6111        0             0             1
+#> # ℹ 48,275 more rows
+#> # ℹ 8 more variables: control_work <dbl>, control_daily <dbl>,
+#> #   work_status <dbl>, main_activity <dbl>, agea <dbl>, isei <chr>, egp <chr>,
+#> #   egp_labels <chr>
 ```
 
 The nomenclature of the function is `{origin}_to_{destination}` where `origin` is the origin class schema and `destination` is the destination class schema. The usual workflow is for you to type, for example `isco` and then hit `TAB` to get auto-completion on all possible translations.
 
 For those class schemas that have labels, the `label` argument returns the labels instead of the class codes.
 
-## Steps to add a new translation
+## Steps to add a new translation 
 
 1. Add two csv files respectively in `data-raw/social_classes/labels/` and `data-raw/social_classes/translation/` containing the labels and translation for the two schemas.
 
