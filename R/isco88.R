@@ -285,7 +285,6 @@ isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
 #'
 #' EGP-MP is a class schema similar to EGP but reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals.
 #'
-#' # TODO: After this is corrected in the code, correct it here and in all docs.
 #' This schema is a slight variation of the original EGP and the logic used to build this is like this:
 #'
 #' * All occupations with EGP digit 1 and ISCO 1-digit 0 or 1 or has subordinates, **is a high manager**

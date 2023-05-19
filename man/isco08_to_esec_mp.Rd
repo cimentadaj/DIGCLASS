@@ -39,8 +39,7 @@ This function translates a vector of 3-digit ISCO08/ISCO88COM codes to ESEC-MP c
 This function translates a vector of 3-digit ISCO08/ISCO88COM codes to ESEC-MP codes.
 
 ESEC-MP is a class schema similar to ESEC but reassigns managers and professionals (ISCO08/ISCO88COM codes 1 and 2) to have both high/low managers and profesionals. Similarly to \code{DIGCLASS::isco88com_to_esec}, \code{isco88com_to_esec_mp} allows to translate using the simple or full method. \code{isco08_to_esec_mp} does not allow to translate using two different methods and uses the full method by default.
-}
-\section{TODO: After this is corrected in the code, correct it here and in all docs.}{
+
 This schema is a slight variation of the original ESEC and the logic used to build this is like this:
 \itemize{
 \item All occupations with ESEC digit 1 and ISCO 1-digit 0 or 1 or has subordinates, \strong{is a high manager}
@@ -55,7 +54,6 @@ This translation was created from the Stata do file shared by Oscar Smallenbroek
 
 This function will accept 3 digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3-digits (1310, 1320, etc..)
 }
-
 \examples{
 library(dplyr)
 

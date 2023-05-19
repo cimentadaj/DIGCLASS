@@ -28,8 +28,7 @@ This function translates a vector of 4-digit ISCO88/ISCO68 codes to EGP-MP codes
 }
 \details{
 EGP-MP is a class schema similar to EGP but reassigns managers and professionals (ISCO88/ISCO68 codes 1 and 2) to have both high/low managers and profesionals.
-}
-\section{TODO: After this is corrected in the code, correct it here and in all docs.}{
+
 This schema is a slight variation of the original EGP and the logic used to build this is like this:
 \itemize{
 \item All occupations with EGP digit 1 and ISCO 1-digit 0 or 1 or has subordinates, \strong{is a high manager}
@@ -42,7 +41,6 @@ This schema is a slight variation of the original EGP and the logic used to buil
 
 This translation was created from the Stata do file shared by Oscar Smallenbroek called "EGP-MP.do". For more info, please contact the author.
 }
-
 \examples{
 library(dplyr)
 
