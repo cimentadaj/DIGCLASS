@@ -26,6 +26,11 @@ This function translates a vector of 4-digit ISCO08/ISCO88 codes to IPICS codes 
 }
 \details{
 These translation were created from the CSV files shared by Oscar Smallenbroek name "ISCO08 to IPICS.csv" and "ISCO88 to IPICS.csv". For more info, please contact the author.
+
+For more details on the class schema please check the references below:
+\itemize{
+\item Hertel, Florian R. 2017. Social Mobility in the 20th Century: Class Mobility and Occupational Change in the United States and Germany. Springer VS.
+}
 }
 \examples{
 library(dplyr)

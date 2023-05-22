@@ -24,6 +24,22 @@ This function translates a vector of 2-digit ISCO88COM codes to the ESEG class s
 }
 \details{
 The translation was implemented following the work of Kea Tijdens in the document "ESEG-2014 coding scheme + explanatory note". For more details, see the last table in the document \href{https://seriss.eu/wp-content/uploads/2016/12/SERISS-Deliverable-D8-13-ESeG-coding_submitted.pdf}{here}.
+
+For more details on this class schema, please check the references below:
+\itemize{
+\item Börlin, S., & Zettl, L. (2020). Mikrozensus Tools: Die Klassifikation European Socio-economic Groups (ESeG) im Mikrozensus Scientific Use File. (GESIS Papers, 2020/08). Köln: GESIS - Leibniz-Institut für Sozialwissenschaften. \url{https://doi.org/10.21241/ssoar.68449}
+\item Bohr, J. (2018). EU-AES Tools: Implementation of the European Socioeconomic Groups Classification (ESeG) using Adult Education Survey Microdata. (GESIS Papers, 2018/14). Köln: GESIS - Leibniz-Institut für Sozialwissenschaften.\url{https://doi.org/10.21241/ssoar.57622}
+\item Meron M, and all ESSnet members (2014) ESSnet ESeG Final Report. Paris, INSEE,Direction des Statistiques Démographiques et Sociales ESSnet project
+\item Meron, M. et al. (2014): Final Report of the ESSnet on the harmonisation and implementation of a European socio-economic classification: European Socio-economic Groups (ESeG)
+\item Tijdens, K.G. (2016) ESEG-2014 coding scheme + explanatory note. Deliverable 8.13 of the SERISS project funded under the European Union’s Horizon 2020 research and innovation programme GA No: 654221. Available at: \href{www.seriss.eu/resources/deliverables}{https://seriss.eu/resources/deliverables}
+}
+
+Resource websites of the European Socio-economic Groups (ESeG):
+\itemize{
+\item \url{https://cros-legacy.ec.europa.eu/content/eseg_en}
+\item \url{https://ec.europa.eu/eurostat/cros/content/eseg-report-technicaldocuments_en}
+\item \url{https://ec.europa.eu/eurostat/cros/system/files/ESEG-Report-TechnicalAnnexes_0.zip_en}
+}
 }
 \examples{
 library(dplyr)

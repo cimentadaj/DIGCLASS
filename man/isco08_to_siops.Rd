@@ -25,6 +25,12 @@ This function translates a vector of 4-digit ISCO08/ISCO88/ISCO68 codes to SIOPS
 This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO08/ISCO88/ISCO88 -> SIOPS}.
 
 Since \code{SIOPS} doesn't have any labels, the \code{labels} is not availabe in this function.
+
+For more information on this class schema, please check the references below:
+\itemize{
+\item Ganzeboom, H.B.G., P.M. De Graaf, D.J. Treiman (1992) A Standard International Socio-Economic Index of Occupational Status. Social Science Research 21: 1-56.
+\item Ganzeboom, H.B.G., D.J. Treiman (1996) Internationally Comparable Measures of Occupational Status for the 1988 International Standard Classification of Occupations. Social Science Research 25: 201-239.
+}
 }
 \examples{
 library(dplyr)

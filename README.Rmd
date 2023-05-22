@@ -95,7 +95,7 @@ The nomenclature of the function is `{origin}_to_{destination}` where `origin` i
 
 For those class schemas that have labels, the `label` argument returns the labels instead of the class codes.
 
-## Steps to add a new translation 
+## Steps to add a new translation
 
 1. Add two csv files respectively in `data-raw/social_classes/labels/` and `data-raw/social_classes/translation/` containing the labels and translation for the two schemas.
 
@@ -112,3 +112,8 @@ This package has benefitted greatly from other open source packages that already
 - [ISCOGEN](https://github.com/benjann/iscogen): Stata package
 - [SocialPosition](https://cran.r-project.org/web/packages/SocialPosition/index.html): R package
 - [occupar](https://github.com/DiogoFerrari/occupar/): R package
+
+
+## Funding
+
+This project has been funded through the European Commission’s JRC Centre for Advanced Studies and the project Social Classes in the Digital Age (DIGCLASS): (https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en)[https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en]

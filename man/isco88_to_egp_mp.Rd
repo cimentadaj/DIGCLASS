@@ -40,6 +40,11 @@ This schema is a slight variation of the original EGP and the logic used to buil
 }
 
 This translation was created from the Stata do file shared by Oscar Smallenbroek called "EGP-MP.do". For more info, please contact the author.
+
+For more information on this class schema, please checkthe references below:
+\itemize{
+\item Smallenbroek O, Hertel F, Barone C (2022) Measuring class hierarchies in post-industrial societies: a criterion and construct validation of EGP and ESEC across 31 countries. Sociological Methods & Research. Epub ahead of print 11 November. \url{https://doi.org/10.1177/00491241221134522}
+}
 }
 \examples{
 library(dplyr)

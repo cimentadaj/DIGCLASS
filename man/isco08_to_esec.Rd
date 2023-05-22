@@ -47,6 +47,15 @@ For more info, please see page 17 of the European Socio-economic Classification 
 The translation for ISCO88 is done from ISCO88COM which is not ISCO88. If you have ISCO88, you can translate it to ISCO88COM using the function \code{DIGCLASS::isco88_to_isco88com} before translating to ESEC.
 
 Contrary to ISCO88COM-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 directly to ESEC.
+
+For more information on this class schema, please check the references below:
+\itemize{
+\item Resource website of the European Socio-economic Classification (ESeC): \url{https://www.iser.essex.ac.uk/archives/esec}
+\item Derivation material: \url{https://www.iser.essex.ac.uk/archives/esec/user-guide/derivation-material}
+\item Rose, D. and Harrison, E. (2007) ‘The European Socio-economic Classification: A New Social Class Schema for European Research’, European Societies, 9, 3: 459-490. \url{https://doi.org/10.1080/14616690701336518}
+\item Rose D, Harrison E (2010) Social Class in Europe. An Introduction to the European Socio-economic Classification. London: Routledge.
+\item Wirth, H. (2023). EU-SILC Tools: European Socioeconomic Classification - ESeC88 and ESeC08. (GESIS Papers, 2023/01). Köln: GESIS - Leibniz-Institut für Sozialwissenschaften. \url{https://doi.org/10.21241/ssoar.83962}
+}
 }
 \examples{
 library(dplyr)

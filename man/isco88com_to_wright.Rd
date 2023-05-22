@@ -37,6 +37,16 @@ This function translates a vector of 4-digit ISCO88COM codes to the E.O Wright c
 }
 \details{
 The translation implemented in this function was originally developed by Erik Olin Wright. There are three possible types of translations: the "simple" version, the "decision-making" version and the "power-class" version. This translation was implemented following the SPSS script from Håkon Leiulfsrud and Heidi Jensberg. For more information, please contact the authors.
+
+For more information on this class schema, please check the references below:
+\itemize{
+\item Leiulfsrud, H., I. Bison & H. Jensberg (2005) Social Class in Europe: European Social Survey 2002/3. Official ESS Report. NTNU Social Research in Trondheim & Department of Social Research, Trento University. \url{https://www.europeansocialsurvey.org/docs/methodology/ESS1_social_class.pdf}
+\item Leiulfsrud, H., Bison, I. and Solheim, E. (2010), Social Class in Europe II: The European Social Survey 2002–2008, Trondheim: NTNU. \url{https://www.researchgate.net/publication/317624268_Social_Class_in_Europe_II}
+\item Wright, E. (1978): Class, Crises and the State. London: New Left Books.
+\item Wright, E. O. (1985): Classes. London: New Left Books.
+\item Wright, E. O. (1997): Class Counts: Comparative studies in class analyses. Cambridge: Cambridge University Press.
+\item Wright, E. O. (2005) Approaches to Class Analysis. Cambridge: Cambridge University Press.
+}
 }
 \examples{
 library(dplyr)

@@ -22,6 +22,11 @@ This function translates a vector of 4-digit ISCO08/ISCO68 codes to ISCO88 codes
 }
 \details{
 This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO08/ISCO68 -> ISCO88}.
+
+For more information on this class schema, please check the references below:
+\itemize{
+\item International Standard Classification of Occupations: ISCO-08 / International Labour Office, - Geneva: ILO, 2012. \url{https://www.ilo.org/public/english/bureau/stat/isco/index.htm}
+}
 }
 \examples{
 library(dplyr)

@@ -25,6 +25,18 @@ This function translates a vector of 4-digit ISCO08/ISCO88/ISCO68 codes to ISEI 
 This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO08/ISCO88/ISCO88 -> ISEI}.
 
 Since \code{ISEI} doesn't have any labels, the \code{labels} is not availabe in this function.
+
+For more information on this class schema, please check the references below:
+\itemize{
+\item Ganzeboom, H.B.G. (2010) International Standard Classification of Occupations. ISCO-08. With ISEI-08 scores. Last revised: July 27 2010. Available from \url{http://www.harryganzeboom.nl/isco08/}.
+\item Ganzeboom, H.B.G., D.J. Treiman (1996) Internationally Comparable Measures of Occupational Status for the 1988 International Standard Classification of Occupations. Social Science Research 25: 201-239.
+}
+
+Resource websites of the International Socio-economic Index (ISEI):
+\itemize{
+\item \url{http://www.harryganzeboom.nl/isco08/qa-isei-08.htm}
+\item \url{http://www.harryganzeboom.nl/isco88/}
+}
 }
 \examples{
 library(dplyr)

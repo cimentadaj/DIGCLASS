@@ -19,6 +19,12 @@ This function translates a vector of 4-digit ISCO08 codes to microclass codes us
 }
 \details{
 This translation was created from the Excel file shared by Oscar Smallenbroek called "isco08 to micro with numeric labels.xlsx". For more info, please contact the author.
+
+For more details on this class schema, please check the references below:
+\itemize{
+\item Weeden, Kim A., and David B. Grusky. 2005. "The Case for a New Class Map." American Journal of Sociology 111(1):141-212.
+\item —. 2012. "The Three Worlds of Inequality." American Journal of Sociology 117(6):1723-85.
+}
 }
 \examples{
 library(dplyr)

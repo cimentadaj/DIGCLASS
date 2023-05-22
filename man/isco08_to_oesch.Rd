@@ -31,7 +31,18 @@ This function works by first translating to OESCH16 and then translating to othe
 
 This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO88/IS68 -> OESCH}. For translations between OESCH16 and OESCH8/OESCH5, see the source of the Stata package \code{oesch} \href{http://fmwww.bc.edu/repec/bocode/o/oesch.ado}{here}.
 
-For more details, users can see the translation used in this package in \code{all_schema$oesch16_to_oesch8} and \code{all_schema$oesch16_to_oesch5}. Moreover, the labels used can be found in \code{all_labels$oesch16}, \code{all_labels$oesch8} and \code{all_labels$oesch5}.
+Users can see the translation used in this package in \code{all_schema$oesch16_to_oesch8} and \code{all_schema$oesch16_to_oesch5}. Moreover, the labels used can be found in \code{all_labels$oesch16}, \code{all_labels$oesch8} and \code{all_labels$oesch5}.
+
+For more details on this class schema, please check the references below:
+\itemize{
+\item Oesch D (2006a) Coming to grips with a changing class structure. An analysis of employment stratification in Britain, Germany, Sweden and Switzerland. International Sociology 21(2): 263–288.
+\item Oesch, D. (2006b) Redrawing the Class Map. Stratification and Institutions in Britain, Germany, Sweden and Switzerland. Palgrave Macmillan.
+}
+
+Resource websites of the OESCH Social Class Schema:
+\itemize{
+\item \url{https://people.unil.ch/danieloesch/scripts/}
+}
 }
 \examples{
 library(dplyr)

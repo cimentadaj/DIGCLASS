@@ -7,7 +7,7 @@ Authors@R: c(
     person("Carlos", "Gil-Hernández", ,"carlos.gilhernandez@eui.eu", role = c("aut"), comment = c(ORCID = "0000-0001-8482-3706")),
     person("Oscar", "Smallenbroek", ,"Oscar.Smallenbroek@eui.eu", role = c("aut"), comment = c(ORCID = "0000-0003-4280-8406"))
     )
-Description: What the package does (one paragraph).
+Description: Translating between ISCO class schemas to other schemas is a difficult problem since most translations are scattered around the internet. This packages implements most available translations available for ISCO08/88/68. The package has extra functionalities to check whether ISCO variable are well formatted as well as for converting to major/minor units.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

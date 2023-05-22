@@ -16,6 +16,14 @@
 #'
 #' Contrary to ISCO88COM-ESEC, ISCO08 does not have a simplified method and the translation is done from ISCO08 directly to ESEC.
 #'
+#' For more information on this class schema, please check the references below:
+#'
+#' * Resource website of the European Socio-economic Classification (ESeC): [https://www.iser.essex.ac.uk/archives/esec](https://www.iser.essex.ac.uk/archives/esec)
+#' * Derivation material: [https://www.iser.essex.ac.uk/archives/esec/user-guide/derivation-material](https://www.iser.essex.ac.uk/archives/esec/user-guide/derivation-material)
+#' * Rose, D. and Harrison, E. (2007) ‘The European Socio-economic Classification: A New Social Class Schema for European Research’, European Societies, 9, 3: 459-490. [https://doi.org/10.1080/14616690701336518](https://doi.org/10.1080/14616690701336518)
+#' * Rose D, Harrison E (2010) Social Class in Europe. An Introduction to the European Socio-economic Classification. London: Routledge.
+#' * Wirth, H. (2023). EU-SILC Tools: European Socioeconomic Classification - ESeC88 and ESeC08. (GESIS Papers, 2023/01). Köln: GESIS - Leibniz-Institut für Sozialwissenschaften. [https://doi.org/10.21241/ssoar.83962](https://doi.org/10.21241/ssoar.83962)
+#'
 #' @param x `r rg_template_arg_x_digit("ISCO", digit = 3)`
 #' @param is_supervisor `r rg_template_arg_supervisor()`
 #' @param self_employed `r rg_template_arg_selfemployed()`
@@ -131,6 +139,14 @@ isco08_to_esec <- function(x,
 #'
 #' This is exactly the same as `DIGCLASS::isco08_to_esec` but for two digit ISCO.
 #'
+#' For more information on this class schema, please check the references below:
+#'
+#' * Resource website of the European Socio-economic Classification (ESeC): [https://www.iser.essex.ac.uk/archives/esec](https://www.iser.essex.ac.uk/archives/esec)
+#' * Derivation material: [https://www.iser.essex.ac.uk/archives/esec/user-guide/derivation-material](https://www.iser.essex.ac.uk/archives/esec/user-guide/derivation-material)
+#' * Rose, D. and Harrison, E. (2007) ‘The European Socio-economic Classification: A New Social Class Schema for European Research’, European Societies, 9, 3: 459-490. [https://doi.org/10.1080/14616690701336518](https://doi.org/10.1080/14616690701336518)
+#' * Rose D, Harrison E (2010) Social Class in Europe. An Introduction to the European Socio-economic Classification. London: Routledge.
+#' * Wirth, H. (2023). EU-SILC Tools: European Socioeconomic Classification - ESeC88 and ESeC08. (GESIS Papers, 2023/01). Köln: GESIS - Leibniz-Institut für Sozialwissenschaften. [https://doi.org/10.21241/ssoar.83962](https://doi.org/10.21241/ssoar.83962)
+#'
 #' @param x `r rg_template_arg_x_digit("ISCO", digit = 2)`
 #'
 #' @inheritParams isco08_to_esec
@@ -215,6 +231,10 @@ isco08_two_to_esec <- function(x,
 #' This translation was created from the Stata do file shared by Oscar Smallenbroek called "ESEC-MP.do". For more info, please contact the author.
 #'
 #' `r rg_template_digits_warning(digit = 3)`
+#'
+#' For more information on this class schema, please checkthe references below:
+#
+#' * Smallenbroek O, Hertel F, Barone C (2022) Measuring class hierarchies in post-industrial societies: a criterion and construct validation of EGP and ESEC across 31 countries. Sociological Methods &amp; Research. Epub ahead of print 11 November. [https://doi.org/10.1177/00491241221134522](https://doi.org/10.1177/00491241221134522)
 #'
 #' @inheritParams isco08_to_esec
 #' @param label `r rg_template_arg_label("ESEC-MP")`
@@ -303,7 +323,6 @@ isco08_to_esec_mp <- function(x,
                               self_employed,
                               n_employees,
                               label = FALSE) {
-
   esec <- isco08_to_esec(x, is_supervisor, self_employed, n_employees, label = FALSE)
 
 
@@ -348,6 +367,10 @@ isco08_to_esec_mp <- function(x,
 #' `r rg_template_intro("ISCO08/ISCO68", "ISCO88", c("isco08_to_isco88", "isco68_to_isco88"))`
 #'
 #' @details`r rg_template_details_iscogen("ISCO08/ISCO68", "ISCO88")`
+#'
+#' For more information on this class schema, please check the references below:
+#'
+#' * International Standard Classification of Occupations: ISCO-08 / International Labour Office, - Geneva: ILO, 2012. [https://www.ilo.org/public/english/bureau/stat/isco/index.htm](https://www.ilo.org/public/english/bureau/stat/isco/index.htm)
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @param label `r rg_template_arg_label("ISCO88")`
@@ -395,6 +418,16 @@ isco08_to_isco88 <- function(x, label = FALSE) {
 #'
 #' Since `ISEI` doesn't have any labels, the `labels` is not availabe in this function.
 #'
+#' For more information on this class schema, please check the references below:
+#'
+#' * Ganzeboom, H.B.G. (2010) International Standard Classification of Occupations. ISCO-08. With ISEI-08 scores. Last revised: July 27 2010. Available from [http://www.harryganzeboom.nl/isco08/](http://www.harryganzeboom.nl/isco08/).
+#'
+#' * Ganzeboom, H.B.G., D.J. Treiman (1996) Internationally Comparable Measures of Occupational Status for the 1988 International Standard Classification of Occupations. Social Science Research 25: 201-239.
+#'
+#' Resource websites of the International Socio-economic Index (ISEI):
+#' * [http://www.harryganzeboom.nl/isco08/qa-isei-08.htm](http://www.harryganzeboom.nl/isco08/qa-isei-08.htm)
+#' * [http://www.harryganzeboom.nl/isco88/](http://www.harryganzeboom.nl/isco88/)
+#'
 #' @param x `r rg_template_arg_x("ISCO")`
 #'
 #' @return `r rg_template_return("ISEI")`
@@ -435,6 +468,12 @@ isco08_to_isei <- function(x) {
 #' @details`r rg_template_details_iscogen("ISCO08/ISCO88/ISCO88", "SIOPS")`
 #'
 #' Since `SIOPS` doesn't have any labels, the `labels` is not availabe in this function.
+#'
+#' For more information on this class schema, please check the references below:
+#'
+#' * Ganzeboom, H.B.G., P.M. De Graaf, D.J. Treiman (1992) A Standard International Socio-Economic Index of Occupational Status. Social Science Research 21: 1-56.
+#'
+#' * Ganzeboom, H.B.G., D.J. Treiman (1996) Internationally Comparable Measures of Occupational Status for the 1988 International Standard Classification of Occupations. Social Science Research 25: 201-239.
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
 #'
@@ -565,6 +604,12 @@ isco08_to_msec <- function(x,
 #'
 #' @details This translation was created from the Excel file shared by Oscar Smallenbroek called "isco08 to micro with numeric labels.xlsx". For more info, please contact the author.
 #'
+#' For more details on this class schema, please check the references below:
+#'
+#' * Weeden, Kim A., and David B. Grusky. 2005. "The Case for a New Class Map." American Journal of Sociology 111(1):141-212.
+#'
+#' * —. 2012. "The Three Worlds of Inequality." American Journal of Sociology 117(6):1723-85.
+#'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @param label `r rg_template_arg_label("microclass")`
 #'
@@ -597,6 +642,10 @@ isco08_to_microclass <- function(x, label = FALSE) {
 #' `r rg_template_intro("ISCO08/ISCO88", "IPICS", c("isco08_to_ipics", "isco88_to_ipics"))`
 #'
 #' @details These translation were created from the CSV files shared by Oscar Smallenbroek name "ISCO08 to IPICS.csv" and "ISCO88 to IPICS.csv". For more info, please contact the author.
+#'
+#' For more details on the class schema please check the references below:
+#'
+#' * Hertel, Florian R. 2017. Social Mobility in the 20th Century: Class Mobility and Occupational Change in the United States and Germany. Springer VS.
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @inheritParams isco08_to_esec
@@ -657,8 +706,16 @@ isco08_to_ipics <- function(x, self_employed, n_employees, label = FALSE) {
 #'
 #' `r rg_template_details_iscogen("ISCO88/IS68", "OESCH")` For translations between OESCH16 and OESCH8/OESCH5, see the source of the Stata package `oesch` [here](http://fmwww.bc.edu/repec/bocode/o/oesch.ado).
 #'
-#' For more details, users can see the translation used in this package in `all_schema$oesch16_to_oesch8` and `all_schema$oesch16_to_oesch5`. Moreover, the labels used can be found in `all_labels$oesch16`, `all_labels$oesch8` and `all_labels$oesch5`.
-#
+#' Users can see the translation used in this package in `all_schema$oesch16_to_oesch8` and `all_schema$oesch16_to_oesch5`. Moreover, the labels used can be found in `all_labels$oesch16`, `all_labels$oesch8` and `all_labels$oesch5`.
+#'
+#' For more details on this class schema, please check the references below:
+#'
+#' * Oesch D (2006a) Coming to grips with a changing class structure. An analysis of employment stratification in Britain, Germany, Sweden and Switzerland. International Sociology 21(2): 263–288.
+#' * Oesch, D. (2006b) Redrawing the Class Map. Stratification and Institutions in Britain, Germany, Sweden and Switzerland. Palgrave Macmillan.
+#'
+#' Resource websites of the OESCH Social Class Schema:
+#' * [https://people.unil.ch/danieloesch/scripts/](https://people.unil.ch/danieloesch/scripts/)
+#'
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @inheritParams isco08_to_esec
@@ -747,6 +804,23 @@ isco08_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
 #' This function translates a vector of 2-digit ISCO88COM codes to the ESEG class schema.
 #'
 #' @details The translation was implemented following the work of Kea Tijdens in the document "ESEG-2014 coding scheme + explanatory note". For more details, see the last table in the document [here](https://seriss.eu/wp-content/uploads/2016/12/SERISS-Deliverable-D8-13-ESeG-coding_submitted.pdf).
+#'
+#' For more details on this class schema, please check the references below:
+#'
+#' * Börlin, S., &amp; Zettl, L. (2020). Mikrozensus Tools: Die Klassifikation European Socio-economic Groups (ESeG) im Mikrozensus Scientific Use File. (GESIS Papers, 2020/08). Köln: GESIS - Leibniz-Institut für Sozialwissenschaften. [https://doi.org/10.21241/ssoar.68449](https://doi.org/10.21241/ssoar.68449)
+#' * Bohr, J. (2018). EU-AES Tools: Implementation of the European Socioeconomic Groups Classification (ESeG) using Adult Education Survey Microdata. (GESIS Papers, 2018/14). Köln: GESIS - Leibniz-Institut für Sozialwissenschaften.[https://doi.org/10.21241/ssoar.57622](https://doi.org/10.21241/ssoar.57622)
+#'
+#' * Meron M, and all ESSnet members (2014) ESSnet ESeG Final Report. Paris, INSEE,Direction des Statistiques Démographiques et Sociales ESSnet project
+#'
+#' * Meron, M. et al. (2014): Final Report of the ESSnet on the harmonisation and implementation of a European socio-economic classification: European Socio-economic Groups (ESeG)
+#'
+#' * Tijdens, K.G. (2016) ESEG-2014 coding scheme + explanatory note. Deliverable 8.13 of the SERISS project funded under the European Union’s Horizon 2020 research and innovation programme GA No: 654221. Available at: [https://seriss.eu/resources/deliverables](www.seriss.eu/resources/deliverables)
+#'
+#' Resource websites of the European Socio-economic Groups (ESeG):
+#'
+#' * [https://cros-legacy.ec.europa.eu/content/eseg_en](https://cros-legacy.ec.europa.eu/content/eseg_en)
+#' * [https://ec.europa.eu/eurostat/cros/content/eseg-report-technicaldocuments_en](https://ec.europa.eu/eurostat/cros/content/eseg-report-technicaldocuments_en)
+#' * [https://ec.europa.eu/eurostat/cros/system/files/ESEG-Report-TechnicalAnnexes_0.zip_en](https://ec.europa.eu/eurostat/cros/system/files/ESEG-Report-TechnicalAnnexes_0.zip_en)
 #'
 #' @param x `r rg_template_arg_x_digit("ISCO", digit = 2)`
 #'

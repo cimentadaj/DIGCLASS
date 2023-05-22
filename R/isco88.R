@@ -159,7 +159,6 @@ isco88_to_siops <- function(x) {
 #'
 #' @return `r rg_template_return("MPS")`
 #'
-#'
 #' @examples
 #' library(dplyr)
 #'
@@ -190,7 +189,20 @@ isco88_to_mps <- function(x) {
 #'
 #' `r rg_template_details_iscogen("ISCO88/IS68", "EGP11")` For translations between EGP11 and EGP7/EGP5/EGP3, see the source of the `occupar` R package [here](https://github.com/DiogoFerrari/occupar/blob/7130d94438f1da2a4aac4731437991a8eea88436/R/occupar_occupation.R#L226-L288).
 #'
-#' For more details, users can see the translation used in this package in `all_schema$egp11_to_egp7`, `all_schema$egp11_to_egp5` and `all_schema$egp11_to_egp3`. Moreover, the labels used can be found in `all_labels$egp11`, `all_labels$egp7`, `all_labels$egp5` and `all_labels$egp3`.
+#' Users can see the translation used in this package in `all_schema$egp11_to_egp7`, `all_schema$egp11_to_egp5` and `all_schema$egp11_to_egp3`. Moreover, the labels used can be found in `all_labels$egp11`, `all_labels$egp7`, `all_labels$egp5` and `all_labels$egp3`.
+#'
+#' For more details on this class schema, please check the references below:
+#'
+#' * Erikson, R., Goldthorpe, J.H. and Portocarero, L (1979) Intergenerational Class Mobility inThree Western European Societies: England, France and Sweden’, British Journal of Sociology, 30.
+#'
+#' * Erikson, R., J.H. Goldthorpe, L. Portocarero (1983) Intergenerational Class Mobility and the Convergence Thesis: England, France and Sweden. British Journal of Sociology, 34(3): 303-343.
+#'
+#' * Erikson R, Goldthorpe JH (1992) The Constant Flux: A Study of Class Mobility in Industrial Societies. Oxford: Clarendon Press.
+#'
+#' * Goldthorpe class scheme. Oxford Reference. Retrieved 19 May. 2023, from [https://www.oxfordreference.com/view/10.1093/oi/authority.20110803095858703](https://www.oxfordreference.com/view/10.1093/oi/authority.20110803095858703).
+#'
+#' * Goldthorpe JH (2007) Social class and the differentiation of employment contracts. In: Goldthorpe JH (ed.) On Sociology: Volume Two. Stanford: Stanford University Press,101–124.
+#'
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @inheritParams isco08_to_esec
@@ -296,6 +308,11 @@ isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
 #' * All occupations with EGP digit 2 and has a 1-digit ISCO higher than 1 and is either an employee or a self-employed with no subordinates, is a **lower professional**
 #'
 #' This translation was created from the Stata do file shared by Oscar Smallenbroek called "EGP-MP.do". For more info, please contact the author.
+#'
+#' For more information on this class schema, please checkthe references below:
+#
+#' * Smallenbroek O, Hertel F, Barone C (2022) Measuring class hierarchies in post-industrial societies: a criterion and construct validation of EGP and ESEC across 31 countries. Sociological Methods &amp; Research. Epub ahead of print 11 November. [https://doi.org/10.1177/00491241221134522](https://doi.org/10.1177/00491241221134522)
+#
 #'
 #'
 #'
@@ -615,6 +632,20 @@ isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
 #' This function translates a vector of 4-digit ISCO88COM codes to the E.O Wright class schema.
 #'
 #' @details The translation implemented in this function was originally developed by Erik Olin Wright. There are three possible types of translations: the "simple" version, the "decision-making" version and the "power-class" version. This translation was implemented following the SPSS script from Håkon Leiulfsrud and Heidi Jensberg. For more information, please contact the authors.
+#'
+#' For more information on this class schema, please check the references below:
+#'
+#' * Leiulfsrud, H., I. Bison &amp; H. Jensberg (2005) Social Class in Europe: European Social Survey 2002/3. Official ESS Report. NTNU Social Research in Trondheim & Department of Social Research, Trento University. [https://www.europeansocialsurvey.org/docs/methodology/ESS1_social_class.pdf](https://www.europeansocialsurvey.org/docs/methodology/ESS1_social_class.pdf)
+#'
+#' * Leiulfsrud, H., Bison, I. and Solheim, E. (2010), Social Class in Europe II: The European Social Survey 2002–2008, Trondheim: NTNU. [https://www.researchgate.net/publication/317624268_Social_Class_in_Europe_II](https://www.researchgate.net/publication/317624268_Social_Class_in_Europe_II)
+#'
+#' * Wright, E. (1978): Class, Crises and the State. London: New Left Books.
+#'
+#' * Wright, E. O. (1985): Classes. London: New Left Books.
+#'
+#' * Wright, E. O. (1997): Class Counts: Comparative studies in class analyses. Cambridge: Cambridge University Press.
+#'
+#' * Wright, E. O. (2005) Approaches to Class Analysis. Cambridge: Cambridge University Press.
 #'
 #' @param x `r rg_template_arg_x_digit("ISCO")`
 #'

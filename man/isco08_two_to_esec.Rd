@@ -24,6 +24,15 @@ This function translates a vector of 2-digit ISCO08 codes to ESEC codes using th
 This function will accept 2 digit codes as 4 digits. This means that if the 2-digit code is 13 then it should be 1300. All codes should be 4 digits, even though the code is represented as 2-digits (1300, 1400, etc..)
 
 This is exactly the same as \code{DIGCLASS::isco08_to_esec} but for two digit ISCO.
+
+For more information on this class schema, please check the references below:
+\itemize{
+\item Resource website of the European Socio-economic Classification (ESeC): \url{https://www.iser.essex.ac.uk/archives/esec}
+\item Derivation material: \url{https://www.iser.essex.ac.uk/archives/esec/user-guide/derivation-material}
+\item Rose, D. and Harrison, E. (2007) ‘The European Socio-economic Classification: A New Social Class Schema for European Research’, European Societies, 9, 3: 459-490. \url{https://doi.org/10.1080/14616690701336518}
+\item Rose D, Harrison E (2010) Social Class in Europe. An Introduction to the European Socio-economic Classification. London: Routledge.
+\item Wirth, H. (2023). EU-SILC Tools: European Socioeconomic Classification - ESeC88 and ESeC08. (GESIS Papers, 2023/01). Köln: GESIS - Leibniz-Institut für Sozialwissenschaften. \url{https://doi.org/10.21241/ssoar.83962}
+}
 }
 \examples{
 library(dplyr)

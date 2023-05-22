@@ -31,7 +31,16 @@ This function works by first translating to EGP11 and then translating to other 
 
 This translation was taken from the \code{iscogen} Stata package. For more details, check out the package documentation and search for \code{ISCO88/IS68 -> EGP11}. For translations between EGP11 and EGP7/EGP5/EGP3, see the source of the \code{occupar} R package \href{https://github.com/DiogoFerrari/occupar/blob/7130d94438f1da2a4aac4731437991a8eea88436/R/occupar_occupation.R#L226-L288}{here}.
 
-For more details, users can see the translation used in this package in \code{all_schema$egp11_to_egp7}, \code{all_schema$egp11_to_egp5} and \code{all_schema$egp11_to_egp3}. Moreover, the labels used can be found in \code{all_labels$egp11}, \code{all_labels$egp7}, \code{all_labels$egp5} and \code{all_labels$egp3}.
+Users can see the translation used in this package in \code{all_schema$egp11_to_egp7}, \code{all_schema$egp11_to_egp5} and \code{all_schema$egp11_to_egp3}. Moreover, the labels used can be found in \code{all_labels$egp11}, \code{all_labels$egp7}, \code{all_labels$egp5} and \code{all_labels$egp3}.
+
+For more details on this class schema, please check the references below:
+\itemize{
+\item Erikson, R., Goldthorpe, J.H. and Portocarero, L (1979) Intergenerational Class Mobility inThree Western European Societies: England, France and Sweden’, British Journal of Sociology, 30.
+\item Erikson, R., J.H. Goldthorpe, L. Portocarero (1983) Intergenerational Class Mobility and the Convergence Thesis: England, France and Sweden. British Journal of Sociology, 34(3): 303-343.
+\item Erikson R, Goldthorpe JH (1992) The Constant Flux: A Study of Class Mobility in Industrial Societies. Oxford: Clarendon Press.
+\item Goldthorpe class scheme. Oxford Reference. Retrieved 19 May. 2023, from \url{https://www.oxfordreference.com/view/10.1093/oi/authority.20110803095858703}.
+\item Goldthorpe JH (2007) Social class and the differentiation of employment contracts. In: Goldthorpe JH (ed.) On Sociology: Volume Two. Stanford: Stanford University Press,101–124.
+}
 }
 \examples{
 library(dplyr)
