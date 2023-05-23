@@ -116,4 +116,4 @@ This package has benefitted greatly from other open source packages that already
 
 ## Funding
 
-This project has been funded through the European Commission’s JRC Centre for Advanced Studies and the project Social Classes in the Digital Age (DIGCLASS): (https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en)[https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en]
+This project has been funded through the European Commission’s JRC Centre for Advanced Studies and the project Social Classes in the Digital Age (DIGCLASS): [https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en](https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en)
