@@ -25,12 +25,11 @@ library(haven)
 
 # For CSV, specify `col_types`
 isco_ready <- read_csv(isco_csv, col_types = list(ISCO08 = col_character(), ISCO88 = col_character()))
-
-# For Stata
-read_dta("ess.dta", col_types = c(ISCO08 = "character"))
 ```
 
-Also, after reading your data, be sure to run `repair_isco` on your ISCO variable to correct for any problems. For example:
+If you're reading data using `read_dta` for Stata or `read_spss` for SPSS, there's no workaround since both functions do not allow to control how each column is read. You should read it directly and then pass it through `repair_isco` to evaluate any issues.
+
+For example, after reading your data and running `repair_isco` on your ISCO variable, you'll see a summary of all problems, if there are any:
 
 ```{r, eval = FALSE}
 x <- repair_isco(isco_ready$ISCO08)
