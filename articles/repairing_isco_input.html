@@ -86,13 +86,15 @@ names for the ones in your data here</strong>):</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org" class="external-link">haven</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># For CSV, specify `col_types`</span></span>
-<span><span class="va">isco_ready</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">isco_csv</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ISCO08 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span>, ISCO88 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># For Stata</span></span>
-<span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="st">"ess.dta"</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>ISCO08 <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Also, after reading your data, be sure to run
-<code>repair_isco</code> on your ISCO variable to correct for any
-problems. For example:</p>
+<span><span class="va">isco_ready</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">isco_csv</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ISCO08 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span>, ISCO88 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>If you’re reading data using <code>read_dta</code> for Stata or
+<code>read_spss</code> for SPSS, there’s no workaround since both
+functions do not allow to control how each column is read. You should
+read it directly and then pass it through <code>repair_isco</code> to
+evaluate any issues.</p>
+<p>For example, after reading your data and running
+<code>repair_isco</code> on your ISCO variable, you’ll see a summary of
+all problems, if there are any:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/repair_isco.html">repair_isco</a></span><span class="op">(</span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; ! ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/DIGCLASS/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
