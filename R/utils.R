@@ -46,9 +46,15 @@ check_isco <- function(x, check_isco) {
     )
 
     x_clean <- x[!is.na(x)]
+    chosen_isco <- lookup_check[[as.character(check_isco)]]
 
-    if (!all(x_clean %in% lookup_check[[as.character(check_isco)]])) {
-      cli::cli_alert_warning("`x` might not be {toupper(check_isco)}. This function assumes `x` is {toupper(check_isco)}.")
+    if (!all(x_clean %in% chosen_isco)) {
+      unavailable_vals <- setdiff(unique(x_clean), chosen_isco)
+      cli::cli_alert_warning(c(
+        "x" = "`x` might not be {toupper(check_isco)}. These values do not belong to {toupper(check_isco)}:\n",
+        "x" = paste0("x Occupation `", unavailable_vals, "`\n")
+        )
+      )
     }
   }
 }
@@ -961,7 +967,7 @@ construct_wright <- function(x,
 
 
 main_schema_to_others <- function(x, col_position, n_classes, schema, input_var, output_var, all_classes, label, check_isco = NULL) {
-  
+
   main_class <-
     multiple_cols_translator(
       x = x,
