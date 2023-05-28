@@ -1,7 +1,7 @@
 #' @rdname isco08_to_isco88
 #' @order 2
 #' @export
-isco68_to_isco88 <- function(x, label = FALSE) {
+isco68_to_isco88 <- function(x, label = FALSE, factor = FALSE) {
   common_translator(
     x,
     input_var = "ISCO68",
@@ -9,14 +9,15 @@ isco68_to_isco88 <- function(x, label = FALSE) {
     translate_df = all_schemas$isco68_to_isco88,
     translate_label_df = all_labels$isco88,
     check_isco = "isco68",
-    label = label
+    label = label,
+    factor = factor
   )
 }
 
 #' @rdname isco88_to_isco08
 #' @order 2
 #' @export
-isco68_to_isco08 <- function(x, label = FALSE) {
+isco68_to_isco08 <- function(x, label = FALSE, factor = FALSE) {
   common_translator(
     x,
     input_var = "ISCO68",
@@ -24,44 +25,59 @@ isco68_to_isco08 <- function(x, label = FALSE) {
     translate_df = all_schemas$isco68_to_isco08,
     translate_label_df = all_labels$isco08,
     check_isco = "isco68",
-    label = label
+    label = label,
+    factor = FALSE
   )
 }
 
 #' @rdname isco08_to_isei
 #' @order 3
 #' @export
-isco68_to_isei <- function(x) {
+isco68_to_isei <- function(x, factor = FALSE) {
+  translate_label_df <-
+    dplyr::relocate(all_schemas$isco68_to_isei, 2, 1) %>%
+    dplyr::arrange(dplyr::pick(dplyr::contains("ISEI")))
+
   common_translator(
     x,
     input_var = "ISCO68",
     output_var = "ISEI",
     translate_df = all_schemas$isco68_to_isei,
-    translate_label_df = NULL,
+    # Although this transformation does not allow labels, this is
+    # just to be used for translating to a factor if requested.
+    translate_label_df = translate_label_df,
     check_isco = "isco68",
-    label = FALSE
+    label = FALSE,
+    factor = factor
   )
 }
 
 #' @rdname isco08_to_siops
 #' @order 3
 #' @export
-isco68_to_siops <- function(x) {
+isco68_to_siops <- function(x, factor = FALSE) {
+  translate_label_df <-
+    dplyr::relocate(all_schemas$isco68_to_siops, 2, 1) %>%
+    dplyr::arrange(dplyr::pick(dplyr::contains("SIOPS")))
+
   common_translator(
     x,
     input_var = "ISCO68",
     output_var = "SIOPS",
     translate_df = all_schemas$isco68_to_siops,
-    translate_label_df = NULL,
+    # Although this transformation does not allow labels, this is
+    # just to be used for translating to a factor if requested.
+    translate_label_df = translate_label_df,
     check_isco = "isco68",
-    label = FALSE
+    label = FALSE,
+    factor = factor
   )
 }
 
 #' @rdname isco88_to_egp
 #' @order 2
 #' @export
-isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label = FALSE) {
+isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label = FALSE, factor = FALSE) {
   stopifnot(n_classes %in% c(11, 7, 5, 3))
   stopifnot(length(n_classes) == 1)
 
@@ -93,7 +109,8 @@ isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
         translate_df = schema,
         translate_label_df = all_labels$egp11,
         check_isco = "isco68",
-        label = label
+        label = label,
+        factor = factor
       )
 
     return(egp11)
@@ -107,7 +124,8 @@ isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
       output_var,
       all_classes,
       label,
-      check_isco = "isco68"
+      check_isco = "isco68",
+      factor = factor
     )
 
     return(egp)
@@ -121,7 +139,8 @@ isco68_to_egp_mp <- function(x,
                              is_supervisor,
                              self_employed,
                              n_employees,
-                             label = FALSE) {
+                             label = FALSE,
+                             factor = FALSE) {
   egp <- isco68_to_egp(
     x,
     self_employed,
@@ -156,7 +175,8 @@ isco68_to_egp_mp <- function(x,
     n_employees,
     lookup_labels = lookup_egp,
     schema_labels = labs,
-    label = label
+    label = label,
+    factor = factor
   )
 
   egp_mp

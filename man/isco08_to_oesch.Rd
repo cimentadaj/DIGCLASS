@@ -5,9 +5,23 @@
 \alias{isco88_to_oesch}
 \title{Translate 4-digit ISCO08/ISCO88 to OESCH16/OESCH8/OESCH5}
 \usage{
-isco08_to_oesch(x, self_employed, n_employees, n_classes = 16, label = FALSE)
+isco08_to_oesch(
+  x,
+  self_employed,
+  n_employees,
+  n_classes = 16,
+  label = FALSE,
+  factor = FALSE
+)
 
-isco88_to_oesch(x, self_employed, n_employees, n_classes = 16, label = FALSE)
+isco88_to_oesch(
+  x,
+  self_employed,
+  n_employees,
+  n_classes = 16,
+  label = FALSE,
+  factor = FALSE
+)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
@@ -19,6 +33,8 @@ isco88_to_oesch(x, self_employed, n_employees, n_classes = 16, label = FALSE)
 \item{n_classes}{a numeric value indicating the number of OESCH classes to obtain. Default is 16 OESCH classes. The possible values are 16 classes, 8 classes and 5 classes. For more information, see the details section.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated OESCH codes (default is \code{FALSE}).}
+
+\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for OESCH found in \code{all_labels} (default is \code{FALSE}).}
 }
 \value{
 A character vector of OESCH codes.

@@ -4,7 +4,15 @@
 \alias{isco08_to_eseg}
 \title{Translates 2-digit ISCO08 to ESEG.}
 \usage{
-isco08_to_eseg(x, work_status, main_activity, age, type, label = FALSE)
+isco08_to_eseg(
+  x,
+  work_status,
+  main_activity,
+  age,
+  type,
+  label = FALSE,
+  factor = FALSE
+)
 }
 \arguments{
 \item{x}{A character vector of 2-digit ISCO codes. This should be the 4-digit equivalent so instead of 13, the code should be 1300, which is the 4-digit version of of the 2-digit ISCO.}
@@ -18,6 +26,8 @@ isco08_to_eseg(x, work_status, main_activity, age, type, label = FALSE)
 \item{type}{The type of translation to make. Possible values are "one-digit" and "two-digit". The "one-digit" translation returns a broad summary based translation of only 9 categories, whereas the "two-digit" translation returns a much bigger ESEG translation of more than 25 categories.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated ESEG codes (default is \code{FALSE}).}
+
+\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of ESEG which can be found in the source code of each function.}
 }
 \description{
 This function translates a vector of 2-digit ISCO88COM codes to the ESEG class schema.

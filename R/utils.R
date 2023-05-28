@@ -1,4 +1,4 @@
-common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, check_isco = NULL, digits = 4, repair_isco = TRUE) {
+common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, check_isco = NULL, digits = 4, repair_isco = TRUE, factor = FALSE) {
 
   if (repair_isco) {
     # All checks must being by whether the function has 4 digits (regardless of it's 1300 or 13111)
@@ -27,8 +27,14 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
       dplyr::left_join(translate_label_df, by = c("x_label" = output_var))
 
     transformed <- res[[2]]
+    if (factor) {
+      transformed <- factor(transformed, levels = unique(translate_label_df[[2]]), ordered = TRUE)
+    }
   } else {
     transformed <- res[[output_var]]
+    if (factor) {
+      transformed <- factor(transformed, levels = unique(translate_label_df[[1]]), ordered = TRUE)
+    }
   }
 
   transformed
@@ -105,7 +111,8 @@ multiple_cols_translator <- function(x,
                                      translate_label_df,
                                      label,
                                      check_isco = NULL,
-                                     digits = 4) {
+                                     digits = 4,
+                                     factor = FALSE) {
 
   # All checks must being by whether the function has 4 digits (regardless of it's 1300 or 13111)
   x <- repair_isco(x, digits = 4)
@@ -122,8 +129,13 @@ multiple_cols_translator <- function(x,
       dplyr::left_join(translate_label_df, by = c("x_label" = output_var))
 
     transformed <- res[[2]]
+    if (factor) {
+      transformed <- factor(transformed, levels = translate_label_df[[2]], ordered = TRUE)
+    }
   } else {
-    transformed <- transformed
+    if (factor) {
+      transformed <- factor(transformed, levels = translate_label_df[[1]], ordered = TRUE)
+    }
   }
 
   transformed
@@ -136,7 +148,8 @@ managers_professionals_helper <- function(x,
                                           self_employed,
                                           lookup_labels,
                                           schema_labels,
-                                          label
+                                          label,
+                                          factor = FALSE
                                           ) {
   # TODO: Since this function does not have an excel, I've coded the "rules" manually
   # but ideally we want to move all of this into social_classes.txt such that
@@ -168,14 +181,21 @@ managers_professionals_helper <- function(x,
     TRUE ~ lookup_labels[esec]
   )
 
+
   if (label) {
     mp <- schema_labels[mp]
+    if (factor) {
+      mp <- factor(mp, levels = unname(schema_labels), ordered = TRUE)
+    }
+  } else if (factor) {
+    mp <- factor(mp, levels = names(schema_labels), ordered = TRUE)
   }
 
+  mp <- unname(mp)
   mp
 }
 
-construct_eseg <- function(isco1, isco2, work_status, main_activity, age, type, label) {
+construct_eseg <- function(isco1, isco2, work_status, main_activity, age, type, label, factor = FALSE) {
   type <- match.arg(type, c("one-digit", "two-digit"))
 
   eseg <-
@@ -284,78 +304,92 @@ construct_eseg <- function(isco1, isco2, work_status, main_activity, age, type, 
       TRUE ~ NA
     )
 
+  eseg <- as.character(eseg)
+
+  lookup_twodigits <- c(
+    `1.1` = "11 Higher managerial self-employed",
+    `1.2` = "12 Lower managerial self-employed",
+    `1.3` = "13 Higher managerial employees",
+    `1.4` = "14 Lower managerial employees",
+    `2.1` = "21 Science, engineering and information and communications technology (ICT) professionals",
+    `2.2` = "22 Health professionals",
+    `2.3` = "23 Business and administration professionals",
+    `2.4` = "24 Legal, social and cultural professionals",
+    `2.5` = "25 Teaching professionals",
+    `3.1` = "31 Science, engineering and ICT technicians and associated professionals",
+    `3.2` = "32 Health associate professionals",
+    `3.3` = "33 Business and administration associate professionals",
+    `3.4` = "34 Legal, social and cultural associate professionals",
+    `3.5` = "35 Non-commissioned armed forces officers",
+    `4.1` = "41 Skilled agricultural self-employed workers",
+    `4.2` = "42 Technicians, clerical support, services and sales self-employed workers",
+    `4.3` = "43 Craft and related trades self-employed workers",
+    `5.1` = "51 General and numerical clerks and other clerical support employees",
+    `5.2` = "52 Customer services clerks",
+    `5.3` = "53 Personal care employees",
+    `5.4` = "54 Armed forced occupations and protective service employees",
+    `6.1` = "61 Building and related trade employees",
+    `6.2` = "62 Food processing, wood working, garment employees",
+    `6.3` = "63 Metal, machinery, handicraft, printing, electrical and electronic trades employees",
+    `6.4` = "64 Stationary plant and machine operators and assemblers",
+    `6.5` = "65 Drivers",
+    `7.1` = "71 Personal services and sales employees",
+    `7.2` = "72 Blue collar employees and food preparation assistants in elementary occupations",
+    `7.3` = "73 Cleaners and helpers and services employees in elementary occupations",
+    `7.4` = "74 Agricultural employees",
+    `8.1` = "81 Retired Managers",
+    `8.2` = "82 Retired professionals",
+    `8.3` = "83 Retired technicians and associate professionals",
+    `8.4` = "84 Retired small entrepreneurs",
+    `8.5` = "85 Retired skilled white collars",
+    `8.6` = "86 Retired skilled blue-collars",
+    `8.7` = "87 Retired less skilled workers",
+    `8.8` = "88 Other inactive aged 65 or more",
+    `9.1` = "91 Students",
+    `9.2` = "92 Permanently disabled",
+    `9.3` = "93 Unemployed not elsewhere classified",
+    `9.4` = "94 Other inactive aged less than 65 years"
+  )
+
+  lookup_onedigit <- c(
+    `1` = "1 Manager",
+    `2` = "2 Professionals",
+    `3` = "3 Technicians and associated professeional employees",
+    `4` = "4 Small entrepreneur",
+    `5` = "5 Clerks and skilled service employees",
+    `6` = "6 Industrial skilled employees",
+    `7` = "7 Less skilled employees",
+    `8` = "8 Retired persons and non-employed people >=65",
+    `9` = "9 Other non-employed persons aged < 65"
+  )
+
+  eseg <- unname(eseg)
+
   if (type == "two-digit") {
-    if (label) {
-      lookup <- c(
-        `1.1` = "11 Higher managerial self-employed",
-        `1.2` = "12 Lower managerial self-employed",
-        `1.3` = "13 Higher managerial employees",
-        `1.4` = "14 Lower managerial employees",
-        `2.1` = "21 Science, engineering and information and communications technology (ICT) professionals",
-        `2.2` = "22 Health professionals",
-        `2.3` = "23 Business and administration professionals",
-        `2.4` = "24 Legal, social and cultural professionals",
-        `2.5` = "25 Teaching professionals",
-        `3.1` = "31 Science, engineering and ICT technicians and associated professionals",
-        `3.2` = "32 Health associate professionals",
-        `3.3` = "33 Business and administration associate professionals",
-        `3.4` = "34 Legal, social and cultural associate professionals",
-        `3.5` = "35 Non-commissioned armed forces officers",
-        `4.1` = "41 Skilled agricultural self-employed workers",
-        `4.2` = "42 Technicians, clerical support, services and sales self-employed workers",
-        `4.3` = "43 Craft and related trades self-employed workers",
-        `5.1` = "51 General and numerical clerks and other clerical support employees",
-        `5.2` = "52 Customer services clerks",
-        `5.3` = "53 Personal care employees",
-        `5.4` = "54 Armed forced occupations and protective service employees",
-        `6.1` = "61 Building and related trade employees",
-        `6.2` = "62 Food processing, wood working, garment employees",
-        `6.3` = "63 Metal, machinery, handicraft, printing, electrical and electronic trades employees",
-        `6.4` = "64 Stationary plant and machine operators and assemblers",
-        `6.5` = "65 Drivers",
-        `7.1` = "71 Personal services and sales employees",
-        `7.2` = "72 Blue collar employees and food preparation assistants in elementary occupations",
-        `7.3` = "73 Cleaners and helpers and services employees in elementary occupations",
-        `7.4` = "74 Agricultural employees",
-        `8.1` = "81 Retired Managers",
-        `8.2` = "82 Retired professionals",
-        `8.3` = "83 Retired technicians and associate professionals",
-        `8.4` = "84 Retired small entrepreneurs",
-        `8.5` = "85 Retired skilled white collars",
-        `8.6` = "86 Retired skilled blue-collars",
-        `8.7` = "87 Retired less skilled workers",
-        `8.8` = "88 Other inactive aged 65 or more",
-        `9.1` = "91 Students",
-        `9.2` = "92 Permanently disabled",
-        `9.3` = "93 Unemployed not elsewhere classified",
-        `9.4` = "94 Other inactive aged less than 65 years"
-      )
-
-      eseg <- lookup[as.character(eseg)]
-  }
-
-  return(as.character(eseg))
+    if (label && factor) {
+      eseg <- factor(lookup_twodigits[eseg], levels = unname(lookup_twodigits), ordered = TRUE)
+      eseg <- unname(eseg)
+    } else if (label) {
+      eseg <- lookup_twodigits[eseg]
+      eseg <- unname(eseg)
+    } else if (factor) {
+      eseg <- factor(eseg, levels = names(lookup_twodigits), ordered = TRUE)
+    }
+    return(eseg)
   }
 
   if (type == "one-digit") {
-    eseg_one <- substr(as.character(eseg), 1, 1)
-    if (label) {
-      lookup <- c(
-        `1` = "1 Manager",
-        `2` = "2 Professionals",
-        `3` = "3 Technicians and associated professeional employees",
-        `4` = "4 Small entrepreneur",
-        `5` = "5 Clerks and skilled service employees",
-        `6` = "6 Industrial skilled employees",
-        `7` = "7 Less skilled employees",
-        `8` = "8 Retired persons and non-employed people >=65",
-        `9` = "9 Other non-employed persons aged < 65"
-      )
-
-      eseg_one <- lookup[as.character(eseg_one)]
+    eseg_one <- substr(eseg, 1, 1)
+    if (label && factor) {
+      eseg_one <- factor(lookup_onedigit[eseg_one], levels = unname(lookup_onedigit), ordered = TRUE)
+      eseg_one <- unname(eseg_one)
+    } else if (label) {
+      eseg_one <- lookup_onedigit[eseg_one]
+      eseg_one <- unname(eseg_one)
+    } else if (factor) {
+      eseg_one <- factor(eseg_one, levels = names(lookup_onedigit), ordered = TRUE)
     }
-
-    return(as.character(eseg_one))
+    return(eseg_one)
   }
 }
 
@@ -367,7 +401,8 @@ construct_wright <- function(x,
                              control_work,
                              control_daily,
                              type,
-                             label = FALSE) {
+                             label = FALSE,
+                             factor = FALSE) {
 
   type <- match.arg(type, c("simple", "decision-making", "power-class"))
 
@@ -902,71 +937,93 @@ construct_wright <- function(x,
   wr_p[wr_p2 == 7] <- 6.5
   wr_p[wr_p2 == 7.5] <- 7.5
 
-  if (type == "simple") {
-    if (label) {
-      lookup <- c(
-        `1` = "Self empl w/10+ employees",
-        `2` = "Self empl w/1-9 employees",
-        `3` = "Self empl w/no empoyees",
-        `4` = "Expert managers",
-        `6` = "Expert workers",
-        `7` = "Skilled manager/superv",
-        `9` = "Skilled workers",
-        `10` = "Low skilled manager/superv",
-        `12` = "Low skilled workers"
-      )
+  wr_simp <- as.character(wr_simp)
+  wr_dm <- as.character(wr_dm)
+  wr_p <- as.character(wr_p)
 
-      wr_simp <- lookup[as.character(wr_simp)]
+  lookup_simple <- c(
+    `1` = "Self empl w/10+ employees",
+    `2` = "Self empl w/1-9 employees",
+    `3` = "Self empl w/no empoyees",
+    `4` = "Expert managers",
+    `6` = "Expert workers",
+    `7` = "Skilled manager/superv",
+    `9` = "Skilled workers",
+    `10` = "Low skilled manager/superv",
+    `12` = "Low skilled workers"
+  )
+
+  lookup_dm <- c(
+    `1` = "Self empl w/10+ employees",
+    `2` = "Self empl w/1-9 employees",
+    `3` = "Self empl w/no empoyees",
+    `4` = "Expert managers",
+    `5` = "Expert supervisors",
+    `6` = "Experts",
+    `7` = "Skilled managers",
+    `8` = "Skilled supervisors",
+    `9` = "Skilled workers",
+    `10` = "Low skilled managers",
+    `11` = "Low skilled supervisors",
+    `12` = "Low skilled workers"
+  )
+
+  lookup_p <- c(
+    `1` = "Capitalist",
+    `2` = "Small Employers",
+    `3` = "Self empl",
+    `4` = "Skilled Managers",
+    `4.5` = "Low skilled Managers",
+    `5` = "Skilled supervisors",
+    `5.5` = "Low skilled supervisors",
+    `6` = "Skilled Semi autonomous",
+    `6.5` = "Low skilled Semi autonomous",
+    `7` = "Skilled workers",
+    `7.5` = "Low skilled workers"
+  )
+
+  if (type == "simple") {
+    if (label && factor) {
+      wr_simp <- factor(lookup_simple[wr_simp], levels = unname(lookup_simple), ordered = TRUE)
+      wr_simp <- unname(wr_simp)
+    } else if (label) {
+      wr_simp <- lookup_simple[wr_simp]
+      wr_simp <- unname(wr_simp)
+    } else if (factor) {
+      wr_simp <- factor(wr_simp, levels = names(lookup_simple), ordered = TRUE)
     }
-    return(as.character(wr_simp))
+    return(wr_simp)
   }
 
   if (type == "decision-making") {
-    if (label) {
-      lookup <- c(
-        `1` = "Self empl w/10+ employees",
-        `2` = "Self empl w/1-9 employees",
-        `3` = "Self empl w/no empoyees",
-        `4` = "Expert managers",
-        `5` = "Expert supervisors",
-        `6` = "Experts",
-        `7` = "Skilled managers",
-        `8` = "Skilled supervisors",
-        `9` = "Skilled workers",
-        `10` = "Low skilled managers",
-        `11` = "Low skilled supervisors",
-        `12` = "Low skilled workers"
-      )
-
-      wr_dm <- lookup[as.character(wr_dm)]
+    if (label && factor) {
+      wr_dm <- factor(lookup_dm[wr_dm], levels = unname(lookup_dm), ordered = TRUE)
+      wr_dm <- unname(wr_dm)
+    } else if (label) {
+      wr_dm <- lookup_dm[wr_dm]
+      wr_dm <- unname(wr_dm)
+    } else if (factor) {
+      wr_dm <- factor(wr_dm, levels = names(lookup_dm), ordered = TRUE)
     }
-    return(as.character(wr_dm))
+    return(wr_dm)
   }
 
   if (type == "power-class") {
-    if (label) {
-      lookup <- c(
-        `1` = "Capitalist",
-        `2` = "Small Employers",
-        `3` = "Self empl",
-        `4` = "Skilled Managers",
-        `4.5` = "Low skilled Managers",
-        `5` = "Skilled supervisors",
-        `5.5` = "Low skilled supervisors",
-        `6` = "Skilled Semi autonomous",
-        `6.5` = "Low skilled Semi autonomous",
-        `7` = "Skilled workers",
-        `7.5` = "Low skilled workers"
-      )
-
-      wr_p <- lookup[as.character(wr_p)]
+    if (label && factor) {
+      wr_p <- factor(lookup_p[wr_p], levels = unname(lookup_p), ordered = TRUE)
+      wr_p <- unname(wr_p)
+    } else if (label) {
+      wr_p <- lookup_p[wr_p]
+      wr_p <- unname(wr_p)
+    } else if (factor) {
+      wr_p <- factor(wr_p, levels = names(lookup_p), ordered = TRUE)
     }
-    return(as.character(wr_p))
+    return(wr_p)
   }
 }
 
 
-main_schema_to_others <- function(x, col_position, n_classes, schema, input_var, output_var, all_classes, label, check_isco = NULL) {
+main_schema_to_others <- function(x, col_position, n_classes, schema, input_var, output_var, all_classes, label, check_isco = NULL, factor = FALSE) {
 
   main_class <-
     multiple_cols_translator(
@@ -989,7 +1046,8 @@ main_schema_to_others <- function(x, col_position, n_classes, schema, input_var,
     translate_label_df = translation_tables[[2]],
     label = label,
     # Do not repair because it's the translated main class which is not an ISCO variable
-    repair_isco = FALSE
+    repair_isco = FALSE,
+    factor = factor
   )
 
   variant
@@ -1039,6 +1097,10 @@ rg_template_arg_x_digit <- function(from, digit = 4) {
 
 rg_template_arg_label <- function(to) {
   glue::glue("A logical value indicating whether to return the labels of the translated {to} codes (default is \\code{{FALSE}}).")
+}
+
+rg_template_arg_factor <- function(to) {
+  glue::glue("A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for {to} found in `all_labels` (default is \\code{{FALSE}}).")
 }
 
 rg_template_arg_supervisor <- function() {

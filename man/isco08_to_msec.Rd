@@ -5,9 +5,23 @@
 \alias{isco88com_to_msec}
 \title{Translate 3-digit ISCO08/ISCO88COM to MSEC}
 \usage{
-isco08_to_msec(x, is_supervisor, self_employed, n_employees, label = FALSE)
+isco08_to_msec(
+  x,
+  is_supervisor,
+  self_employed,
+  n_employees,
+  label = FALSE,
+  factor = FALSE
+)
 
-isco88com_to_msec(x, is_supervisor, self_employed, n_employees, label = FALSE)
+isco88com_to_msec(
+  x,
+  is_supervisor,
+  self_employed,
+  n_employees,
+  label = FALSE,
+  factor = FALSE
+)
 }
 \arguments{
 \item{x}{A character vector of 3-digit ISCO codes. This should be the 4-digit equivalent so instead of 131, the code should be 1310, which is the 4-digit version of of the 3-digit ISCO.}
@@ -19,6 +33,8 @@ isco88com_to_msec(x, is_supervisor, self_employed, n_employees, label = FALSE)
 \item{n_employees}{A numeric vector indicating the number of employees under each respondent.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated MSEC codes (default is \code{FALSE}).}
+
+\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for MSEC found in \code{all_labels} (default is \code{FALSE}).}
 }
 \value{
 A character vector of MSEC codes.

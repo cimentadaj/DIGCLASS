@@ -4,12 +4,14 @@
 \alias{isco08_to_microclass}
 \title{Translate 4-digit ISCO08 to microclass}
 \usage{
-isco08_to_microclass(x, label = FALSE)
+isco08_to_microclass(x, label = FALSE, factor = FALSE)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated microclass codes (default is \code{FALSE}).}
+
+\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for microclass found in \code{all_labels} (default is \code{FALSE}).}
 }
 \value{
 A character vector of microclass codes.

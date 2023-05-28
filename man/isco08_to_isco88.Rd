@@ -5,14 +5,16 @@
 \alias{isco68_to_isco88}
 \title{Translate 4-digit ISCO08/ISCO68 to ISCO88}
 \usage{
-isco08_to_isco88(x, label = FALSE)
+isco08_to_isco88(x, label = FALSE, factor = FALSE)
 
-isco68_to_isco88(x, label = FALSE)
+isco68_to_isco88(x, label = FALSE, factor = FALSE)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated ISCO88 codes (default is \code{FALSE}).}
+
+\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for ISCO88 found in \code{all_labels} (default is \code{FALSE}).}
 }
 \value{
 A character vector of ISCO88 codes.

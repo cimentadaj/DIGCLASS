@@ -6,6 +6,7 @@
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @param label `r rg_template_arg_label("ISCO68")`
+#' @param factor `r rg_template_arg_factor("ISCO68")`
 #'
 #' @return `r rg_template_return("ISCO68")`
 #'
@@ -23,7 +24,7 @@
 #'   )
 #'
 #' @export
-isco88_to_isco68 <- function(x, label = FALSE) {
+isco88_to_isco68 <- function(x, label = FALSE, factor = FALSE) {
   common_translator(
     x,
     input_var = "ISCO88",
@@ -31,7 +32,8 @@ isco88_to_isco68 <- function(x, label = FALSE) {
     translate_df = all_schemas$isco88_to_isco68,
     translate_label_df = all_labels$isco68,
     check_isco = "isco88",
-    label = label
+    label = label,
+    factor = factor
   )
 }
 
@@ -43,6 +45,7 @@ isco88_to_isco68 <- function(x, label = FALSE) {
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @param label `r rg_template_arg_label("ISCO08")`
+#' @param factor `r rg_template_arg_factor("ISCO08")`
 #'
 #' @return `r rg_template_return("ISCO08")`
 #'
@@ -68,7 +71,7 @@ isco88_to_isco68 <- function(x, label = FALSE) {
 #'   )
 #'
 #' @export
-isco88_to_isco08 <- function(x, label = FALSE) {
+isco88_to_isco08 <- function(x, label = FALSE, factor = FALSE) {
   common_translator(
     x,
     input_var = "ISCO88",
@@ -76,7 +79,8 @@ isco88_to_isco08 <- function(x, label = FALSE) {
     translate_df = all_schemas$isco88_to_isco08,
     translate_label_df = all_labels$isco08,
     check_isco = "isco88",
-    label = label
+    label = label,
+    factor = factor
   )
 }
 
@@ -89,10 +93,11 @@ isco88_to_isco08 <- function(x, label = FALSE) {
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @param label `r rg_template_arg_label("ISCO88COM")`
+#' @param factor `r rg_template_arg_factor("ISCO88COM")`
 #'
 #' @return `r rg_template_return("ISCO88COM")`
 #'
-
+#'
 #' @examples
 #' library(dplyr)
 #'
@@ -104,7 +109,7 @@ isco88_to_isco08 <- function(x, label = FALSE) {
 #'   )
 #'
 #' @export
-isco88_to_isco88com <- function(x, label = FALSE) {
+isco88_to_isco88com <- function(x, label = FALSE, factor = FALSE) {
   common_translator(
     x,
     input_var = "ISCO88",
@@ -112,22 +117,31 @@ isco88_to_isco88com <- function(x, label = FALSE) {
     translate_df = all_schemas$isco88_to_isco88com,
     translate_label_df = all_labels$isco88com,
     check_isco = "isco88",
-    label = label
+    label = label,
+    factor = factor
   )
 }
 
 #' @rdname isco08_to_isei
 #' @order 2
 #' @export
-isco88_to_isei <- function(x) {
+isco88_to_isei <- function(x, factor = FALSE) {
+
+  translate_label_df <-
+    dplyr::relocate(all_schemas$isco88_to_isei, 2, 1) %>%
+    dplyr::arrange(dplyr::pick(dplyr::contains("ISEI")))
+
   common_translator(
     x,
     input_var = "ISCO88",
     output_var = "ISEI",
     translate_df = all_schemas$isco88_to_isei,
-    translate_label_df = NULL,
+    # Although this transformation does not allow labels, this is
+    # just to be used for translating to a factor if requested.
+    translate_label_df = translate_label_df,
     check_isco = "isco88",
-    label = FALSE
+    label = FALSE,
+    factor = factor
   )
 }
 
@@ -135,19 +149,25 @@ isco88_to_isei <- function(x) {
 #' @rdname isco08_to_siops
 #' @order 2
 #' @export
-isco88_to_siops <- function(x) {
+isco88_to_siops <- function(x, factor = FALSE) {
+
+  translate_label_df <-
+    dplyr::relocate(all_schemas$isco88_to_siops, 2, 1) %>%
+    dplyr::arrange(dplyr::pick(dplyr::contains("SIOPS")))
+
   common_translator(
     x,
     input_var = "ISCO88",
     output_var = "SIOPS",
     translate_df = all_schemas$isco88_to_siops,
-    translate_label_df = NULL,
+    # Although this transformation does not allow labels, this is
+    # just to be used for translating to a factor if requested.
+    translate_label_df = translate_label_df,
     check_isco = "isco88",
-    label = FALSE
+    label = FALSE,
+    factor = factor
   )
 }
-
-
 
 #' `r rg_template_title("ISCO88", "MPS")`
 #'
@@ -156,6 +176,8 @@ isco88_to_siops <- function(x) {
 #' @details`r rg_template_details_iscogen("ISCO88", "MPS")`
 #'
 #' @param x `r rg_template_arg_x("ISCO")`
+#' @param factor A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of MPS in `all_schemas$isco88_to_mps`.
+#
 #'
 #' @return `r rg_template_return("MPS")`
 #'
@@ -169,15 +191,22 @@ isco88_to_siops <- function(x) {
 #'   )
 #'
 #' @export
-isco88_to_mps <- function(x) {
+isco88_to_mps <- function(x, factor = FALSE) {
+  translate_label_df <-
+    dplyr::relocate(all_schemas$isco88_to_mps, 2, 1) %>%
+    dplyr::arrange(dplyr::pick(dplyr::contains("MPS")))
+
   common_translator(
     x,
     input_var = "ISCO88",
     output_var = "MPS88",
     translate_df = all_schemas$isco88_to_mps,
-    translate_label_df = NULL,
+    # Although this transformation does not allow labels, this is
+    # just to be used for translating to a factor if requested.
+    translate_label_df = translate_label_df,
     check_isco = "isco88",
-    label = FALSE
+    label = FALSE,
+    factor = factor
   )
 }
 
@@ -208,6 +237,7 @@ isco88_to_mps <- function(x) {
 #' @inheritParams isco08_to_esec
 #' @param n_classes a numeric value indicating the number of EGP classes to obtain. Default is 11 EGP classes. The possible values are 11 classes, 7 classes, 5 classes and 3 classes. For more information, see the details section.
 #' @param label `r rg_template_arg_label("EGP")`
+#' @param factor `r rg_template_arg_factor("EGP")`
 #'
 #' @return `r rg_template_return("EGP")`
 #'
@@ -235,7 +265,7 @@ isco88_to_mps <- function(x) {
 #' )
 #'
 #' @export
-isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label = FALSE) {
+isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label = FALSE, factor = FALSE) {
   stopifnot(n_classes %in% c(11, 7, 5, 3))
   stopifnot(length(n_classes) == 1)
 
@@ -268,7 +298,8 @@ isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
         translate_df = schema,
         translate_label_df = all_labels$egp11,
         check_isco = "isco88",
-        label = label
+        label = label,
+        factor = factor
       )
 
     return(egp11)
@@ -282,7 +313,8 @@ isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
       output_var,
       all_classes,
       check_isco = "isco88",
-      label
+      label,
+      factor = factor
     )
     return(egp)
   }
@@ -314,11 +346,10 @@ isco88_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
 #' * Smallenbroek O, Hertel F, Barone C (2022) Measuring class hierarchies in post-industrial societies: a criterion and construct validation of EGP and ESEC across 31 countries. Sociological Methods &amp; Research. Epub ahead of print 11 November. [https://doi.org/10.1177/00491241221134522](https://doi.org/10.1177/00491241221134522)
 #
 #'
-#'
-#'
 #' @param x `r rg_template_arg_x("ISCO")`
 #' @inheritParams isco08_to_esec
 #' @param label `r rg_template_arg_label("EGP-MP")`
+#' @param factor A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of EGP-MP which can be found in the source code of each function.
 #'
 #' @return `r rg_template_return("EGP-MP")`
 #'
@@ -372,7 +403,8 @@ isco88_to_egp_mp <- function(x,
                              is_supervisor,
                              self_employed,
                              n_employees,
-                             label = FALSE) {
+                             label = FALSE,
+                             factor = FALSE) {
   egp <- isco88_to_egp(
     x,
     self_employed,
@@ -407,7 +439,8 @@ isco88_to_egp_mp <- function(x,
     n_employees,
     lookup_labels = lookup_egp,
     schema_labels = labs,
-    label = label
+    label = label,
+    factor = factor
   )
 
   egp_mp
@@ -416,7 +449,7 @@ isco88_to_egp_mp <- function(x,
 #' @rdname isco08_to_ipics
 #' @order 2
 #' @export
-isco88_to_ipics <- function(x, self_employed, n_employees, label = FALSE) {
+isco88_to_ipics <- function(x, self_employed, n_employees, label = FALSE, factor = FALSE) {
   col_position <- dplyr::case_when(
     self_employed == 0 & n_employees == 0 ~ 2,
     self_employed == 0 & dplyr::between(n_employees, 1, 10) ~ 3,
@@ -433,7 +466,8 @@ isco88_to_ipics <- function(x, self_employed, n_employees, label = FALSE) {
     translate_label_df = all_labels$ipics,
     check_isco = "isco88",
     label = label,
-    digits = 4
+    digits = 4,
+    factor = factor
   )
 }
 
@@ -446,7 +480,8 @@ isco88com_to_esec <- function(x,
                               self_employed,
                               n_employees,
                               full_method = TRUE,
-                              label = FALSE) {
+                              label = FALSE,
+                              factor = FALSE) {
   if (full_method) {
     col_position <- dplyr::case_when(
       # Is it an employee?
@@ -466,7 +501,8 @@ isco88com_to_esec <- function(x,
       translate_label_df = all_labels$esec,
       label = label,
       check_isco = "isco88com",
-      digits = 3
+      digits = 3,
+      factor = factor
     )
   } else {
     res <- common_translator(
@@ -477,7 +513,8 @@ isco88com_to_esec <- function(x,
       translate_label_df = all_labels$esec,
       label = label,
       check_isco = "isco88com",
-      digits = 3
+      digits = 3,
+      factor = factor
     )
   }
 
@@ -494,7 +531,8 @@ isco88com_to_esec_mp <- function(x,
                                  self_employed,
                                  n_employees,
                                  full_method = TRUE,
-                                 label = FALSE) {
+                                 label = FALSE,
+                                 factor = FALSE) {
   esec <- isco88com_to_esec(
     x,
     is_supervisor,
@@ -530,7 +568,8 @@ isco88com_to_esec_mp <- function(x,
     n_employees,
     lookup_labels = lookup_esec,
     schema_labels = labs,
-    label = label
+    label = label,
+    factor = factor
   )
 
   esec_mp
@@ -544,7 +583,8 @@ isco88com_to_msec <- function(x,
                               is_supervisor,
                               self_employed,
                               n_employees,
-                              label = FALSE) {
+                              label = FALSE,
+                              factor = FALSE) {
 
 
 
@@ -564,7 +604,8 @@ isco88com_to_msec <- function(x,
     translate_label_df = all_labels$msec,
     label = label,
     check_isco = "isco88com",
-    digits = 3
+    digits = 3,
+    factor = factor
   )
 
   res
@@ -576,7 +617,7 @@ isco88com_to_msec <- function(x,
 #' @rdname isco08_to_oesch
 #' @order 2
 #' @export
-isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label = FALSE) {
+isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label = FALSE, factor = FALSE) {
   stopifnot(n_classes %in% c(16, 8, 5))
   stopifnot(length(n_classes) == 1)
 
@@ -606,7 +647,8 @@ isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
         translate_df = schema,
         translate_label_df = all_labels$oesch16,
         check_isco = "isco88",
-        label = label
+        label = label,
+        factor = factor
       )
 
     return(oesch16)
@@ -620,7 +662,8 @@ isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
       output_var,
       all_classes,
       check_isco = "isco88",
-      label
+      label,
+      factor = factor
     )
 
     return(oesch)
@@ -655,12 +698,12 @@ isco88_to_oesch <- function(x, self_employed, n_employees, n_classes = 16, label
 #' @param control_daily A likert-scale type question from 1 to 4 where 1 means complete control to decide how their own daily work is/was organised and 4 means no control to decide how their own daily work is/was organised. For an example, see the variable `orgwrk` in the European Social Survey. Another example is recoding the variable `wkdcorga` from the European Social Survey such that 8-10 is 1, 5-7 is 2, 2-4 is 3 and 0-1 is 4.
 #'
 #' @param type The type of translation to make. Possible values are "simple", "decision-making" and "power-class".
-#'
 #' @param label `r rg_template_arg_label("WRIGHT")`
+#'
+#' @param factor A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of WRIGHT which can be found in the source code of each function.
 #'
 #' @examples
 #' library(dplyr)
-#'
 #'
 #' # E.O Wright - Simple translation
 #' ess %>%
@@ -745,7 +788,8 @@ isco88com_to_wright <- function(x,
                                 control_work,
                                 control_daily,
                                 type,
-                                label = FALSE) {
+                                label = FALSE,
+                                factor = FALSE) {
   x <- repair_isco(x)
   count_digits(x, digits = 4)
   check_isco(x, check_isco = "isco88com")
@@ -758,7 +802,8 @@ isco88com_to_wright <- function(x,
     control_work,
     control_daily,
     type = type,
-    label = label
+    label = label,
+    factor = factor
   )
 }
 

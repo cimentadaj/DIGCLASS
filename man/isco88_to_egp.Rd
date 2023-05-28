@@ -5,9 +5,23 @@
 \alias{isco68_to_egp}
 \title{Translate 4-digit ISCO88/ISCO68 to EGP11/EGP7/EGP5/EGP3}
 \usage{
-isco88_to_egp(x, self_employed, n_employees, n_classes = 11, label = FALSE)
+isco88_to_egp(
+  x,
+  self_employed,
+  n_employees,
+  n_classes = 11,
+  label = FALSE,
+  factor = FALSE
+)
 
-isco68_to_egp(x, self_employed, n_employees, n_classes = 11, label = FALSE)
+isco68_to_egp(
+  x,
+  self_employed,
+  n_employees,
+  n_classes = 11,
+  label = FALSE,
+  factor = FALSE
+)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
@@ -19,6 +33,8 @@ isco68_to_egp(x, self_employed, n_employees, n_classes = 11, label = FALSE)
 \item{n_classes}{a numeric value indicating the number of EGP classes to obtain. Default is 11 EGP classes. The possible values are 11 classes, 7 classes, 5 classes and 3 classes. For more information, see the details section.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated EGP codes (default is \code{FALSE}).}
+
+\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for EGP found in \code{all_labels} (default is \code{FALSE}).}
 }
 \value{
 A character vector of EGP codes.

@@ -4,7 +4,14 @@
 \alias{isco08_two_to_esec}
 \title{Translate 2-digit ISCO08 to ESEC}
 \usage{
-isco08_two_to_esec(x, is_supervisor, self_employed, n_employees, label = FALSE)
+isco08_two_to_esec(
+  x,
+  is_supervisor,
+  self_employed,
+  n_employees,
+  label = FALSE,
+  factor = FALSE
+)
 }
 \arguments{
 \item{x}{A character vector of 2-digit ISCO codes. This should be the 4-digit equivalent so instead of 13, the code should be 1300, which is the 4-digit version of of the 2-digit ISCO.}
@@ -16,6 +23,8 @@ isco08_two_to_esec(x, is_supervisor, self_employed, n_employees, label = FALSE)
 \item{n_employees}{A numeric vector indicating the number of employees under each respondent.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated ESEC codes (default is \code{FALSE}).}
+
+\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for ESEC found in \code{all_labels} (default is \code{FALSE}).}
 }
 \description{
 This function translates a vector of 2-digit ISCO08 codes to ESEC codes using the translation table stored in \code{all_schema$isco08_two_to_esec}.

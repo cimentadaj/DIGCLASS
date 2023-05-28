@@ -5,7 +5,14 @@
 \alias{isco88com_to_esec_mp}
 \title{Translate 3-digit ISCO08/ISCO88COM to ESEC-MP}
 \usage{
-isco08_to_esec_mp(x, is_supervisor, self_employed, n_employees, label = FALSE)
+isco08_to_esec_mp(
+  x,
+  is_supervisor,
+  self_employed,
+  n_employees,
+  label = FALSE,
+  factor = FALSE
+)
 
 isco88com_to_esec_mp(
   x,
@@ -13,7 +20,8 @@ isco88com_to_esec_mp(
   self_employed,
   n_employees,
   full_method = TRUE,
-  label = FALSE
+  label = FALSE,
+  factor = FALSE
 )
 }
 \arguments{
@@ -26,6 +34,8 @@ isco88com_to_esec_mp(
 \item{n_employees}{A numeric vector indicating the number of employees under each respondent.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated ESEC-MP codes (default is \code{FALSE}).}
+
+\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of ESEC-MP which can be found in the source code of each function.}
 
 \item{full_method}{a boolean on whether to apply the full method or the simple method.}
 }

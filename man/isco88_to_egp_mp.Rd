@@ -5,9 +5,23 @@
 \alias{isco68_to_egp_mp}
 \title{Translate 4-digit ISCO88/ISCO68 to EGP-MP}
 \usage{
-isco88_to_egp_mp(x, is_supervisor, self_employed, n_employees, label = FALSE)
+isco88_to_egp_mp(
+  x,
+  is_supervisor,
+  self_employed,
+  n_employees,
+  label = FALSE,
+  factor = FALSE
+)
 
-isco68_to_egp_mp(x, is_supervisor, self_employed, n_employees, label = FALSE)
+isco68_to_egp_mp(
+  x,
+  is_supervisor,
+  self_employed,
+  n_employees,
+  label = FALSE,
+  factor = FALSE
+)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
@@ -19,6 +33,8 @@ isco68_to_egp_mp(x, is_supervisor, self_employed, n_employees, label = FALSE)
 \item{n_employees}{A numeric vector indicating the number of employees under each respondent.}
 
 \item{label}{A logical value indicating whether to return the labels of the translated EGP-MP codes (default is \code{FALSE}).}
+
+\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of EGP-MP which can be found in the source code of each function.}
 }
 \value{
 A character vector of EGP-MP codes.
