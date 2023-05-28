@@ -11,7 +11,7 @@ isco88_to_egp_mp(
   self_employed,
   n_employees,
   label = FALSE,
-  factor = FALSE
+  to_factor = FALSE
 )
 
 isco68_to_egp_mp(
@@ -20,7 +20,7 @@ isco68_to_egp_mp(
   self_employed,
   n_employees,
   label = FALSE,
-  factor = FALSE
+  to_factor = FALSE
 )
 }
 \arguments{
@@ -34,7 +34,7 @@ isco68_to_egp_mp(
 
 \item{label}{A logical value indicating whether to return the labels of the translated EGP-MP codes (default is \code{FALSE}).}
 
-\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of EGP-MP which can be found in the source code of each function.}
+\item{to_factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of EGP-MP which can be found in the source code of each function.}
 }
 \value{
 A character vector of EGP-MP codes.

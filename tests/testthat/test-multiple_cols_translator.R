@@ -19,7 +19,7 @@ test_that("multiple_cols_translator() works correctly", {
   res2 <- multiple_cols_translator("barr", 2, "col3", translate_df, translate_label_df, label = FALSE)
   expect_equal(res2, "2")
 
-  res3 <- multiple_cols_translator("barr", 2, "col3", translate_df, translate_label_df, label = FALSE, factor = TRUE)
+  res3 <- multiple_cols_translator("barr", 2, "col3", translate_df, translate_label_df, label = FALSE, to_factor = TRUE)
   expect_s3_class(res3, c("factor", "ordered"))
 
   # test for error when trying to translate a value that's not in the translation table

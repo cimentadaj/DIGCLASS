@@ -5,9 +5,21 @@
 \alias{isco88_to_ipics}
 \title{Translate 4-digit ISCO08/ISCO88 to IPICS}
 \usage{
-isco08_to_ipics(x, self_employed, n_employees, label = FALSE, factor = FALSE)
+isco08_to_ipics(
+  x,
+  self_employed,
+  n_employees,
+  label = FALSE,
+  to_factor = FALSE
+)
 
-isco88_to_ipics(x, self_employed, n_employees, label = FALSE, factor = FALSE)
+isco88_to_ipics(
+  x,
+  self_employed,
+  n_employees,
+  label = FALSE,
+  to_factor = FALSE
+)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
@@ -18,7 +30,7 @@ isco88_to_ipics(x, self_employed, n_employees, label = FALSE, factor = FALSE)
 
 \item{label}{A logical value indicating whether to return the labels of the translated IPICS codes (default is \code{FALSE}).}
 
-\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for IPICS found in \code{all_labels} (default is \code{FALSE}).}
+\item{to_factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for IPICS found in \code{all_labels} (default is \code{FALSE}).}
 }
 \value{
 A character vector of IPICS codes.

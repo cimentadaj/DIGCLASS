@@ -11,7 +11,7 @@ isco08_to_esec_mp(
   self_employed,
   n_employees,
   label = FALSE,
-  factor = FALSE
+  to_factor = FALSE
 )
 
 isco88com_to_esec_mp(
@@ -21,7 +21,7 @@ isco88com_to_esec_mp(
   n_employees,
   full_method = TRUE,
   label = FALSE,
-  factor = FALSE
+  to_factor = FALSE
 )
 }
 \arguments{
@@ -35,7 +35,7 @@ isco88com_to_esec_mp(
 
 \item{label}{A logical value indicating whether to return the labels of the translated ESEC-MP codes (default is \code{FALSE}).}
 
-\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of ESEC-MP which can be found in the source code of each function.}
+\item{to_factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of ESEC-MP which can be found in the source code of each function.}
 
 \item{full_method}{a boolean on whether to apply the full method or the simple method.}
 }

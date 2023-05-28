@@ -1,7 +1,7 @@
 #' @rdname isco08_to_isco88
 #' @order 2
 #' @export
-isco68_to_isco88 <- function(x, label = FALSE, factor = FALSE) {
+isco68_to_isco88 <- function(x, label = FALSE, to_factor = FALSE) {
   common_translator(
     x,
     input_var = "ISCO68",
@@ -10,14 +10,14 @@ isco68_to_isco88 <- function(x, label = FALSE, factor = FALSE) {
     translate_label_df = all_labels$isco88,
     check_isco = "isco68",
     label = label,
-    factor = factor
+    to_factor = to_factor
   )
 }
 
 #' @rdname isco88_to_isco08
 #' @order 2
 #' @export
-isco68_to_isco08 <- function(x, label = FALSE, factor = FALSE) {
+isco68_to_isco08 <- function(x, label = FALSE, to_factor = FALSE) {
   common_translator(
     x,
     input_var = "ISCO68",
@@ -26,14 +26,14 @@ isco68_to_isco08 <- function(x, label = FALSE, factor = FALSE) {
     translate_label_df = all_labels$isco08,
     check_isco = "isco68",
     label = label,
-    factor = FALSE
+    to_factor = to_factor
   )
 }
 
 #' @rdname isco08_to_isei
 #' @order 3
 #' @export
-isco68_to_isei <- function(x, factor = FALSE) {
+isco68_to_isei <- function(x, to_factor = FALSE) {
   translate_label_df <-
     dplyr::relocate(all_schemas$isco68_to_isei, 2, 1) %>%
     dplyr::arrange(dplyr::pick(dplyr::contains("ISEI")))
@@ -48,14 +48,14 @@ isco68_to_isei <- function(x, factor = FALSE) {
     translate_label_df = translate_label_df,
     check_isco = "isco68",
     label = FALSE,
-    factor = factor
+    to_factor = to_factor
   )
 }
 
 #' @rdname isco08_to_siops
 #' @order 3
 #' @export
-isco68_to_siops <- function(x, factor = FALSE) {
+isco68_to_siops <- function(x, to_factor = FALSE) {
   translate_label_df <-
     dplyr::relocate(all_schemas$isco68_to_siops, 2, 1) %>%
     dplyr::arrange(dplyr::pick(dplyr::contains("SIOPS")))
@@ -70,14 +70,14 @@ isco68_to_siops <- function(x, factor = FALSE) {
     translate_label_df = translate_label_df,
     check_isco = "isco68",
     label = FALSE,
-    factor = factor
+    to_factor = to_factor
   )
 }
 
 #' @rdname isco88_to_egp
 #' @order 2
 #' @export
-isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label = FALSE, factor = FALSE) {
+isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label = FALSE, to_factor = FALSE) {
   stopifnot(n_classes %in% c(11, 7, 5, 3))
   stopifnot(length(n_classes) == 1)
 
@@ -110,7 +110,7 @@ isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
         translate_label_df = all_labels$egp11,
         check_isco = "isco68",
         label = label,
-        factor = factor
+        to_factor = to_factor
       )
 
     return(egp11)
@@ -125,7 +125,7 @@ isco68_to_egp <- function(x, self_employed, n_employees, n_classes = 11, label =
       all_classes,
       label,
       check_isco = "isco68",
-      factor = factor
+      to_factor = to_factor
     )
 
     return(egp)
@@ -140,7 +140,7 @@ isco68_to_egp_mp <- function(x,
                              self_employed,
                              n_employees,
                              label = FALSE,
-                             factor = FALSE) {
+                             to_factor = FALSE) {
   egp <- isco68_to_egp(
     x,
     self_employed,
@@ -176,13 +176,11 @@ isco68_to_egp_mp <- function(x,
     lookup_labels = lookup_egp,
     schema_labels = labs,
     label = label,
-    factor = factor
+    to_factor = to_factor
   )
 
   egp_mp
 }
-
-
 
 #' @rdname isco08_swap
 #' @order 3

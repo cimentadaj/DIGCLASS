@@ -6,16 +6,16 @@
 \alias{isco68_to_isei}
 \title{Translate 4-digit ISCO08/ISCO88/ISCO68 to ISEI}
 \usage{
-isco08_to_isei(x, factor = FALSE)
+isco08_to_isei(x, to_factor = FALSE)
 
-isco88_to_isei(x, factor = FALSE)
+isco88_to_isei(x, to_factor = FALSE)
 
-isco68_to_isei(x, factor = FALSE)
+isco68_to_isei(x, to_factor = FALSE)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
 
-\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of ISEI in \code{all_schemas_isco08_to_isei}.}
+\item{to_factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of ISEI in \code{all_schemas$isco08_to_isei}, \code{all_schemas$isco88_to_isei} and \code{all_schemas$isco68_to_isei}.}
 }
 \value{
 A character vector of ISEI codes.

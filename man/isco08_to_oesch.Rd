@@ -11,7 +11,7 @@ isco08_to_oesch(
   n_employees,
   n_classes = 16,
   label = FALSE,
-  factor = FALSE
+  to_factor = FALSE
 )
 
 isco88_to_oesch(
@@ -20,7 +20,7 @@ isco88_to_oesch(
   n_employees,
   n_classes = 16,
   label = FALSE,
-  factor = FALSE
+  to_factor = FALSE
 )
 }
 \arguments{
@@ -34,7 +34,7 @@ isco88_to_oesch(
 
 \item{label}{A logical value indicating whether to return the labels of the translated OESCH codes (default is \code{FALSE}).}
 
-\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for OESCH found in \code{all_labels} (default is \code{FALSE}).}
+\item{to_factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for OESCH found in \code{all_labels} (default is \code{FALSE}).}
 }
 \value{
 A character vector of OESCH codes.

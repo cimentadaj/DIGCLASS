@@ -4,12 +4,12 @@
 \alias{isco88_to_mps}
 \title{Translate 4-digit ISCO88 to MPS}
 \usage{
-isco88_to_mps(x, factor = FALSE)
+isco88_to_mps(x, to_factor = FALSE)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
 
-\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for MPS found in \code{all_labels} (default is \code{FALSE}).}
+\item{to_factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of MPS in \code{all_schemas$isco88_to_mps}.}
 }
 \value{
 A character vector of MPS codes.

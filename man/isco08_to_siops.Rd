@@ -6,16 +6,16 @@
 \alias{isco68_to_siops}
 \title{Translate 4-digit ISCO08/ISCO88/ISCO68 to SIOPS}
 \usage{
-isco08_to_siops(x, factor = FALSE)
+isco08_to_siops(x, to_factor = FALSE)
 
-isco88_to_siops(x, factor = FALSE)
+isco88_to_siops(x, to_factor = FALSE)
 
-isco68_to_siops(x, factor = FALSE)
+isco68_to_siops(x, to_factor = FALSE)
 }
 \arguments{
 \item{x}{A character vector of 4-digit ISCO codes.}
 
-\item{factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of SIOPS in \code{all_schemas_isco08_to_siops}.}
+\item{to_factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of SIOPS in \code{all_schemas$isco08_to_siops}, \code{all_schemas$isco88_to_siops} and \code{all_schemas$isco68_to_siops}.}
 }
 \value{
 A character vector of SIOPS codes.

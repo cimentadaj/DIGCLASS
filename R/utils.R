@@ -1,4 +1,4 @@
-common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, check_isco = NULL, digits = 4, repair_isco = TRUE, factor = FALSE) {
+common_translator <- function(x, input_var, output_var, translate_df, translate_label_df, label, check_isco = NULL, digits = 4, repair_isco = TRUE, to_factor = FALSE) {
 
   if (repair_isco) {
     # All checks must being by whether the function has 4 digits (regardless of it's 1300 or 13111)
@@ -27,12 +27,12 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
       dplyr::left_join(translate_label_df, by = c("x_label" = output_var))
 
     transformed <- res[[2]]
-    if (factor) {
+    if (to_factor) {
       transformed <- factor(transformed, levels = unique(translate_label_df[[2]]), ordered = TRUE)
     }
   } else {
     transformed <- res[[output_var]]
-    if (factor) {
+    if (to_factor) {
       transformed <- factor(transformed, levels = unique(translate_label_df[[1]]), ordered = TRUE)
     }
   }
@@ -112,7 +112,7 @@ multiple_cols_translator <- function(x,
                                      label,
                                      check_isco = NULL,
                                      digits = 4,
-                                     factor = FALSE) {
+                                     to_factor = FALSE) {
 
   # All checks must being by whether the function has 4 digits (regardless of it's 1300 or 13111)
   x <- repair_isco(x, digits = 4)
@@ -129,11 +129,11 @@ multiple_cols_translator <- function(x,
       dplyr::left_join(translate_label_df, by = c("x_label" = output_var))
 
     transformed <- res[[2]]
-    if (factor) {
+    if (to_factor) {
       transformed <- factor(transformed, levels = translate_label_df[[2]], ordered = TRUE)
     }
   } else {
-    if (factor) {
+    if (to_factor) {
       transformed <- factor(transformed, levels = translate_label_df[[1]], ordered = TRUE)
     }
   }
@@ -149,7 +149,7 @@ managers_professionals_helper <- function(x,
                                           lookup_labels,
                                           schema_labels,
                                           label,
-                                          factor = FALSE
+                                          to_factor = FALSE
                                           ) {
   # TODO: Since this function does not have an excel, I've coded the "rules" manually
   # but ideally we want to move all of this into social_classes.txt such that
@@ -184,10 +184,10 @@ managers_professionals_helper <- function(x,
 
   if (label) {
     mp <- schema_labels[mp]
-    if (factor) {
+    if (to_factor) {
       mp <- factor(mp, levels = unname(schema_labels), ordered = TRUE)
     }
-  } else if (factor) {
+  } else if (to_factor) {
     mp <- factor(mp, levels = names(schema_labels), ordered = TRUE)
   }
 
@@ -195,7 +195,7 @@ managers_professionals_helper <- function(x,
   mp
 }
 
-construct_eseg <- function(isco1, isco2, work_status, main_activity, age, type, label, factor = FALSE) {
+construct_eseg <- function(isco1, isco2, work_status, main_activity, age, type, label, to_factor = FALSE) {
   type <- match.arg(type, c("one-digit", "two-digit"))
 
   eseg <-
@@ -366,13 +366,13 @@ construct_eseg <- function(isco1, isco2, work_status, main_activity, age, type, 
   eseg <- unname(eseg)
 
   if (type == "two-digit") {
-    if (label && factor) {
+    if (label && to_factor) {
       eseg <- factor(lookup_twodigits[eseg], levels = unname(lookup_twodigits), ordered = TRUE)
       eseg <- unname(eseg)
     } else if (label) {
       eseg <- lookup_twodigits[eseg]
       eseg <- unname(eseg)
-    } else if (factor) {
+    } else if (to_factor) {
       eseg <- factor(eseg, levels = names(lookup_twodigits), ordered = TRUE)
     }
     return(eseg)
@@ -380,13 +380,13 @@ construct_eseg <- function(isco1, isco2, work_status, main_activity, age, type, 
 
   if (type == "one-digit") {
     eseg_one <- substr(eseg, 1, 1)
-    if (label && factor) {
+    if (label && to_factor) {
       eseg_one <- factor(lookup_onedigit[eseg_one], levels = unname(lookup_onedigit), ordered = TRUE)
       eseg_one <- unname(eseg_one)
     } else if (label) {
       eseg_one <- lookup_onedigit[eseg_one]
       eseg_one <- unname(eseg_one)
-    } else if (factor) {
+    } else if (to_factor) {
       eseg_one <- factor(eseg_one, levels = names(lookup_onedigit), ordered = TRUE)
     }
     return(eseg_one)
@@ -402,7 +402,7 @@ construct_wright <- function(x,
                              control_daily,
                              type,
                              label = FALSE,
-                             factor = FALSE) {
+                             to_factor = FALSE) {
 
   type <- match.arg(type, c("simple", "decision-making", "power-class"))
 
@@ -983,39 +983,39 @@ construct_wright <- function(x,
   )
 
   if (type == "simple") {
-    if (label && factor) {
+    if (label && to_factor) {
       wr_simp <- factor(lookup_simple[wr_simp], levels = unname(lookup_simple), ordered = TRUE)
       wr_simp <- unname(wr_simp)
     } else if (label) {
       wr_simp <- lookup_simple[wr_simp]
       wr_simp <- unname(wr_simp)
-    } else if (factor) {
+    } else if (to_factor) {
       wr_simp <- factor(wr_simp, levels = names(lookup_simple), ordered = TRUE)
     }
     return(wr_simp)
   }
 
   if (type == "decision-making") {
-    if (label && factor) {
+    if (label && to_factor) {
       wr_dm <- factor(lookup_dm[wr_dm], levels = unname(lookup_dm), ordered = TRUE)
       wr_dm <- unname(wr_dm)
     } else if (label) {
       wr_dm <- lookup_dm[wr_dm]
       wr_dm <- unname(wr_dm)
-    } else if (factor) {
+    } else if (to_factor) {
       wr_dm <- factor(wr_dm, levels = names(lookup_dm), ordered = TRUE)
     }
     return(wr_dm)
   }
 
   if (type == "power-class") {
-    if (label && factor) {
+    if (label && to_factor) {
       wr_p <- factor(lookup_p[wr_p], levels = unname(lookup_p), ordered = TRUE)
       wr_p <- unname(wr_p)
     } else if (label) {
       wr_p <- lookup_p[wr_p]
       wr_p <- unname(wr_p)
-    } else if (factor) {
+    } else if (to_factor) {
       wr_p <- factor(wr_p, levels = names(lookup_p), ordered = TRUE)
     }
     return(wr_p)
@@ -1023,7 +1023,7 @@ construct_wright <- function(x,
 }
 
 
-main_schema_to_others <- function(x, col_position, n_classes, schema, input_var, output_var, all_classes, label, check_isco = NULL, factor = FALSE) {
+main_schema_to_others <- function(x, col_position, n_classes, schema, input_var, output_var, all_classes, label, check_isco = NULL, to_factor = FALSE) {
 
   main_class <-
     multiple_cols_translator(
@@ -1047,7 +1047,7 @@ main_schema_to_others <- function(x, col_position, n_classes, schema, input_var,
     label = label,
     # Do not repair because it's the translated main class which is not an ISCO variable
     repair_isco = FALSE,
-    factor = factor
+    to_factor = to_factor
   )
 
   variant
