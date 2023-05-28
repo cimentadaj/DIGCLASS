@@ -51,9 +51,21 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">isco08_to_ipics</span><span class="op">(</span><span class="va">x</span>, <span class="va">self_employed</span>, <span class="va">n_employees</span>, label <span class="op">=</span> <span class="cn">FALSE</span>, factor <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">isco08_to_ipics</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">self_employed</span>,</span>
+<span>  <span class="va">n_employees</span>,</span>
+<span>  label <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  to_factor <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">isco88_to_ipics</span><span class="op">(</span><span class="va">x</span>, <span class="va">self_employed</span>, <span class="va">n_employees</span>, label <span class="op">=</span> <span class="cn">FALSE</span>, factor <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">isco88_to_ipics</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">self_employed</span>,</span>
+<span>  <span class="va">n_employees</span>,</span>
+<span>  label <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  to_factor <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -74,7 +86,7 @@
 <dd><p>A logical value indicating whether to return the labels of the translated IPICS codes (default is <code>FALSE</code>).</p></dd>
 
 
-<dt>factor</dt>
+<dt>to_factor</dt>
 <dd><p>A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for IPICS found in <code>all_labels</code> (default is <code>FALSE</code>).</p></dd>
 
 </dl></div>
