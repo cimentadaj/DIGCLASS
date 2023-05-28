@@ -51,7 +51,14 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">isco08_to_esec_mp</span><span class="op">(</span><span class="va">x</span>, <span class="va">is_supervisor</span>, <span class="va">self_employed</span>, <span class="va">n_employees</span>, label <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">isco08_to_esec_mp</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">is_supervisor</span>,</span>
+<span>  <span class="va">self_employed</span>,</span>
+<span>  <span class="va">n_employees</span>,</span>
+<span>  label <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  factor <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">isco88com_to_esec_mp</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
@@ -59,7 +66,8 @@
 <span>  <span class="va">self_employed</span>,</span>
 <span>  <span class="va">n_employees</span>,</span>
 <span>  full_method <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  label <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  label <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  factor <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -83,6 +91,10 @@
 
 <dt>label</dt>
 <dd><p>A logical value indicating whether to return the labels of the translated ESEC-MP codes (default is <code>FALSE</code>).</p></dd>
+
+
+<dt>factor</dt>
+<dd><p>A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the sorted codes of ESEC-MP which can be found in the source code of each function.</p></dd>
 
 
 <dt>full_method</dt>
