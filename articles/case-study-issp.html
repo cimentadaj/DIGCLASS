@@ -295,28 +295,25 @@ employees in <code>n_employees</code>.</p>
 <p>With these columns recoded, let’s try to convert ISCO08 to MSEC using
 these columns:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">issp</span> <span class="op">&lt;-</span> <span class="va">issp</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>msec <span class="op">=</span> <span class="fu"><a href="../reference/isco08_to_msec.html">isco08_to_msec</a></span><span class="op">(</span><span class="va">isco08</span>, <span class="va">is_supervisor</span>, <span class="va">self_employed</span>, <span class="va">n_employees</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">issp</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">issp</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    msec <span class="op">=</span> <span class="fu"><a href="../reference/isco08_to_msec.html">isco08_to_msec</a></span><span class="op">(</span><span class="va">isco08</span>, <span class="va">is_supervisor</span>, <span class="va">self_employed</span>, <span class="va">n_employees</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> ISCO variable is not a character. Beware that numeric ISCO variables possibly contain lost data. See https://cimentadaj.github.io/DIGCLASS/articles/repairing_isco_input.html for more details. Converting to a character vector.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> ISCO variable has occupations with digits less than 4. Converting to 4 digits.</span></span>
 <span><span class="co">#&gt; • Converted `110` to `0110`</span></span>
 <span><span class="co">#&gt; • Converted `310` to `0310`</span></span>
-<span><span class="co">#&gt; • Converted `210` to `0210`</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `mutate()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> In argument: `msec = isco08_to_msec(isco08, is_supervisor,</span></span>
-<span><span class="co">#&gt;   self_employed, n_employees)`.</span></span>
-<span><span class="co">#&gt; <span style="font-weight: bold;">Caused by error in `count_digits()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> `x` might not be a 3-digit ISCO vector. Convert to 3 digits using</span></span>
-<span><span class="co">#&gt;   `isco08/88/68_swap`.</span></span></code></pre></div>
-<p>Aside from the usual warnings saying that some values are recoded to
-have 4 digits, there’s an error message saying that the ISCO vector
-should be 3-digits. This might happen for some translations for which a
-certain number of digits might be necessary. For translating ISCO
-between different digits, we use the functions <code>isco*_swap</code>
-where <code>*</code> represents the given year of interest. For our
-case, we’re looking for <code>isco08_swap</code>. At the same time, we
-can remove all those warnings of transforming values like
-<code>110</code> to <code>0110</code> by running <code>isco08</code>
-through <code>repair_isco</code> once and saving it.</p>
+<span><span class="co">#&gt; • Converted `210` to `0210`</span></span></code></pre></div>
+<p>The usual warnings appear saying that some values are recoded to have
+4 digits. Some times we want to translate digits other than 4, for
+example. For translating ISCO between different digits, we use the
+functions <code>isco*_swap</code> where <code>*</code> represents the
+given year of interest. For our case, we’re looking for
+<code>isco08_swap</code>. At the same time, we can remove all those
+warnings of transforming values like <code>110</code> to
+<code>0110</code> by running <code>isco08</code> through
+<code>repair_isco</code> once and saving it.</p>
 <p>Let’s do both:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">issp</span> <span class="op">&lt;-</span></span>
@@ -332,19 +329,19 @@ through <code>repair_isco</code> once and saving it.</p>
 <span><span class="co">#&gt; • Converted `210` to `0210`</span></span>
 <span></span>
 <span><span class="va">issp</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 21,718 × 5</span></span></span>
-<span><span class="co">#&gt;    isco08 is_supervisor self_employed n_employees isco08_three</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2430               0             0           0 2430        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3115               0             0           0 3110        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 6130               0             1           0 6130        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4120               0             0           0 4120        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7531               0             0           0 7530        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 4211               0             0           0 4210        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 4211               1             0           8 4210        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> <span style="color: #BB0000;">NA</span>                <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 9510               0             0           0 9510        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 7126               1             1           4 7120        </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 21,718 × 6</span></span></span>
+<span><span class="co">#&gt;    isco08 is_supervisor self_employed n_employees msec  isco08_three</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2430               0             0           0 23    2430        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3115               0             0           0 <span style="color: #BB0000;">NA</span>    3110        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 6130               0             1           0 41    6130        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4120               0             0           0 51    4120        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7531               0             0           0 <span style="color: #BB0000;">NA</span>    7530        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 4211               0             0           0 <span style="color: #BB0000;">NA</span>    4210        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 4211               1             0           8 <span style="color: #BB0000;">NA</span>    4210        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> <span style="color: #BB0000;">NA</span>                <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 9510               0             0           0 73    9510        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 7126               1             1           4 <span style="color: #BB0000;">NA</span>    7120        </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 21,708 more rows</span></span></span></code></pre></div>
 <p>We shouldn’t see any more warning messages. Now that we translate
 <code>isco08</code> to <code>isco08_three</code> (you can see that
@@ -360,18 +357,18 @@ we’ve translated it to 3-digit codes). Let’s use
 <span></span>
 <span><span class="va">issp</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 21,718 × 6</span></span></span>
-<span><span class="co">#&gt;    isco08 is_supervisor self_employed n_employees isco08_three msec </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2430               0             0           0 2430         23   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3115               0             0           0 3110         31   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 6130               0             1           0 6130         41   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4120               0             0           0 4120         51   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7531               0             0           0 7530         62   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 4211               0             0           0 4210         52   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 4211               1             0           8 4210         59   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> <span style="color: #BB0000;">NA</span>                <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 9510               0             0           0 9510         73   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 7126               1             1           4 7120         43   </span></span>
+<span><span class="co">#&gt;    isco08 is_supervisor self_employed n_employees msec  isco08_three</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2430               0             0           0 23    2430        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3115               0             0           0 31    3110        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 6130               0             1           0 41    6130        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4120               0             0           0 51    4120        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7531               0             0           0 62    7530        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 4211               0             0           0 52    4210        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 4211               1             0           8 59    4210        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> <span style="color: #BB0000;">NA</span>                <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 9510               0             0           0 73    9510        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 7126               1             1           4 43    7120        </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 21,708 more rows</span></span></span></code></pre></div>
 <p>There we go. We now see an <code>msec</code> column that contains the
 translation. All translation functions in <code>DIGCLASS</code> that

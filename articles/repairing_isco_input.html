@@ -169,13 +169,7 @@ can read data as characters like this for a CSV:</p>
 <code class="sourceCode R"><span><span class="va">isco_ready</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">isco_csv</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ISCO08 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span>, ISCO88 <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_atomic.html" class="external-link">col_character</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/repair_isco.html">repair_isco</a></span><span class="op">(</span><span class="va">isco_ready</span><span class="op">$</span><span class="va">ISCO08</span><span class="op">)</span></span></code></pre></div>
 <p>Note that no messages were printed now. That’s because the function
-is correct and nothing needs to be done. Similarly for Stata files, you
-should always specify that the ISCO variable should be read as a
-character like this:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html" class="external-link">read_dta</a></span><span class="op">(</span><span class="st">"ess.dta"</span>, col_types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>ISCO08 <span class="op">=</span> <span class="st">"character"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Once you read your data, be sure to run it through
-<code>repair_isco</code> to notify of any problems.</p>
+is correct and nothing needs to be done.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

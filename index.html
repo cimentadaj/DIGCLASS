@@ -145,6 +145,13 @@
 </ul>
 </li>
 <li>
+<strong>ESCO</strong>
+<ul class="task-list">
+<li>
+<input type="checkbox" disabled checked>ESCO to ISCO08</li>
+</ul>
+</li>
+<li>
 <strong>Extras</strong>
 <ul class="task-list">
 <li>
@@ -173,28 +180,26 @@
 <span><span class="co"># Internal data for the European Social Survey round 6</span></span>
 <span><span class="co"># containing different ISCO variables</span></span>
 <span><span class="va">ess</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span></span>
+<span>    <span class="va">isco68</span>,</span>
 <span>    isei <span class="op">=</span> <span class="fu"><a href="reference/isco08_to_isei.html">isco68_to_isei</a></span><span class="op">(</span><span class="va">isco68</span><span class="op">)</span>,</span>
 <span>    egp <span class="op">=</span> <span class="fu"><a href="reference/isco88_to_egp.html">isco68_to_egp</a></span><span class="op">(</span><span class="va">isco68</span>, <span class="va">self_employed</span>, <span class="va">emplno</span><span class="op">)</span>,</span>
 <span>    egp_labels <span class="op">=</span> <span class="fu"><a href="reference/isco88_to_egp.html">isco68_to_egp</a></span><span class="op">(</span><span class="va">isco68</span>, <span class="va">self_employed</span>, <span class="va">emplno</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 48,285 × 15</span></span>
-<span><span class="co">#&gt;    isco68 isco88 isco88com isco08 emplno self_employed is_supervisor</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 5890   5169   5169      5414        0             1             0</span></span>
-<span><span class="co">#&gt;  2 2120   1222   1222      1321        0             0             1</span></span>
-<span><span class="co">#&gt;  3 7200   8120   8120      3135        0             0             0</span></span>
-<span><span class="co">#&gt;  4 9310   7141   7141      7131        0             0             1</span></span>
-<span><span class="co">#&gt;  5 6220   6111   6111      6111        0             0             0</span></span>
-<span><span class="co">#&gt;  6 6220   6111   6111      6111        0             0             1</span></span>
-<span><span class="co">#&gt;  7 9595   9313   9313      9313        0             0             1</span></span>
-<span><span class="co">#&gt;  8 6000   1221   1221      1311        0             0             1</span></span>
-<span><span class="co">#&gt;  9 6000   1221   1221      1311        2             1             1</span></span>
-<span><span class="co">#&gt; 10 6220   6111   6111      6111        0             0             1</span></span>
-<span><span class="co">#&gt; # ℹ 48,275 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 8 more variables: control_work &lt;dbl&gt;, control_daily &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   work_status &lt;dbl&gt;, main_activity &lt;dbl&gt;, agea &lt;dbl&gt;, isei &lt;chr&gt;, egp &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   egp_labels &lt;chr&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 48,285 × 4</span></span>
+<span><span class="co">#&gt;    isco68 isei  egp   egp_labels                            </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                                 </span></span>
+<span><span class="co">#&gt;  1 5890   35    6     'IVb: Self-employed with no employees'</span></span>
+<span><span class="co">#&gt;  2 2120   67    2     'II: Lower Controllers'               </span></span>
+<span><span class="co">#&gt;  3 7200   34    8     'VI: Skilled Worker'                  </span></span>
+<span><span class="co">#&gt;  4 9310   32    8     'VI: Skilled Worker'                  </span></span>
+<span><span class="co">#&gt;  5 6220   16    10    'VIIb: Farm Labor'                    </span></span>
+<span><span class="co">#&gt;  6 6220   16    10    'VIIb: Farm Labor'                    </span></span>
+<span><span class="co">#&gt;  7 9595   24    9     'VIIa: Unskilled Worker'              </span></span>
+<span><span class="co">#&gt;  8 6000   46    11    'IVc: Self-employed Farmer'           </span></span>
+<span><span class="co">#&gt;  9 6000   46    11    'IVc: Self-employed Farmer'           </span></span>
+<span><span class="co">#&gt; 10 6220   16    10    'VIIb: Farm Labor'                    </span></span>
+<span><span class="co">#&gt; # ℹ 48,275 more rows</span></span></code></pre></div>
 <p>The nomenclature of the function is <code>{origin}_to_{destination}</code> where <code>origin</code> is the origin class schema and <code>destination</code> is the destination class schema. The usual workflow is for you to type, for example <code>isco</code> and then hit <code>TAB</code> to get auto-completion on all possible translations.</p>
 <p>For those class schemas that have labels, the <code>label</code> argument returns the labels instead of the class codes.</p>
 </div>
@@ -225,6 +230,11 @@
 <h2 id="funding">Funding<a class="anchor" aria-label="anchor" href="#funding"></a>
 </h2>
 <p>This project has been funded through the European Commission’s JRC Centre for Advanced Studies and the project Social Classes in the Digital Age (DIGCLASS): <a href="https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en" class="external-link">https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en</a></p>
+<ol start="3" style="list-style-type: decimal">
+<li>@SMALLENBROEK Oscar I understand the concern of not being able to use these functions if it doesn’t match exactly the number of digits. I’ve come up with a solution to this problem. The functions would translate any digits that the user passes returning whatever it finds. However, this means we need to remove the internal check for the number of digits. This check simply makes sure that for a given function (isco88_to_isco68, for example) the input should be 4-digits. If it’s not, it fails. If you all agree, I’ll remove that check and adapt it to translate any number of codes.</li>
+<li>@SMALLENBROEK Oscar noted about the Wright point that the code should not fail if it’s set to ‘simple’. I’ll update it.</li>
+<li>I’ll look into the docs from the ORDC class to see if there’s an easy way to build it.</li>
+</ol>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
