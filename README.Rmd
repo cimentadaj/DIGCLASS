@@ -60,6 +60,9 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO08 to MSEC - ISCO08 must be 3 digits
   - [X] ISCO08 to ESEG - ISCO08 must be 2 digits
 
+* **ESCO**
+  - [X] ESCO to ISCO08
+
 * **Extras**
   - [X] Translation between major/submajor/minor/unit groups for ISCO68, ISCO88 and ISCO08
   - [X] Repair ISCO variables
