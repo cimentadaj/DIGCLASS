@@ -87,7 +87,8 @@ library(dplyr)
 # Internal data for the European Social Survey round 6
 # containing different ISCO variables
 ess %>%
-  mutate(
+  transmute(
+    isco68,
     isei = isco68_to_isei(isco68),
     egp = isco68_to_egp(isco68, self_employed, emplno),
     egp_labels = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
@@ -120,3 +121,8 @@ This package has benefitted greatly from other open source packages that already
 ## Funding
 
 This project has been funded through the European Commission’s JRC Centre for Advanced Studies and the project Social Classes in the Digital Age (DIGCLASS): [https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en](https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en)
+
+
+3. @SMALLENBROEK Oscar I understand the concern of not being able to use these functions if it doesn't match exactly the number of digits. I've come up with a solution to this problem. The functions would translate any digits that the user passes returning whatever it finds. However, this means we need to remove the internal check for the number of digits. This check simply makes sure that for a given function (isco88_to_isco68, for example) the input should be 4-digits. If it's not, it fails. If you all agree, I'll remove that check and adapt it to translate any number of codes.
+4. @SMALLENBROEK Oscar noted about the Wright point that the code should not fail if it's set to 'simple'. I'll update it.
+6. I'll look into the docs from the ORDC class to see if there's an easy way to build it.

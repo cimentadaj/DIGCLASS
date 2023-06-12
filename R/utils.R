@@ -7,7 +7,7 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
 
   if (is_isco) {
     # If it's ESCO we skip this check
-    count_digits(x, digits = digits)
+    ## count_digits(x, digits = digits)
     check_isco(x, check_isco)
   }
 
@@ -118,7 +118,7 @@ multiple_cols_translator <- function(x,
 
   # All checks must being by whether the function has 4 digits (regardless of it's 1300 or 13111)
   x <- repair_isco(x, digits = 4)
-  count_digits(x, digits = digits)
+  ## count_digits(x, digits = digits)
   check_isco(x, check_isco)
 
   class_match <- match(x, translate_df[[1]])

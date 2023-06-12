@@ -92,10 +92,4 @@ isco_ready <- read_csv(isco_csv, col_types = list(ISCO08 = col_character(), ISCO
 isco_ready$ISCO08 <- repair_isco(isco_ready$ISCO08)
 ```
 
-Note that no messages were printed now. That's because the function is correct and nothing needs to be done. Similarly for Stata files, you should always specify that the ISCO variable should be read as a character like this:
-
-```{r, eval = FALSE}
-read_dta("ess.dta", col_types = c(ISCO08 = "character"))
-```
-
-Once you read your data, be sure to run it through `repair_isco` to notify of any problems.
+Note that no messages were printed now. That's because the function is correct and nothing needs to be done.

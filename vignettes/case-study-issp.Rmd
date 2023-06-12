@@ -114,11 +114,15 @@ Finally, for the number of employees we need to explicitly say if the respondent
 
 With these columns recoded, let's try to convert ISCO08 to MSEC using these columns:
 
-```{r, error = TRUE}
-issp <- issp %>% mutate(msec = isco08_to_msec(isco08, is_supervisor, self_employed, n_employees))
+```{r}
+issp <-
+  issp %>%
+  mutate(
+    msec = isco08_to_msec(isco08, is_supervisor, self_employed, n_employees)
+  )
 ```
 
-Aside from the usual warnings saying that some values are recoded to have 4 digits, there's an error message saying that the ISCO vector should be 3-digits. This might happen for some translations for which a certain number of digits might be necessary. For translating ISCO between different digits, we use the functions `isco*_swap` where `*` represents the given year of interest. For our case, we're looking for `isco08_swap`. At the same time, we can remove all those warnings of transforming values like `110` to `0110` by running `isco08` through `repair_isco` once and saving it.
+The usual warnings appear saying that some values are recoded to have 4 digits. Some times we want to translate digits other than 4, for example. For translating ISCO between different digits, we use the functions `isco*_swap` where `*` represents the given year of interest. For our case, we're looking for `isco08_swap`. At the same time, we can remove all those warnings of transforming values like `110` to `0110` by running `isco08` through `repair_isco` once and saving it.
 
 Let's do both:
 

@@ -43,7 +43,7 @@ reference:
     - isco88_to_isco88com
     - isco88_to_isco68
     - isco88com_to_wright
-
+    - esco_to_isco08
 
 - subtitle: Utility functions
   desc: >

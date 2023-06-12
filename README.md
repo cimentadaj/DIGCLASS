@@ -77,28 +77,26 @@ library(dplyr)
 # Internal data for the European Social Survey round 6
 # containing different ISCO variables
 ess %>%
-  mutate(
+  transmute(
+    isco68,
     isei = isco68_to_isei(isco68),
     egp = isco68_to_egp(isco68, self_employed, emplno),
     egp_labels = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
   )
-#> # A tibble: 48,285 × 15
-#>    isco68 isco88 isco88com isco08 emplno self_employed is_supervisor
-#>    <chr>  <chr>  <chr>     <chr>   <dbl>         <dbl>         <dbl>
-#>  1 5890   5169   5169      5414        0             1             0
-#>  2 2120   1222   1222      1321        0             0             1
-#>  3 7200   8120   8120      3135        0             0             0
-#>  4 9310   7141   7141      7131        0             0             1
-#>  5 6220   6111   6111      6111        0             0             0
-#>  6 6220   6111   6111      6111        0             0             1
-#>  7 9595   9313   9313      9313        0             0             1
-#>  8 6000   1221   1221      1311        0             0             1
-#>  9 6000   1221   1221      1311        2             1             1
-#> 10 6220   6111   6111      6111        0             0             1
+#> # A tibble: 48,285 × 4
+#>    isco68 isei  egp   egp_labels                            
+#>    <chr>  <chr> <chr> <chr>                                 
+#>  1 5890   35    6     'IVb: Self-employed with no employees'
+#>  2 2120   67    2     'II: Lower Controllers'               
+#>  3 7200   34    8     'VI: Skilled Worker'                  
+#>  4 9310   32    8     'VI: Skilled Worker'                  
+#>  5 6220   16    10    'VIIb: Farm Labor'                    
+#>  6 6220   16    10    'VIIb: Farm Labor'                    
+#>  7 9595   24    9     'VIIa: Unskilled Worker'              
+#>  8 6000   46    11    'IVc: Self-employed Farmer'           
+#>  9 6000   46    11    'IVc: Self-employed Farmer'           
+#> 10 6220   16    10    'VIIb: Farm Labor'                    
 #> # ℹ 48,275 more rows
-#> # ℹ 8 more variables: control_work <dbl>, control_daily <dbl>,
-#> #   work_status <dbl>, main_activity <dbl>, agea <dbl>, isei <chr>, egp <chr>,
-#> #   egp_labels <chr>
 ```
 
 The nomenclature of the function is `{origin}_to_{destination}` where `origin` is the origin class schema and `destination` is the destination class schema. The usual workflow is for you to type, for example `isco` and then hit `TAB` to get auto-completion on all possible translations.
@@ -127,3 +125,8 @@ This package has benefitted greatly from other open source packages that already
 ## Funding
 
 This project has been funded through the European Commission’s JRC Centre for Advanced Studies and the project Social Classes in the Digital Age (DIGCLASS): [https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en](https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en)
+
+
+3. @SMALLENBROEK Oscar I understand the concern of not being able to use these functions if it doesn't match exactly the number of digits. I've come up with a solution to this problem. The functions would translate any digits that the user passes returning whatever it finds. However, this means we need to remove the internal check for the number of digits. This check simply makes sure that for a given function (isco88_to_isco68, for example) the input should be 4-digits. If it's not, it fails. If you all agree, I'll remove that check and adapt it to translate any number of codes.
+4. @SMALLENBROEK Oscar noted about the Wright point that the code should not fail if it's set to 'simple'. I'll update it.
+6. I'll look into the docs from the ORDC class to see if there's an easy way to build it.
