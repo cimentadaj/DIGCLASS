@@ -108,6 +108,8 @@
 <li>
 <input type="checkbox" disabled checked>ISCO88 to ISCO68</li>
 <li>
+<input type="checkbox" disabled checked>ISCO88 to ORDC</li>
+<li>
 <input type="checkbox" disabled checked>ISCO88COM to ESEC - ISCO88COM must be 3 digits</li>
 <li>
 <input type="checkbox" disabled checked>ISCO88COM to ESEC-MP - ISCO88COM must be 3 digits</li>
@@ -230,11 +232,6 @@
 <h2 id="funding">Funding<a class="anchor" aria-label="anchor" href="#funding"></a>
 </h2>
 <p>This project has been funded through the European Commission’s JRC Centre for Advanced Studies and the project Social Classes in the Digital Age (DIGCLASS): <a href="https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en" class="external-link">https://joint-research-centre.ec.europa.eu/tools-and-laboratories/centre-advanced-studies/digclass_en</a></p>
-<ol start="3" style="list-style-type: decimal">
-<li>@SMALLENBROEK Oscar I understand the concern of not being able to use these functions if it doesn’t match exactly the number of digits. I’ve come up with a solution to this problem. The functions would translate any digits that the user passes returning whatever it finds. However, this means we need to remove the internal check for the number of digits. This check simply makes sure that for a given function (isco88_to_isco68, for example) the input should be 4-digits. If it’s not, it fails. If you all agree, I’ll remove that check and adapt it to translate any number of codes.</li>
-<li>@SMALLENBROEK Oscar noted about the Wright point that the code should not fail if it’s set to ‘simple’. I’ll update it.</li>
-<li>I’ll look into the docs from the ORDC class to see if there’s an easy way to build it.</li>
-</ol>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
