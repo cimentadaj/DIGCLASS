@@ -930,7 +930,12 @@ isco08_to_eseg <- function(x,
                            to_factor = FALSE) {
 
   x <- repair_isco(x, digits = 4)
-  count_digits(x, digits = 2)
+
+
+  # TODO: in case we want to count the exact number of digits, uncomment.
+  # this was commented because we want to allow flexibility. users with
+  # 3-digits should be able to translate even if they get NAs
+  ## count_digits(x, digits = 2)
   check_isco(x, check_isco = "isco08")
   isco1 <- substr(x, 1, 1)
   isco2 <- substr(x, 1, 2)

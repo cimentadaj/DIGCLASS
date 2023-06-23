@@ -7,6 +7,10 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
 
   if (is_isco) {
     # If it's ESCO we skip this check
+
+    # TODO: in case we want to count the exact number of digits, uncomment.
+    # this was commented because we want to allow flexibility. users with
+    # 3-digits should be able to translate even if they get NAs
     ## count_digits(x, digits = digits)
     check_isco(x, check_isco)
   }
@@ -118,6 +122,11 @@ multiple_cols_translator <- function(x,
 
   # All checks must being by whether the function has 4 digits (regardless of it's 1300 or 13111)
   x <- repair_isco(x, digits = 4)
+
+
+  # TODO: in case we want to count the exact number of digits, uncomment.
+  # this was commented because we want to allow flexibility. users with
+  # 3-digits should be able to translate even if they get NAs
   ## count_digits(x, digits = digits)
   check_isco(x, check_isco)
 
@@ -400,7 +409,7 @@ construct_wright <- function(x,
                              is_supervisor,
                              self_employed,
                              n_employees,
-                             control_work,
+                             control_work = NULL,
                              control_daily,
                              type,
                              label = FALSE,
@@ -848,6 +857,46 @@ construct_wright <- function(x,
   skill[skill == 24] <- 3
   skill[skill == 26] <- 3
 
+  wr_simp <- NA
+  wr_simp[n_employees == 2] <- 1
+  wr_simp[n_employees == 1] <- 2
+  wr_simp[n_employees == 0] <- 3
+  wr_simp[self_employed == 0 & is_supervisor == 1 & skill == 1] <- 4
+  wr_simp[self_employed == 0 & is_supervisor == 0 & skill == 1] <- 6
+  wr_simp[self_employed == 0 & is_supervisor == 1 & skill == 2] <- 7
+  wr_simp[self_employed == 0 & is_supervisor == 0 & skill == 2] <- 9
+  wr_simp[self_employed == 0 & is_supervisor == 1 & skill == 3] <- 10
+  wr_simp[self_employed == 0 & is_supervisor == 0 & skill == 3] <- 12
+  wr_simp <- as.character(wr_simp)
+
+  # If it's type simple we return early. This was a request from
+  # Oscar Smallenbroek. He wanted to be able to not provide "control_work"
+  # if type equls simple, so I return early before computing the other classes
+  if (type == "simple") {
+    lookup_simple <- c(
+      `1` = "Self empl w/10+ employees",
+      `2` = "Self empl w/1-9 employees",
+      `3` = "Self empl w/no empoyees",
+      `4` = "Expert managers",
+      `6` = "Expert workers",
+      `7` = "Skilled manager/superv",
+      `9` = "Skilled workers",
+      `10` = "Low skilled manager/superv",
+      `12` = "Low skilled workers"
+    )
+
+    if (label && to_factor) {
+      wr_simp <- factor(lookup_simple[wr_simp], levels = unname(lookup_simple), ordered = TRUE)
+      wr_simp <- unname(wr_simp)
+    } else if (label) {
+      wr_simp <- lookup_simple[wr_simp]
+      wr_simp <- unname(wr_simp)
+    } else if (to_factor) {
+      wr_simp <- factor(wr_simp, levels = names(lookup_simple), ordered = TRUE)
+    }
+    return(wr_simp)
+  }
+
   ## # MAN1: How to differentiate between supervisors and managers
   ## # based on whether they control their own work
   control_work[control_work >= 0 & control_work <= 7] <- 0
@@ -870,17 +919,6 @@ construct_wright <- function(x,
   man[self_employed == 0 & dp == 3 & control_daily > 1] <- 3
   man[self_employed == 0 & dp == 4 & control_daily == 1] <- 3
   man[self_employed == 0 & dp == 4 & control_daily > 1] <- 4
-
-  wr_simp <- NA
-  wr_simp[n_employees == 2] <- 1
-  wr_simp[n_employees == 1] <- 2
-  wr_simp[n_employees == 0] <- 3
-  wr_simp[self_employed == 0 & is_supervisor == 1 & skill == 1] <- 4
-  wr_simp[self_employed == 0 & is_supervisor == 0 & skill == 1] <- 6
-  wr_simp[self_employed == 0 & is_supervisor == 1 & skill == 2] <- 7
-  wr_simp[self_employed == 0 & is_supervisor == 0 & skill == 2] <- 9
-  wr_simp[self_employed == 0 & is_supervisor == 1 & skill == 3] <- 10
-  wr_simp[self_employed == 0 & is_supervisor == 0 & skill == 3] <- 12
 
   wr_dm <- NA
   wr_dm[wr_simp == 1] <- 1
@@ -939,21 +977,9 @@ construct_wright <- function(x,
   wr_p[wr_p2 == 7] <- 6.5
   wr_p[wr_p2 == 7.5] <- 7.5
 
-  wr_simp <- as.character(wr_simp)
   wr_dm <- as.character(wr_dm)
   wr_p <- as.character(wr_p)
 
-  lookup_simple <- c(
-    `1` = "Self empl w/10+ employees",
-    `2` = "Self empl w/1-9 employees",
-    `3` = "Self empl w/no empoyees",
-    `4` = "Expert managers",
-    `6` = "Expert workers",
-    `7` = "Skilled manager/superv",
-    `9` = "Skilled workers",
-    `10` = "Low skilled manager/superv",
-    `12` = "Low skilled workers"
-  )
 
   lookup_dm <- c(
     `1` = "Self empl w/10+ employees",
@@ -983,19 +1009,6 @@ construct_wright <- function(x,
     `7` = "Skilled workers",
     `7.5` = "Low skilled workers"
   )
-
-  if (type == "simple") {
-    if (label && to_factor) {
-      wr_simp <- factor(lookup_simple[wr_simp], levels = unname(lookup_simple), ordered = TRUE)
-      wr_simp <- unname(wr_simp)
-    } else if (label) {
-      wr_simp <- lookup_simple[wr_simp]
-      wr_simp <- unname(wr_simp)
-    } else if (to_factor) {
-      wr_simp <- factor(wr_simp, levels = names(lookup_simple), ordered = TRUE)
-    }
-    return(wr_simp)
-  }
 
   if (type == "decision-making") {
     if (label && to_factor) {

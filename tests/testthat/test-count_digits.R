@@ -1,3 +1,8 @@
+
+# TODO: in case we want to count the exact number of digits, uncomment.
+# this was commented because we want to allow flexibility. users with
+# 3-digits should be able to translate even if they get NAs
+
 ## library(testthat)
 
 ## all_vals <- expand.grid(digits = 1:4, to = 1:4)

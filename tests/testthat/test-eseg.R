@@ -53,17 +53,19 @@ test_that("tests eseg works corrects", {
   expect_true(length(unique(res$eseg)) == 9)
   expect_true(length(unique(res$eseg_label)) == 9)
 
-  expect_error(
-    mutate(
-      ess,
-      eseg = isco08_to_eseg(
-        isco08,
-        work_status,
-        main_activity,
-        agea,
-        type = "one-digit"
-      )
-    )
-  )
+  # TODO: This should be uncommented if count_digits is included again
+  # in the library
+  ## expect_error(
+  ##   mutate(
+  ##     ess,
+  ##     eseg = isco08_to_eseg(
+  ##       isco08,
+  ##       work_status,
+  ##       main_activity,
+  ##       agea,
+  ##       type = "one-digit"
+  ##     )
+  ##   )
+  ## )
 
 })

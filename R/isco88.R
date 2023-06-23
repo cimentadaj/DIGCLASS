@@ -791,7 +791,11 @@ isco88com_to_wright <- function(x,
                                 label = FALSE,
                                 to_factor = FALSE) {
   x <- repair_isco(x)
-  count_digits(x, digits = 4)
+
+  # TODO: in case we want to count the exact number of digits, uncomment.
+  # this was commented because we want to allow flexibility. users with
+  # 3-digits should be able to translate even if they get NAs
+  ## count_digits(x, digits = 4)
   check_isco(x, check_isco = "isco88com")
 
   construct_wright(
@@ -805,6 +809,78 @@ isco88com_to_wright <- function(x,
     label = label,
     to_factor = to_factor
   )
+}
+
+#' `r rg_template_title("ISCO88", "ORDC")`
+#'
+#' `r rg_template_intro("ISCO88", "ORDC", "isco88_to_ordc")` ORDC stands for Oslo Register Data Class.
+#'
+#' @details The translation implemented in this function comes from the tables found in [https://journals.sagepub.com/doi/suppl/10.1177/00031224211020012/suppl_file/sj-pdf-1-asr-10.1177_00031224211020012.pdf](https://journals.sagepub.com/doi/suppl/10.1177/00031224211020012/suppl_file/sj-pdf-1-asr-10.1177_00031224211020012.pdf). That table is the appendix of the paper "Wealth Accumulation and Opportunity Hoarding: Class-Origin Wealth Gaps over a Quarter of a Century in a Scandinavian Country" from Nordli and Toft.
+#'
+#' If `income` is specified, occupations in the economic upper class, the economic upper-middle class and the economic lower-middle class are grouped according to their income. The top 10 percent are assigned to the upper class, the next 40 percent to the upper-middle class, and the lowest 50 percent of earners to the lower-middle class. If income is not specified, a direct match to the ORDC class schema is performed.
+#'
+#' For more information on this class schema, please check the references below:
+#'
+#' * Hansen, M. N., & Toft, M. (2021). Wealth Accumulation and Opportunity Hoarding: Class-Origin Wealth Gaps over a Quarter of a Century in a Scandinavian Country. American Sociological Review, 86(4), 603–638. [https://doi.org/10.1177/00031224211020012](https://doi.org/10.1177/00031224211020012)
+#'
+#' @param x `r rg_template_arg_x("ISCO")`
+#' @param income A numeric vector with the income corresponding to each respondent. See the details section for more information on how this is used.
+#' @param label `r rg_template_arg_label("ORDC")`
+#' @param to_factor `r rg_template_arg_factor("ORDC")`
+#'
+#' @return `r rg_template_return("ORDC")`
+#'
+#' @order 1
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' # isco88
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     ordc = isco88_to_ordc(isco88, label = FALSE),
+#'     ordc_label = isco88_to_ordc(isco88, label = TRUE)
+#'   )
+#'
+#' @export
+isco88_to_ordc <- function(x, income = NULL, label = FALSE, to_factor = FALSE) {
+  x <- common_translator(
+    x,
+    input_var = "ISCO88",
+    output_var = "ORDC",
+    translate_df = all_schemas$isco88_to_ordc,
+    translate_label_df = all_labels$ordc,
+    check_isco = "isco88",
+    label = label,
+    to_factor = to_factor
+  )
+
+  if (!is.null(income)) {
+    if (label) {
+      equal_to <- "Upper-middle class: economic"
+      assign_to1 <- "Lower-middle class: economic"
+      assign_to2 <- "Upper class: class: economi"
+    } else {
+      equal_to <- 6
+      assign_to1 <- 9
+      assign_to2 <- 3
+    }
+
+    # Define the cut-off values
+    lower <- stats::quantile(income, 0.5, na.rm = TRUE)
+    upper <- stats::quantile(income, 0.9, na.rm = TRUE)
+
+    # Adjust economic classes
+    x <- dplyr::case_when(
+      !is.na(income) & income <= lower & x == equal_to ~ assign_to1,
+      !is.na(income) & income >= upper & x == equal_to ~ assign_to2,
+      TRUE ~ x
+    )
+
+  }
+
+  x
 }
 
 #' @rdname isco08_swap
