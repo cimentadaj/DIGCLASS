@@ -534,10 +534,10 @@ isco88com_to_esec_mp <- function(x,
                                  label = FALSE,
                                  to_factor = FALSE) {
   esec <- isco88com_to_esec(
-    x,
-    is_supervisor,
-    self_employed,
-    n_employees,
+    x = x,
+    is_supervisor = is_supervisor,
+    self_employed = self_employed,
+    n_employees = n_employees,
     full_method = full_method,
     label = FALSE
   )
@@ -561,11 +561,11 @@ isco88com_to_esec_mp <- function(x,
   # match.
   lookup_esec <- stats::setNames(as.character(5:11), as.character(3:9))
   esec_mp <- managers_professionals_helper(
-    x,
-    esec,
-    is_supervisor,
-    self_employed,
-    n_employees,
+    x = x,
+    esec = esec,
+    is_supervisor = is_supervisor,
+    n_employees = n_employees,
+    self_employed = self_employed,
     lookup_labels = lookup_esec,
     schema_labels = labs,
     label = label,

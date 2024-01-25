@@ -1,11 +1,7 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-
-
 # DIGCLASS
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/cimentadaj/DIGCLASS/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/cimentadaj/DIGCLASS/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://code.europa.eu/digclass/digclass/badges/main/pipeline.svg)](https://code.europa.eu/digclass/digclass/-/commits/main)
 <!-- badges: end -->
 
 The `DIGCLASS` R package aims to make translation between occupational social classes easy and comprehensive. It facilitates the translation of the International Standard Classification of Occupations (ISCO) from 1968, 1988 and 2008 to a wide range of social class schemes.
@@ -59,11 +55,12 @@ This package is a work in progress and has implemented currently these translati
 
 ## Installation
 
-You can install the development version of DIGCLASS from [GitHub](https://github.com/) with:
+You can install the development version of DIGCLASS from [GitLab](https://code.europa.eu/digclass/digclass) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("cimentadaj/DIGCLASS")
+devtools::install_git("https://code.europa.eu/digclass/digclass.git")
+
 ```
 
 ## Example
@@ -112,7 +109,7 @@ For those class schemas that have labels, the `label` argument returns the label
 
 3. Add a new function inside `R/` with the convention `{origin}_to_{destination}()` where origin and destination are the class schemas we're translating. Please have a look at other translation to recycle common functions to do translations.
 
-4. Add proper documentation to the function
+4. Add proper documentation to the function.
 
 ## Other R packages
 
