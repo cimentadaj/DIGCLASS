@@ -538,8 +538,16 @@ isco08_to_siops <- function(x, to_factor = FALSE) {
 #'
 #' `r rg_template_intro("ISCO08/ISCO88COM", "MSEC", paste0("isco", c('08', '88com'), "_to_msec"), digit = 3)`
 #'
-#' These translations were created from the document "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. Although originally called ESEG-Revised, the class schema has been formally called MSEC.
-#'
+#' The Micro Socio-Economic Classes (MSECS) is a micro-level implementation of the ESEC which clusters micro-SECs by skill similarity. 
+#' By aggregating MSECS researchers can arrive at ESEC or ESEC-MP. MSECS provides a micro-level class schema which retains the ESEC criteria of employment relations 
+#' and ownership of the means of production. 
+#' 
+#'  For more information on this class schema, please check the references below:
+#'  
+#'  Florian R. Hertel, Carlo Barone, Oscar Smallenbroek (2024) The multiverse of social class. A large-scale assessment of macro-level, meso-level and micro-level approaches to class analysis. (Under review)
+#' 
+#' A prototype of MSECS was created based on ESEG and is documented in "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors.
+#' The assignments of the prototype are still stored in the package under the files ending with msec_proto.
 #' `r rg_template_digits_warning(digit = 3)`
 #'
 #' @inheritParams isco08_to_esec
