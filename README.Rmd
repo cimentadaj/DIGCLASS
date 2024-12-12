@@ -102,7 +102,7 @@ For those class schemas that have labels, the `label` argument returns the label
 
 ## Steps to add a new translation
 
-1. Add two csv files respectively in `data-raw/social_classes/labels/` and `data-raw/social_classes/translation/` containing the labels and translation for the two schemas.
+1. Add two csv files respectively in `data-raw/social_classes/labels/` and `data-raw/social_classes/translation/` containing the labels and translation for the two schemas. When saving the csv file set `row.names = FALSE`.
 
 2. Run the script `data-raw/social_classes.R` (with the root directory in `data-raw/`)
 
