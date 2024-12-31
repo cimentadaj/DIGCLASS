@@ -30,6 +30,8 @@ reference:
     - isco08_to_isei
     - isco08_to_siops
     - isco88_to_mps
+    - isco08_to_oep
+    - isco88_to_oep
 
 - subtitle: Other schemas
   desc: >
