@@ -80,7 +80,6 @@ Here's an example of translating ISCO68 to ISEI and EGP class schemas:
 
 ``` r
 library(DIGCLASS)
-#> Error in library(DIGCLASS): there is no package called 'DIGCLASS'
 library(dplyr)
 
 # Internal data for the European Social Survey round 6
@@ -92,7 +91,20 @@ ess %>%
     egp = isco68_to_egp(isco68, self_employed, emplno),
     egp_labels = isco68_to_egp(isco68, self_employed, emplno, label = TRUE)
   )
-#> Error: object 'ess' not found
+#> # A tibble: 48,285 × 4
+#>    isco68 isei  egp   egp_labels                            
+#>    <chr>  <chr> <chr> <chr>                                 
+#>  1 5890   35    6     'IVb: Self-employed with no employees'
+#>  2 2120   67    2     'II: Lower Controllers'               
+#>  3 7200   34    8     'VI: Skilled Worker'                  
+#>  4 9310   32    8     'VI: Skilled Worker'                  
+#>  5 6220   16    10    'VIIb: Farm Labor'                    
+#>  6 6220   16    10    'VIIb: Farm Labor'                    
+#>  7 9595   24    9     'VIIa: Unskilled Worker'              
+#>  8 6000   46    11    'IVc: Self-employed Farmer'           
+#>  9 6000   46    11    'IVc: Self-employed Farmer'           
+#> 10 6220   16    10    'VIIb: Farm Labor'                    
+#> # ℹ 48,275 more rows
 ```
 
 The nomenclature of the function is `{origin}_to_{destination}` where `origin` is the origin class schema and `destination` is the destination class schema. The usual workflow is for you to type, for example `isco` and then hit `TAB` to get auto-completion on all possible translations.
