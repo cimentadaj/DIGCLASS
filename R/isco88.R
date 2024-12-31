@@ -169,6 +169,43 @@ isco88_to_siops <- function(x, to_factor = FALSE) {
   )
 }
 
+#' @rdname isco08_to_oep
+#' @export
+isco88_to_oep <- function(x, to_factor = FALSE) {
+  # Determine which translation table to use based on the input
+  x <- repair_isco(x, digits = 4)
+  check_isco(x, check_isco = "isco88")
+
+  # Count zeros to determine digit level
+  x_clean <- x[!is.na(x)]
+  digit_level <- nchar(gsub("0+$", "", x_clean[1]))
+
+  schema_name <- paste0("isco88_", digit_level, "_to_oep")
+
+  translate_label_df <-
+    dplyr::relocate(all_schemas[[schema_name]], 2, 1) %>%
+    dplyr::arrange(dplyr::pick(dplyr::contains("OEP")))
+
+  # TODO: remove
+  translate_df <-
+    all_schemas[[schema_name]] %>%
+    mutate(
+      ISCO08 = pad_right_with_zero(ISCO08, width = 4)
+    )
+
+  common_translator(
+    x,
+    input_var = "ISCO88",
+    output_var = "OEP",
+    translate_df = translate_df,
+    translate_label_df = translate_label_df,
+    check_isco = "isco08",
+    label = FALSE,
+    to_factor = to_factor
+  )
+}
+
+
 #' `r rg_template_title("ISCO88", "MPS")`
 #'
 #' `r rg_template_intro("ISCO88", "MPS", "isco88_to_mps")`

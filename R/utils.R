@@ -17,7 +17,7 @@ common_translator <- function(x, input_var, output_var, translate_df, translate_
 
   res <-
     tibble::tibble(x = as.character(x)) %>%
-    dplyr::left_join(translate_df, by = c("x" = input_var))
+    dplyr::left_join(translate_df, by = c("x" = input_var), multiple = "first")
 
   if (label) {
     no_labs <- c("isei", "siops", "mps88", "iseisps")
@@ -1137,3 +1137,14 @@ rg_template_return <- function(to) {
 }
 
 utils::globalVariables(c("all_schemas", "all_labels", "input_var", "output_var"))
+
+pad_right_with_zero <- function(x, width = 4) {
+  sapply(x, function(elem) {
+    needed <- width - nchar(elem)
+    if (needed > 0) {
+      paste0(elem, strrep("0", needed))
+    } else {
+      elem # If it's already >= total_length, leave it as is.
+    }
+  })
+}
