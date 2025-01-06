@@ -34,6 +34,7 @@ df$oep <- isco08_to_oep(df$isco08_3d)
 \examples{
 library(dplyr)
 
+## ISCO08
 # Using 4-digit ISCO (default)
 ess \%>\%
   transmute(
@@ -63,6 +64,38 @@ ess \%>\%
     isco08,
     isco08_1d = isco08_swap(isco08, from = 4, to = 1),
     oep = isco08_to_oep(isco08_1d)
+  )
+
+## ISCO88
+# Using 4-digit ISCO (default)
+ess \%>\%
+  transmute(
+    isco88,
+    oep = isco88_to_oep(isco88)
+  )
+
+# Using 3-digit ISCO
+ess \%>\%
+  transmute(
+    isco88,
+    isco88_3d = isco88_swap(isco88, from = 4, to = 3),
+    oep = isco88_to_oep(isco88_3d)
+  )
+
+# Using 2-digit ISCO
+ess \%>\%
+  transmute(
+    isco88,
+    isco88_2d = isco88_swap(isco88, from = 4, to = 2),
+    oep = isco88_to_oep(isco88_2d)
+  )
+
+# Using 1-digit ISCO
+ess \%>\%
+  transmute(
+    isco88,
+    isco88_1d = isco88_swap(isco88, from = 4, to = 1),
+    oep = isco88_to_oep(isco88_1d)
   )
 
 }

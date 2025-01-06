@@ -180,26 +180,21 @@ isco88_to_oep <- function(x, to_factor = FALSE) {
   x_clean <- x[!is.na(x)]
   digit_level <- nchar(gsub("0+$", "", x_clean[1]))
 
-  schema_name <- paste0("isco88_", digit_level, "_to_oep")
+  schema_name <- paste0("isco88_", digit_level, "_to_oep88")
 
   translate_label_df <-
     dplyr::relocate(all_schemas[[schema_name]], 2, 1) %>%
-    dplyr::arrange(dplyr::pick(dplyr::contains("OEP")))
+    dplyr::arrange(dplyr::pick(dplyr::contains("OEP88")))
 
-  # TODO: remove
-  translate_df <-
-    all_schemas[[schema_name]] %>%
-    mutate(
-      ISCO08 = pad_right_with_zero(ISCO08, width = 4)
-    )
+  translate_df <- all_schemas[[schema_name]]
 
   common_translator(
     x,
     input_var = "ISCO88",
-    output_var = "OEP",
+    output_var = "OEP88",
     translate_df = translate_df,
     translate_label_df = translate_label_df,
-    check_isco = "isco08",
+    check_isco = "isco88",
     label = FALSE,
     to_factor = to_factor
   )

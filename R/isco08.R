@@ -751,6 +751,7 @@ isco08_to_ipics <- function(x, self_employed, n_employees, label = FALSE, to_fac
 #' @examples
 #' library(dplyr)
 #'
+#' ## ISCO08
 #' # Using 4-digit ISCO (default)
 #' ess %>%
 #'   transmute(
@@ -782,6 +783,38 @@ isco08_to_ipics <- function(x, self_employed, n_employees, label = FALSE, to_fac
 #'     oep = isco08_to_oep(isco08_1d)
 #'   )
 #'
+#' ## ISCO88
+#' # Using 4-digit ISCO (default)
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     oep = isco88_to_oep(isco88)
+#'   )
+#'
+#' # Using 3-digit ISCO
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     isco88_3d = isco88_swap(isco88, from = 4, to = 3),
+#'     oep = isco88_to_oep(isco88_3d)
+#'   )
+#'
+#' # Using 2-digit ISCO
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     isco88_2d = isco88_swap(isco88, from = 4, to = 2),
+#'     oep = isco88_to_oep(isco88_2d)
+#'   )
+#'
+#' # Using 1-digit ISCO
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     isco88_1d = isco88_swap(isco88, from = 4, to = 1),
+#'     oep = isco88_to_oep(isco88_1d)
+#'   )
+#'
 #' @export
 isco08_to_oep <- function(x, to_factor = FALSE) {
   # Determine which translation table to use based on the input
@@ -792,25 +825,18 @@ isco08_to_oep <- function(x, to_factor = FALSE) {
   x_clean <- x[!is.na(x)]
   digit_level <- nchar(gsub("0+$", "", x_clean[1]))
 
-  schema_name <- paste0("isco08_", digit_level, "_to_oep")
+  schema_name <- paste0("isco08_", digit_level, "_to_oep08")
 
   translate_label_df <-
     dplyr::relocate(all_schemas[[schema_name]], 2, 1) %>%
-    dplyr::arrange(dplyr::pick(dplyr::contains("OEP")))
+    dplyr::arrange(dplyr::pick(dplyr::contains("OEP08")))
 
-  # TODO: Once they come back with the correct csv files, simply
-  # remove this from the code and it should work. Same thing for isco88_to_oep.
-  # Also remove pad_right_with_zero
-  translate_df <-
-    all_schemas[[schema_name]] %>%
-    mutate(
-      ISCO08 = pad_right_with_zero(ISCO08, width = 4)
-    )
+  translate_df <- all_schemas[[schema_name]]
 
   common_translator(
     x,
     input_var = "ISCO08",
-    output_var = "OEP",
+    output_var = "OEP08",
     translate_df = translate_df,
     translate_label_df = translate_label_df,
     check_isco = "isco08",
@@ -1134,5 +1160,3 @@ isco08_swap <- function(x,
     label = FALSE,
   )
 }
-
-
