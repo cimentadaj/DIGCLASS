@@ -736,8 +736,18 @@ isco08_to_ipics <- function(x, self_employed, n_employees, label = FALSE, to_fac
 #' of the overall earnings structure.
 #'
 #' @details
+#'
+#'
+#' This function translates ISCO08/ISCO88 codes (at 1-, 2-, 3-, 4-digit) to OEP, a hierarchical indicator of occupations’ earning potential. OEP is a numeric scale that measures occupations’ median earnings and expresses them as percentiles of the overall earnings structure.
+#'
+#' As it does not have any labels, the label argument is not available in this function. For more information on this scale, please refer to:
+#'
+#' * Oesch, D., Lipps, O., Shahbazian, R., Bihagen, E. and Morris, K., (2024) Occupational earning potential: A new measure of social hierarchy applied to Europe, JRC Labour, Education and Technology working paper series 2024/06, European Commission, Seville, JRC139883. https://joint-research-centre.ec.europa.eu/scientific-activities-z/employment/jrc-labour-education-and-technology-working-paper-series_en
+#'
+#'
 #' This function expects 4-digit ISCO codes. For different digit levels (1-3), first convert
 #' using `isco08_swap()` or `isco88_swap()`. For example:
+#' 
 #' ```r
 #' # For 3-digit ISCO:
 #' df$isco08_3d <- isco08_swap(df$isco08, from = 4, to = 3)
