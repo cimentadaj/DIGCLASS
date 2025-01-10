@@ -1,3 +1,7 @@
+---
+output: github_document
+---
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
@@ -36,6 +40,7 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO88COM to ESEC-MP - ISCO88COM must be 3 digits
   - [X] ISCO88COM to MSEC - ISCO88COM must be 3 digits
   - [X] ISCO88COM to WRIGHT
+  - [X] ISCO88 to OEP (1-4 digits)
 
 * **ISCO08**
   - [X] ISCO08 to ISCO88
@@ -49,6 +54,8 @@ This package is a work in progress and has implemented currently these translati
   - [X] ISCO08 to ESEC-MP - ISCO08 must be 3 digits
   - [X] ISCO08 to MSEC - ISCO08 must be 3 digits
   - [X] ISCO08 to ESEG - ISCO08 must be 2 digits
+  - [X] ISCO08 to OEP (1-4 digits)
+
 
 * **ESCO**
   - [X] ESCO to ISCO08
@@ -71,7 +78,7 @@ devtools::install_github("cimentadaj/DIGCLASS")
 Here's an example of translating ISCO68 to ISEI and EGP class schemas:
 
 
-```r
+``` r
 library(DIGCLASS)
 library(dplyr)
 

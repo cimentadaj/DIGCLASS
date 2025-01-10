@@ -21,7 +21,6 @@ all_labels <- map(all_labels_csv, ~ {
     mutate_all(~ if_else(.x == ".", NA_character_, .x))
 })
 
-
 names(all_labels) <- gsub(".csv", "", basename(all_labels_csv))
 
 usethis::use_data(all_schemas, overwrite = TRUE)

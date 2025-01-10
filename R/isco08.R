@@ -736,6 +736,133 @@ isco08_to_ipics <- function(x, self_employed, n_employees, label = FALSE, to_fac
   )
 }
 
+#' Translate ISCO codes to OEP (Occupational Earning Potential)
+#'
+#' @description
+#' Translates ISCO08/ISCO88 codes to OEP, a hierarchical indicator of occupations' earning potential.
+#' OEP is a numeric scale that measures occupations' median earnings and expresses them as percentiles
+#' of the overall earnings structure.
+#'
+#' @details
+#'
+#'
+#' This function translates ISCO08/ISCO88 codes (at 1-, 2-, 3-, 4-digit) to OEP, a hierarchical indicator of occupations’ earning potential. OEP is a numeric scale that measures occupations’ median earnings and expresses them as percentiles of the overall earnings structure.
+#'
+#' As it does not have any labels, the label argument is not available in this function. For more information on this scale, please refer to:
+#'
+#' * Oesch, D., Lipps, O., Shahbazian, R., Bihagen, E. and Morris, K., (2024) Occupational earning potential: A new measure of social hierarchy applied to Europe, JRC Labour, Education and Technology working paper series 2024/06, European Commission, Seville, JRC139883. https://joint-research-centre.ec.europa.eu/scientific-activities-z/employment/jrc-labour-education-and-technology-working-paper-series_en
+#'
+#'
+#' This function expects 4-digit ISCO codes. For different digit levels (1-3), first convert
+#' using `isco08_swap()` or `isco88_swap()`. For example:
+#' 
+#' ```r
+#' # For 3-digit ISCO:
+#' df$isco08_3d <- isco08_swap(df$isco08, from = 4, to = 3)
+#' df$oep <- isco08_to_oep(df$isco08_3d)
+#' ```
+#'
+#' @param x A character vector of 4-digit ISCO08/ISCO88 codes
+#' @param to_factor A logical value indicating whether to return a factor instead of a character
+#' @return A character vector with OEP values
+#'
+#' @examples
+#' library(dplyr)
+#'
+#' ## ISCO08
+#' # Using 4-digit ISCO (default)
+#' ess %>%
+#'   transmute(
+#'     isco08,
+#'     oep = isco08_to_oep(isco08)
+#'   )
+#'
+#' # Using 3-digit ISCO
+#' ess %>%
+#'   transmute(
+#'     isco08,
+#'     isco08_3d = isco08_swap(isco08, from = 4, to = 3),
+#'     oep = isco08_to_oep(isco08_3d)
+#'   )
+#'
+#' # Using 2-digit ISCO
+#' ess %>%
+#'   transmute(
+#'     isco08,
+#'     isco08_2d = isco08_swap(isco08, from = 4, to = 2),
+#'     oep = isco08_to_oep(isco08_2d)
+#'   )
+#'
+#' # Using 1-digit ISCO
+#' ess %>%
+#'   transmute(
+#'     isco08,
+#'     isco08_1d = isco08_swap(isco08, from = 4, to = 1),
+#'     oep = isco08_to_oep(isco08_1d)
+#'   )
+#'
+#' ## ISCO88
+#' # Using 4-digit ISCO (default)
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     oep = isco88_to_oep(isco88)
+#'   )
+#'
+#' # Using 3-digit ISCO
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     isco88_3d = isco88_swap(isco88, from = 4, to = 3),
+#'     oep = isco88_to_oep(isco88_3d)
+#'   )
+#'
+#' # Using 2-digit ISCO
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     isco88_2d = isco88_swap(isco88, from = 4, to = 2),
+#'     oep = isco88_to_oep(isco88_2d)
+#'   )
+#'
+#' # Using 1-digit ISCO
+#' ess %>%
+#'   transmute(
+#'     isco88,
+#'     isco88_1d = isco88_swap(isco88, from = 4, to = 1),
+#'     oep = isco88_to_oep(isco88_1d)
+#'   )
+#'
+#' @export
+isco08_to_oep <- function(x, to_factor = FALSE) {
+  # Determine which translation table to use based on the input
+  x <- repair_isco(x, digits = 4)
+  check_isco(x, check_isco = "isco08")
+
+  # Count zeros to determine digit level
+  x_clean <- x[!is.na(x)]
+  digit_level <- nchar(gsub("0+$", "", x_clean[1]))
+
+  schema_name <- paste0("isco08_", digit_level, "_to_oep08")
+
+  translate_label_df <-
+    dplyr::relocate(all_schemas[[schema_name]], 2, 1) %>%
+    dplyr::arrange(dplyr::pick(dplyr::contains("OEP08")))
+
+  translate_df <- all_schemas[[schema_name]]
+
+  common_translator(
+    x,
+    input_var = "ISCO08",
+    output_var = "OEP08",
+    translate_df = translate_df,
+    translate_label_df = translate_label_df,
+    check_isco = "isco08",
+    label = FALSE,
+    to_factor = to_factor
+  )
+}
+
 
 
 #' `r rg_template_title("ISCO08/ISCO88", "OESCH16/OESCH8/OESCH5")`
