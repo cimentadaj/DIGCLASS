@@ -616,9 +616,16 @@ isco88com_to_msec <- function(x,
                               self_employed,
                               n_employees,
                               label = FALSE,
-                              to_factor = FALSE) {
+                              to_factor = FALSE,
+                              proto = FALSE) {
 
-
+  if (proto) {
+    translate_df <- all_schemas$isco08_to_msec_proto
+    translate_label_df <- all_labels$msec_proto
+    } else {
+    translate_df <- all_schemas$isco08_to_msec
+    translate_label_df <- all_labels$msec
+  }
 
   col_position <- dplyr::case_when(
     self_employed == 1 & n_employees >= 10 ~ 2,
@@ -632,8 +639,8 @@ isco88com_to_msec <- function(x,
     x = x,
     col_position = col_position,
     output_var = "MSEC",
-    translate_df = all_schemas$isco88com_to_msec,
-    translate_label_df = all_labels$msec,
+    translate_df = translate_df,
+    translate_label_df = translate_label_df,
     label = label,
     check_isco = "isco88com",
     digits = 3,

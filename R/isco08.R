@@ -538,21 +538,23 @@ isco08_to_siops <- function(x, to_factor = FALSE) {
 #'
 #' `r rg_template_intro("ISCO08/ISCO88COM", "MSEC", paste0("isco", c('08', '88com'), "_to_msec"), digit = 3)`
 #'
-#' The Micro Socio-Economic Classes (MSECS) is a micro-level implementation of the ESEC which clusters micro-SECs by skill similarity. 
-#' By aggregating MSECS researchers can arrive at ESEC or ESEC-MP. MSECS provides a micro-level class schema which retains the ESEC criteria of employment relations 
-#' and ownership of the means of production. 
-#' 
+#' The Micro Socio-Economic Classes (MSECS) is a micro-level implementation of the ESEC which clusters micro-SECs by skill similarity. By aggregating MSECS researchers can arrive at ESEC or ESEC-MP. MSECS provides a micro-level class schema which retains the ESEC criteria of employment relations and ownership of the means of production.
+#'
 #'  For more information on this class schema, please check the references below:
-#'  
-#'  Florian R. Hertel, Carlo Barone, Oscar Smallenbroek (2024) The multiverse of social class. A large-scale assessment of macro-level, meso-level and micro-level approaches to class analysis. (Under review)
-#' 
-#' A prototype of MSECS was created based on ESEG and is documented in "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors.
-#' The assignments of the prototype are still stored in the package under the files ending with msec_proto.
+#'
+#'  * Florian R. Hertel, Carlo Barone, Oscar Smallenbroek (2024) The multiverse of social class. A large-scale assessment of macro-level, meso-level and micro-level approaches to class analysis. (Under review)
+#'
+#' A prototype of MSECS was created based on ESEG and is documented in "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. This 'proto' version of MSEC was the default translation for all `isco_*_to_msec`` functions in this package. As of the 12th of January 2025 the proto version is **not** the default, but instead the new MSEC documented here. For users that aim to reproduce previous analysis before this date, please set `proto = TRUE`.
+#'
+#' The example sections contain some examples on how to switch between the proto and current version.
+#'
+#'
 #' `r rg_template_digits_warning(digit = 3)`
 #'
 #' @inheritParams isco08_to_esec
 #' @param label `r rg_template_arg_label("MSEC")`
 #' @param to_factor `r rg_template_arg_factor("MSEC")`
+#' @param proto A boolean set to `FALSE` by default that controls whether to use the legacy 'prototype' version of MSEC. See the details section for more information.
 #'
 #' @return `r rg_template_return("MSEC")`
 #'
@@ -582,6 +584,23 @@ isco08_to_siops <- function(x, to_factor = FALSE) {
 #'       self_employed,
 #'       emplno,
 #'       label = FALSE
+#'     ),
+#'      # Proto translation. See details for more information on what proto is.
+#'     msec_proto_label = isco08_to_msec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE,
+#'       proto = TRUE
+#'     ),
+#'     msec_proto = isco08_to_msec(
+#'       isco08_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE,
+#'       proto = TRUE
 #'     )
 #'   )
 #'
@@ -602,6 +621,23 @@ isco08_to_siops <- function(x, to_factor = FALSE) {
 #'       self_employed,
 #'       emplno,
 #'       label = FALSE
+#'     ),
+#'     # Proto translation. See details for more information on what proto is.
+#'     msec_proto_label = isco88com_to_msec(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = TRUE,
+#'       proto = TRUE
+#'     ),
+#'     msec_proto = isco88com_to_msec(
+#'       isco88com_three,
+#'       is_supervisor,
+#'       self_employed,
+#'       emplno,
+#'       label = FALSE,
+#'       proto = TRUE
 #'     )
 #'   )
 #'
@@ -611,7 +647,18 @@ isco08_to_msec <- function(x,
                            self_employed,
                            n_employees,
                            label = FALSE,
-                           to_factor = FALSE) {
+                           to_factor = FALSE,
+                           proto = FALSE
+                           ) {
+
+  if (proto) {
+    translate_df <- all_schemas$isco08_to_msec_proto
+    translate_label_df <- all_labels$msec_proto
+    } else {
+    translate_df <- all_schemas$isco08_to_msec
+    translate_label_df <- all_labels$msec
+  }
+
   col_position <- dplyr::case_when(
     self_employed == 1 & n_employees >= 10 ~ 2,
     self_employed == 1 & dplyr::between(n_employees, 1, 9) ~ 3,
@@ -624,8 +671,8 @@ isco08_to_msec <- function(x,
     x = x,
     col_position = col_position,
     output_var = "MSEC",
-    translate_df = all_schemas$isco08_to_msec,
-    translate_label_df = all_labels$msec,
+    translate_df = translate_df,
+    translate_label_df = translate_label_df,
     label = label,
     check_isco = "isco08",
     digits = 3,
@@ -755,7 +802,7 @@ isco08_to_ipics <- function(x, self_employed, n_employees, label = FALSE, to_fac
 #'
 #' This function expects 4-digit ISCO codes. For different digit levels (1-3), first convert
 #' using `isco08_swap()` or `isco88_swap()`. For example:
-#' 
+#'
 #' ```r
 #' # For 3-digit ISCO:
 #' df$isco08_3d <- isco08_swap(df$isco08, from = 4, to = 3)
