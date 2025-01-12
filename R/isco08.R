@@ -648,8 +648,7 @@ isco08_to_msec <- function(x,
                            n_employees,
                            label = FALSE,
                            to_factor = FALSE,
-                           proto = FALSE
-                           ) {
+                           proto = FALSE) {
 
   if (proto) {
     translate_df <- all_schemas$isco08_to_msec_proto

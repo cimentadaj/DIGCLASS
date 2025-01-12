@@ -620,10 +620,10 @@ isco88com_to_msec <- function(x,
                               proto = FALSE) {
 
   if (proto) {
-    translate_df <- all_schemas$isco08_to_msec_proto
+    translate_df <- all_schemas$isco88com_to_msec_proto
     translate_label_df <- all_labels$msec_proto
     } else {
-    translate_df <- all_schemas$isco08_to_msec
+    translate_df <- all_schemas$isco88com_to_msec
     translate_label_df <- all_labels$msec
   }
 
