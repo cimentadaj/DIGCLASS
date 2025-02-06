@@ -11,7 +11,8 @@ isco08_to_msec(
   self_employed,
   n_employees,
   label = FALSE,
-  to_factor = FALSE
+  to_factor = FALSE,
+  proto = FALSE
 )
 
 isco88com_to_msec(
@@ -20,7 +21,8 @@ isco88com_to_msec(
   self_employed,
   n_employees,
   label = FALSE,
-  to_factor = FALSE
+  to_factor = FALSE,
+  proto = FALSE
 )
 }
 \arguments{
@@ -35,6 +37,8 @@ isco88com_to_msec(
 \item{label}{A logical value indicating whether to return the labels of the translated MSEC codes (default is \code{FALSE}).}
 
 \item{to_factor}{A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for MSEC found in \code{all_labels} (default is \code{FALSE}).}
+
+\item{proto}{A boolean set to \code{FALSE} by default that controls whether to use the legacy 'prototype' version of MSEC. See the details section for more information.}
 }
 \value{
 A character vector of MSEC codes.
@@ -43,7 +47,16 @@ A character vector of MSEC codes.
 This function translates a vector of 3-digit ISCO08/ISCO88COM codes to MSEC codes using the translation tables stored in \code{all_schema$isco08_to_msec / all_schema$isco88com_to_msec}.
 }
 \details{
-These translations were created from the document "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. Although originally called ESEG-Revised, the class schema has been formally called MSEC.
+The Micro Socio-Economic Classes (MSECS) is a micro-level implementation of the ESEC which clusters micro-SECs by skill similarity. By aggregating MSECS researchers can arrive at ESEC or ESEC-MP. MSECS provides a micro-level class schema which retains the ESEC criteria of employment relations and ownership of the means of production.
+
+For more information on this class schema, please check the references below:
+\itemize{
+\item Florian R. Hertel, Carlo Barone, Oscar Smallenbroek (2024) The multiverse of social class. A large-scale assessment of macro-level, meso-level and micro-level approaches to class analysis. (Under review)
+}
+
+A prototype of MSECS was created based on ESEG and is documented in "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. This 'proto' version of MSEC was the default translation for all \verb{isco_*_to_msec`` functions in this package. As of the 12th of January 2025 the proto version is **not** the default, but instead the new MSEC documented here. For users that aim to reproduce previous analysis before this date, please set }proto = TRUE`.
+
+The example sections contain some examples on how to switch between the proto and current version.
 
 This function will accept 3 digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3-digits (1310, 1320, etc..)
 }
@@ -71,6 +84,23 @@ ess \%>\%
       self_employed,
       emplno,
       label = FALSE
+    ),
+     # Proto translation. See details for more information on what proto is.
+    msec_proto_label = isco08_to_msec(
+      isco08_three,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = TRUE,
+      proto = TRUE
+    ),
+    msec_proto = isco08_to_msec(
+      isco08_three,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = FALSE,
+      proto = TRUE
     )
   )
 
@@ -91,6 +121,23 @@ ess \%>\%
       self_employed,
       emplno,
       label = FALSE
+    ),
+    # Proto translation. See details for more information on what proto is.
+    msec_proto_label = isco88com_to_msec(
+      isco88com_three,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = TRUE,
+      proto = TRUE
+    ),
+    msec_proto = isco88com_to_msec(
+      isco88com_three,
+      is_supervisor,
+      self_employed,
+      emplno,
+      label = FALSE,
+      proto = TRUE
     )
   )
 
