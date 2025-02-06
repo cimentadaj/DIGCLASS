@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DIGCLASS</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +23,7 @@
     <li><a class="dropdown-item" href="../articles/repairing_isco_input.html">Repairing an ISCO variable</a></li>
     <li><a class="dropdown-item" href="../articles/translating_between_hierarchies.html">Translating between hierarchies for ISCO68, ISCO88 and ISCO08</a></li>
   </ul></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
       </ul></div>
@@ -50,7 +51,8 @@
 <span>  <span class="va">self_employed</span>,</span>
 <span>  <span class="va">n_employees</span>,</span>
 <span>  label <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  to_factor <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  to_factor <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  proto <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">isco88com_to_msec</span><span class="op">(</span></span>
@@ -59,7 +61,8 @@
 <span>  <span class="va">self_employed</span>,</span>
 <span>  <span class="va">n_employees</span>,</span>
 <span>  label <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  to_factor <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  to_factor <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  proto <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -90,6 +93,10 @@
 <dt id="arg-to-factor">to_factor<a class="anchor" aria-label="anchor" href="#arg-to-factor"></a></dt>
 <dd><p>A logical value indicating whether to return a factor instead of a character. The order of the labels is taken from the labels for MSEC found in <code>all_labels</code> (default is <code>FALSE</code>).</p></dd>
 
+
+<dt id="arg-proto">proto<a class="anchor" aria-label="anchor" href="#arg-proto"></a></dt>
+<dd><p>A boolean set to <code>FALSE</code> by default that controls whether to use the legacy 'prototype' version of MSEC. See the details section for more information.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -97,7 +104,10 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>These translations were created from the document "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. Although originally called ESEG-Revised, the class schema has been formally called MSEC.</p>
+    <p>The Micro Socio-Economic Classes (MSECS) is a micro-level implementation of the ESEC which clusters micro-SECs by skill similarity. By aggregating MSECS researchers can arrive at ESEC or ESEC-MP. MSECS provides a micro-level class schema which retains the ESEC criteria of employment relations and ownership of the means of production.</p>
+<p>For more information on this class schema, please check the references below:</p><ul><li><p>Florian R. Hertel, Carlo Barone, Oscar Smallenbroek (2024) The multiverse of social class. A large-scale assessment of macro-level, meso-level and micro-level approaches to class analysis. (Under review)</p></li>
+</ul><p>A prototype of MSECS was created based on ESEG and is documented in "Allocation rules of ISCO-08 and ISCO-88 (COM) 3-digit codes to ESEG-Revised" from Oscar Smallenbroek, Florian Hertel and Carlo Barone. For more info, please contact the authors. This 'proto' version of MSEC was the default translation for all <code>isco_*_to_msec`` functions in this package. As of the 12th of January 2025 the proto version is **not** the default, but instead the new MSEC documented here. For users that aim to reproduce previous analysis before this date, please set </code>proto = TRUE`.</p>
+<p>The example sections contain some examples on how to switch between the proto and current version.</p>
 <p>This function will accept 3 digit codes as 4 digits. This means that if the 3-digit code is 131 then it should be 1310. All codes should be 4 digits, even though the code is represented as 3-digits (1310, 1320, etc..)</p>
     </div>
 
@@ -126,21 +136,38 @@
 <span class="r-in"><span>      <span class="va">self_employed</span>,</span></span>
 <span class="r-in"><span>      <span class="va">emplno</span>,</span></span>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>     <span class="co"># Proto translation. See details for more information on what proto is.</span></span></span>
+<span class="r-in"><span>    msec_proto_label <span class="op">=</span> <span class="fu">isco08_to_msec</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">isco08_three</span>,</span></span>
+<span class="r-in"><span>      <span class="va">is_supervisor</span>,</span></span>
+<span class="r-in"><span>      <span class="va">self_employed</span>,</span></span>
+<span class="r-in"><span>      <span class="va">emplno</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      proto <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    msec_proto <span class="op">=</span> <span class="fu">isco08_to_msec</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">isco08_three</span>,</span></span>
+<span class="r-in"><span>      <span class="va">is_supervisor</span>,</span></span>
+<span class="r-in"><span>      <span class="va">self_employed</span>,</span></span>
+<span class="r-in"><span>      <span class="va">emplno</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>      proto <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48,285 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    isco08_three msec_label                 msec </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 5410         Non-Commissioned Officers  35   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1320         Lower Management Employees 14   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 3130         Skilled Labor Supervisors  60   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 7130         Skilled Labor Supervisors  60   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 6110         Agricultural Employees     74   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 6110         Skilled Labor Supervisors  60   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 9310         Skilled Labor Supervisors  60   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1310         Lower Management Employees 14   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1310         Agricultural Self-Employed 41   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 6110         Skilled Labor Supervisors  60   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48,285 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    isco08_three msec_label                     msec  msec_proto_label msec_proto</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 5410         Armed forces                   52    Non-Commissione… 35        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1320         Lower managers                 30    Lower Managemen… 14        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 3130         Technical supervisors          80    Skilled Labor S… 60        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 7130         Technical supervisors          80    Skilled Labor S… 60        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 6110         Primary production workers     100   Agricultural Em… 74        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 6110         Technical supervisors          80    Skilled Labor S… 60        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 9310         Technical supervisors          80    Skilled Labor S… 60        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1310         Lower managers                 30    Lower Managemen… 14        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1310         Primary production self-emplo… 70    Agricultural Se… 41        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 6110         Technical supervisors          80    Skilled Labor S… 60        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 48,275 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># isco88com</span></span></span>
@@ -160,21 +187,38 @@
 <span class="r-in"><span>      <span class="va">self_employed</span>,</span></span>
 <span class="r-in"><span>      <span class="va">emplno</span>,</span></span>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="co"># Proto translation. See details for more information on what proto is.</span></span></span>
+<span class="r-in"><span>    msec_proto_label <span class="op">=</span> <span class="fu">isco88com_to_msec</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">isco88com_three</span>,</span></span>
+<span class="r-in"><span>      <span class="va">is_supervisor</span>,</span></span>
+<span class="r-in"><span>      <span class="va">self_employed</span>,</span></span>
+<span class="r-in"><span>      <span class="va">emplno</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      proto <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    msec_proto <span class="op">=</span> <span class="fu">isco88com_to_msec</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">isco88com_three</span>,</span></span>
+<span class="r-in"><span>      <span class="va">is_supervisor</span>,</span></span>
+<span class="r-in"><span>      <span class="va">self_employed</span>,</span></span>
+<span class="r-in"><span>      <span class="va">emplno</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>      proto <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48,285 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    isco88com_three msec_label                 msec </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 5160            Associate Professionals    50   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1220            Lower Management Employees 14   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 8120            Stationary Plant Operators 64   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 7140            Skilled Labor Supervisors  60   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 6110            Agricultural Employees     74   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 6110            Skilled Labor Supervisors  60   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 9310            Skilled Labor Supervisors  60   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1220            Lower Management Employees 14   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1220            Small Entrepreneurs        40   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 6110            Skilled Labor Supervisors  60   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48,285 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    isco88com_three msec_label                  msec  msec_proto_label msec_proto</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 5160            Armed forces                52    Associate Profe… 50        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1220            Lower managers              30    Lower Managemen… 14        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 8120            Routine industrial workers  110   Stationary Plan… 64        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 7140            Technical supervisors       80    Skilled Labor S… 60        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 6110            Primary production workers  100   Agricultural Em… 74        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 6110            Technical supervisors       80    Skilled Labor S… 60        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 9310            Technical supervisors       80    Skilled Labor S… 60        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1220            Lower managers              30    Lower Managemen… 14        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 1220            Self-employed white-collar… 61    Small Entrepren… 40        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 6110            Technical supervisors       80    Skilled Labor S… 60        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 48,275 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

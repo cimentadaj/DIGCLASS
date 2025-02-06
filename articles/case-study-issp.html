@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">DIGCLASS</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,7 @@
     <li><a class="dropdown-item" href="../articles/translating_between_hierarchies.html">Translating between hierarchies for ISCO68, ISCO88 and ISCO08</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -69,8 +70,6 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://cimentadaj.github.io/DIGCLASS/">DIGCLASS</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in get(paste0(generic, ".", class), envir = get_method_env()) : </span></span>
-<span><span class="co">#&gt;   object 'type_sum.accel' not found</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
 <span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
@@ -327,15 +326,15 @@ warnings of transforming values like <code>110</code> to
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 21,718 × 6</span></span></span>
 <span><span class="co">#&gt;    isco08 is_supervisor self_employed n_employees msec  isco08_three</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2430               0             0           0 23    2430        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2430               0             0           0 20    2430        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3115               0             0           0 <span style="color: #BB0000;">NA</span>    3110        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 6130               0             1           0 41    6130        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4120               0             0           0 51    4120        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 6130               0             1           0 70    6130        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4120               0             0           0 50    4120        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7531               0             0           0 <span style="color: #BB0000;">NA</span>    7530        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 4211               0             0           0 <span style="color: #BB0000;">NA</span>    4210        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 4211               1             0           8 <span style="color: #BB0000;">NA</span>    4210        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> <span style="color: #BB0000;">NA</span>                <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 9510               0             0           0 73    9510        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 9510               0             0           0 111   9510        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 7126               1             1           4 <span style="color: #BB0000;">NA</span>    7120        </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 21,708 more rows</span></span></span></code></pre></div>
 <p>We shouldn’t see any more warning messages. Now that we translate
@@ -354,16 +353,16 @@ we’ve translated it to 3-digit codes). Let’s use
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 21,718 × 6</span></span></span>
 <span><span class="co">#&gt;    isco08 is_supervisor self_employed n_employees msec  isco08_three</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2430               0             0           0 23    2430        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3115               0             0           0 31    3110        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 6130               0             1           0 41    6130        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4120               0             0           0 51    4120        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7531               0             0           0 62    7530        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 4211               0             0           0 52    4210        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 4211               1             0           8 59    4210        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 2430               0             0           0 20    2430        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 3115               0             0           0 43    3110        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 6130               0             1           0 70    6130        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 4120               0             0           0 50    4120        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 7531               0             0           0 102   7530        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 4211               0             0           0 93    4210        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 4211               1             0           8 82    4210        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> <span style="color: #BB0000;">NA</span>                <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>          <span style="color: #BB0000;">NA</span> <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 9510               0             0           0 73    9510        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 7126               1             1           4 43    7120        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 9510               0             0           0 111   9510        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 7126               1             1           4 62    7120        </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 21,708 more rows</span></span></span></code></pre></div>
 <p>There we go. We now see an <code>msec</code> column that contains the
 translation. All translation functions in <code>DIGCLASS</code> that
@@ -376,20 +375,20 @@ an example with <code>msec</code>:</p>
 <span>    msec <span class="op">=</span> <span class="fu"><a href="../reference/isco08_to_msec.html">isco08_to_msec</a></span><span class="op">(</span><span class="va">isco08_three</span>, <span class="va">is_supervisor</span>, <span class="va">self_employed</span>, <span class="va">n_employees</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">msec</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 39 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 31 × 2</span></span></span>
 <span><span class="co">#&gt;    msec                                       n</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Agricultural Employees                   325</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Agricultural Self-Employed               406</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Associate Professionals                  254</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Blue-Collar Employees                   <span style="text-decoration: underline;">1</span>159</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Building and Related Trades Employees    365</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Business Associate Professionals         314</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Business Professionals                   758</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Cleaners and Helpers                     325</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Craft and Related Trades Self-Employed   547</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Customer Service Clerks                  414</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 29 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Administrative associate professionals   314</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Armed forces                              18</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Business operation professionals         822</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Cultural associate professionals         167</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> General clerks                          <span style="text-decoration: underline;">1</span>272</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Health associate professionals           407</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Health professionals                     198</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Higher managers                         <span style="text-decoration: underline;">1</span>617</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Industrial workers                      <span style="text-decoration: underline;">1</span>219</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Interpersonal service supervisors        462</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 21 more rows</span></span></span></code></pre></div>
 <p>One final example comes from we call “chained” translations. For some
 examples you’ll need to translate to a new class schema, that then needs
 to be used as the input to another class schema. For example, to
@@ -405,20 +404,20 @@ translation for <code>isco88</code>. Here’s how we would do it:</p>
 <span>    msec <span class="op">=</span> <span class="fu"><a href="../reference/isco08_to_msec.html">isco88com_to_msec</a></span><span class="op">(</span><span class="va">isco88com_three</span>, <span class="va">is_supervisor</span>, <span class="va">self_employed</span>, <span class="va">n_employees</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">msec</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 38 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 31 × 2</span></span></span>
 <span><span class="co">#&gt;    msec                                       n</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Agricultural Employees                   381</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Agricultural Self-Employed               345</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Associate Professionals                   33</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Blue-Collar Employees                   <span style="text-decoration: underline;">1</span>214</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Building and Related Trades Employees    664</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Business Associate Professionals         157</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Business Professionals                   397</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Cleaners and Helpers                     947</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Craft and Related Trades Self-Employed   592</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Customer Service Clerks                  464</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 28 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Administrative associate professionals   160</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Armed forces                               3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Business operation professionals         461</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Cultural associate professionals         181</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> General clerks                          <span style="text-decoration: underline;">1</span>648</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Health associate professionals           585</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Health professionals                     148</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Higher managers                         <span style="text-decoration: underline;">1</span>379</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Industrial workers                      <span style="text-decoration: underline;">1</span>198</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Interpersonal service supervisors        300</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 21 more rows</span></span></span></code></pre></div>
 <p>As you can see, the <code>DIGCLASS</code> offers all the pieces to
 make very complicated translations rather easily. Since ISSP only
 contains <code>isco08</code>, we did the following translations:</p>
