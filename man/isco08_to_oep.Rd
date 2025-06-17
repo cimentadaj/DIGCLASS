@@ -37,6 +37,14 @@ using \code{isco08_swap()} or \code{isco88_swap()}. For example:
 df$isco08_3d <- isco08_swap(df$isco08, from = 4, to = 3)
 df$oep <- isco08_to_oep(df$isco08_3d)
 }\if{html}{\out{</div>}}
+
+UPDATE: As of 17th of June, 2025, we have fixed the following mistakes that were occuring:
+
+(1) Military ISCO-codes were inconsistent with the ISCO-logic (because they consist in 2-digit codes at the 3-digit level and in 3-digit codes at the 4-digit level of ISCO).
+
+(2) Higher ISCOs codes were not filled with the codes of lower ISCO-levels (say: ISCO-1 code 6 becomes ISCO-2 code 60, becomes ISCO-3 code 600, becomes ISCO-4 code 6000).
+
+The translation now fixes both issues and works fine.
 }
 \examples{
 library(dplyr)

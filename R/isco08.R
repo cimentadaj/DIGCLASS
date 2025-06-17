@@ -791,7 +791,6 @@ isco08_to_ipics <- function(x, self_employed, n_employees, label = FALSE, to_fac
 #'
 #' @details
 #'
-#'
 #' This function translates ISCO08/ISCO88 codes (at 1-, 2-, 3-, 4-digit) to OEP, a hierarchical indicator of occupations’ earning potential. OEP is a numeric scale that measures occupations’ median earnings and expresses them as percentiles of the overall earnings structure.
 #'
 #' As it does not have any labels, the label argument is not available in this function. For more information on this scale, please refer to:
@@ -807,6 +806,14 @@ isco08_to_ipics <- function(x, self_employed, n_employees, label = FALSE, to_fac
 #' df$isco08_3d <- isco08_swap(df$isco08, from = 4, to = 3)
 #' df$oep <- isco08_to_oep(df$isco08_3d)
 #' ```
+#'
+#' UPDATE: As of 17th of June, 2025, we have fixed the following mistakes that were occuring:
+#'
+#' (1) Military ISCO-codes were inconsistent with the ISCO-logic (because they consist in 2-digit codes at the 3-digit level and in 3-digit codes at the 4-digit level of ISCO).
+#'
+#' (2) Higher ISCOs codes were not filled with the codes of lower ISCO-levels (say: ISCO-1 code 6 becomes ISCO-2 code 60, becomes ISCO-3 code 600, becomes ISCO-4 code 6000).
+#'
+#' The translation now fixes both issues and works fine.
 #'
 #' @param x A character vector of 4-digit ISCO08/ISCO88 codes
 #' @param to_factor A logical value indicating whether to return a factor instead of a character
