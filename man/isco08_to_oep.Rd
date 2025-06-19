@@ -28,6 +28,7 @@ This function translates ISCO08/ISCO88 codes (at 1-, 2-, 3-, 4-digit) to OEP, a 
 As it does not have any labels, the label argument is not available in this function. For more information on this scale, please refer to:
 \itemize{
 \item Oesch, D., Lipps, O., Shahbazian, R., Bihagen, E. and Morris, K., (2024) Occupational earning potential: A new measure of social hierarchy applied to Europe, JRC Labour, Education and Technology working paper series 2024/06, European Commission, Seville, JRC139883. https://joint-research-centre.ec.europa.eu/scientific-activities-z/employment/jrc-labour-education-and-technology-working-paper-series_en
+\item Oesch, D., Lipps, O., Shahbazian, R., Bihagen, E. (2025) Occupational Earning Potential (OEP) Scale (2025-03-11 update). OSF, doi:  https://doi.org/10.17605/OSF.IO/PR89U
 }
 
 This function expects 4-digit ISCO codes. For different digit levels (1-3), first convert
