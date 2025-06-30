@@ -117,3 +117,52 @@ ess %>%
 
 
 As you can see, `isco*_swap` are functions that serve and facilitate a common task in ISCO translations.
+
+## Filling ISCO codes with trailing zeros
+
+When working with ISCO codes at different digit levels, you may need to convert them to a specific digit format for certain functions. The `isco_fill()` function makes this easy by automatically appending the appropriate number of trailing zeros:
+
+```{r}
+# Example with 2-digit ISCO codes filled to 4-digit (default)
+isco_2digit <- c("11", "21", "31", "61")
+isco_filled <- isco_fill(isco_2digit)
+print(isco_filled)
+
+# Now you can use with OEP calculation
+oep_scores <- isco08_to_oep(isco_filled)
+print(oep_scores)
+```
+
+You can also fill to other digit levels:
+
+```{r}
+# You can also fill to other digit levels
+isco_1digit <- c("1", "2", "6")
+isco_fill(isco_1digit, digits = 3)  # Fill to 3-digit
+
+isco_fill(isco_1digit, digits = 2)  # Fill to 2-digit
+```
+
+This is particularly useful when your data contains ISCO codes at the 1, 2, or 3-digit level but you need to use functions that expect 4-digit codes, such as `isco*_to_oep()`. The function follows the same logic as CROSSWALK/ISCOGEN in Stata.
+
+Here's a typical workflow combining `isco_fill()` with other DIGCLASS functions:
+
+```{r}
+# Simulate some 2-digit ISCO data
+isco_data <- data.frame(
+  respondent_id = 1:4,
+  isco08_2digit = c("11", "21", "31", "61"),
+  self_employed = c(0, 0, 1, 0),
+  emplno = c(0, 0, 3, 0)
+)
+
+# Fill to 4-digit and calculate OEP and OESCH
+isco_data %>%
+  mutate(
+    isco08_4digit = isco_fill(isco08_2digit),
+    oep = isco08_to_oep(isco08_4digit),
+    oesch = isco08_to_oesch(isco08_4digit, self_employed, emplno, label = TRUE)
+  )
+```
+
+The `isco_fill()` function is designed to work seamlessly with the rest of the DIGCLASS ecosystem, making it easy to prepare your ISCO data for analysis regardless of the original digit level.
